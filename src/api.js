@@ -6,7 +6,7 @@ const api = {
     server: 'http://192.168.2.151:8080/',
     urls: {
         JZ_LIST:'columnIndustry/commonality',
-        USER_LOGIN:'user',
+        USER_LOGIN:'home/login',
         USER_SMS:'home/send',
         USER_REG:"home/reg01",
         PAY_ALI:"pay/aliPay",//支付宝支付
