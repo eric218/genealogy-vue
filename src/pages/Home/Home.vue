@@ -20,6 +20,7 @@
     </div>
 </template>
 <script>
+import { mapState, mapMutations } from 'vuex'
 import TopInfo from './components/TopInfo.vue';
 import Dynamic from './components/Dynamic.vue';
 import NewNews from './components/NewNews.vue';
@@ -45,11 +46,13 @@ export default {
         return {
         };
     },
-    computed: {
-    },
+    computed: mapState([
+        'user'
+    ]),
     mounted: function () {
     },
     methods: {
+
     }
 };
 </script>
