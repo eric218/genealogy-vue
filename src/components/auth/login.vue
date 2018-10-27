@@ -50,7 +50,7 @@ export default {
             this.api.request('USER_LOGIN', {
                 user: {
                     username: this.form.mobile,
-                    password: this.form.password,Î
+                    password: this.form.password,
                 }
             }).then(res => {
                 if (res.code === 200) {
