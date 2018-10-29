@@ -1,6 +1,6 @@
 <template>
     <div class="newslist">
-        <router-link to="/Detail" class="item">
+        <router-link to="/c/Detail" class="item">
             <div class="img" />
             <div class="obj">
                 <div class="tit">
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </router-link>
-        <router-link to="/Detail" class="item" v-for="(v,i) in list" :key="i">
+        <router-link to="/c/Detail" class="item" v-for="(v,i) in list" :key="i">
             <div class="img" :style="api.imgBG(v.pic)" />
             <div class="obj">
                 <div class="tit" v-html="v.title"></div>

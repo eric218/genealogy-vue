@@ -6,7 +6,7 @@
                 <div class="date">2018年8月15日</div>
             </div>
             <div class="b">
-                <router-link to="/Detail" class="item" v-for="v in 6" :key="v">
+                <router-link to="/c/Detail" class="item" v-for="v in 6" :key="v">
                     <div class="hd">
                         <div class="img"></div>
                         <div class="obj">标题</div>

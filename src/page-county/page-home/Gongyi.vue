@@ -13,7 +13,7 @@
                             <span>支出公开栏</span>
                         </router-link>
                         <div class="b">
-                            <router-link to="/Detail" class="item" v-for="v in 5" :key="v">
+                            <router-link to="/c/Detail" class="item" v-for="v in 5" :key="v">
                                 <div class="date">2018-05-01</div>
                                 <div class="tag">【慈善纪要】</div>
                                 <div class="tit">标题</div>
@@ -26,7 +26,7 @@
                             <span>收益公开栏</span>
                         </router-link>
                         <div class="b">
-                            <router-link to="/Detail" class="item" v-for="v in 5" :key="v">
+                            <router-link to="/c/Detail" class="item" v-for="v in 5" :key="v">
                                 <div class="date">2018-05-01</div>
                                 <div class="tag">【慈善纪要】</div>
                                 <div class="tit">标题</div>

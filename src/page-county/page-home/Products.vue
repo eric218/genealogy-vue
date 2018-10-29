@@ -12,7 +12,7 @@
                         <span>公共产业</span>
                     </router-link>
                     <div class="bd">
-                        <router-link to="/Detail" class="item" v-for="v in 2" :key="v">
+                        <router-link to="/c/Detail" class="item" v-for="v in 2" :key="v">
                             <div class="img">
                                 <div class="tit">标题标题标题标题</div>
                             </div>
@@ -33,7 +33,7 @@
                         <span>私人产业</span>
                     </router-link>
                     <div class="bd">
-                        <router-link to="/Detail" class="item" v-for="v in 2" :key="v">
+                        <router-link to="/c/Detail" class="item" v-for="v in 2" :key="v">
                             <div class="img">
                                 <div class="tit">标题标题标题标题</div>
                             </div>

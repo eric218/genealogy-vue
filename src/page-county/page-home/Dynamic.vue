@@ -64,7 +64,7 @@
                 </div>
                 <div class="card">
                     <div class="items">
-                        <router-link to="/Detail" class="item" v-for="v in 3" :key="v">
+                        <router-link to="/c/Detail" class="item" v-for="v in 3" :key="v">
                             <div class="img"></div>
                             <div class="obj">
                                 <div class="tit">新闻标题</div>

@@ -63,7 +63,7 @@ const routes = [{
     },
     {
         name: "Detail",
-        path: "/Detail",
+        path: "/c/Detail",
         meta: {
             keepAlive: false,
             title: "文章详情"
