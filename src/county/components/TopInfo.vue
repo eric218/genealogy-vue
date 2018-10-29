@@ -136,7 +136,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .topinfo {
-  background: url("../../../assets/img/home_bg.png") no-repeat center;
+  background: url("../../assets/img/home_bg.png") no-repeat center;
 
   .inner {
     position: relative;
@@ -165,7 +165,7 @@ export default {
 
       .img {
         color: #fff;
-        background: url(../../../assets/img/home_title_a.png) no-repeat center /
+        background: url(../../assets/img/home_title_a.png) no-repeat center /
           contain;
         float: left;
         text-align: center;
@@ -301,7 +301,7 @@ export default {
     text-align: center;
 
     .h {
-      background: url(../../../assets/img/title10.png) no-repeat center / auto
+      background: url(../../assets/img/title10.png) no-repeat center / auto
         24px;
       height: 48px;
     }
@@ -340,7 +340,7 @@ export default {
           height: 48px;
           font-size: 16px;
           font-weight: 700;
-          background: url(../../../assets/img/icon-fontbg.png) no-repeat center /
+          background: url(../../assets/img/icon-fontbg.png) no-repeat center /
             100% 100%;
 
           .tag {

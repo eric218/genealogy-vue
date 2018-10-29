@@ -4,7 +4,7 @@
         <GradNav :navcurr="1" />
         <div class="main">
             <div class="adlinks">
-                <img src="../../assets/jpg/bg-culture.png" alt="">
+                <img src="@/assets/jpg/bg-culture.png" alt="">
             </div>
             <div class="inner">
                 <div class="tabs kt">

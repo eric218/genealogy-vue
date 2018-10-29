@@ -9,7 +9,7 @@
             <NewNews />
             <Famous />
             <div class="adlinks">
-                <img src="../../assets/jpg/gg.png" alt="">
+                <img src="@/assets/jpg/gg.png" alt="">
             </div>
             <HomeNews />
             <Gongyi />
@@ -46,9 +46,8 @@ export default {
         return {
         };
     },
-    computed: mapState([
-        'user'
-    ]),
+    computed: {
+    },
     mounted: function () {
     },
     methods: {

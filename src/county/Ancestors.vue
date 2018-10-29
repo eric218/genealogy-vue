@@ -105,7 +105,7 @@ export default {
   }
 }
 .sib {
-  background: url(../../assets/jpg/bg-ancestors.png) no-repeat center / 100%
+  background: url(../assets/jpg/bg-ancestors.png) no-repeat center / 100%
     auto;
   color: #fff;
   text-align: center;

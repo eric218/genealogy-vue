@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="adlinks">
-                <img src="../../assets/jpg/bg-charity.png" alt="">
+                <img src="@/assets/jpg/bg-charity.png" alt="">
             </div>
             <div class="inner">
                 <div class="tabs kt">

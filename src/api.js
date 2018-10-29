@@ -1,22 +1,23 @@
 import axios from 'axios';
+import 'es6-promise/auto'
 
 const api = {
     pageSize: 20,
     host: 'http://192.168.2.127/',
     server: 'http://192.168.2.151:8080/',
     urls: {
-        JZ_LIST:'columnIndustry/commonality',
-        USER_LOGIN:'home/login',
-        USER_SMS:'home/send',
-        USER_REG:"home/reg01",
-        PAY_ALI:"pay/aliPay",//支付宝支付
-        PAY_WX:"pay/wechatPay",//微信支付
+        JZ_LIST: 'columnIndustry/commonality',
+        USER_LOGIN: 'home/login',
+        USER_SMS: 'home/send',
+        USER_REG: "home/reg01",
+        PAY_ALI: "pay/aliPay", //支付宝支付
+        PAY_WX: "pay/wechatPay", //微信支付
     },
     request: function (url, data) {
-        if(!data.pageNow){
+        if (!data.pageNow) {
             data.pageNow = 1
         }
-        if(!data.pageSize){
+        if (!data.pageSize) {
             data.pageNow = 8
         }
         let params = new URLSearchParams();
@@ -104,8 +105,8 @@ const api = {
         }
         return e.indexOf('http') > -1 ? e : this.host + e;
     },
-    imgBG:function(e){
-        return 'backgroundImage:url('+this.imgurl(e)+')';
+    imgBG: function (e) {
+        return 'backgroundImage:url(' + this.imgurl(e) + ')';
     },
     regConfig: function () {
         this.ajax('jssdk', {
