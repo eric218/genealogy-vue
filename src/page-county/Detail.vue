@@ -1,7 +1,7 @@
 <template>
     <div class="page page-detail">
-        <GradTopbar />
-        <GradNav :navcurr="0" />
+        <Topbar />
+        <NavBar :navcurr="0" />
         <div class="main">
             <div class="inner">
                 <Breadcrumb>
@@ -99,30 +99,16 @@
                 </div>
             </div>
         </div>
-        <GradFooter />
+        <FootBar />
     </div>
 </template>
 <script>
-import TopInfo from './components/TopInfo.vue';
-import Dynamic from './components/Dynamic.vue';
-import NewNews from './components/NewNews.vue';
-import Famous from './components/Famous.vue';
-import HomeNews from './components/HomeNews.vue';
-import Gongyi from './components/Gongyi.vue';
-import Products from './components/Products.vue';
-import Friends from './components/Friends.vue';
-
+import { Topbar, NavBar, FootBar } from './c'
 export default {
-    name: "Home",
     components: {
-        TopInfo,
-        Dynamic,
-        NewNews,
-        Famous,
-        HomeNews,
-        Gongyi,
-        Products,
-        Friends,
+        Topbar,
+        NavBar,
+        FootBar,
     },
     data() {
         return {

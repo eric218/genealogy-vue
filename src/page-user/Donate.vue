@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <GradFooter />
+        <FootBar />
     </div>
 </template>
 <script>

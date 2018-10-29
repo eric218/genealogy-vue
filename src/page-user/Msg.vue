@@ -9,23 +9,23 @@
                     <div class="h">
                         <div class="more act">
                             <iconfont name="edit" />
-                            <span>写日志</span>
+                            <span>发布</span>
                         </div>
-                        <div class="tit">日志</div>
+                        <div class="tit">说说</div>
                     </div>
                     <div class="bd">
-                        <div class="item">
+                        <div class="item" v-for="v in 5" :key="v">
                             <div class="img"></div>
                             <div class="obj">
-                                <div class="tit">标题</div>
-                                <div class="intro">简介</div>
+                                <div class="txt">文字描述文字描述</div>
+                                <div class="date">2018-10-10</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <GradFooter />
+        <FootBar />
     </div>
 </template>
 <script>
@@ -53,25 +53,36 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.suc{
+    .grad{
+        background: transparent;
+        .h{
+            background: #fff;
+        }
+    }
+}
 .bd {
+    background: whitesmoke;
   .item {
     display: block;
-    overflow: hidden;
-    white-space: nowrap;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(#000,.1);
+    border-radius: 8px;
+    margin: 16px 0;
     padding: 16px;
+    white-space: nowrap;
     .img {
+      height: 64px;
+      width: 64px;
       float: left;
       margin-right: 16px;
-      height: 120px;
-      width: 160px;
-      background: whitesmoke no-repeat;
+      background: whitesmoke no-repeat center;
+      border-radius: 50%;
     }
     .obj {
       overflow: hidden;
-      .tit {
-      }
-      .intro{
-          color:#999;
+      .date {
+        color: #999;
       }
     }
   }

@@ -1,8 +1,8 @@
 <template>
     <div class="page page-home">
-        <GradTopbar />
-        <GradNav :navcurr="0" />
-        <GradBanner />
+        <Topbar />
+        <NavBar :navcurr="0" />
+        <Banner />
         <div class="main">
             <TopInfo />
             <Dynamic />
@@ -16,23 +16,20 @@
             <Products />
             <Friends />
         </div>
-        <GradFooter />
+        <FootBar />
     </div>
 </template>
 <script>
-import { mapState, mapMutations } from 'vuex'
-import TopInfo from './components/TopInfo.vue';
-import Dynamic from './components/Dynamic.vue';
-import NewNews from './components/NewNews.vue';
-import Famous from './components/Famous.vue';
-import HomeNews from './components/HomeNews.vue';
-import Gongyi from './components/Gongyi.vue';
-import Products from './components/Products.vue';
-import Friends from './components/Friends.vue';
+import { Topbar, NavBar, Banner, FootBar } from './c'
+import { TopInfo, Dynamic, NewNews, Famous, HomeNews, Gongyi, Products, Friends } from './page-home';
 
 export default {
     name: "Home",
     components: {
+        Topbar,
+        NavBar,
+        Banner,
+        FootBar,
         TopInfo,
         Dynamic,
         NewNews,

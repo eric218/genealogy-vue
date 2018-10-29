@@ -1,7 +1,7 @@
 <template>
     <div class="page page-charity">
-        <GradTopbar />
-        <GradNav :navcurr="2" />
+        <Topbar />
+        <NavBar :navcurr="2" />
         <div class="main">
             <div class="counts">
                 <div class="inner">
@@ -60,18 +60,22 @@
                 </div>
             </div>
         </div>
-        <GradFooter />
+        <FootBar />
         <Modal v-model="handleTopay" width="480px" :footer-hide="true" class="g-pay">
             <topay />
         </Modal>
     </div>
 </template>
 <script>
+import { Topbar, NavBar, FootBar } from './c'
 import NewsList from '@/components/list/news.vue';
 import topay from '@/components/post/topay.vue'
 export default {
     name: "Charity",
     components: {
+        Topbar,
+        NavBar,
+        FootBar,
         NewsList,
         topay,
     },

@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <GradFooter />
+        <FootBar />
     </div>
 </template>
 <script>
@@ -36,10 +36,8 @@
 import UserHead from './components/head.vue'
 import UserNav from './components/nav.vue'
 import sua from './components/sua.vue'
-import NewsList from '@/components/list/news.vue';
 export default {
     components: {
-        NewsList,
         UserHead,
         UserNav,
         sua,

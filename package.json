@@ -5,7 +5,7 @@
   "homepage": "http://www.mopui.com",
   "author": "ice-admin@alibaba-inc.com",
   "scripts": {
-    "start": "vue-cli-service serve --port 80",
+    "start": "vue-cli-service serve",
     "build": "vue-cli-service build --modern"
   },
   "dependencies": {
@@ -15,7 +15,6 @@
     "swiper": "^4.4.1",
     "url-search-params-polyfill": "^5.0.0",
     "vue": "^2.5.17",
-    "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },

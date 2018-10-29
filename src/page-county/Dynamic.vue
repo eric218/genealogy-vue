@@ -1,7 +1,7 @@
 <template>
     <div class="page page-culture">
-        <GradTopbar />
-        <GradNav :navcurr="5" />
+        <Topbar />
+        <NavBar :navcurr="5" />
         <div class="main">
             <div class="dynamic">
                 <div class="inner">
@@ -111,14 +111,20 @@
                 </div>
             </div>
         </div>
-        <GradFooter />
+        <FootBar />
     </div>
 </template>
 
 
 <script>
+import { Topbar, NavBar, FootBar } from './c'
 export default {
     name: "Culture",
+    components: {
+        Topbar,
+        NavBar,
+        FootBar,
+    },
     data() {
         return {
             menu: [],

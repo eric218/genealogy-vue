@@ -1,10 +1,10 @@
 <template>
     <div class="page page-census">
-        <GradTopbar />
-        <GradNav :navcurr="1" />
+        <Topbar />
+        <NavBar :navcurr="1" />
         <div class="main">
         </div>
-        <GradFooter />
+        <FootBar />
     </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
     <div class="page page-ancestors">
-        <GradTopbar />
-        <GradNav :navcurr="6" />
+        <Topbar />
+        <NavBar :navcurr="6" />
         <div class="main">
             <div class="sia">
                 <div class="inner">
@@ -58,14 +58,19 @@
                 </div>
             </div>
         </div>
-        <GradFooter />
+        <FootBar />
     </div>
 </template>
 
 
 <script>
+import { Topbar, NavBar, FootBar } from './c'
 export default {
-    name: "Ancestors",
+    components: {
+        Topbar,
+        NavBar,
+        FootBar,
+    },
     data() {
         return {
         };
@@ -105,8 +110,7 @@ export default {
   }
 }
 .sib {
-  background: url(../assets/jpg/bg-ancestors.png) no-repeat center / 100%
-    auto;
+  background: url(../assets/jpg/bg-ancestors.png) no-repeat center / 100% auto;
   color: #fff;
   text-align: center;
   padding-bottom: 128px;

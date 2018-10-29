@@ -13,18 +13,7 @@
 <script>
 import Vue from 'vue'
 import Icon from '@/components/common/iconfont.vue'
-import GradTopbar from '@/components/grad/topbar.vue'
-import GradNav from '@/components/grad/nav.vue'
-import GradBanner from '@/components/grad/banner.vue'
-import GradFooter from '@/components/grad/footer.vue'
-import Editor from '@/components/common/editor.vue';
 Vue.component('iconfont', Icon)
-Vue.component('GradTopbar', GradTopbar)
-Vue.component('GradNav', GradNav)
-Vue.component('GradBanner', GradBanner)
-Vue.component('GradFooter', GradFooter)
-Vue.component('Editor', Editor)
-
 export default {
     name: 'App',
     updated() {
@@ -39,7 +28,6 @@ export default {
 .router-fade-enter {
   opacity: 0;
 }
-
 .router-fade-leave-active {
   opacity: 0;
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="page page-human">
-        <GradTopbar />
-        <GradNav :navcurr="4" />
+        <Topbar />
+        <NavBar :navcurr="4" />
         <div class="main">
             <div class="adlinks">
                 <img src="@/assets/jpg/bg-human.png" alt="">
@@ -17,13 +17,17 @@
                 </div>
             </div>
         </div>
-        <GradFooter />
+        <FootBar />
     </div>
 </template>
 <script>
 import LIST from '@/components/list/human.vue';
+import { Topbar, NavBar, FootBar } from './c'
 export default {
     components: {
+        Topbar,
+        NavBar,
+        FootBar,
         LIST,
     },
     data() {

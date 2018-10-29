@@ -12,9 +12,9 @@
                 </RadioGroup>
             </FormItem>
             <FormItem label="捐赠金额">
-                <Input placeholder="填入其它金额" v-model="form.num" :maxlength="5" :number="true">
+                <i-input placeholder="填入其它金额" v-model="form.num" :maxlength="5" :number="true">
                 <div slot="suffix" style="line-height:32px;">元</div>
-                </Input>
+                </i-input>
             </FormItem>
             <FormItem label="支付平台">
                 <RadioGroup v-model="form.paytype" type="button">

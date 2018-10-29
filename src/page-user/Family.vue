@@ -5,7 +5,7 @@
         <div class="main">
             <sua />
         </div>
-        <GradFooter />
+        <FootBar />
     </div>
 </template>
 <script>
