@@ -110,3 +110,108 @@ export default {
     },
 };
 </script>
+<style lang="scss" scoped>
+@import "@/assets/css/var.scss";
+.counts {
+  background: url(../assets/jpg/bg-charity-fill.png) no-repeat center;
+  padding: 64px 0;
+
+  .inner {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .l {
+    width: 48%;
+
+    .h {
+      line-height: 64px;
+      font-size: 24px;
+
+      .num {
+        color: $color;
+        font-size: 32px;
+      }
+    }
+
+    .b {
+      .item {
+        .num {
+          color: #2876f4;
+        }
+      }
+    }
+  }
+
+  .r {
+    width: 48%;
+
+    .h {
+      text-align: center;
+
+      .act {
+        display: inline-block;
+        width: 64px;
+        height: 64px;
+      }
+    }
+
+    .b {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .item {
+        width: 30%;
+        background: #fff;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        padding: 8px;
+        border-radius: 8px;
+        text-align: center;
+
+        .img {
+          width: 64px;
+          height: 64px;
+          background: whitesmoke no-repeat center / cover;
+          border-radius: 100%;
+          clear: both;
+          margin: 0 auto;
+        }
+
+        .name {
+          font-size: 16px;
+        }
+
+        .act {
+          overflow: hidden;
+          font-size: 12px;
+
+          .zan {
+            float: right;
+            width: 50%;
+
+            img {
+              height: 16px;
+              width: 16px;
+              margin-right: 4px;
+            }
+          }
+
+          .flow {
+            float: left;
+            width: 50%;
+
+            span {
+              padding: 4px 8px;
+              background: $color;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</style>

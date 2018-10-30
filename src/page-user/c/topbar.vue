@@ -19,7 +19,7 @@
                             <a href="http://192.168.2.106:4445/" target="_blank">后台管理</a>
                         </DropdownItem>
                         <DropdownItem>
-                            <router-link to='/Home' style="display:block">返回首页</router-link>
+                            <router-link to='/c/Home' style="display:block">返回首页</router-link>
                         </DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
@@ -72,3 +72,119 @@ export default {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/css/var.scss";
+.topbar {
+  background: #fafafa;
+  height: 120px;
+  .brand {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    z-index: 9;
+    margin-left: -580px;
+    white-space: nowrap;
+    overflow: hidden;
+
+    .img {
+      height: 80px;
+      width: 80px;
+      background: url(../../assets/img/logo.png) no-repeat center / auto 100%;
+      margin-right: 16px;
+      float: left;
+    }
+
+    .obj {
+      overflow: hidden;
+      font-size: 24px;
+
+      .cn {
+        font-weight: 700;
+        letter-spacing: 3px;
+      }
+
+      .en {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .authform {
+    position: absolute;
+    right: 50%;
+    top: 20px;
+    z-index: 9;
+    margin-right: -580px;
+    overflow: hidden;
+
+    .btn {
+      display: block;
+      float: left;
+      padding: 0 20px;
+      color: #fff;
+      margin: 0 1px;
+      cursor: pointer;
+
+      &.reg {
+        background: #666;
+      }
+
+      &.login {
+        background: #000;
+      }
+    }
+  }
+
+  .authuser {
+    position: absolute;
+    right: 50%;
+    top: 20px;
+    z-index: 9;
+    padding: 16px;
+    margin-right: -580px;
+    white-space: nowrap;
+    cursor: pointer;
+
+    .img {
+      position: relative;
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      background: whitesmoke no-repeat center / cover;
+      float: left;
+      margin-right: 16px;
+
+      .tag {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        font-size: 12px;
+        border-radius: 8px;
+        line-height: 20px;
+        background: #f56c6c;
+        min-width: 24px;
+        text-align: center;
+        color: #fff;
+      }
+    }
+
+    .obj {
+      overflow: hidden;
+      line-height: 40px;
+      color: #fff;
+    }
+  }
+
+  &._user {
+    background: $color;
+
+    .brand {
+      .img {
+        width: 320px;
+        background: url(../../assets/img/logo-white.png) no-repeat center;
+      }
+    }
+  }
+}
+</style>

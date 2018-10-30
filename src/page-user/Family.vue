@@ -1,7 +1,7 @@
 <template>
     <div class="page page-user">
-        <UserHead />
-        <UserNav name="1"/>
+        <Topbar />
+        <NavBar name="1"/>
         <div class="main">
             <sua />
         </div>
@@ -9,14 +9,13 @@
     </div>
 </template>
 <script>
-
-import UserHead from './components/head.vue'
-import UserNav from './components/nav.vue'
-import sua from './components/sua.vue'
+import sua from './c/sua.vue'
+import { Topbar, NavBar, FootBar } from './c'
 export default {
     components: {
-        UserHead,
-        UserNav,
+        Topbar,
+        NavBar,
+        FootBar,
         sua,
     },
     data() {

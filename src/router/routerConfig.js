@@ -3,6 +3,14 @@ const routes = [{
         redirect: "/c/Home"
     },
     {
+        path: "/p/Home",
+        meta: {
+            keepAlive: false,
+            title: "首页"
+        },
+        component: resolve => require(["../page-province/Home.vue"], resolve)
+    },
+    {
         path: "/c/Home",
         meta: {
             keepAlive: false,

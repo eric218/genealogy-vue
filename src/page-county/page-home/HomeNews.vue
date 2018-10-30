@@ -54,3 +54,52 @@ export default {
     },
 };
 </script>
+<style lang="scss" scoped>
+@import "@/assets/css/var.scss";
+.news {
+  .items {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .item {
+      width: 48%;
+      background: #ece9e9;
+      margin-bottom: 16px;
+      border-radius: 8px;
+      white-space: nowrap;
+      padding: 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+      .img {
+        width: 120px;
+        height: 120px;
+        margin-right: 16px;
+        float: left;
+        background: white;
+      }
+
+      .obj {
+        overflow: hidden;
+
+        .tit {
+          font-size: 16px;
+          color: $color;
+          line-height: 24px;
+        }
+
+        .intro {
+          color: #999;
+          white-space: normal;
+          height: 48px;
+          line-height: 24px;
+        }
+
+        .more {
+          color: $color;
+        }
+      }
+    }
+  }
+}
+</style>

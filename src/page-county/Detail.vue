@@ -1,5 +1,5 @@
 <template>
-    <div class="page page-detail">
+    <div class="page" style="background-color:#ece9e9">
         <Topbar />
         <NavBar :navcurr="0" />
         <div class="main">

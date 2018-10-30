@@ -2,10 +2,7 @@
     <div class="topbar">
         <div class="brand">
             <div class="img"></div>
-            <div class="obj kt">
-                <div class="cn">湖北咸宁市崇阳县张氏</div>
-                <div class="en">ZHANG COUNTY CONGYANG XIANNING HUBEI</div>
-            </div>
+            <div class="obj kt">湖北张氏</div>
         </div>
         <div class="authform">
             <div class="btn login" @click="islogin = true">登录</div>

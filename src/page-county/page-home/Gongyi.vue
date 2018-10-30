@@ -105,3 +105,165 @@ export default {
     },
 };
 </script>
+<style lang="scss" scoped>
+@import "@/assets/css/var.scss";
+.gongyi {
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .left {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .one {
+      height: 48%;
+    }
+
+    .two {
+      height: 48%;
+    }
+
+    .grad {
+      background: #ece9e9;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+      .h {
+        display: block;
+        margin: 0 8px;
+        font-size: 16px;
+        line-height: 40px;
+        border-bottom: 1px solid $color;
+
+        .more {
+          float: right;
+          font-size: 14px;
+        }
+      }
+
+      .b {
+        overflow: hidden;
+        padding: 8px 0;
+
+        .item {
+          padding: 0 8px;
+          display: block;
+          overflow: hidden;
+          font-size: 14px;
+          white-space: nowrap;
+          line-height: 32px;
+
+          &:hover {
+            font-weight: 700;
+          }
+        }
+
+        .date {
+          float: right;
+          color: #999;
+        }
+
+        .tag {
+          float: left;
+          color: $color;
+        }
+
+        .tit {
+          overflow: hidden;
+          color: #666;
+        }
+      }
+    }
+  }
+
+  .right {
+    width: 48%;
+    background: #ece9e9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 16px;
+
+    .h {
+      line-height: 64px;
+
+      span {
+        font-size: 16px;
+
+        &.num {
+          font-size: 32px;
+          color: $color;
+          font-weight: 700;
+          margin-right: 8px;
+        }
+      }
+
+      .act {
+        float: right;
+        background: url(../../assets/img/icon-help.png) no-repeat center / cover;
+        height: 48px;
+        width: 48px;
+      }
+    }
+
+    .b {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .item {
+        width: 30%;
+        background: #fff;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        padding: 8px;
+        border-radius: 8px;
+        text-align: center;
+
+        .img {
+          width: 64px;
+          height: 64px;
+          background: whitesmoke no-repeat center / cover;
+          border-radius: 100%;
+          clear: both;
+          margin: 0 auto;
+        }
+
+        .name {
+          font-size: 16px;
+        }
+
+        .act {
+          overflow: hidden;
+          font-size: 12px;
+
+          .zan {
+            float: right;
+            width: 50%;
+
+            img {
+              height: 16px;
+              width: 16px;
+              margin-right: 4px;
+            }
+          }
+
+          .flow {
+            float: left;
+            width: 50%;
+
+            span {
+              padding: 4px 8px;
+              background: $color;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</style>

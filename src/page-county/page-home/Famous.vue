@@ -35,3 +35,129 @@
 export default {
 };
 </script>
+<style lang="scss" scoped>
+@import "@/assets/css/var.scss";
+.famous {
+  background: url(../../assets/img/bg01.png) repeat;
+
+  .inner {
+    padding: 64px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .tabs {
+      width: 20%;
+      overflow: hidden;
+      text-align: center;
+      background: #fff;
+      padding: 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+      .item {
+        margin: 16px auto;
+        background: url(../../assets/img/famous-menu.png) no-repeat center /
+          100% 100%;
+        color: #fff;
+        width: 90%;
+        height: 64px;
+        line-height: 64px;
+        font-size: 20px;
+        cursor: pointer;
+
+        &.curr,
+        &:hover {
+          background-image: url(../../assets/img/famous-curr.png);
+        }
+      }
+    }
+
+    .card {
+      width: 75%;
+      background: #fff;
+      height: 540px;
+      overflow-y: auto;
+      padding: 16px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+      .title {
+        background: $color;
+        color: #fff;
+        text-align: center;
+        line-height: 40px;
+        font-size: 20px;
+        border-radius: 8px;
+      }
+
+      .top {
+        padding: 8px 0;
+        overflow: hidden;
+        white-space: nowrap;
+
+        .img {
+          border-radius: 8px;
+          height: 120px;
+          width: 120px;
+          float: left;
+          margin-right: 16px;
+          background: whitesmoke no-repeat center / cover;
+        }
+
+        .obj {
+          overflow: hidden;
+          white-space: normal;
+
+          .tit {
+            font-size: 20px;
+            color: $color;
+          }
+
+          .intro {
+            color: #999;
+            height: 80px;
+            line-height: 20px;
+          }
+        }
+      }
+
+      .items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 8px 0;
+
+        .item {
+          width: 48%;
+          margin: 4px 0;
+          white-space: nowrap;
+
+          .img {
+            border-radius: 8px;
+            height: 75px;
+            width: 75px;
+            float: left;
+            margin-right: 16px;
+            background: whitesmoke no-repeat center / cover;
+          }
+
+          .obj {
+            overflow: hidden;
+            white-space: normal;
+
+            .tit {
+              font-size: 16px;
+              color: $color;
+            }
+
+            .intro {
+              color: #999;
+              height: 48px;
+              line-height: 24px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</style>

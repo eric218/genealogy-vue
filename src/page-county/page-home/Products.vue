@@ -85,3 +85,106 @@ export default {
     },
 };
 </script>
+<style lang="scss" scoped>
+@import "@/assets/css/var.scss";
+.products {
+  padding: 8px 0 32px;
+
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .grad {
+    width: 48%;
+    background: #ece9e9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .hd {
+    font-size: 16px;
+    margin: 0 8px;
+    display: block;
+    border-bottom: 1px solid $color;
+    line-height: 40px;
+
+    .more {
+      float: right;
+    }
+  }
+
+  .bd {
+    .item {
+      display: block;
+      padding: 8px;
+
+      .img {
+        height: 240px;
+        position: relative;
+        background: url(../../assets/jpg/tp10.png) whitesmoke no-repeat center / cover;
+
+        .tit {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 100%;
+          padding: 0 16px;
+          font-size: 16px;
+          color: #fff;
+          line-height: 40px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          background: rgba(0, 0, 0, 0.5);
+        }
+      }
+
+      .flag {
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 8px 0;
+        line-height: 48px;
+
+        .head {
+          height: 48px;
+          width: 48px;
+          float: left;
+          background: whitesmoke no-repeat center / cover;
+          border-radius: 50%;
+        }
+
+        .name {
+          float: left;
+          margin: 0 16px;
+        }
+
+        .tag {
+          color: $color;
+          font-size: 12px;
+          float: left;
+          font-weight: 700;
+
+          img {
+            width: 20px;
+            margin-right: 8px;
+          }
+        }
+
+        .level {
+          float: right;
+
+          span {
+            background: $color;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+</style>

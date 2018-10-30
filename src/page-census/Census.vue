@@ -1,10 +1,6 @@
 <template>
     <div class="page page-census">
-        <Topbar />
-        <NavBar :navcurr="1" />
-        <div class="main">
-        </div>
-        <FootBar />
+        统谱编修
     </div>
 </template>
 
