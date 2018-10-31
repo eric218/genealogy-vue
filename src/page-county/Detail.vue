@@ -122,3 +122,8 @@ export default {
     }
 };
 </script>
+<style lang="scss" scoped>
+.ivu-breadcrumb{
+    padding:8px 16px;
+}
+</style>

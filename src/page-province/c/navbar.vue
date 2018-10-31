@@ -1,8 +1,7 @@
 <template>
-    <div class="nav">
+    <div class="navbar">
         <div class="inner">
-            <a href="/" class="item right">统谱编修</a>
-            <router-link class="item" v-for="(v,i) in navs" :key="i" v-html="v.name" :class="i ==navcurr ?'curr':''" :to="v.url" />
+            <router-link class="item" v-for="(v,i) in navs" :key="i" v-html="v.name" :class="[i == navcurr ?'curr':'', i >= 3? 'r':'']" :to="v.url" />
         </div>
     </div>
 </template>
@@ -19,19 +18,16 @@ export default {
                 url: '/p/Culture',
             }, {
                 name: '数字家谱',
-                url: '/c/Genealogy',
-            }, {
-                name: '家族产业',
-                url: '/c/Products',
+                url: '/p/Genealogy',
             }, {
                 name: '祖先&名人',
-                url: '/c/Human',
+                url: '/p/Human',
             }, {
                 name: '各地分支',
-                url: '/c/Tree',
+                url: '/p/Tree',
             }, {
                 name: '记录家族',
-                url: '/c/Record',
+                url: '/p/Record',
             }],
         };
     },
@@ -42,3 +38,37 @@ export default {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/css/var.scss";
+.navbar {
+  position: absolute;
+  z-index: 9;
+  top: 210px;
+  right: 0;
+  left: 0;
+
+  .inner {
+    overflow: hidden;
+  }
+
+  .item {
+    background: url(../img/nav.png) no-repeat center;
+    width: 12%;
+    float: left;
+    font-weight: 500;
+    line-height: 48px;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    &:hover,
+    &.curr {
+      background-image: url(../img/nav-active.png);
+    }
+    &.r {
+      float: right;
+    }
+  }
+}
+</style>

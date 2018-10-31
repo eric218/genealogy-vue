@@ -21,3 +21,29 @@ export default {
     name: "FootBar",
 };
 </script>
+<style lang="scss" scoped>
+footer {
+  background-color: #212425;
+  position: relative;
+  text-align: center;
+  color: #999;
+  padding: 32px;
+
+  .links {
+    padding: 16px;
+
+    .logo {
+      margin-right: 20px;
+    }
+
+    a {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    span {
+      margin: 0 10px;
+    }
+  }
+}
+</style>

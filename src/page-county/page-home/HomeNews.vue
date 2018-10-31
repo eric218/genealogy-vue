@@ -5,16 +5,18 @@
                 <span class="tit">资讯</span>
                 <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.id == menucurr.id ? 'curr':''" v-html="v.name" @click="chgMenu(v)"></span>
             </div>
-            <div class="items">
-                <div class="item" v-for="v in 6" :key="v">
-                    <div class="img"></div>
-                    <div class="obj">
-                        <div class="tit">标题</div>
-                        <div class="intro">简介</div>
-                        <div class="more">查看详情>></div>
-                    </div>
-                </div>
-            </div>
+            <Row class="items" :gutter="32">
+                <i-col :span="12" v-for="v in 6" :key="v">
+                    <Card class="item">
+                        <div class="img"></div>
+                        <div class="obj">
+                            <div class="tit">标题</div>
+                            <div class="intro">简介</div>
+                            <div class="more">查看详情>></div>
+                        </div>
+                    </Card>
+                </i-col>
+            </Row>
             <div class="pages">
                 <a href="javascript:void(0)" class="item" v-for="v in 5" :key="v" :class="v==pagecurr?'curr':''" @click="pagecurr = v">{{v}}</a>
             </div>
@@ -58,22 +60,13 @@ export default {
 @import "@/assets/css/var.scss";
 .news {
   .items {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
     .item {
-      width: 48%;
       background: #ece9e9;
-      margin-bottom: 16px;
-      border-radius: 8px;
+      margin: 8px 0;
       white-space: nowrap;
-      padding: 16px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
       .img {
-        width: 120px;
-        height: 120px;
+        width: 96px;
+        height: 96px;
         margin-right: 16px;
         float: left;
         background: white;
@@ -81,6 +74,7 @@ export default {
 
       .obj {
         overflow: hidden;
+        height: 96px;
 
         .tit {
           font-size: 16px;

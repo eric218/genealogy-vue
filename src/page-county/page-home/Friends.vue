@@ -5,7 +5,7 @@
                 <div class="tit"></div>
             </div>
             <div class="b">
-                <a href="/" class="item" v-for="v in 32" :key="v">
+                <a href="http://www.baidu.com" target="_blank" class="item" v-for="v in 32" :key="v">
                     湖北省
                 </a>
             </div>
@@ -28,14 +28,15 @@ export default {
   .h {
     position: relative;
     text-align: center;
-    background: url(../../assets/img/icon-title-tip.png) no-repeat bottom center / auto
-      24px;
+    background: url(../../assets/img/icon-title-tip.png) no-repeat bottom center /
+      auto 24px;
     padding: 24px 0;
 
     .tit {
       display: block;
       height: 32px;
-      background: url(../../assets/img/home-friends.png) no-repeat center / auto 24px;
+      background: url(../../assets/img/home-friends.png) no-repeat center / auto
+        24px;
     }
 
     .date {
