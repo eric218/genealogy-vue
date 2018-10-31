@@ -71,20 +71,117 @@
                         <div class="h">
                             <div class="tit">省级公告</div>
                         </div>
-                        <Card class="b">
-                            <div class="headline">
+                        <Card class="b" dis-hover>
+                            <Card class="headline">
                                 <div class="tit">
-                                    <span class="flag"></span>
-                                    <div class="tit"></div>
-                                    <div class="tag"></div>
-                                    <div class="txt"></div>
+                                    <span class="flag">【置顶公告】</span>
+                                    <span>标题</span>
                                 </div>
-                            </div>
-                            <div class="item">
-
-                            </div>
+                                <div class="tag">
+                                    <iconfont name="newshot" />
+                                    <span>2018-10-10</span>
+                                    <iconfont name="attention" />
+                                    <span>150</span>
+                                </div>
+                                <div class="txt">描述描述</div>
+                            </Card>
+                            <Card class="item" v-for="v in 3" :key="v">
+                                省级公告标题
+                            </Card>
                         </Card>
                     </div>
+                </div>
+            </div>
+            <div class="adlinks">
+                <img src="@/assets/jpg/adlinkb.png" alt="">
+            </div>
+            <div class="inner">
+                <Row :gutter="32" class="sic">
+                    <i-col :span="12">
+                        <div class="h kt">
+                            <span class="more">更多</span>
+                            <div class="tit">资讯</div>
+                        </div>
+                        <div class="b">
+                            <div class="item curr">联谊会发布</div>
+                            <div class="item">个人发布</div>
+                        </div>
+                        <div class="f">
+                            <div class="item" v-for="v in 4" :key="v">
+                                <div class="img"></div>
+                                <div class="obj">
+                                    <div class="tit">标题</div>
+                                    <div class="txt">扼要</div>
+                                </div>
+                            </div>
+                        </div>
+                    </i-col>
+                    <i-col :span="12">
+                        <div class="h kt">
+                            <span class="more">更多</span>
+                            <div class="tit">人物</div>
+                        </div>
+                        <div class="b">
+                            <div class="item curr">家族长老</div>
+                            <div class="item">家族栋梁</div>
+                        </div>
+                        <div class="f">
+                            <div class="item" v-for="v in 4" :key="v">
+                                <div class="img"></div>
+                                <div class="obj">
+                                    <div class="tit">标题</div>
+                                    <div class="tag">教授</div>
+                                    <div class="txt">扼要</div>
+                                </div>
+                            </div>
+                        </div>
+                    </i-col>
+                </Row>
+            </div>
+            <div class="adlinks">
+                <img src="@/assets/jpg/adlink.png" alt="">
+            </div>
+            <div class="sid">
+                <div class="inner"></div>
+            </div>
+            <div class="inner">
+                <Row :gutter="32" class="sic">
+                    <i-col :span="24">
+                        <div class="h kt">
+                            <span class="more">更多</span>
+                            <div class="tit">文化</div>
+                        </div>
+                        <div class="b">
+                            <div class="item curr">文化发布</div>
+                            <div class="item">祖先名人</div>
+                            <div class="item">字派</div>
+                            <div class="item">迁徙之源</div>
+                        </div>
+                        <div class="f">
+                            <Row :gutter="32">
+                                <i-col :span="12" v-for="v in 6" :key="v">
+                                    <div class="item">
+                                        <div class="img"></div>
+                                        <div class="obj">
+                                            <div class="tit">标题</div>
+                                            <div class="txt">扼要</div>
+                                        </div>
+                                    </div>
+                                </i-col>
+                            </Row>
+                        </div>
+                    </i-col>
+                </Row>
+            </div>
+        </div>
+        <div class="sie">
+            <div class="inner">
+                <div class="h kt">
+                    <span class="more">更多</span>
+                    <div class="tit">下级县级官网</div>
+                </div>
+                <div class="b">
+                    <div class="item" v-for="v in 12" :key="v">朝阳区</div>
                 </div>
             </div>
         </div>
@@ -220,7 +317,7 @@ export default {
     line-height: 48px;
     padding-left: 32px;
     background: url("./img/title-dot.png") no-repeat left center;
-    font-size: 16px;
+    font-size: 20px;
     .more {
       float: right;
       font-size: 12px;
@@ -239,7 +336,7 @@ export default {
         width: 540px;
         height: 360px;
         position: relative;
-        background: whitesmoke no-repeat center;
+        background: #fff no-repeat center;
       }
       .tit {
         position: absolute;
@@ -258,8 +355,32 @@ export default {
   .r {
     width: 48%;
     .headline {
+      .tit {
+        line-height: 40px;
+        font-size: 16px;
+        .flag {
+          color: $colorp;
+          font-size: 20px;
+        }
+      }
+      .tag {
+        font-size: 12px;
+        color: #999;
+        span {
+          margin-right: 16px;
+        }
+      }
+      .txt {
+        height: 50px;
+        line-height: 25px;
+        overflow: hidden;
+        white-space: normal;
+        color: #999;
+        display: block;
+      }
     }
     .item {
+      margin-top: 8px;
     }
   }
   .h {
@@ -267,10 +388,118 @@ export default {
     line-height: 48px;
     padding-left: 32px;
     background: url("./img/title-dot.png") no-repeat left center;
-    font-size: 16px;
+    font-size: 20px;
     .more {
       float: right;
-      font-size: 12px;
+      font-size: 14px;
+    }
+  }
+  .b {
+    background-color: whitesmoke;
+  }
+}
+
+.sic {
+  padding: 16px 0;
+  .h {
+    height: 48px;
+    line-height: 48px;
+    padding-left: 32px;
+    background: url("./img/title-dot.png") no-repeat left center;
+    font-size: 20px;
+    .more {
+      float: right;
+      font-size: 14px;
+    }
+  }
+  .b {
+    overflow: hidden;
+    border-bottom: 1px solid #ddd;
+    .item {
+      float: left;
+      width: 120px;
+      line-height: 32px;
+      text-align: center;
+      cursor: pointer;
+      &.curr,
+      &:hover {
+        background: $colorp;
+        color: #fff;
+      }
+    }
+  }
+  .f {
+    .item {
+      padding: 8px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      .img {
+        width: 90px;
+        height: 90px;
+        float: left;
+        margin-right: 16px;
+        background: whitesmoke no-repeat center / cover;
+      }
+      .obj {
+        overflow: hidden;
+        height: 90px;
+        .tit {
+          line-height: 32px;
+          font-size: 16px;
+          color: $colorp;
+        }
+        .txt {
+          margin-top: 10px;
+          line-height: 16px;
+          color: #999;
+          white-space: normal;
+          height: 80px;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+  .ivu-col:nth-child(2) .f .img {
+    width: 120px;
+  }
+}
+.sid {
+  background: url(./img/mapbg.jpg) no-repeat center;
+  height: 480px;
+  .inner {
+      overflow: hidden;
+  }
+}
+.sie {
+  background: whitesmoke url("./img/linkbot.png") no-repeat center 90% / auto
+    40px;
+  padding: 32px 0;
+  padding-bottom: 48px;
+  .h {
+    height: 48px;
+    line-height: 48px;
+    padding-left: 32px;
+    background: url("./img/title-dot.png") no-repeat left center;
+    font-size: 20px;
+    .more {
+      float: right;
+      font-size: 14px;
+    }
+  }
+  .b {
+    display: flex;
+    flex-wrap: wrap;
+    .item {
+      background: url("./img/linkbg.png") no-repeat center / contain;
+      height: 60px;
+      line-height: 60px;
+      color: #fff;
+      width: 100px;
+      margin: 0 0 16px 16px;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 }
