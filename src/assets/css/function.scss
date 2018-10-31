@@ -1,0 +1,318 @@
+@charset "UTF-8";
+
+%clear {
+    &:after {
+        clear: both;
+        content: ".";
+        display: block;
+        line-height: 0;
+        font-size: 0;
+        visibility: hidden;
+    }
+}
+
+%text-overflow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    word-wrap: normal;
+}
+
+%text-breakWord {
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+
+/// 产生正方形的宽高
+///
+/// @name square
+/// @param {Measure} $length - 宽高的长度
+@mixin square($length) {
+    width: $length;
+    height: $length;
+}
+
+@mixin absoluteCenter($width, $height) {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: (-$height) / 2 0 0 (-$width) / 2;
+}
+
+@mixin text-multiLine-ellipsis($line: 2, $lineHeight: 20px) {
+    line-height: $lineHeight;
+    overflow: hidden;
+    height: $lineHeight * $line;
+    // stylelint-disable
+    display: -webkit-box;
+    display: -moz-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $line;
+    -moz-line-clamp: $line;
+    line-clamp: $line;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    // stylelint-enable
+    box-orient: vertical;
+}
+
+/// 半透明背景颜色
+///
+/// @group 外观
+/// @name bgWithOpacity
+/// @param {Color} $color - 背景色的颜色值
+/// @param {Number} $alpha - 背景色的透明度
+@mixin bgWithOpacity($color, $alpha) {
+    background-color: rgba($color, $alpha);
+
+    @include forIE8 {
+        filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#{ie-hex-str(rgba($color,$alpha))}, endcolorstr=#{ie-hex-str(rgba($color, $alpha))});
+    }
+}
+
+/// 跨浏览器的渐变背景，垂直渐变，自上而下
+///
+/// @group 外观
+/// @name gradient-vertical
+/// @param {Color} $start-color [#555] - 渐变的开始颜色
+/// @param {Color} $end-color [#333] - 渐变的结束颜色
+/// @param {Number} $start-percent [0%] - 渐变的开始位置，需要以百分号为单位
+/// @param {Number} $end-percent [100%] - 渐变的结束位置，需要以百分号为单位
+@mixin gradient-vertical($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+    background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#{ie-hex-str($start-color)}", endColorstr="#{ie-hex-str($end-color)}", GradientType=0); // IE9 and down
+}
+
+/// 跨浏览器的渐变背景，水平渐变，自左而右
+///
+/// @group 外观
+/// @name gradient-horizontal
+/// @param {Color} $start-color [#555] - 渐变的开始颜色
+/// @param {Color} $end-color [#333] - 渐变的结束颜色
+/// @param {Number} $start-percent [0%] - 渐变的开始位置，需要以百分号为单位
+/// @param {Number} $end-percent [100%] - 渐变的结束位置，需要以百分号为单位
+@mixin gradient-horizontal($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+    background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#{ie-hex-str($start-color)}", endColorstr="#{ie-hex-str($end-color)}", GradientType=1); // IE9 and down
+}
+
+/// 跨浏览器的渐变背景，带角度
+///
+/// @group 外观
+/// @name gradient-on-axis
+/// @param {Degree} $axis-degree [135deg] - 渐变的轴
+/// @param {Color} $start-color [#555] - 渐变的开始颜色
+/// @param {Color} $end-color [#333] - 渐变的结束颜色
+/// @param {Number} $start-percent [0%] - 渐变的开始位置，需要以百分号为单位
+/// @param {Number} $end-percent [100%] - 渐变的结束位置，需要以百分号为单位
+@mixin gradient-on-axis($axis-degree: 0, $start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+    background-image: linear-gradient($axis-degree, $start-color $start-percent, $end-color $end-percent);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#{ie-hex-str($start-color)}", endColorstr="#{ie-hex-str($end-color)}", GradientType=0); // IE9 and down
+}
+
+/// 跨浏览器的渐变背景，垂直渐变，自上而下，支持三个渐变点
+///
+/// @group 外观
+/// @name gradient-vertical-threeColor
+/// @param {Color} $start-color [#555] - 渐变的开始颜色
+/// @param {Color} $middle-color [#444] - 渐变的中间颜色
+/// @param {Color} $end-color [#333] - 渐变的结束颜色
+/// @param {Number} $start-percent [0%] - 渐变的开始位置，需要以百分号为单位
+/// @param {Number} $start-percent [50%] - 渐变的中间位置，需要以百分号为单位
+/// @param {Number} $end-percent [100%] - 渐变的结束位置，需要以百分号为单位
+@mixin gradient-vertical-threeColor($start-color: #555, $middle-color: #444, $end-color: #333, $start-percent: 0%, $middle-percent: 50%, $end-percent: 100%) {
+    background-image: linear-gradient(to bottom, $start-color $start-percent, $middle-color $middle-percent, $end-color $end-percent);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#{ie-hex-str($start-color)}", endColorstr="#{ie-hex-str($end-color)}", GradientType=0); // IE9 and down
+}
+
+/// 跨浏览器的渐变背景，水平渐变，自左而右
+///
+/// @group 外观
+/// @name gradient-horizontal-threeColor
+/// @param {Color} $start-color [#555] - 渐变的开始颜色
+/// @param {Color} $middle-color [#444] - 渐变的中间颜色
+/// @param {Color} $end-color [#333] - 渐变的结束颜色
+/// @param {Number} $start-percent [0%] - 渐变的开始位置，需要以百分号为单位
+/// @param {Number} $start-percent [50%] - 渐变的中间位置，需要以百分号为单位
+/// @param {Number} $end-percent [100%] - 渐变的结束位置，需要以百分号为单位
+@mixin gradient-horizontal-threeColor($start-color: #555, $middle-color: #444, $end-color: #333, $start-percent: 0%, $middle-percent: 50%, $end-percent: 100%) {
+    background-image: linear-gradient(to right, $start-color $start-percent, $middle-color $middle-percent, $end-color $end-percent);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#{ie-hex-str($start-color)}", endColorstr="#{ie-hex-str($end-color)}", GradientType=1); // IE9 and down
+}
+
+/// 基于渐变实现的垂直方向点画线
+/// @throw 如果要实现的是一个物理像素粗细的线，建议放在一个单独的 DOM 上，方便加上 scale 来实现，否则就不需要顾虑直接用到任意 DOM 上即可，加上 background-position 控制位置，background-color / background-position 等属性必须在该 mixin 的 include 之后开始写。
+///
+/// @group 外观
+/// @name gradient-vertical-dashed-line
+/// @param {Number} $dash-dot-width [2px] - 点画线里点的尺寸
+/// @param {Number} $dash-space-width [2px] - 点画线里点与点间隔尺寸
+/// @param {Color} $dash-dot-color [$common_color_separator] - 点画线里点的颜色
+/// @param {Number} $line-width [1px] - 点画线粗细
+@mixin gradient-vertical-dashed-line($dash-dot-width: 2px, $dash-space-width: 2px, $dash-dot-color: $common_color_separator, $line-width: 1px) {
+    @include gradient-vertical-threeColor($start-color: $dash-dot-color, $middle-color: $dash-dot-color, $end-color: transparent, $start-percent: 0, $middle-percent: $dash-dot-width, $end-percent: $dash-dot-width);
+    background-size: $line-width ($dash-dot-width + $dash-space-width);
+    background-repeat: repeat-y;
+}
+
+/// 基于渐变实现的水平方向点画线
+/// @throw 如果要实现的是一个物理像素粗细的线，建议放在一个单独的 DOM 上，方便加上 scale 来实现，否则就不需要顾虑直接用到任意 DOM 上即可，加上 background-position 控制位置，background-color / background-position 等属性必须在该 mixin 的 include 之后开始写。
+///
+/// @group 外观
+/// @name gradient-horizontal-dashed-line
+/// @param {Number} $dash-dot-width [2px] - 点画线里点的尺寸
+/// @param {Number} $dash-space-width [2px] - 点画线里点与点间隔尺寸
+/// @param {Color} $dash-dot-color [$common_color_separator] - 点画线里点的颜色
+/// @param {Number} $line-width [1px] - 点画线粗细
+@mixin gradient-horizontal-dashed-line($dash-dot-width: 2px, $dash-space-width: 2px, $dash-dot-color: $common_color_separator, $line-width: 1px) {
+    @include gradient-horizontal-threeColor($start-color: $dash-dot-color, $middle-color: $dash-dot-color, $end-color: transparent, $start-percent: 0, $middle-percent: $dash-dot-width, $end-percent: $dash-dot-width);
+    background-size: ($dash-dot-width + $dash-space-width) $line-width;
+    background-repeat: repeat-x;
+}
+
+
+%triangleCommonStyle {
+    display: block;
+    content: " ";
+    width: 0;
+    line-height: 0;
+    font-size: 0;
+    border-style: solid;
+    border-color: transparent;
+}
+
+/// CSS Border 三角形
+///
+/// @name triangle
+/// @param {Measure} $width - 三角形的底边的宽
+/// @param {Measure} $height - 三角形的高
+/// @param {String} $direction - 三角形的方向（即与底边相对的顶点指向的方向）
+/// @param {Color} $borderColor - 三角形的边框色
+/// @param {Color} $ie6borderColor [#f00] - IE6 不支持 border-color: transparent,而 border 三角形利用了这个特性，因此如果需要兼容 IE6，则需要填写 $ie6borderColor，颜色值一般为三角形背后元素的颜色。
+/// @throw 由于方法内包含了有 $width / 2 的计算，因此如果 $width 的值为奇数，则实际上计算出的三角形会偏小，建议 $width 不要使用奇数。
+@mixin triangle($width, $height, $direction, $borderColor, $ie6borderColor:#f00) {
+    @extend %triangleCommonStyle;
+
+    /* 向上小三角 */
+    @if $direction==top {
+        border-width: $height $width / 2;
+        border-top: 0;
+        border-bottom-color: $borderColor;
+    }
+
+    /* 向下小三角 */
+    @else if $direction==bottom {
+        border-width: $height $width / 2;
+        border-bottom: 0;
+        border-top-color: $borderColor;
+    }
+
+    /* 向左小三角 */
+    @else if $direction==left {
+        border-width: $width / 2 $height;
+        border-left: 0;
+        border-right-color: $borderColor;
+    }
+
+    /* 向右小三角 */
+    @else if $direction==right {
+        border-width: $width / 2 $height;
+        border-right: 0;
+        border-left-color: $borderColor;
+    }
+}
+
+/// 用以生成十字架图标
+///
+/// @name cross
+/// @param {Measure} $crossLength [26px] - 十字架的大小
+/// @param {Measure} $crossLineThickness [2px] - 十字架线条的粗细
+/// @param {Color} $crossLineColor [#2685d2] - 十字架的颜色
+@mixin cross($crossLength: 26px, $crossLineThickness: 2px, $crossLineColor: $common_color_link) {
+    position: relative;
+    @include square($crossLength);
+
+    &:before,
+    &:after {
+        content: "";
+        font-size: 0;
+        line-height: 0;
+        position: absolute;
+        background-color: $crossLineColor;
+    }
+
+    &:before {
+        left: getLengthMaxIntegerCenter($crossLength, $crossLineThickness);
+        top: 0;
+        width: $crossLineThickness;
+        height: 100%;
+    }
+
+    &:after {
+        left: 0;
+        top: getLengthMaxIntegerCenter($crossLength, $crossLineThickness);
+        width: 100%;
+        height: $crossLineThickness;
+    }
+}
+
+/// 使得指定的元素产生 Block Formatting Contexts 或 hasLayout
+///
+/// @name bfc
+@mixin bfc {
+    overflow: hidden;
+    zoom: 1;
+}
+
+/// 在移动设备上生成 1px 宽的边框，direction 支持 all, top, bottom, left, right, horizontal, vertical, none 8个 direction 值，position 支持 outside 和 inside 两个值
+///
+/// @name onePixelBorder
+/// @param {String} $direction [all] - 边框的方向，支持 all（所有方向），top（上边框），right（右边框），bottom（下边框），left（左边框），horizontal（左右边框），vertical（上下边框），none（无边框）
+/// @param {Color} $color - 边框的颜色
+/// @param {String} $position [outside] - 边框的位置，支持 outside 和 inside
+/// @param {Number} $borderRadius [0] - 边框的圆角
+/// @throw 在多倍屏下，本方法会利用元素的 ::after 做效果，因此需要注意使用了该方法后 ::after 则尽量避免添加样式，以免影响效果
+@mixin onePixelBorder($direction: all, $color: $common_color_border, $position: outside, $borderRadius: 0) {
+    @include borderStyleForOnePixel($direction, $color);
+    border-radius: $borderRadius;
+
+    @include screenResolution(2) {
+        position: relative;
+        border: 0;
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            border-radius: $borderRadius * 2;
+            @include borderStyleForOnePixel($direction, $color);
+            transform: scale(.5);
+            transform-origin: 0 0;
+
+            @if $position==inside {
+                box-sizing: border-box;
+            }
+
+            pointer-events: none;
+        }
+    }
+
+    @include screenResolution(3) {
+        &:after {
+            width: 300%;
+            height: 300%;
+            border-radius: $borderRadius * 3;
+            transform: scale((1 / 3));
+        }
+    }
+}
