@@ -1,5 +1,5 @@
 <template>
-    <div class="page page-home">
+    <div class="page">
         <Topbar />
         <NavBar :navcurr="0" />
         <Banner />
@@ -173,15 +173,15 @@
                     </i-col>
                 </Row>
             </div>
-        </div>
-        <div class="sie">
-            <div class="inner">
-                <div class="h kt">
-                    <span class="more">更多</span>
-                    <div class="tit">下级县级官网</div>
-                </div>
-                <div class="b">
-                    <div class="item" v-for="v in 12" :key="v">朝阳区</div>
+            <div class="sie">
+                <div class="inner">
+                    <div class="h kt">
+                        <span class="more">更多</span>
+                        <div class="tit">下级县级官网</div>
+                    </div>
+                    <div class="b">
+                        <div class="item" v-for="v in 12" :key="v">朝阳区</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -467,7 +467,7 @@ export default {
   background: url(./img/mapbg.jpg) no-repeat center;
   height: 480px;
   .inner {
-      overflow: hidden;
+    overflow: hidden;
   }
 }
 .sie {

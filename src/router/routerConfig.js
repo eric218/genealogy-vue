@@ -11,6 +11,62 @@ const routes = [{
         component: resolve => require(["../page-province/Home.vue"], resolve)
     },
     {
+        path: "/p/Culture",
+        meta: {
+            keepAlive: false,
+            title: "家族文化"
+        },
+        component: resolve => require(["../page-province/Culture.vue"], resolve)
+    },
+    {
+        path: "/p/Genealogy",
+        meta: {
+            keepAlive: false,
+            title: "数字家谱"
+        },
+        component: resolve => require(["../page-province/Genealogy.vue"], resolve)
+    },
+    {
+        path: "/p/Human",
+        meta: {
+            keepAlive: false,
+            title: "祖先名人"
+        },
+        component: resolve => require(["../page-province/Human.vue"], resolve)
+    },
+    {
+        path: "/p/Tree",
+        meta: {
+            keepAlive: false,
+            title: "各地分支"
+        },
+        component: resolve => require(["../page-province/Tree.vue"], resolve)
+    },
+    {
+        path: "/p/Record",
+        meta: {
+            keepAlive: false,
+            title: "记录家族"
+        },
+        component: resolve => require(["../page-province/Record.vue"], resolve)
+    },
+    {
+        path: "/p/Charity",
+        meta: {
+            keepAlive: false,
+            title: "慈善公益"
+        },
+        component: resolve => require(["../page-province/Charity.vue"], resolve)
+    },
+    {
+        path: "/p/Detail",
+        meta: {
+            keepAlive: false,
+            title: "详情"
+        },
+        component: resolve => require(["../page-province/Detail.vue"], resolve)
+    },
+    {
         path: "/c/Home",
         meta: {
             keepAlive: false,
