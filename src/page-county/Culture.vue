@@ -11,10 +11,8 @@
                     <span class="tit">资讯</span>
                     <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.id == menucurr.id ? 'curr':''" v-html="v.name" @click="chgMenu(v)"></span>
                 </div>
-                <NewsList />
-                <div class="pages">
-                    <a href="/" class="item" v-for="v in 5" :key="v">{{v}}</a>
-                </div>
+                <ZipaiList v-if="menucurr.id == 1" />
+                <NewsList v-else />
             </div>
         </div>
         <FootBar />
@@ -24,12 +22,14 @@
 <script>
 import { Topbar, NavBar, FootBar } from './c'
 import NewsList from '@/components/list/news.vue';
+import ZipaiList from '@/components/list/zipai.vue';
 export default {
     components: {
         Topbar,
         NavBar,
         FootBar,
         NewsList,
+        ZipaiList
     },
     data() {
         return {

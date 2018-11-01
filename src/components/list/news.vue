@@ -54,6 +54,7 @@
                 </div>
             </router-link>
         </Card>
+        <Page :total="50" />
     </div>
 </template>
 <script>
@@ -61,3 +62,56 @@ export default {
     props: ['list']
 };
 </script>
+<style lang="scss" scoped>
+@import "@/assets/css/var.scss";
+.newslist {
+  padding: 16px 0;
+
+  .item {
+    white-space: nowrap;
+    margin: 16px 0;
+    background: #ece9e9;
+    .img {
+      height: 150px;
+      width: 200px;
+      float: left;
+      margin-right: 16px;
+      background: whitesmoke no-repeat center / cover;
+    }
+
+    .obj {
+      height: 150px;
+      overflow: hidden;
+
+      .tit {
+        color: $color;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .intro {
+        white-space: normal;
+        width: 80%;
+        color: #666;
+        height: 72px;
+        line-height: 24px;
+      }
+
+      .tag {
+        overflow: hidden;
+        color: #999;
+
+        .fl {
+          float: left;
+          margin-right: 16px;
+        }
+
+        .fr {
+          float: right;
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+}
+</style>

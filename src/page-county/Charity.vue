@@ -55,9 +55,6 @@
                     <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.id == menucurr.id ? 'curr':''" v-html="v.name" @click="chgMenu(v)"></span>
                 </div>
                 <NewsList />
-                <div class="pages">
-                    <a href="/" class="item" v-for="v in 5" :key="v">{{v}}</a>
-                </div>
             </div>
         </div>
         <FootBar />

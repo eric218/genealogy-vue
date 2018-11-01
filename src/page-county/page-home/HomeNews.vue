@@ -58,6 +58,28 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
+
+.pages {
+    padding: 16px;
+    overflow: hidden;
+    clear: both;
+    text-align: center;
+
+    .item {
+        background: url(../../assets/img/pages-bg.png) no-repeat center / 100% 100%;
+        display: inline-block;
+        margin: 4px;
+        line-height: 40px;
+        text-align: center;
+        width: 40px;
+
+        &.curr,
+        &:hover {
+            background-image: url(../../assets/img/pages-curr.png);
+            color: $color;
+        }
+    }
+}
 .news {
   .items {
     .item {

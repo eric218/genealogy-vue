@@ -4,19 +4,19 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="img">
-                        <img src="@/assets/jpg/banner1.png"></div>
+                        <img src="../img/banner1.jpg"></div>
                 </div>
                 <div class="swiper-slide">
                     <div class="img">
-                        <img src="@/assets/jpg/banner2.png"></div>
+                        <img src="../img/banner2.jpg"></div>
                 </div>
                 <div class="swiper-slide">
                     <div class="img">
-                        <img src="@/assets/jpg/banner3.png"></div>
+                        <img src="../img/banner3.jpg"></div>
                 </div>
                 <div class="swiper-slide">
                     <div class="img">
-                        <img src="@/assets/jpg/banner4.png"></div>
+                        <img src="../img/banner4.jpg"></div>
                 </div>
             </div>
         </div>
@@ -26,12 +26,20 @@
 import Swiper from 'swiper';
 export default {
     name: "slider",
+    data() {
+        return {
+            slider: {},
+        }
+    },
     mounted: function () {
-        new Swiper('.slider .swiper-container', {
+        this.slider = new Swiper('.slider .swiper-container', {
             autoplay: true,
             loop: 'auto',
             autoplay: true,
         });
+    },
+    destroyed() {
+        this.slider = {}
     },
     methods: {
     },
@@ -46,8 +54,13 @@ export default {
     .img {
       position: relative;
       overflow: hidden;
-      img{
-          display: block;
+      height: 900px;
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 900px;
       }
     }
   }

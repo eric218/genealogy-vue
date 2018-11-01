@@ -106,9 +106,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="pages">
-                    <a href="/" class="item" v-for="v in 5" :key="v">{{v}}</a>
-                </div>
             </div>
         </div>
         <FootBar />

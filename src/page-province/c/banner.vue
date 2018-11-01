@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-import slider from '@/components/slider/banner.vue';
+import slider from './slider.vue';
 export default {
     name: "GradBanner",
     components: {

@@ -300,6 +300,7 @@ export default {
           }
         }
         .act {
+          font-size: 12px;
           display: flex;
           justify-content: space-between;
           span {
