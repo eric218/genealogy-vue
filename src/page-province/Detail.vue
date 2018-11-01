@@ -1,7 +1,7 @@
 <template>
     <div class="page">
         <Topbar />
-        <NavBar :navcurr="0" />
+        <NavBar :navcurr="9" />
         <Banner />
         <div class="main">
         </div>
@@ -15,7 +15,6 @@ export default {
     components: {
         Topbar,
         NavBar,
-        Banner,
         FootBar,
     },
     data() {

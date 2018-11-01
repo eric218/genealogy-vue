@@ -1,7 +1,7 @@
 <template>
     <div class="page">
         <Topbar />
-        <NavBar :navcurr="0" />
+        <NavBar :navcurr="3" />
         <Banner />
         <div class="main">
         </div>

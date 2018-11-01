@@ -42,15 +42,18 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .navbar {
-  width: 100%;
-  background-color: $colorp;
+  position: absolute;
+  z-index: 9;
+  top: 210px;
+  right: 0;
+  left: 0;
 
   .inner {
     overflow: hidden;
   }
+
   .item {
-    width: 11%;
-    float: left;
+    background: url(../img/nav.png) no-repeat center;
     width: 12%;
     float: left;
     font-weight: 500;
@@ -61,7 +64,10 @@ export default {
     cursor: pointer;
     &:hover,
     &.curr {
-      background: url(../img/nav.png) no-repeat center;
+      background-image: url(../img/nav-active.png);
+    }
+    &.r {
+      float: right;
     }
   }
 }

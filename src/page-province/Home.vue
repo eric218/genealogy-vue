@@ -1,7 +1,7 @@
 <template>
     <div class="page">
-        <Topbar />
-        <NavBar :navcurr="0" />
+        <TopHome />
+        <NavHome :navcurr="0" />
         <Banner />
         <div class="main">
             <div class="inner">
@@ -27,7 +27,7 @@
                     </div>
                     <div class="r">
                         <div class="h kt">
-                            <router-link to="/More" class="more">查看更多</router-link>
+                            <router-link to="/p/Charity" class="more">查看更多</router-link>
                             <span class="tit">捐款名人</span>
                         </div>
                         <div class="total">
@@ -189,12 +189,12 @@
     </div>
 </template>
 <script>
-import { Topbar, NavBar, Banner, FootBar } from './c'
+import { TopHome, NavHome, Banner, FootBar } from './c'
 export default {
     name: "Home",
     components: {
-        Topbar,
-        NavBar,
+        TopHome,
+        NavHome,
         Banner,
         FootBar,
     },

@@ -123,7 +123,7 @@ export default {
       .img {
         height: 240px;
         position: relative;
-        background: url(../../assets/jpg/tp10.png) whitesmoke no-repeat center / cover;
+        background: whitesmoke no-repeat center / cover;
 
         .tit {
           position: absolute;
