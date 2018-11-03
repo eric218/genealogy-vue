@@ -1,6 +1,78 @@
 const routes = [{
         path: "/",
-        redirect: "/p/Home"
+        redirect: "/n/Home"
+    },
+    {
+        path: "/Test",
+        meta: {
+            keepAlive: false,
+            title: "测试"
+        },
+        component: resolve => require(["../page-province/Test.vue"], resolve)
+    },
+    {
+        path: "/n/Home",
+        meta: {
+            keepAlive: false,
+            title: "首页"
+        },
+        component: resolve => require(["../page-nation/Home.vue"], resolve)
+    },
+    {
+        path: "/n/Culture",
+        meta: {
+            keepAlive: false,
+            title: "家族文化"
+        },
+        component: resolve => require(["../page-nation/Culture.vue"], resolve)
+    },
+    {
+        path: "/n/Genealogy",
+        meta: {
+            keepAlive: false,
+            title: "数字家谱"
+        },
+        component: resolve => require(["../page-nation/Genealogy.vue"], resolve)
+    },
+    {
+        path: "/n/Human",
+        meta: {
+            keepAlive: false,
+            title: "祖先名人"
+        },
+        component: resolve => require(["../page-nation/Human.vue"], resolve)
+    },
+    {
+        path: "/n/Tree",
+        meta: {
+            keepAlive: false,
+            title: "各地分支"
+        },
+        component: resolve => require(["../page-nation/Tree.vue"], resolve)
+    },
+    {
+        path: "/n/Record",
+        meta: {
+            keepAlive: false,
+            title: "记录家族"
+        },
+        component: resolve => require(["../page-nation/Record.vue"], resolve)
+    },
+    {
+        path: "/n/Charity",
+        meta: {
+            keepAlive: false,
+            title: "慈善公益"
+        },
+        component: resolve => require(["../page-nation/Charity.vue"], resolve)
+    },
+    {
+        path: "/n/Detail",
+        meta: {
+            keepAlive: false,
+            title: "详情"
+        },
+        component: resolve => require(["../page-nation/Detail.vue"], resolve)
     },
     {
         path: "/p/Home",

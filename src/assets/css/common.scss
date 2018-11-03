@@ -74,52 +74,6 @@
 
 
 
-.videolist {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    .item {
-        width: 24%;
-
-        .img {
-            height: 160px;
-            background: whitesmoke no-repeat center / cover;
-        }
-
-        .obj {
-            .tit {
-                font-size: 16px;
-                line-height: 40px;
-            }
-
-            .user {
-                overflow: hidden;
-                white-space: nowrap;
-                line-height: 32px;
-
-                .head {
-                    height: 32px;
-                    width: 32px;
-                    float: left;
-                    margin-right: 8px;
-                    background: whitesmoke;
-                    border-radius: 50%;
-                }
-            }
-
-            .tag {
-                white-space: nowrap;
-                color: #999;
-
-                .date {
-                    float: right;
-                }
-            }
-        }
-    }
-}
-
 .dynamic {
     background: #eaebed;
     padding: 0 0 32px;

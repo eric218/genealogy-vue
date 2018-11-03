@@ -1,0 +1,80 @@
+<template>
+    <div>
+        <Row :gutter="32" class="videolist">
+            <i-col :span="6" v-for="v in 8" :key="v">
+                <div class="item">
+                    <div class="img">
+                        <img src="@/assets/img/100x100.png" alt="" />
+                    </div>
+                    <div class="obj">
+                        <div class="tit">标题</div>
+                        <div class="user">
+                            <div class="head"></div>
+                            <div class="name">姓名</div>
+                        </div>
+                        <div class="tag">
+                            <div class="date">2018-10-10</div>
+                            <div class="total">
+                                <iconfont name="recordfill" />
+                                <span>150</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </i-col>
+        </Row>
+        <Page :total="50" />
+    </div>
+</template>
+<script>
+export default {
+    props: ['list']
+};
+</script>
+<style lang="scss" scoped>
+@import "@/assets/css/var.scss";
+.videolist {
+  overflow: hidden;
+  padding: 16px 0;
+
+  .item {
+    margin: 8px 0;
+    position: relative;
+    .img {
+      width: 100%;
+      background: whitesmoke no-repeat center / cover;
+    }
+
+    .obj {
+      .tit {
+        font-size: 16px;
+        line-height: 40px;
+      }
+
+      .user {
+        overflow: hidden;
+        white-space: nowrap;
+        line-height: 32px;
+
+        .head {
+          height: 32px;
+          width: 32px;
+          float: left;
+          margin-right: 8px;
+          background: whitesmoke;
+          border-radius: 50%;
+        }
+      }
+
+      .tag {
+        white-space: nowrap;
+        color: #999;
+
+        .date {
+          float: right;
+        }
+      }
+    }
+  }
+}
+</style>

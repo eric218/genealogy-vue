@@ -85,8 +85,8 @@
                                 <div class="more">更多>></div>
                                 <div class="list">
                                     <div class="item" v-for="v in 20" :key="v">
-                                        <div class="red tag" v-if="v<4">{{v+80}}</div>
-                                        <div class="blue tag" v-if="v<4">{{v+20}}</div>
+                                        <div class="red sub" v-if="v<4">{{v+80}}</div>
+                                        <div class="blue sub" v-if="v<4">{{v+20}}</div>
                                         <span>张</span>
                                     </div>
                                 </div>
@@ -330,6 +330,7 @@ export default {
 
       .list {
         overflow: hidden;
+        text-align: center;
         height: 48px;
 
         .item {
@@ -342,8 +343,7 @@ export default {
           font-weight: 700;
           background: url(../../assets/img/icon-fontbg.png) no-repeat center /
             100% 100%;
-
-          .tag {
+          .sub {
             font-size: 10px;
             line-height: 20px;
           }

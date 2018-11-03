@@ -87,25 +87,7 @@
                     <span class="tit">动态</span>
                     <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.id == menucurr.id ? 'curr':''" v-html="v.name" @click="chgMenu(v)"></span>
                 </div>
-                <div class="videolist">
-                    <div class="item" v-for="v in 12" :key="v">
-                        <div class="img"></div>
-                        <div class="obj">
-                            <div class="tit">标题</div>
-                            <div class="user">
-                                <div class="head"></div>
-                                <div class="name">姓名</div>
-                            </div>
-                            <div class="tag">
-                                <div class="date">2018-10-10</div>
-                                <div class="total">
-                                    <iconfont name="recordfill" />
-                                    <span>150</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <VideoList />
             </div>
         </div>
         <FootBar />
@@ -115,12 +97,14 @@
 
 <script>
 import { Topbar, NavBar, FootBar } from './c'
+import VideoList from '@/components/list/video.vue';
 export default {
     name: "Culture",
     components: {
         Topbar,
         NavBar,
         FootBar,
+        VideoList
     },
     data() {
         return {

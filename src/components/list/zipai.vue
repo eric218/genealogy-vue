@@ -6,10 +6,10 @@
                 <span>祖先：</span>
             </div>
             <div class="intro">
-                <div class="itm" v-for="v in 10" :key="v">
-                    <div class="txt">离</div>
-                    <div class="up">150</div>
-                    <div class="down">31</div>
+                <div class="itm" v-for="v in 20" :key="v">
+                    <div class="red tag" v-if="v<4">{{v+80}}</div>
+                    <div class="blue tag" v-if="v<4">{{v+20}}</div>
+                    <span>张</span>
                 </div>
             </div>
             <div class="tag">
@@ -48,32 +48,45 @@ export default {
   .item {
     white-space: nowrap;
     margin: 16px 0;
+    padding: 16px;
     background: #ece9e9;
+    border-radius: 8px;
+
     .intro {
       overflow: hidden;
       white-space: normal;
+      padding: 16px 0;
+
       .itm {
         position: relative;
-        width: 5%;
-        float: left;
         text-align: center;
-        .up {
-          position: absolute;
+        float: left;
+        margin-left: 16px;
+        width: 48px;
+        height: 48px;
+        font-size: 16px;
+        line-height: 48px;
+        font-weight: 700;
+        background: url(../../assets/img/icon-fontbg.png) no-repeat center /
+          100% 100%;
+
+        .tag {
           font-size: 10px;
-          top: 0;
-          left: 0;
+          line-height: 20px;
         }
-        .down {
-          font-size: 10px;
-          bottom: 0;
-          left: 0;
+
+        .red {
           position: absolute;
+          right: 85%;
+          top: 4px;
+          color: $color;
         }
-        .txt {
-          height: 48px;
-          width: 48px;
-          margin: 0 auto;
-          line-height: 40px;
+
+        .blue {
+          position: absolute;
+          right: 85%;
+          bottom: 4px;
+          color: blue;
         }
       }
     }

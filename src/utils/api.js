@@ -34,7 +34,7 @@ const api = {
     },
     upload: function (url, data, files) {
         let params = new FormData();
-        params.append(files['key'], files['file'], files['key']);
+        params.append(files['key'], files['file']);
         for (let v in data) {
             params.append(v, data[v]);
         }
@@ -44,7 +44,7 @@ const api = {
             }
         }
         return new Promise((resolve, reject) => {
-            axios.post(this.server + this.urls[url], params, config).then(res => {
+            axios.post(url, params, config).then(res => {
                 console.log(res.data)
                 resolve(res.data);
             })

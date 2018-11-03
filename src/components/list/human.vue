@@ -65,7 +65,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
-.human {
+.humanlist {
   padding: 16px 0;
 
   .item {
