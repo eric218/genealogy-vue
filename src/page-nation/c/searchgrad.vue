@@ -57,7 +57,7 @@ export default {
     }
   }
   .b {
-      margin-top: 16px;
+    margin-top: 16px;
     white-space: nowrap;
     .act {
       float: right;
@@ -73,7 +73,7 @@ export default {
       input {
         height: 40px;
         line-height: 40px;
-        border:none;
+        border: none;
         border-radius: 16px 0 0 16px;
         width: 100%;
       }
