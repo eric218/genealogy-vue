@@ -82,7 +82,7 @@
                                 <div class="tit">
                                     张氏本支字派：
                                 </div>
-                                <div class="more">更多>></div>
+                                <router-link to="/c/Culture" class="more">更多>></router-link>
                                 <div class="list">
                                     <div class="item" v-for="v in 20" :key="v">
                                         <div class="red sub" v-if="v<4">{{v+80}}</div>
@@ -301,8 +301,7 @@ export default {
     text-align: center;
 
     .h {
-      background: url(../../assets/img/title10.png) no-repeat center / auto
-        24px;
+      background: url(../../assets/img/title10.png) no-repeat center / auto 24px;
       height: 48px;
     }
 
@@ -365,6 +364,7 @@ export default {
       }
 
       .more {
+        display: block;
         color: $color;
         float: right;
       }

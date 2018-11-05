@@ -1,8 +1,9 @@
 <template>
     <div class="page">
-        <NavHome :navcurr="0" />
+        <NavHome :navcurr="1" />
         <Banner />
         <div class="main">
+            <Search />
             <div class="inner">
                 <div class="sia">
                     <div class="l">
@@ -188,7 +189,7 @@
     </div>
 </template>
 <script>
-import { TopHome, NavHome, Banner, FootBar } from './c'
+import { TopHome, NavHome, Banner, FootBar, Search } from './c'
 export default {
     name: "Home",
     components: {
@@ -196,6 +197,7 @@ export default {
         NavHome,
         Banner,
         FootBar,
+        Search,
     },
     data() {
         return {

@@ -1,6 +1,6 @@
 const routes = [{
         path: "/",
-        redirect: "/n/Home"
+        redirect: "/c/Home"
     },
     {
         path: "/Test",

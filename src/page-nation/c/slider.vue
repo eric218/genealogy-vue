@@ -4,19 +4,19 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="img">
-                        <img src="../img/banner1.jpg"></div>
+                        <img src="../img/banner.jpg"></div>
                 </div>
                 <div class="swiper-slide">
                     <div class="img">
-                        <img src="../img/banner2.jpg"></div>
+                        <img src="../img/banner.jpg"></div>
                 </div>
                 <div class="swiper-slide">
                     <div class="img">
-                        <img src="../img/banner3.jpg"></div>
+                        <img src="../img/banner.jpg"></div>
                 </div>
                 <div class="swiper-slide">
                     <div class="img">
-                        <img src="../img/banner4.jpg"></div>
+                        <img src="../img/banner.jpg"></div>
                 </div>
             </div>
         </div>
@@ -46,6 +46,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .slider {
+    margin-top: -40px;
   width: 100%;
   .swiper-slide {
     height: 100%;
@@ -53,13 +54,13 @@ export default {
     .img {
       position: relative;
       overflow: hidden;
-      height: 900px;
+      height:500px;
       img {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        height: 900px;
+        height:500px;
       }
     }
   }

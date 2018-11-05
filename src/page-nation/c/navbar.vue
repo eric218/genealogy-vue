@@ -61,7 +61,7 @@ export default {
     cursor: pointer;
     &:hover,
     &.curr {
-      background: url(../img/nav.png) no-repeat center;
+      background: url(../img/navcurr.png) no-repeat center;
     }
   }
 }
