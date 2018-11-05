@@ -4,6 +4,10 @@
     "description": "",
     "homepage": "http://www.mopui.com",
     "author": "yhtpw",
+    "private": false,
+    "keywords": [
+        "yhtpw"
+    ],
     "scripts": {
         "start": "vue-cli-service serve",
         "build": "vue-cli-service build --modern"
@@ -16,29 +20,46 @@
         "url-search-params-polyfill": "^5.0.0",
         "vue": "^2.5.17",
         "vue-router": "^3.0.1",
-        "vuex": "^3.0.1"
+        "vuex": "^3.0.1",
+        "clipboard": "^2.0.1",
+        "codemirror": "^5.40.2",
+        "cropperjs": "^1.4.2",
+        "dayjs": "^1.7.7",
+        "echarts": "^4.2.0-rc.2",
+        "html2canvas": "^1.0.0-alpha.12",
+        "iview-area": "^1.6.0",
+        "js-cookie": "^2.2.0",
+        "simplemde": "^1.11.2",
+        "sortablejs": "^1.7.0",
+        "wangeditor": "^3.1.1",
+        "xlsx": "^0.14.0"
     },
     "devDependencies": {
+
+
         "@babel/core": "^7.1.2",
         "@vue/cli-plugin-babel": "^3.0.5",
         "@vue/cli-plugin-eslint": "^3.0.5",
         "@vue/cli-service": "^3.0.5",
+        "@vue/cli-plugin-unit-mocha": "^3.0.5",
+        "@vue/eslint-config-standard": "^3.0.5",
         "@vue/eslint-config-airbnb": "^3.0.5",
+        "@vue/test-utils": "^1.0.0-beta.25",
         "eslint-plugin-vue": "^4.7.1",
+        "eslint-plugin-cypress": "^2.0.1",
         "less": "^2.7.3",
         "less-loader": "^4.1.0",
         "node-sass": "^4.9.4",
         "sass-loader": "^7.1.0",
+        "chai": "^4.2.0",
+        "lint-staged": "^7.3.0",
+        "mockjs": "^1.0.1-beta3",
         "vue-template-compiler": "^2.5.17"
     },
     "repository": {
         "type": "",
         "url": ""
     },
-    "license": "MIT",
-    "keywords": [
-        "ice-scaffold"
-    ],
     "publishConfig": {
         "access": "public",
         "registry": "http://registry.npmjs.com"
