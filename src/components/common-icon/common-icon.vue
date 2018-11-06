@@ -3,10 +3,8 @@
 </template>
 
 <script>
-import Icons from '_c/icons'
 export default {
     name: 'CommonIcon',
-    components: { Icons },
     props: {
         type: {
             type: String,
@@ -17,23 +15,18 @@ export default {
     },
     computed: {
         iconType() {
-            return this.type.indexOf('_') === 0 ? 'Icons' : 'Icon'
+            return 'Icon'
         },
         iconName() {
-            return this.iconType === 'Icons' ? this.getCustomIconName(this.type) : this.type
+            return this.type
         },
         iconSize() {
-            return this.size || (this.iconType === 'Icons' ? 12 : undefined)
+            return this.size || undefined
         },
         iconColor() {
             return this.color || ''
         }
     },
-    methods: {
-        getCustomIconName(iconName) {
-            return iconName.slice(1)
-        }
-    }
 }
 </script>
 

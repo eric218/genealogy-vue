@@ -56,7 +56,7 @@ export default {
                 this.$Message.error('请输入正确的金额');
             }
             if (this.form.paytype) {
-                this.api.request('PAY_WX', {
+                this.api.post('PAY_WX', {
                     money: this.form.num,
                     url: location.href
                 }).then(res => {
@@ -64,7 +64,7 @@ export default {
                 })
             } else {
                 console.log(location.href);
-                this.api.request('PAY_ALI', {
+                this.api.post('PAY_ALI', {
                     money: this.form.num,
                     url: location.href
                 }).then(res => {

@@ -3,23 +3,23 @@ import 'es6-promise/auto';
 
 const api = {
     pageSize: 20,
-    host: 'http://192.168.2.127/',
-    server: 'http://192.168.2.151:8080/',
+    host: 'http://192.168.2.123:8090/',
+    server: 'http://192.168.2.123:8090/',
     urls: {
         JZ_LIST: 'columnIndustry/commonality',
-        
+        LIST_ZIPAI: 'genogram/fanNewsCulture/commonality',
         USER_LOGIN: 'home/login',
         USER_SMS: 'home/send',
         USER_REG: "home/reg01",
         PAY_ALI: "pay/aliPay", //支付宝支付
         PAY_WX: "pay/wechatPay", //微信支付
     },
-    request: function (url, data) {
+    post: function (url, data) {
         if (!data.pageNow) {
-            data.pageNow = 1
+            data.pageNo = 1
         }
         if (!data.pageSize) {
-            data.pageNow = 8
+            data.pageSize = 8
         }
         let params = new URLSearchParams();
         for (let v in data) {
@@ -27,6 +27,22 @@ const api = {
         }
         return new Promise((resolve, reject) => {
             axios.post(this.server + this.urls[url], params).then(res => {
+                console.log(res.data)
+                resolve(res.data);
+            })
+        })
+    },
+    get: function (url, data) {
+        if (!data.pageNow) {
+            data.pageNo = 1
+        }
+        if (!data.pageSize) {
+            data.pageSize = 8
+        }
+        return new Promise((resolve, reject) => {
+            axios.get(this.server + this.urls[url], {
+                params: data
+            }).then(res => {
                 console.log(res.data)
                 resolve(res.data);
             })

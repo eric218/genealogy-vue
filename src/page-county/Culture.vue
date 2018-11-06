@@ -61,10 +61,15 @@ export default {
                 id: 6,
                 name: '传说典故',
             }]
-            this.menucurr = this.menu[0]
+            this.menucurr = this.menu[0];
+            this.getList();
         },
         getList() {
-
+            this.api.get('LIST_ZIPAI', {
+                showId: 1,
+                status: 1
+            }).then(res => {
+            })
         },
         chgMenu(e) {
             this.menucurr = e;

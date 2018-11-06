@@ -47,7 +47,7 @@ export default {
                 this.$Message.error('请输入密码');
                 return;
             }
-            this.api.request('USER_LOGIN', {
+            this.api.post('USER_LOGIN', {
                 user: {
                     username: this.form.mobile,
                     password: this.form.password,
