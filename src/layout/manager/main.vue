@@ -32,6 +32,7 @@
     </Layout>
 </template>
 <script>
+import './index.less'
 import SideMenu from './components/side-menu'
 import HeaderBar from './components/header-bar'
 import TagsNav from './components/tags-nav'

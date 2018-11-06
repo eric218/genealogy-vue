@@ -26,7 +26,7 @@
             <FormItem label="姓氏">
                 <Input placeholder="输入姓氏" clearable />
             </FormItem>
-            <FormItem label="祖籍">
+            <FormItem label="地区">
                 <Cascader trigger="hover" :data="options" v-model="selectedOptions" style="width:100%" />
             </FormItem>
             <FormItem>

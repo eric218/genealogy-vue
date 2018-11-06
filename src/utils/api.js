@@ -6,13 +6,30 @@ const api = {
     host: 'http://192.168.2.123:8090/',
     server: 'http://192.168.2.123:8090/',
     urls: {
-        JZ_LIST: 'columnIndustry/commonality',
+        USER_LOGIN: 'home/login', //登录//用户名、密码
+        USER_REG: "home/reg01", //注册//用户名、密码、姓氏、地区、
+        USER_SMS: 'home/send', //验证码//类型（注册、找回密码）、手机号、新的密码
+        PAY_ALI: "pay/aliPay", //支付宝支付//token、支付金额
+        PAY_WX: "pay/wechatPay", //微信支付//token、支付金额
+        SYS_SITE: '', //网站信息//网站ID、地区、姓氏
+        SYS_NAV: '', //网站导航栏//网站ID
+
+        //家族文化列表
+        //字派列表
+        //财政收入、支出
+        //捐款名录
+        //家族名人
+        //家族公告
+        //记录家族
+        //家族动态
+        //家族视频
+        //个人视频
+        //个人图片
+        //个人日志
+        //个人说说
+
+        LIST_: 'columnIndustry/commonality',
         LIST_ZIPAI: 'genogram/fanNewsCulture/commonality',
-        USER_LOGIN: 'home/login',
-        USER_SMS: 'home/send',
-        USER_REG: "home/reg01",
-        PAY_ALI: "pay/aliPay", //支付宝支付
-        PAY_WX: "pay/wechatPay", //微信支付
     },
     post: function (url, data) {
         if (!data.pageNow) {

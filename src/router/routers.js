@@ -1,4 +1,5 @@
-import Main from '@/components/main'
+import Manager from '@/layout/manager'
+import Main from '@/layout/main'
 import parentView from '@/components/parent-view'
 
 /**
@@ -14,7 +15,7 @@ import parentView from '@/components/parent-view'
 
 export default [{
         path: "/",
-        redirect: "/c/Home"
+        redirect: "/c"
     },
     // {
     //     path: "/n/Home",
@@ -161,157 +162,133 @@ export default [{
     //     component: resolve => require(["../page-province/Detail.vue"], resolve)
     // },
     {
-        path: "/c/Home",
+        path: "/c",
         meta: {
             hideInMenu: true,
-            title: "首页"
         },
-        component: resolve => require(["../page-county/Home.vue"], resolve)
+        redirect: "/c/Home",
+        component: Main,
+        children: [{
+            path: 'home',
+            name: 'c_home',
+            meta: {
+                title: "首页"
+            },
+            component: () => import('@/page-county/Home')
+        }, {
+            path: 'culture',
+            name: 'c_culture',
+            meta: {
+                title: "家族文化"
+            },
+            component: () => import('@/page-county/Culture')
+        }, {
+            path: 'charity',
+            name: 'c_charity',
+            meta: {
+                title: "慈善公益"
+            },
+            component: () => import('@/page-county/Charity')
+        }, {
+            path: 'products',
+            name: 'c_products',
+            meta: {
+                title: "慈善公益"
+            },
+            component: () => import('@/page-county/Products')
+        }, {
+            path: 'human',
+            name: 'c_human',
+            meta: {
+                title: "家族名人"
+            },
+            component: () => import('@/page-county/Human')
+        }, {
+            path: 'ancestors',
+            name: 'c_ancestors',
+            meta: {
+                title: "祖先分支"
+            },
+            component: () => import('@/page-county/Ancestors')
+        }, {
+            path: 'dynamic',
+            name: 'c_dynamic',
+            meta: {
+                title: "记录家族"
+            },
+            component: () => import('@/page-county/Dynamic')
+        }, {
+            path: 'detail',
+            name: 'c_detail',
+            meta: {
+                title: "文章详情"
+            },
+            component: () => import('@/page-county/Detail')
+        }]
     },
     {
-        path: "/c/Culture",
+        path: "/u",
         meta: {
             hideInMenu: true,
-
-            title: "家族文化"
         },
-        component: resolve => require(["../page-county/Culture.vue"], resolve)
-    },
-    {
-        path: "/c/Charity",
-        meta: {
-            hideInMenu: true,
-
-            title: "慈善公益"
-        },
-        component: resolve => require(["../page-county/Charity.vue"], resolve)
-    },
-    {
-        path: "/c/Products",
-        meta: {
-            hideInMenu: true,
-
-            title: "家族产业"
-        },
-        component: resolve => require(["../page-county/Products.vue"], resolve)
-    },
-    {
-        name: "Human",
-        path: "/c/Human",
-        meta: {
-            hideInMenu: true,
-
-            title: "家族名人"
-        },
-        component: resolve => require(["../page-county/Human.vue"], resolve)
-    },
-    {
-        name: "Ancestors",
-        path: "/c/Ancestors",
-        meta: {
-            hideInMenu: true,
-
-            title: "祖先分支"
-        },
-        component: resolve => require(["../page-county/Ancestors.vue"], resolve)
-    },
-    {
-        name: "Dynamic",
-        path: "/c/Dynamic",
-        meta: {
-            hideInMenu: true,
-
-            title: "记录家族"
-        },
-        component: resolve => require(["../page-county/Dynamic.vue"], resolve)
-    },
-    {
-        name: "Detail",
-        path: "/c/Detail",
-        meta: {
-            hideInMenu: true,
-            title: "文章详情"
-        },
-        component: resolve => require(["../page-county/Detail.vue"], resolve)
-    },
-    {
-        name: "User",
-        path: "/User",
-        meta: {
-            hideInMenu: true,
-            title: "个人中心"
-        },
-        component: resolve => require(["../page-user/User.vue"], resolve)
-    },
-    {
-        name: "UserFamily",
-        path: "/User/Family",
-        meta: {
-            hideInMenu: true,
-            title: "我的家谱"
-        },
-        component: resolve => require(["../page-user/Family.vue"], resolve)
-    },
-    {
-        name: "UserDonate",
-        path: "/User/Donate",
-        meta: {
-            hideInMenu: true,
-            title: "捐赠记录"
-        },
-        component: resolve => require(["../page-user/Donate.vue"], resolve)
-    },
-    {
-        name: "UserNote",
-        path: "/User/Note",
-        meta: {
-            hideInMenu: true,
-            title: "我的日志"
-        },
-        component: resolve => require(["../page-user/Note.vue"], resolve)
-    },
-    {
-        name: "UserMsg",
-        path: "/User/Msg",
-        meta: {
-            hideInMenu: true,
-            title: "我的日志"
-        },
-        component: resolve => require(["../page-user/Msg.vue"], resolve)
-    },
-    {
-        name: "UserVideo",
-        path: "/User/Video",
-        meta: {
-            hideInMenu: true,
-            title: "我的视频"
-        },
-        component: resolve => require(["../page-user/Video.vue"], resolve)
-    },
-    {
-        name: "UserImage",
-        path: "/User/Image",
-        meta: {
-            hideInMenu: true,
-            title: "我的图片"
-        },
-        component: resolve => require(["../page-user/Image.vue"], resolve)
-    },
-    {
-        name: "UserMsg",
-        path: "/User/Msg",
-        meta: {
-            hideInMenu: true,
-            title: "我的说说"
-        },
-        component: resolve => require(["../page-user/Msg.vue"], resolve)
+        redirect: "/u/user",
+        component: Main,
+        children: [{
+            path: 'user',
+            name: 'u-center',
+            meta: {
+                title: "个人中心"
+            },
+            component: () => import('@/page-user/User')
+        }, {
+            path: 'family',
+            name: 'u-family',
+            meta: {
+                title: "我的家谱"
+            },
+            component: () => import('@/page-user/Family')
+        }, {
+            path: 'donate',
+            name: 'u-donate',
+            meta: {
+                title: "捐赠记录"
+            },
+            component: () => import('@/page-user/Donate')
+        }, {
+            path: 'note',
+            name: 'u-note',
+            meta: {
+                title: "我的日志"
+            },
+            component: () => import('@/page-user/Note')
+        }, {
+            path: 'msg',
+            name: 'u-msg',
+            meta: {
+                title: "我的消息"
+            },
+            component: () => import('@/page-user/Msg')
+        }, {
+            path: 'video',
+            name: 'u-video',
+            meta: {
+                title: "我的视频"
+            },
+            component: () => import('@/page-user/Video')
+        }, {
+            path: 'image',
+            name: 'u-image',
+            meta: {
+                title: "我的图片"
+            },
+            component: () => import('@/page-user/Image')
+        }]
     },
     {
         name: "Census",
         path: "/Census",
         meta: {
             hideInMenu: true,
-
             title: "统谱编修"
         },
         component: resolve => require(["../page-census/Census.vue"], resolve)
@@ -322,13 +299,13 @@ export default [{
             title: 'Login - 登录',
             hideInMenu: true
         },
-        component: () => import('@/pages/login/login.vue')
+        component: () => import('@/page-admin/login/login.vue')
     },
     {
         path: '/Admin/',
         name: '_home',
         redirect: '/home',
-        component: Main,
+        component: Manager,
         children: [{
             path: '/Admin/home',
             name: 'home',
@@ -336,7 +313,7 @@ export default [{
                 title: '控制台',
                 icon: 'md-home'
             },
-            component: () => import('@/pages/home/home')
+            component: () => import('@/page-admin/home/home')
         }]
     },
     {
@@ -348,7 +325,7 @@ export default [{
             title: '运营',
             hide: true
         },
-        component: Main,
+        component: Manager,
         children: [{
             path: 'setting',
             name: 'setting',
@@ -356,7 +333,7 @@ export default [{
                 icon: 'md-settings',
                 title: '基本设置'
             },
-            component: () => import('@/pages/setting/setting')
+            component: () => import('@/page-admin/setting/setting')
         }, {
             path: 'feeds',
             name: 'feeds',
@@ -364,7 +341,7 @@ export default [{
                 icon: 'md-text',
                 title: '寻根留言'
             },
-            component: () => import('@/pages/setting/feeds')
+            component: () => import('@/page-admin/setting/feeds')
         }, {
             path: 'list',
             name: 'list',
@@ -372,7 +349,7 @@ export default [{
                 icon: 'md-text',
                 title: '内容管理'
             },
-            component: () => import('@/pages/setting/list')
+            component: () => import('@/page-admin/setting/list')
         }, {
             path: 'slider',
             name: 'slider',
@@ -380,7 +357,7 @@ export default [{
                 icon: 'ios-images',
                 title: '轮播图'
             },
-            component: () => import('@/pages/setting/slider')
+            component: () => import('@/page-admin/setting/slider')
         }, {
             path: 'links',
             name: 'links',
@@ -388,7 +365,7 @@ export default [{
                 icon: 'ios-infinite',
                 title: '最铁盟友'
             },
-            component: () => import('@/pages/setting/links')
+            component: () => import('@/page-admin/setting/links')
         }]
     },
     {
@@ -399,7 +376,7 @@ export default [{
             icon: 'ios-podium',
             title: '数据中心',
         },
-        component: Main,
+        component: Manager,
         children: [{
             path: 'podium',
             name: 'podium',
@@ -407,7 +384,7 @@ export default [{
                 icon: 'md-podium',
                 title: '数据中心'
             },
-            component: () => import('@/pages/podium/podium')
+            component: () => import('@/page-admin/podium/podium')
         }]
     },
     {
@@ -418,7 +395,7 @@ export default [{
             icon: 'md-bookmarks',
             title: '家族文化'
         },
-        component: Main,
+        component: Manager,
         children: [{
             path: 'list',
             name: 'culture-list',
@@ -426,7 +403,7 @@ export default [{
                 icon: 'md-book',
                 title: '全部文章',
             },
-            component: () => import('@/pages/culture/list')
+            component: () => import('@/page-admin/culture/list')
         }, {
             path: 'type',
             name: 'culture-type',
@@ -434,7 +411,7 @@ export default [{
                 icon: 'ios-build',
                 title: '类别设置',
             },
-            component: () => import('@/pages/culture/type')
+            component: () => import('@/page-admin/culture/type')
         }, {
             path: 'detail',
             name: 'culture-detail',
@@ -443,7 +420,7 @@ export default [{
                 title: '详细',
                 hideInMenu: true,
             },
-            component: () => import('@/pages/culture/detail')
+            component: () => import('@/page-admin/culture/detail')
         }]
     },
     {
@@ -455,7 +432,7 @@ export default [{
             title: '慈善公益',
             hide: false
         },
-        component: Main,
+        component: Manager,
         children: [{
             path: 'list',
             name: 'charitable-list',
@@ -463,7 +440,7 @@ export default [{
                 icon: 'md-heart',
                 title: '公益记录',
             },
-            component: () => import('@/pages/charitable/list')
+            component: () => import('@/page-admin/charitable/list')
         }, {
             path: 'out',
             name: 'charitable-out',
@@ -471,7 +448,7 @@ export default [{
                 icon: 'ios-infinite',
                 title: '财务支出',
             },
-            component: () => import('@/pages/charitable/out')
+            component: () => import('@/page-admin/charitable/out')
         }, {
             path: 'in',
             name: 'charitable-in',
@@ -479,17 +456,17 @@ export default [{
                 icon: 'md-albums',
                 title: '捐款名录',
             },
-            component: () => import('@/pages/charitable/in')
+            component: () => import('@/page-admin/charitable/in')
         }, {
             path: 'detail',
-            name: 'culture-detail',
+            name: 'charitable-detail',
             meta: {
                 icon: 'md-settings',
                 title: '详细',
                 hide: true,
                 hideInMenu: true,
             },
-            component: () => import('@/pages/charitable/detail')
+            component: () => import('@/page-admin/charitable/detail')
         }]
     },
     {
@@ -501,7 +478,7 @@ export default [{
             title: '家族产业',
             hide: true
         },
-        component: Main,
+        component: Manager,
         children: [{
             path: 'public',
             name: 'business-public',
@@ -509,7 +486,7 @@ export default [{
                 icon: 'ios-aperture',
                 title: '家族产业',
             },
-            component: () => import('@/pages/business/public')
+            component: () => import('@/page-admin/business/public')
         }, {
             path: 'personal',
             name: 'business-personal',
@@ -517,17 +494,17 @@ export default [{
                 icon: 'md-aperture',
                 title: '个人产业',
             },
-            component: () => import('@/pages/business/personal')
+            component: () => import('@/page-admin/business/personal')
         }, {
             path: 'detail',
-            name: 'culture-detail',
+            name: 'business-detail',
             meta: {
                 icon: 'md-settings',
                 title: '详细',
                 hide: true,
                 hideInMenu: true,
             },
-            component: () => import('@/pages/business/detail')
+            component: () => import('@/page-admin/business/detail')
         }]
     },
     {
@@ -539,7 +516,7 @@ export default [{
             title: '家族名人',
             hide: false
         },
-        component: Main,
+        component: Manager,
         children: [{
             path: 'list',
             name: 'notable-list',
@@ -547,7 +524,7 @@ export default [{
                 icon: 'md-star-half',
                 title: '家族名人',
             },
-            component: () => import('@/pages/notable/list')
+            component: () => import('@/page-admin/notable/list')
         }, {
             path: 'type',
             name: 'notable-type',
@@ -556,7 +533,7 @@ export default [{
                 title: '组织架构',
                 hide: true,
             },
-            component: () => import('@/pages/notable/type')
+            component: () => import('@/page-admin/notable/type')
         }, {
             path: 'detail',
             name: 'notable-detail',
@@ -566,7 +543,7 @@ export default [{
                 hide: true,
                 hideInMenu: true,
             },
-            component: () => import('@/pages/notable/detail')
+            component: () => import('@/page-admin/notable/detail')
         }]
     },
     {
@@ -577,7 +554,7 @@ export default [{
             icon: 'md-ribbon',
             title: '记录家族',
         },
-        component: Main,
+        component: Manager,
         children: [{
             path: 'list',
             name: 'ios-cloud',
@@ -585,7 +562,7 @@ export default [{
                 icon: 'logo-rss',
                 title: '记录家族',
             },
-            component: () => import('@/pages/record/list')
+            component: () => import('@/page-admin/record/list')
         }, {
             path: 'video',
             name: 'video',
@@ -593,7 +570,7 @@ export default [{
                 icon: 'md-videocam',
                 title: '视频',
             },
-            component: () => import('@/pages/record/video')
+            component: () => import('@/page-admin/record/video')
         }, {
             path: 'image',
             name: 'image',
@@ -601,7 +578,7 @@ export default [{
                 icon: 'md-image',
                 title: '图片',
             },
-            component: () => import('@/pages/record/image')
+            component: () => import('@/page-admin/record/image')
         }, {
             path: 'message',
             name: 'message',
@@ -609,7 +586,7 @@ export default [{
                 icon: 'ios-megaphone',
                 title: '说说',
             },
-            component: () => import('@/pages/record/message')
+            component: () => import('@/page-admin/record/message')
         }]
     },
     {
@@ -621,7 +598,7 @@ export default [{
             title: '用户管理',
             hide: false
         },
-        component: Main,
+        component: Manager,
         children: [{
             path: 'list',
             name: 'users-list',
@@ -629,7 +606,7 @@ export default [{
                 icon: 'ios-people-outline',
                 title: '全部用户',
             },
-            component: () => import('@/pages/users/list')
+            component: () => import('@/page-admin/users/list')
         }, {
             path: 'manager',
             name: 'users-manager',
@@ -637,7 +614,7 @@ export default [{
                 icon: 'md-paw',
                 title: '管理员',
             },
-            component: () => import('@/pages/users/manager')
+            component: () => import('@/page-admin/users/manager')
         }, {
             path: 'log',
             name: 'log',
@@ -645,7 +622,7 @@ export default [{
                 icon: 'md-code',
                 title: '管理员日志'
             },
-            component: () => import('@/pages/users/log')
+            component: () => import('@/page-admin/users/log')
         }]
     },
     {
@@ -657,7 +634,7 @@ export default [{
             title: '用户管理',
             hide: false
         },
-        component: Main,
+        component: Manager,
         children: [{
             path: 'help',
             name: 'help',
@@ -665,7 +642,7 @@ export default [{
                 icon: 'md-help-circle',
                 title: '帮助',
             },
-            component: () => import('@/pages/home/help')
+            component: () => import('@/page-admin/home/help')
         }]
     },
     {
@@ -674,7 +651,7 @@ export default [{
         meta: {
             hideInMenu: true
         },
-        component: () => import('@/pages/error/401.vue')
+        component: () => import('@/page-admin/error/401.vue')
     },
     {
         path: '/Admin/500',
@@ -682,7 +659,7 @@ export default [{
         meta: {
             hideInMenu: true
         },
-        component: () => import('@/pages/error/500.vue')
+        component: () => import('@/page-admin/error/500.vue')
     },
     {
         path: '*',
@@ -690,6 +667,6 @@ export default [{
         meta: {
             hideInMenu: true
         },
-        component: () => import('@/pages/error/404.vue')
+        component: () => import('@/page-admin/error/404.vue')
     }
 ]
