@@ -32,7 +32,6 @@
     </Layout>
 </template>
 <script>
-import './index.less'
 import SideMenu from './components/side-menu'
 import HeaderBar from './components/header-bar'
 import TagsNav from './components/tags-nav'
@@ -42,6 +41,7 @@ import ErrorStore from './components/error-store'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 import { getNewTagList, getNextRoute, routeEqual } from '@/libs/util'
 import Logo from '@/assets/images/logo.png'
+import './index.less'
 import './main.less'
 export default {
     name: 'Main',
@@ -65,10 +65,10 @@ export default {
             'errorCount'
         ]),
         tagNavList() {
-            return this.$store.state.app.tagNavList
+            return this.$store.state.admin.tagNavList
         },
         tagRouter() {
-            return this.$store.state.app.tagRouter
+            return this.$store.state.admin.tagRouter
         },
         userAvator() {
             return this.$store.state.user.avatorImgPath
@@ -80,7 +80,7 @@ export default {
             return this.$store.getters.menuList
         },
         hasReadErrorPage() {
-            return this.$store.state.app.hasReadErrorPage
+            return this.$store.state.admin.hasReadErrorPage
         }
     },
     methods: {
@@ -146,7 +146,7 @@ export default {
          */
         this.setTagNavList()
         this.addTag({
-            route: this.$store.state.app.homeRoute
+            route: this.$store.state.admin.homeRoute
         })
         this.setBreadCrumb(this.$route)
         // 如果当前打开页面不在标签栏中，跳到homeName页

@@ -1,7 +1,7 @@
 <template>
     <div class="page page-culture">
         <Topbar />
-        <NavBar :navcurr="1" />
+        <NavBar :navcurr="2" />
         <div class="main">
             <div class="adlinks">
                 <img src="@/assets/jpg/bg-culture.png" alt="">
@@ -9,10 +9,12 @@
             <div class="inner">
                 <div class="tabs kt">
                     <span class="tit">资讯</span>
-                    <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.id == menucurr.id ? 'curr':''" v-html="v.name" @click="chgMenu(v)"></span>
+                    <span class="menu" v-for="(v,i) in menuData" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v)"></span>
                 </div>
-                <ZipaiList v-if="menucurr.id == 1" />
-                <NewsList v-else />
+                <div class="in" v-if="menucurr">
+                    <ZipaiList v-if="menucurr.menuType == 'culture_zipai'" />
+                    <NewsList v-if="menucurr.menuType == 'culture_news'" />
+                </div>
             </div>
         </div>
         <FootBar />
@@ -31,49 +33,36 @@ export default {
         NewsList,
         ZipaiList
     },
+    computed: {
+        navlist() {
+            return this.$store.state.navList
+        },
+        current() {
+            return this.$router.history.current.name
+        },
+        menuData() {
+            let menu = [];
+            this.navlist.forEach(v => {
+                if (v.menuType == this.current) {
+                    menu = v.child
+                }
+            })
+            this.chgMenu(menu[0]);
+            return menu;
+        },
+    },
     data() {
         return {
-            menu: [],
             menucurr: {},
         }
     },
     mounted: function () {
-        this.getMenu()
     },
     methods: {
-        getMenu() {
-            this.menu = [{
-                id: 1,
-                name: '本地字派',
-            }, {
-                id: 2,
-                name: '家族祠堂',
-            }, {
-                id: 3,
-                name: '源流',
-            }, {
-                id: 4,
-                name: '序',
-            }, {
-                id: 5,
-                name: '宗规族约',
-            }, {
-                id: 6,
-                name: '传说典故',
-            }]
-            this.menucurr = this.menu[0];
-            this.getList();
-        },
         getList() {
-            this.api.get('LIST_ZIPAI', {
-                showId: 1,
-                status: 1
-            }).then(res => {
-            })
         },
         chgMenu(e) {
             this.menucurr = e;
-            this.getList();
         },
     },
 };

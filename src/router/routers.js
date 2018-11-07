@@ -1,6 +1,5 @@
-import Manager from '@/layout/manager'
-import Main from '@/layout/main'
-import parentView from '@/components/parent-view'
+import Manager from '@/layouts/manager'
+import Main from '@/layouts/main'
 
 /**
  * iview-admin中meta除了原生参数外可配置的参数:
@@ -15,216 +14,215 @@ import parentView from '@/components/parent-view'
 
 export default [{
         path: "/",
+        meta: {
+            hideInMenu: true,
+        },
         redirect: "/c"
     },
-    // {
-    //     path: "/n/Home",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "首页"
-    //     },
-    //     component: resolve => require(["../page-nation/Home.vue"], resolve)
-    // },
-    // {
-    //     path: "/n/Culture",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "家族文化"
-    //     },
-    //     component: resolve => require(["../page-nation/Culture.vue"], resolve)
-    // },
-    // {
-    //     path: "/n/Genealogy",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "数字家谱"
-    //     },
-    //     component: resolve => require(["../page-nation/Genealogy.vue"], resolve)
-    // },
-    // {
-    //     path: "/n/Human",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "祖先名人"
-    //     },
-    //     component: resolve => require(["../page-nation/Human.vue"], resolve)
-    // },
-    // {
-    //     path: "/n/Tree",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "各地分支"
-    //     },
-    //     component: resolve => require(["../page-nation/Tree.vue"], resolve)
-    // },
-    // {
-    //     path: "/n/Record",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "记录家族"
-    //     },
-    //     component: resolve => require(["../page-nation/Record.vue"], resolve)
-    // },
-    // {
-    //     path: "/n/Charity",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "慈善公益"
-    //     },
-    //     component: resolve => require(["../page-nation/Charity.vue"], resolve)
-    // },
-    // {
-    //     path: "/n/Detail",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "详情"
-    //     },
-    //     component: resolve => require(["../page-nation/Detail.vue"], resolve)
-    // },
-    // {
-    //     path: "/p/Home",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "首页"
-    //     },
-    //     component: resolve => require(["../page-province/Home.vue"], resolve)
-    // },
-    // {
-    //     path: "/p/Culture",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "家族文化"
-    //     },
-    //     component: resolve => require(["../page-province/Culture.vue"], resolve)
-    // },
-    // {
-    //     path: "/p/Genealogy",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "数字家谱"
-    //     },
-    //     component: resolve => require(["../page-province/Genealogy.vue"], resolve)
-    // },
-    // {
-    //     path: "/p/Human",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "祖先名人"
-    //     },
-    //     component: resolve => require(["../page-province/Human.vue"], resolve)
-    // },
-    // {
-    //     path: "/p/Tree",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "各地分支"
-    //     },
-    //     component: resolve => require(["../page-province/Tree.vue"], resolve)
-    // },
-    // {
-    //     path: "/p/Record",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "记录家族"
-    //     },
-    //     component: resolve => require(["../page-province/Record.vue"], resolve)
-    // },
-    // {
-    //     path: "/p/Charity",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "慈善公益"
-    //     },
-    //     component: resolve => require(["../page-province/Charity.vue"], resolve)
-    // },
-    // {
-    //     path: "/p/Detail",
-    //     meta: {
-    //         hideInMenu: true,
-    //         
-    //         title: "详情"
-    //     },
-    //     component: resolve => require(["../page-province/Detail.vue"], resolve)
-    // },
+    {
+        path: "/n",
+        meta: {
+            hideInMenu: true,
+        },
+        redirect: "/n/home",
+        component: Main,
+        children: [{
+            path: 'home',
+            name: 'n_home',
+            meta: {
+                title: "首页"
+            },
+            component: () => import('@/page-nation/Home')
+        }, {
+            path: 'culture',
+            name: 'n_culture',
+            meta: {
+                title: "家族文化"
+            },
+            component: () => import('@/page-nation/Culture')
+        }, {
+            path: 'genealogy',
+            name: 'n_genealogy',
+            meta: {
+                title: "数字家谱"
+            },
+            component: () => import('@/page-nation/Genealogy')
+        }, {
+            path: 'human',
+            name: 'n_human',
+            meta: {
+                title: "祖先名人"
+            },
+            component: () => import('@/page-nation/Human')
+        }, {
+            path: 'tree',
+            name: 'n_tree',
+            meta: {
+                title: "各地分支"
+            },
+            component: () => import('@/page-nation/Tree')
+        }, {
+            path: 'record',
+            name: 'n_record',
+            meta: {
+                title: "记录家族"
+            },
+            component: () => import('@/page-nation/Record')
+        }, {
+            path: 'charity',
+            name: 'n_charity',
+            meta: {
+                title: "慈善公益"
+            },
+            component: () => import('@/page-nation/Charity')
+        }, {
+            path: 'detail',
+            name: 'n_detail',
+            meta: {
+                title: "详情"
+            },
+            component: () => import('@/page-nation/Detail')
+        }]
+    },
+    {
+        path: "/p",
+        meta: {
+            hideInMenu: true,
+        },
+        redirect: "/p/Home",
+        component: Main,
+        children: [{
+            path: 'home',
+            name: 'p_home',
+            meta: {
+                title: "首页"
+            },
+            component: () => import('@/page-province/Home')
+        }, {
+            path: 'culture',
+            name: 'p_culture',
+            meta: {
+                title: "家族文化"
+            },
+            component: () => import('@/page-province/Culture')
+        }, {
+            path: 'genealogy',
+            name: 'p_genealogy',
+            meta: {
+                title: "数字家谱"
+            },
+            component: () => import('@/page-province/Genealogy')
+        }, {
+            path: 'human',
+            name: 'p_human',
+            meta: {
+                title: "祖先名人"
+            },
+            component: () => import('@/page-province/Human')
+        }, {
+            path: 'tree',
+            name: 'p_tree',
+            meta: {
+                title: "各地分支"
+            },
+            component: () => import('@/page-province/Tree')
+        }, {
+            path: 'record',
+            name: 'p_record',
+            meta: {
+                title: "记录家族"
+            },
+            component: () => import('@/page-province/Record')
+        }, {
+            path: 'charity',
+            name: 'p_charity',
+            meta: {
+                title: "慈善公益"
+            },
+            component: () => import('@/page-province/Charity')
+        }, {
+            path: 'detail',
+            name: 'p_detail',
+            meta: {
+                title: "详情"
+            },
+            component: () => import('@/page-province/Detail')
+        }]
+    },
     {
         path: "/c",
         meta: {
             hideInMenu: true,
         },
-        redirect: "/c/Home",
+        redirect: "/c/home",
         component: Main,
         children: [{
-            path: 'home',
-            name: 'c_home',
-            meta: {
-                title: "首页"
+                path: 'home',
+                name: 'home',
+                meta: {
+                    title: "首页"
+                },
+                component: () => import('@/page-county/Home')
+            }, {
+                path: 'culture_home',
+                name: 'culture_home',
+                meta: {
+                    title: "家族文化"
+                },
+                component: () => import('@/page-county/culture')
+            }, {
+                path: 'charity_home',
+                name: 'charity_home',
+                meta: {
+                    title: "慈善公益"
+                },
+                component: () => import('@/page-county/charity')
+            }, {
+                path: 'industry_home',
+                name: 'industry_home',
+                meta: {
+                    title: "家族产业"
+                },
+                component: () => import('@/page-county/industry')
+            }, {
+                path: 'famous_home',
+                name: 'famous_home',
+                meta: {
+                    title: "家族名人"
+                },
+                component: () => import('@/page-county/famous')
+            }, {
+                path: 'ancestors',
+                name: 'famous_home',
+                meta: {
+                    title: "祖先分支"
+                },
+                component: () => import('@/page-county/Ancestors')
+            }, {
+                path: 'family_record_home',
+                name: 'family_record_home',
+                meta: {
+                    title: "记录家族"
+                },
+                component: () => import('@/page-county/family_record')
             },
-            component: () => import('@/page-county/Home')
-        }, {
-            path: 'culture',
-            name: 'c_culture',
-            meta: {
-                title: "家族文化"
+            {
+                path: "tongpu_home",
+                name: "tongpu_home",
+                meta: {
+                    title: "统谱编修"
+                },
+                component: () => import('@/page-county/tongpu')
             },
-            component: () => import('@/page-county/Culture')
-        }, {
-            path: 'charity',
-            name: 'c_charity',
-            meta: {
-                title: "慈善公益"
-            },
-            component: () => import('@/page-county/Charity')
-        }, {
-            path: 'products',
-            name: 'c_products',
-            meta: {
-                title: "慈善公益"
-            },
-            component: () => import('@/page-county/Products')
-        }, {
-            path: 'human',
-            name: 'c_human',
-            meta: {
-                title: "家族名人"
-            },
-            component: () => import('@/page-county/Human')
-        }, {
-            path: 'ancestors',
-            name: 'c_ancestors',
-            meta: {
-                title: "祖先分支"
-            },
-            component: () => import('@/page-county/Ancestors')
-        }, {
-            path: 'dynamic',
-            name: 'c_dynamic',
-            meta: {
-                title: "记录家族"
-            },
-            component: () => import('@/page-county/Dynamic')
-        }, {
-            path: 'detail',
-            name: 'c_detail',
-            meta: {
-                title: "文章详情"
-            },
-            component: () => import('@/page-county/Detail')
-        }]
+            {
+                path: 'detail',
+                name: 'detail',
+                meta: {
+                    title: "文章详情"
+                },
+                component: () => import('@/page-county/Detail')
+            }
+        ]
     },
     {
         path: "/u",
@@ -285,14 +283,6 @@ export default [{
         }]
     },
     {
-        name: "Census",
-        path: "/Census",
-        meta: {
-            hideInMenu: true,
-            title: "统谱编修"
-        },
-        component: resolve => require(["../page-census/Census.vue"], resolve)
-    }, {
         path: '/Admin/login',
         name: 'login',
         meta: {

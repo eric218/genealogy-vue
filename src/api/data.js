@@ -1,5 +1,12 @@
 import axios from '@/libs/api.request'
 
+export const getNavData = () => {
+    return axios.request({
+        url: 'genogram/fanMenu/getMenuBySiteId?siteId=1',
+        method: 'get'
+    })
+}
+
 export const getTableData = () => {
     return axios.request({
         url: 'get_table_data',

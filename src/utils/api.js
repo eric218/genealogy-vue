@@ -3,8 +3,8 @@ import 'es6-promise/auto';
 
 const api = {
     pageSize: 20,
-    host: 'http://192.168.2.123:8090/',
-    server: 'http://192.168.2.123:8090/',
+    host: 'http://192.168.2.179:8090/',
+    server: 'http://192.168.2.179:8090/',
     urls: {
         USER_LOGIN: 'home/login', //登录//用户名、密码
         USER_REG: "home/reg01", //注册//用户名、密码、姓氏、地区、
@@ -12,7 +12,7 @@ const api = {
         PAY_ALI: "pay/aliPay", //支付宝支付//token、支付金额
         PAY_WX: "pay/wechatPay", //微信支付//token、支付金额
         SYS_SITE: '', //网站信息//网站ID、地区、姓氏
-        SYS_NAV: '', //网站导航栏//网站ID
+        SYS_NAV: 'genogram/fanMenu/getMenuBySiteId', //网站导航栏//网站ID
 
         //家族文化列表
         //字派列表
@@ -50,6 +50,7 @@ const api = {
         })
     },
     get: function (url, data) {
+        console.log(1)
         if (!data.pageNow) {
             data.pageNo = 1
         }

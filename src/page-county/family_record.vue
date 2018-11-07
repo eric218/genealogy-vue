@@ -1,7 +1,7 @@
 <template>
     <div class="page page-culture">
         <Topbar />
-        <NavBar :navcurr="5" />
+        <NavBar :navcurr="6" />
         <div class="main">
             <div class="dynamic">
                 <div class="inner">

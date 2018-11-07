@@ -7,8 +7,6 @@ import iView from 'iview';
 import config from '@/config'
 import './assets/icon/iconfont.css';
 import 'url-search-params-polyfill';
-
-if (process.env.NODE_ENV !== 'production') require('@/mock')
 Vue.use(iView);
 
 Vue.prototype.api = Api

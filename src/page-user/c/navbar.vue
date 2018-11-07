@@ -19,11 +19,6 @@ export default {
             }],
         };
     },
-    mounted: function () {
-
-    },
-    methods: {
-    },
     props: ['name']
 };
 </script>

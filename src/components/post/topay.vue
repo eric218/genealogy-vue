@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="@/assets/jpg/banner-pay.png" style="margin-bottom:16px;">
+        <img src="@/assets/jpg/banner-pay.png" style="margin-bottom:16px;width:100%;">
         <Form ref="form" :model="form" :label-width="80">
             <FormItem label="选择金额">
                 <RadioGroup v-model="form.num" type="button">
@@ -13,7 +13,7 @@
             </FormItem>
             <FormItem label="捐赠金额">
                 <i-input placeholder="填入其它金额" v-model="form.num" :maxlength="5" :number="true">
-                <div slot="suffix" style="line-height:32px;">元</div>
+                    <div slot="suffix" style="line-height:32px;">元</div>
                 </i-input>
             </FormItem>
             <FormItem label="支付平台">
@@ -78,3 +78,17 @@ export default {
     }
 };
 </script>
+
+<style lang="scss" >
+@import "@/assets/css/var.scss";
+.g-pay {
+  .ivu-modal-content {
+    background: #fff url(../../assets/img/bg-pay.png) no-repeat top center /
+      100% auto;
+  }
+
+  .ivu-modal-body {
+    padding-top: 108px;
+  }
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
     <div class="page page-charity">
         <Topbar />
-        <NavBar :navcurr="2" />
+        <NavBar :navcurr="3" />
         <div class="main">
             <div class="counts">
                 <div class="inner">

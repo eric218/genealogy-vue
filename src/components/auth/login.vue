@@ -10,7 +10,7 @@
             </FormItem>
             <FormItem>
                 <Button type="primary" @click="toSubmit" style="width:100%;">登录</Button>
-            </FormItem> 
+            </FormItem>
         </Form>
         <div class="f">
             <div class="r">
@@ -63,3 +63,37 @@ export default {
     }
 };
 </script>
+
+<style lang="scss">
+@import "@/assets/css/var.scss";
+.g-auth {
+  .ivu-modal-content {
+    background: #fff url(../../assets/img/bg-auth.png) no-repeat top center /
+      100% auto;
+  }
+
+  .ivu-modal-body {
+    padding-top: 128px;
+  }
+
+  .h {
+    font-size: 12px;
+    line-height: 32px;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .f {
+    overflow: hidden;
+    font-size: 12px;
+
+    .r {
+      float: right;
+    }
+
+    a {
+      color: $color;
+    }
+  }
+}
+</style>

@@ -1,64 +1,60 @@
 <template>
-    <div class="page page-products">
+    <div class="page page-famous">
         <Topbar />
-        <NavBar :navcurr="3" />
+        <NavBar :navcurr="5" />
         <div class="main">
             <div class="adlinks">
-                <img src="@/assets/jpg/bg-product.png" alt="">
+                <img src="@/assets/jpg/bg-human.png" alt="">
             </div>
             <div class="inner">
                 <div class="tabs kt">
-                    <span class="tit">资讯</span>
+                    <span class="tit">人物</span>
                     <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.id == menucurr.id ? 'curr':''" v-html="v.name" @click="chgMenu(v)"></span>
                 </div>
-                <NewsList :list="list" />
+                <HumanList />
             </div>
         </div>
         <FootBar />
     </div>
 </template>
-
 <script>
+import HumanList from '@/components/list/human.vue';
 import { Topbar, NavBar, FootBar } from './c'
-import NewsList from '@/components/list/news.vue';
 export default {
     components: {
         Topbar,
         NavBar,
         FootBar,
-        NewsList,
+        HumanList,
     },
     data() {
         return {
+            isadd: false,
             menu: [],
             menucurr: {},
-            list: []
-        };
-    },
-    computed: {
+        }
     },
     mounted: function () {
-        this.getMenu();
+        this.getMenu()
     },
     methods: {
         getMenu() {
-            this.menu = [
-                {
-                    id: 15,
-                    name: '家族产业',
-                },
-                {
-                    id: 16,
-                    name: '个人产业',
-                }]
+            this.menu = [{
+                id: 1,
+                name: '家族长老',
+            }, {
+                id: 2,
+                name: '家族栋梁',
+            }]
             this.menucurr = this.menu[0]
-            this.getList();
         },
-        getList() { },
+        getList() {
+
+        },
         chgMenu(e) {
             this.menucurr = e;
             this.getList();
-        }
-    }
+        },
+    },
 };
 </script>

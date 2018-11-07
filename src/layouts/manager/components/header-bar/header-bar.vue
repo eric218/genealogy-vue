@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     breadCrumbList () {
-      return this.$store.state.app.breadCrumbList
+      return this.$store.state.admin.breadCrumbList
     }
   },
   methods: {
