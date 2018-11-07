@@ -50,7 +50,6 @@ const api = {
         })
     },
     get: function (url, data) {
-        console.log(1)
         if (!data.pageNow) {
             data.pageNo = 1
         }
@@ -58,7 +57,7 @@ const api = {
             data.pageSize = 8
         }
         return new Promise((resolve, reject) => {
-            axios.get(this.server + this.urls[url], {
+            axios.get(url, {
                 params: data
             }).then(res => {
                 console.log(res.data)

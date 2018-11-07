@@ -5,7 +5,9 @@
 import Vue from 'vue'
 import '@/assets/theme/iview.less'
 import Iconfont from '@/components/common/iconfont.vue'
+import None from '@/components/common/None.vue'
 Vue.component('Iconfont', Iconfont)
+Vue.component('None', None)
 export default {
     mounted() {
         this.$store.dispatch('handleNavlist')

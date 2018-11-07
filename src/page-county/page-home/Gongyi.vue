@@ -26,10 +26,10 @@
                             <span>收益公开栏</span>
                         </router-link>
                         <div class="b">
-                            <router-link to="/c/Detail" class="item" v-for="v in 5" :key="v">
-                                <div class="date">2018-05-01</div>
+                            <router-link to="/c/Detail" class="item" v-for="v in leftPayin.records" :key="v.id">
+                                <div class="date">{{v.createTime}}</div>
                                 <div class="tag">【慈善纪要】</div>
-                                <div class="tit">标题</div>
+                                <div class="tit">{{v.newsTitle}}</div>
                             </router-link>
                         </div>
                     </div>
@@ -74,6 +74,12 @@ export default {
     components: {
         topay,
     },
+    computed: {
+        leftPayin() {
+            return this.$store.state.homeData.index_architecture_pay_in
+        },
+
+    },
     data() {
         return {
             handleTopay: false,
@@ -89,18 +95,8 @@ export default {
             this.menu = [{
                 id: 1,
                 name: '慈善公益',
-            }, {
-                id: 2,
-                name: '奉献助人',
             }]
             this.menucurr = this.menu[0]
-        },
-        getList() {
-
-        },
-        chgMenu(e) {
-            this.menucurr = e;
-            this.getList();
         },
     },
 };

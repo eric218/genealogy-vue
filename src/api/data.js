@@ -1,8 +1,16 @@
 import axios from '@/libs/api.request'
 
-export const getNavData = () => {
+export const getNavData = e => {
     return axios.request({
-        url: 'genogram/fanMenu/getMenuBySiteId?siteId=1',
+        url: 'genogram/fanMenu/getMenuBySiteId',
+        params: e,
+        method: 'get'
+    })
+}
+
+export const getHomeApi = url => {
+    return axios.request({
+        url: url,
         method: 'get'
     })
 }
@@ -24,14 +32,6 @@ export const getDragList = () => {
 export const errorReq = () => {
     return axios.request({
         url: 'error_url',
-        method: 'post'
-    })
-}
-
-export const saveErrorLogger = info => {
-    return axios.request({
-        url: 'save_error_logger',
-        data: info,
         method: 'post'
     })
 }

@@ -9,9 +9,9 @@
             <div class="inner">
                 <div class="tabs kt">
                     <span class="tit">人物</span>
-                    <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.id == menucurr.id ? 'curr':''" v-html="v.name" @click="chgMenu(v)"></span>
+                    <span class="menu" v-for="(v,i) in menuData" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v)"></span>
                 </div>
-                <HumanList />
+                <HumanList :data="data" />
             </div>
         </div>
         <FootBar />
@@ -27,33 +27,45 @@ export default {
         FootBar,
         HumanList,
     },
+    computed: {
+        navlist() {
+            return this.$store.state.navList
+        },
+        current() {
+            return this.$router.history.current.name
+        },
+        menuData() {
+            let menu = [];
+            this.navlist.forEach(v => {
+                if (v.menuType == this.current) {
+                    menu = v.child
+                }
+            })
+            this.chgMenu(menu[0]);
+            return menu;
+        },
+    },
     data() {
         return {
-            isadd: false,
-            menu: [],
             menucurr: {},
+            data: {},
         }
     },
     mounted: function () {
-        this.getMenu()
     },
     methods: {
-        getMenu() {
-            this.menu = [{
-                id: 1,
-                name: '家族长老',
-            }, {
-                id: 2,
-                name: '家族栋梁',
-            }]
-            this.menucurr = this.menu[0]
-        },
         getList() {
-
+            let url = this.menucurr.apiUrl;
+            console.log(url)
+            this.api.get(url, {}).then(res => {
+                this.data = res.data;
+            })
         },
         chgMenu(e) {
             this.menucurr = e;
-            this.getList();
+            setTimeout(() => {
+                this.getList();
+            }, 300);
         },
     },
 };

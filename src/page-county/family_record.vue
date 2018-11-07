@@ -64,19 +64,17 @@
                     <div class="grad list">
                         <div class="tabs kt">
                             <span class="tit">动态</span>
-                            <span class="menu curr">家族动态</span>
-                            <span class="menu">县级公告</span>
+                            <span class="menu" v-for="(v,i) in menuData" v-if="i < 2" :key="i" :class="v.orderIndex == menucurr_a.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v,i)"></span>
                         </div>
                         <div class="card">
                             <div class="items">
-                                <div class="item" v-for="v in 3" :key="v">
-                                    <div class="img"></div>
+                                <router-link to="/c/detail" class="item" v-for="v in data_a" :key="v.id">
+                                    <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
                                     <div class="obj">
-                                        <div class="tit">新闻标题</div>
-                                        <div class="intro">正文描述正文描述正文描述正文描述正文描述正文描述正文描述正文描述正文描述正文描述正文描述正文描述正文描述正文描述</div>
-                                        <div class="more">查看详情>></div>
+                                        <div class="tit" v-text="v.newsTitle"></div>
+                                        <div class="intro" v-text="v.newsText"></div>
                                     </div>
-                                </div>
+                                </router-link>
                             </div>
                         </div>
                     </div>
@@ -85,7 +83,7 @@
             <div class="inner">
                 <div class="tabs kt">
                     <span class="tit">动态</span>
-                    <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.id == menucurr.id ? 'curr':''" v-html="v.name" @click="chgMenu(v)"></span>
+                    <span class="menu" v-for="(v,i) in menuData" v-if="i > 1" :key="i" :class="v.orderIndex == menucurr_b.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v,i)"></span>
                 </div>
                 <VideoList />
             </div>
@@ -106,32 +104,55 @@ export default {
         FootBar,
         VideoList
     },
+    computed: {
+        navlist() {
+            return this.$store.state.navList
+        },
+        current() {
+            return this.$router.history.current.name
+        },
+        menuData() {
+            let menu = [];
+            this.navlist.forEach(v => {
+                if (v.menuType == this.current) {
+                    menu = v.child
+                }
+            })
+            this.chgMenu(menu[0], 0);
+            this.chgMenu(menu[2], 2);
+            return menu;
+        },
+    },
     data() {
         return {
-            menu: [],
-            menucurr: {},
+            menucurr_a: {},
+            menucurr_b: {},
+            data_a: [],
+            data_b: [],
         }
     },
     mounted: function () {
-        this.getMenu()
     },
     methods: {
-        getMenu() {
-            this.menu = [{
-                id: 1,
-                name: '家族视频',
-            }, {
-                id: 2,
-                name: '个人视频',
-            }]
-            this.menucurr = this.menu[0]
+        getList(i) {
+            let url = i > 1 ? this.menucurr_b.apiUrl : this.menucurr_a.apiUrl;
+            this.api.get(url, {}).then(res => {
+                if (i > 1) {
+                    this.data_b = res.data.records;
+                } else {
+                    this.data_a = res.data.records;
+                }
+            })
         },
-        getList() {
-
-        },
-        chgMenu(e) {
-            this.menucurr = e;
-            this.getList();
+        chgMenu(e, i) {
+            if (i > 1) {
+                this.menucurr_b = e;
+            } else {
+                this.menucurr_a = e;
+            }
+            setTimeout(() => {
+                this.getList(i);
+            }, 300);
         },
     },
 };

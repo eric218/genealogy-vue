@@ -1,73 +1,44 @@
 <template>
     <div class="humanlist">
-        <router-link to="/c/Detail" class="item">
-            <div class="img" />
-            <div class="obj">
-                <div class="tit">
-                    <iconfont name="myfill" />
-                    <span>姓名</span>
-                </div>
-                <div class="intro" v-html="'描述'"></div>
-                <div class="tag">
-                    <div class="fl">
-                        <iconfont name="formfill" />
-                        <span>150</span>
-                    </div>
-                    <div class="fl">
-                        <iconfont name="picfill" />
-                        <span>150</span>
-                    </div>
-                    <div class="fl">
-                        <iconfont name="video_fill_light" />
-                        <span>150</span>
-                    </div>
-                    <div class="fl">
-                        <iconfont name="communityfill" />
-                        <span>150</span>
-                    </div>
-                </div>
-            </div>
-        </router-link>
-        <router-link to="/c/Detail" class="item" v-for="(v,i) in list" :key="i">
-            <div class="img" :style="api.imgBG(v.pic)" />
-            <div class="obj">
-                <div class="tit" v-html="v.title"></div>
-                <div class="intro" v-html="v.summary"></div>
-                <div class="tag">
-                    <div class="attention">
-                        <iconfont name="attention" />
-                        <span v-html="v.like"></span>
-                    </div>
-                    <div class="favor">
-                        <iconfont name="favorfill" />
-                        <span v-html="v.focus"></span>
-                    </div>
-                    <div class="appreciate">
-                        <iconfont name="appreciate" />
-                        <span v-html="v.collection"></span>
-                    </div>
-                    <div class="site">
-                        <iconfont name="locationfill" />
-                        <span>湖北省武汉市</span>
+        <Card class="item" v-for="(v,i) in data.records" :key="i">
+            <router-link to="/c/Detail">
+                <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
+                <div class="obj">
+                    <div class="tit" v-html="v.newsTitle"></div>
+                    <div class="intro" v-html="v.newsText"></div>
+                    <div class="tag">
+                        <div class="attention fr">
+                            <iconfont name="attention" />
+                            <span v-html="v.like"></span>
+                        </div>
+                        <div class="favor fr">
+                            <iconfont name="favorfill" />
+                            <span v-html="v.focus"></span>
+                        </div>
+                        <div class="appreciate fr">
+                            <iconfont name="appreciate" />
+                            <span v-html="v.visitNum"></span>
+                        </div>
+                        <div class="site fl">
+                            <iconfont name="locationfill" />
+                            <span>湖北省武汉市</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </router-link>
-        <Page :total="50" />
+            </router-link>
+        </Card>
+        <Page :total="data.total" />
     </div>
 </template>
 <script>
 export default {
-    props: ['list']
+    props: ['data']
 };
 </script>
-
-
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .humanlist {
   padding: 16px 0;
-
   .item {
     white-space: nowrap;
     margin: 16px 0;
@@ -95,7 +66,9 @@ export default {
         width: 80%;
         color: #666;
         height: 72px;
+        overflow: hidden;
         line-height: 24px;
+        margin-bottom: 16px;
       }
 
       .tag {

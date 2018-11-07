@@ -46,9 +46,9 @@ export default {
     computed: {
     },
     mounted: function () {
+        this.$store.dispatch('handleHomeAll')
     },
     methods: {
-
     }
 };
 </script>

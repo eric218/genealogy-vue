@@ -11,10 +11,11 @@
                     <span class="tit">资讯</span>
                     <span class="menu" v-for="(v,i) in menuData" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v)"></span>
                 </div>
-                <div class="in" v-if="menucurr">
-                    <ZipaiList v-if="menucurr.menuType == 'culture_zipai'" />
-                    <NewsList v-if="menucurr.menuType == 'culture_news'" />
+                <div class="in" v-if="menucurr && data.total">
+                    <ZipaiList :data="data" v-if="menucurr.menuType == 'culture_zipai'" />
+                    <NewsList :data="data" v-if="menucurr.menuType == 'culture_news'" />
                 </div>
+                <None v-else />
             </div>
         </div>
         <FootBar />
@@ -54,15 +55,23 @@ export default {
     data() {
         return {
             menucurr: {},
+            data: {},
         }
     },
     mounted: function () {
     },
     methods: {
         getList() {
+            let url = this.menucurr.apiUrl;
+            this.api.get(url, {}).then(res => {
+                this.data = res.data;
+            })
         },
         chgMenu(e) {
             this.menucurr = e;
+            setTimeout(() => {
+                this.getList();
+            }, 300);
         },
     },
 };

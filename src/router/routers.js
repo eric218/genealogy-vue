@@ -17,7 +17,16 @@ export default [{
         meta: {
             hideInMenu: true,
         },
-        redirect: "/c"
+        redirect: "/base"
+    },
+    {
+        path: "/base",
+        name: 'base',
+        meta: {
+            title: '配置',
+            hideInMenu: true,
+        },
+        component: () => import('@/page-county/base.vue')
     },
     {
         path: "/n",

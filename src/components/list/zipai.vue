@@ -1,15 +1,15 @@
 <template>
     <div class="zipai">
-        <div class="item">
+        <div class="item" v-for="v in data.records" :key="v.id">
             <div class="tit">
-                <span>地域：</span>
-                <span>祖先：</span>
+                <span>地域：{{v.ziapiLocation}}</span>
+                <span>祖先：{{v.ancestorsName}}</span>
             </div>
             <div class="intro">
-                <div class="itm" v-for="v in 20" :key="v">
-                    <div class="red tag" v-if="v<4">{{v+80}}</div>
-                    <div class="blue tag" v-if="v<4">{{v+20}}</div>
-                    <span>张</span>
+                <div class="itm" v-for="(itm,idx) in formatZipai(v.zipaiTxt)" :key="idx">
+                    <div class="red tag">{{itm[0]}}</div>
+                    <div class="blue tag">{{itm[1]}}</div>
+                    <span>{{itm[2]}}</span>
                 </div>
             </div>
             <div class="tag">
@@ -31,12 +31,24 @@
                 </div>
             </div>
         </div>
-        <Page :total="50" />
+        <Page :total="data.total" />
     </div>
 </template>
 <script>
 export default {
-    props: ['list']
+    methods: {
+        formatZipai(e) {
+            let list = e.split(';');
+            let obj = [];
+            if (list.length) {
+                obj = list.map(v => {
+                    return v.split('|')
+                })
+            }
+            return obj;
+        }
+    },
+    props: ['data']
 };
 </script>
 
@@ -51,7 +63,11 @@ export default {
     padding: 16px;
     background: #ece9e9;
     border-radius: 8px;
-
+    .tit {
+      span {
+        margin-right: 16px;
+      }
+    }
     .intro {
       overflow: hidden;
       white-space: normal;
