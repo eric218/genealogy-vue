@@ -85,7 +85,7 @@
                     <span class="tit">动态</span>
                     <span class="menu" v-for="(v,i) in menuData" v-if="i > 1" :key="i" :class="v.orderIndex == menucurr_b.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v,i)"></span>
                 </div>
-                <VideoList />
+                <VideoList :data="data_b" v-if="data_b" />
             </div>
         </div>
         <FootBar />
@@ -127,8 +127,8 @@ export default {
         return {
             menucurr_a: {},
             menucurr_b: {},
-            data_a: [],
-            data_b: [],
+            data_a: {},
+            data_b: {},
         }
     },
     mounted: function () {
@@ -138,7 +138,7 @@ export default {
             let url = i > 1 ? this.menucurr_b.apiUrl : this.menucurr_a.apiUrl;
             this.api.get(url, {}).then(res => {
                 if (i > 1) {
-                    this.data_b = res.data.records;
+                    this.data_b = res.data;
                 } else {
                     this.data_a = res.data.records;
                 }

@@ -79,9 +79,7 @@
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" v-for="(v,i) in zipai_list" :key="i">
-                                <div class="tit">
-                                    张氏本支字派：
-                                </div>
+                                <div class="tit">张氏本支字派：</div>
                                 <router-link to="/c/Culture" class="more">更多>></router-link>
                                 <div class="list">
                                     <div class="item" v-for="(itm,idx) in v" :key="idx">

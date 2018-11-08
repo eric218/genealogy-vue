@@ -1,28 +1,32 @@
 <template>
     <Layout>
         <Content>
-            <div style="padding:64px;width:640px;margin:64px auto;">
-                <Form :model="form" :label-width="80">
-                    <FormItem label="网站id">
-                        <Input type="text" v-model.number="form.siteid" placeholder="网站id" :maxlength="5" />
-                    </FormItem>
-                    <FormItem>
-                        <Button type="primary" @click="handleSubmit('form')">进入</Button>
-                    </FormItem>
-                </Form>
-            </div>
-            <div style="padding:64px;width:640px;margin:64px auto;">
-                <Form :model="form" :label-width="80">
-                    <FormItem label="上传url">
-                        <Input type="text" v-model.number="form.uploadurl" placeholder="需带http://" @input="chgIpt" />
-                    </FormItem>
-                    <FormItem>
-                        <Upload muliple :before-upload="handleUpload" action="">
-                            <Button icon="ios-cloud-upload-outline">选择文件上传</Button>
-                        </Upload>
-                    </FormItem>
-                </Form>
-            </div>
+            <Row :gutter="32" style="width:80%;max-width:960px;margin:0 auto;">
+                <i-col :span="24">
+                    <div style="padding:64px 0;">
+                        <Form :model="form" :label-width="80">
+                            <FormItem label="网站id">
+                                <Input type="text" v-model.number="form.siteid" placeholder="网站id" :maxlength="5" />
+                            </FormItem>
+                            <FormItem>
+                                <Button type="primary" @click="toHome('form')">进入</Button>
+                            </FormItem>
+                        </Form>
+                    </div>
+                    <div style="padding:64px 0;">
+                        <Form :model="form" :label-width="80">
+                            <FormItem label="上传url">
+                                <Input type="text" v-model.number="form.uploadurl" placeholder="需带http://" @input="chgIpt" />
+                            </FormItem>
+                            <FormItem>
+                                <Upload multiple :before-upload="handleUpload" action="">
+                                    <Button icon="ios-cloud-upload-outline">选择文件上传</Button>
+                                </Upload>
+                            </FormItem>
+                        </Form>
+                    </div>
+                </i-col>
+            </Row>
         </Content>
     </Layout>
 </template>
@@ -36,6 +40,11 @@ export default {
                 siteid: '',
                 uploadurl: '',
             },
+            index: 1,
+            formDynamic: {
+                url: '',
+                value: '',
+            }
         };
     },
     computed: {
@@ -50,7 +59,7 @@ export default {
             this.form.uploadurl = e;
             localStorage.uploadurl = e;
         },
-        handleSubmit() {
+        toHome() {
             if (!this.form.siteid) {
                 this.$Modal.warning({
                     title: '提示',
@@ -67,12 +76,12 @@ export default {
                 return false;
             }
             this.api.upload(this.form.uploadurl, {}, {
-                key: 'img',
+                key: 'file',
                 file: e,
             }).then(res => {
                 return false;
             })
-        }
+        },
     }
 };
 </script>

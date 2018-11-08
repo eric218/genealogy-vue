@@ -1,7 +1,7 @@
 <template>
     <div>
         <Row :gutter="32" class="videolist">
-            <i-col :span="6" v-for="v in 8" :key="v">
+            <i-col :span="6" v-for="v in data.records" :key="v">
                 <div class="item">
                     <div class="img">
                         <img src="@/assets/img/100x100.png" alt="" />
@@ -23,12 +23,12 @@
                 </div>
             </i-col>
         </Row>
-        <Page :total="50" />
+        <Page :total="data.total" />
     </div>
 </template>
 <script>
 export default {
-    props: ['list']
+    props: ['data']
 };
 </script>
 <style lang="scss" scoped>

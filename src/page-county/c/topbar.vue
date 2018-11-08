@@ -1,10 +1,10 @@
 <template>
     <div class="topbar">
         <div class="brand">
-            <div class="img" :style="index_summary?api.imgBG(index_summary.totemPicSrc):''"></div>
+            <div class="img" :style="homeData?api.imgBG(homeData.index_summary.totemPicSrc):''"></div>
             <div class="obj kt">
-                <div class="cn">{{index_summary?index_summary.siteName:''}}</div>
-                <div class="en">{{index_summary?index_summary.title:''}}</div>
+                <div class="cn">{{homeData.index_summary?homeData.index_summary.siteName:''}}</div>
+                <div class="en">{{homeData.index_summary?homeData.index_summary.title:''}}</div>
             </div>
         </div>
         <div class="authform">
@@ -20,6 +20,7 @@
     </div>
 </template>
 <script>
+import { mapActions, mapState } from 'vuex'
 import loginform from '@/components/auth/login.vue'
 import regform from '@/components/auth/reg.vue'
 export default {
@@ -29,9 +30,7 @@ export default {
         regform,
     },
     computed: {
-        index_summary() {
-            return this.$store.state.homeData.index_summary
-        },
+        ...mapState(["homeData"])
     },
     data() {
         return {

@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <Page :total="data.total" />
+        <Page :total="data.total" on-change="chgPage" :page-size="8"/>
     </div>
 </template>
 <script>
@@ -46,6 +46,9 @@ export default {
                 })
             }
             return obj;
+        },
+        chgPage(e){
+            console.log(e);
         }
     },
     props: ['data']
