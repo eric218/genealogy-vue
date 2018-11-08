@@ -5,7 +5,7 @@
                 <div class="info">
                     <div class="swiper-container">
                         <div class="swiper-wrapper" v-if="index_fan_summary">
-                            <div class="swiper-slide" v-for="v in index_fan_summary.records" :key="v">
+                            <div class="swiper-slide" v-for="v in index_fan_summary.records" :key="v.id">
                                 <div class="img"></div>
                                 <div class="obj">
                                     <div class="intro">
@@ -64,7 +64,7 @@
                         <span>元</span>
                     </div>
                     <div class="f">
-                        <div class="item" v-for="v in 4" :key="v"></div>
+                        <div class="item" v-for="v in index_architecture_pay_in_person_1" :key="v.id"></div>
                         <router-link class="item more" to="/Charity">···</router-link>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
             <div class="about">
                 <div class="h"></div>
                 <div class="tag">简介</div>
-                <div class="b">张姓，中华姓氏之一，是一个典型的多民族、多源流姓氏，主要源自姬姓及少数民族改姓等。张挥为该姓始祖。历史上，西汉时期张耳被刘邦封为赵王，张耳的十七世孙张轨（255年－314年）建立前凉国 。</div>
+                <div class="b">{{index_summary ? index_summary.description:''}}</div>
                 <div class="f">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
@@ -110,6 +110,9 @@ export default {
         topay,
     },
     computed: {
+        index_summary() {
+            return this.$store.state.homeData.index_summary
+        },
         index_fund_1() {
             return this.$store.state.homeData.index_fund_1
         },

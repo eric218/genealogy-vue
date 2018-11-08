@@ -3,8 +3,8 @@
         <div class="brand">
             <div class="img"></div>
             <div class="obj kt">
-                <div class="cn">{{index_summary?index_summary.title:''}}</div>
-                <div class="en">{{index_summary?index_summary.description:''}}</div>
+                <div class="cn">{{$store.state.siteId}}</div>
+                <div class="en">{{index_summary?index_summary.title:''}}</div>
             </div>
         </div>
         <div class="authform">

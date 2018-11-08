@@ -42,7 +42,7 @@
                         <span>元</span>
                     </div>
                     <div class="b" v-if="index_architecture_pay_in_person_2">
-                        <div class="item" v-for="v in index_architecture_pay_in_person_2" :key="v">
+                        <div class="item" v-for="v in index_architecture_pay_in_person_2" :key="v.id">
                             <div class="img"></div>
                             <div class="name">{{v.agentAccount}}</div>
                             <div class="txt">

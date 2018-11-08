@@ -38,7 +38,7 @@
 export default {
     methods: {
         formatZipai(e) {
-            let list = e.split(';');
+            let list = e ? e.split(';') : [];
             let obj = [];
             if (list.length) {
                 obj = list.map(v => {
