@@ -190,7 +190,7 @@ export default {
     background: #ece9e9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     padding: 16px;
-
+    height: 450px;
     .h {
       line-height: 64px;
 

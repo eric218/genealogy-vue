@@ -17,7 +17,7 @@
                         <Input type="text" v-model.number="form.uploadurl" placeholder="需带http://" @input="chgIpt" />
                     </FormItem>
                     <FormItem>
-                        <Upload multiple :action="uploadurl" :show-upload-list="false">
+                        <Upload muliple :before-upload="handleUpload" action="">
                             <Button icon="ios-cloud-upload-outline">选择文件上传</Button>
                         </Upload>
                     </FormItem>
@@ -70,7 +70,7 @@ export default {
                 key: 'img',
                 file: e,
             }).then(res => {
-
+                return false;
             })
         }
     }

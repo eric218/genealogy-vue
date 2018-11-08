@@ -78,13 +78,13 @@
                 <div class="f">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
+                            <div class="swiper-slide" v-for="(v,i) in zipai_list" :key="i">
                                 <div class="tit">
                                     张氏本支字派：
                                 </div>
                                 <router-link to="/c/Culture" class="more">更多>></router-link>
                                 <div class="list">
-                                    <div class="item" v-for="(itm,idx) in zipai_list" :key="idx">
+                                    <div class="item" v-for="(itm,idx) in v" :key="idx">
                                         <div class="red sub">{{itm[0]}}</div>
                                         <div class="blue sub">{{itm[1]}}</div>
                                         <span>{{itm[2]}}</span>
@@ -126,11 +126,14 @@ export default {
             return this.$store.state.homeData.index_zipai
         },
         zipai_list() {
-            let list = this.index_zipai ? this.index_zipai.split(';') : [];
+            let list = this.index_zipai ? this.index_zipai.split(',') : [];
             let obj = [];
             if (list.length) {
                 obj = list.map(v => {
-                    return v.split('|')
+                    let _obj = v ? v.split(';') : [];
+                    return _obj.map(_v => {
+                        return _v.split('|')
+                    })
                 })
             }
             return obj;

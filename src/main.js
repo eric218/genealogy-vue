@@ -6,7 +6,6 @@ import App from './App.vue';
 import iView from 'iview';
 import config from '@/config'
 import './assets/icon/iconfont.css';
-import 'url-search-params-polyfill';
 Vue.use(iView);
 
 Vue.prototype.api = Api

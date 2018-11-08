@@ -1,9 +1,9 @@
 <template>
     <div class="topbar">
         <div class="brand">
-            <div class="img"></div>
+            <div class="img" :style="index_summary?api.imgBG(index_summary.totemPicSrc):''"></div>
             <div class="obj kt">
-                <div class="cn">{{$store.state.siteId}}</div>
+                <div class="cn">{{index_summary?index_summary.siteName:''}}</div>
                 <div class="en">{{index_summary?index_summary.title:''}}</div>
             </div>
         </div>
