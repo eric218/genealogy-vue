@@ -326,6 +326,8 @@ export default {
   }
 
   .about {
+    display: block;
+    width: 100%;
     text-align: center;
 
     .h {

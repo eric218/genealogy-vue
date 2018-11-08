@@ -19,10 +19,6 @@
                             <iconfont name="appreciate" />
                             <span v-html="v.visitNum"></span>
                         </div>
-                        <div class="site fl">
-                            <iconfont name="locationfill" />
-                            <span>湖北省武汉市</span>
-                        </div>
                     </div>
                 </div>
             </router-link>
