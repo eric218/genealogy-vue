@@ -3,22 +3,22 @@
         <div class="inner">
             <div class="tabs kt">
                 <span class="tit">资讯</span>
-                <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.id == menucurr.id ? 'curr':''" v-html="v.name" @click="chgMenu(v)"></span>
+                <span class="menu curr">家族文化</span>
             </div>
-            <Row class="items" :gutter="32">
-                <i-col :span="12" v-for="v in 6" :key="v">
+            <Row class="items" :gutter="32" v-if="index_family_culture">
+                <i-col :span="12" v-for="v in index_family_culture.records" :key="v.id">
                     <Card class="item">
-                        <div class="img"></div>
+                        <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
                         <div class="obj">
-                            <div class="tit">标题</div>
-                            <div class="intro">简介</div>
+                            <div class="tit">{{v.newsTitle}}</div>
+                            <div class="intro">{{v.newsText}}</div>
                             <div class="more">查看详情>></div>
                         </div>
                     </Card>
                 </i-col>
             </Row>
             <div class="pages">
-                <a href="javascript:void(0)" class="item" v-for="v in 5" :key="v" :class="v==pagecurr?'curr':''" @click="pagecurr = v">{{v}}</a>
+                <Page :total="index_family_culture ? index_family_culture.total :0" />
             </div>
         </div>
     </div>
@@ -27,32 +27,17 @@
 export default {
     data() {
         return {
-            menu: [],
-            menucurr: {},
             pagecurr: 1,
         }
     },
+    computed: {
+        index_family_culture() {
+            return this.$store.state.homeData.index_family_culture
+        },
+    },
     mounted: function () {
-        this.getMenu()
     },
     methods: {
-        getMenu() {
-            this.menu = [{
-                id: 1,
-                name: '家族文化',
-            }, {
-                id: 2,
-                name: '精神传承',
-            }]
-            this.menucurr = this.menu[0]
-        },
-        getList() {
-
-        },
-        chgMenu(e) {
-            this.menucurr = e;
-            this.getList();
-        },
     },
 };
 </script>
@@ -60,25 +45,24 @@ export default {
 @import "@/assets/css/var.scss";
 
 .pages {
-    padding: 16px;
-    overflow: hidden;
-    clear: both;
+  padding: 16px;
+  overflow: hidden;
+  clear: both;
+  text-align: center;
+
+  .item {
+    background: url(../../assets/img/pages-bg.png) no-repeat center / 100% 100%;
+    display: inline-block;
+    margin: 4px;
+    line-height: 40px;
     text-align: center;
-
-    .item {
-        background: url(../../assets/img/pages-bg.png) no-repeat center / 100% 100%;
-        display: inline-block;
-        margin: 4px;
-        line-height: 40px;
-        text-align: center;
-        width: 40px;
-
-        &.curr,
-        &:hover {
-            background-image: url(../../assets/img/pages-curr.png);
-            color: $color;
-        }
+    width: 40px;
+    &.curr,
+    &:hover {
+      background-image: url(../../assets/img/pages-curr.png);
+      color: $color;
     }
+  }
 }
 .news {
   .items {
@@ -108,6 +92,7 @@ export default {
           color: #999;
           white-space: normal;
           height: 48px;
+          overflow: hidden;
           line-height: 24px;
         }
 

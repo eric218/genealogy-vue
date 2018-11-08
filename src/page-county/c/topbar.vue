@@ -3,8 +3,8 @@
         <div class="brand">
             <div class="img"></div>
             <div class="obj kt">
-                <div class="cn">黑龙江齐齐哈尔市大兴安岭地区铁木真氏</div>
-                <div class="en">凝聚家族向心力，承载和传承家谱，家风，家训，共同打造家族共享经济平台。</div>
+                <div class="cn">{{index_summary?index_summary.title:''}}</div>
+                <div class="en">{{index_summary?index_summary.description:''}}</div>
             </div>
         </div>
         <div class="authform">
@@ -27,6 +27,11 @@ export default {
     components: {
         loginform,
         regform,
+    },
+    computed: {
+        index_summary() {
+            return this.$store.state.homeData.index_summary
+        },
     },
     data() {
         return {
@@ -54,118 +59,117 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '@/assets/css/var.scss';
+@import "@/assets/css/var.scss";
 .topbar {
-    background: #fafafa;
-    height: 120px;
+  background: #fafafa;
+  height: 120px;
+  .brand {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    z-index: 9;
+    margin-left: -580px;
+    white-space: nowrap;
+    overflow: hidden;
+
+    .img {
+      height: 80px;
+      width: 80px;
+      background: url(../../assets/img/logo.png) no-repeat center / auto 100%;
+      margin-right: 16px;
+      float: left;
+    }
+
+    .obj {
+      overflow: hidden;
+      font-size: 24px;
+
+      .cn {
+        font-weight: 700;
+        letter-spacing: 3px;
+      }
+
+      .en {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .authform {
+    position: absolute;
+    right: 50%;
+    top: 20px;
+    z-index: 9;
+    margin-right: -580px;
+    overflow: hidden;
+
+    .btn {
+      display: block;
+      float: left;
+      padding: 0 20px;
+      color: #fff;
+      margin: 0 1px;
+      cursor: pointer;
+
+      &.reg {
+        background: #666;
+      }
+
+      &.login {
+        background: #000;
+      }
+    }
+  }
+
+  .authuser {
+    position: absolute;
+    right: 50%;
+    top: 20px;
+    z-index: 9;
+    padding: 16px;
+    margin-right: -580px;
+    white-space: nowrap;
+    cursor: pointer;
+
+    .img {
+      position: relative;
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      background: whitesmoke no-repeat center / cover;
+      float: left;
+      margin-right: 16px;
+
+      .tag {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        font-size: 12px;
+        border-radius: 8px;
+        line-height: 20px;
+        background: #f56c6c;
+        min-width: 24px;
+        text-align: center;
+        color: #fff;
+      }
+    }
+
+    .obj {
+      overflow: hidden;
+      line-height: 40px;
+      color: #fff;
+    }
+  }
+
+  &._user {
+    background: $color;
+
     .brand {
-        position: absolute;
-        left: 50%;
-        top: 20px;
-        z-index: 9;
-        margin-left: -580px;
-        white-space: nowrap;
-        overflow: hidden;
-
-        .img {
-            height: 80px;
-            width: 80px;
-            background: url(../../assets/img/logo.png) no-repeat center / auto 100%;
-            margin-right: 16px;
-            float: left;
-        }
-
-        .obj {
-            overflow: hidden;
-            font-size: 24px;
-
-            .cn {
-                font-weight: 700;
-                letter-spacing: 3px;
-            }
-
-            .en {
-                font-size: 16px;
-            }
-        }
+      .img {
+        width: 320px;
+        background: url(../../assets/img/logo-white.png) no-repeat center;
+      }
     }
-
-    .authform {
-        position: absolute;
-        right: 50%;
-        top: 20px;
-        z-index: 9;
-        margin-right: -580px;
-        overflow: hidden;
-
-        .btn {
-            display: block;
-            float: left;
-            padding: 0 20px;
-            color: #fff;
-            margin: 0 1px;
-            cursor: pointer;
-
-            &.reg {
-                background: #666;
-            }
-
-            &.login {
-                background: #000;
-            }
-        }
-    }
-
-    .authuser {
-        position: absolute;
-        right: 50%;
-        top: 20px;
-        z-index: 9;
-        padding: 16px;
-        margin-right: -580px;
-        white-space: nowrap;
-        cursor: pointer;
-
-        .img {
-            position: relative;
-            height: 40px;
-            width: 40px;
-            border-radius: 50%;
-            background: whitesmoke no-repeat center / cover;
-            float: left;
-            margin-right: 16px;
-
-            .tag {
-                position: absolute;
-                top: -8px;
-                right: -8px;
-                font-size: 12px;
-                border-radius: 8px;
-                line-height: 20px;
-                background: #f56c6c;
-                min-width: 24px;
-                text-align: center;
-                color: #fff;
-            }
-        }
-
-        .obj {
-            overflow: hidden;
-            line-height: 40px;
-            color: #fff;
-        }
-    }
-
-    &._user {
-        background: $color;
-
-        .brand {
-            .img {
-                width: 320px;
-                background: url(../../assets/img/logo-white.png) no-repeat center;
-            }
-        }
-    }
-
+  }
 }
 </style>

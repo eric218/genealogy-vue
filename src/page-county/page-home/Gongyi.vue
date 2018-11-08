@@ -12,11 +12,11 @@
                             <span class="more">更多</span>
                             <span>支出公开栏</span>
                         </router-link>
-                        <div class="b">
-                            <router-link to="/c/Detail" class="item" v-for="v in 5" :key="v">
-                                <div class="date">2018-05-01</div>
+                        <div class="b" v-if="leftPayout">
+                            <router-link to="/c/Detail" class="item" v-for="v in leftPayout.records" :key="v.id">
+                                <div class="date">{{v.createTime}}</div>
                                 <div class="tag">【慈善纪要】</div>
-                                <div class="tit">标题</div>
+                                <div class="tit">{{v.newsTitle}}</div>
                             </router-link>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                             <span class="more">更多</span>
                             <span>收益公开栏</span>
                         </router-link>
-                        <div class="b">
+                        <div class="b" v-if="leftPayin">
                             <router-link to="/c/Detail" class="item" v-for="v in leftPayin.records" :key="v.id">
                                 <div class="date">{{v.createTime}}</div>
                                 <div class="tag">【慈善纪要】</div>
@@ -38,18 +38,18 @@
                     <div class="h">
                         <div class="act" @click="handleTopay = true"></div>
                         <span>公益基金总金额：</span>
-                        <span class="num">99999.00</span>
+                        <span class="num">{{index_fund_2 ? index_fund_2.remain : 0}}</span>
                         <span>元</span>
                     </div>
-                    <div class="b">
-                        <div class="item" v-for="v in 6" :key="v">
+                    <div class="b" v-if="index_architecture_pay_in_person_2">
+                        <div class="item" v-for="v in index_architecture_pay_in_person_2" :key="v">
                             <div class="img"></div>
-                            <div class="name">姓名</div>
+                            <div class="name">{{v.agentAccount}}</div>
                             <div class="txt">
                                 <small>捐款</small>
-                                <span>8000元</span>
+                                <span>{{v.payAmount}}元</span>
                             </div>
-                            <div class="act">
+                            <div class="act" v-if="1==2">
                                 <div class="flow">
                                     <span>关注</span>
                                 </div>
@@ -75,10 +75,18 @@ export default {
         topay,
     },
     computed: {
+        index_fund_2() {
+            return this.$store.state.homeData.index_fund_2
+        },
+        index_architecture_pay_in_person_2() {
+            return this.$store.state.homeData.index_architecture_pay_in_person_2
+        },
         leftPayin() {
             return this.$store.state.homeData.index_architecture_pay_in
         },
-
+        leftPayout() {
+            return this.$store.state.homeData.index_charity_pay_out
+        }
     },
     data() {
         return {

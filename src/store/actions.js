@@ -8,12 +8,12 @@ async function handleNavlist(store, obj) {
     });
     store.commit('setNavList', res.data.data.menu_show)
     store.commit('setApiList', res.data.data.index_show)
+    handleHomeAll(store)
 }
-async function handleHomeAll(store, obj) {
+async function handleHomeAll(store) {
     let list = store.state.apiList;
     let res = null;
     for (let v in list) {
-        console.log(list[v].apiUrl)
         if (list[v].apiUrl != 'http://192.168.2.179:8090/#') {
             res = await getHomeApi(list[v].apiUrl)
             store.commit('setHomeData', {
@@ -26,5 +26,4 @@ async function handleHomeAll(store, obj) {
 
 export default {
     handleNavlist,
-    handleHomeAll,
 }

@@ -3,7 +3,7 @@
         <div class="inner">
             <div class="tabs kt">
                 <span class="tit">产业</span>
-                <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.id == menucurr.id ? 'curr':''" v-html="v.name" @click="chgMenu(v)"></span>
+                <span class="menu curr">家族产业</span>
             </div>
             <div class="items">
                 <div class="grad">
@@ -11,18 +11,18 @@
                         <span class="more">更多</span>
                         <span>公共产业</span>
                     </router-link>
-                    <div class="bd">
-                        <router-link to="/c/Detail" class="item" v-for="v in 2" :key="v">
-                            <div class="img">
-                                <div class="tit">标题标题标题标题</div>
+                    <div class="bd" v-if="index_industry_public">
+                        <router-link to="/c/Detail" class="item" v-for="v in index_industry_public.records" :key="v.id">
+                            <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''">
+                                <div class="tit">{{v.newsText}}</div>
                             </div>
                             <div class="flag">
                                 <div class="level">
-                                    <span>诚信值100</span>
+                                    <span>诚信值{{v.visitNum}}</span>
                                 </div>
                                 <div class="head"></div>
-                                <div class="name">姓名</div>
-                                <div class="tag"><img src="@/assets/img/icon-tag.png" alt="">[诚信业主]</div>
+                                <div class="name">{{v.newsTitle}}</div>
+                                <div class="tag" v-if="v.status"><img src="@/assets/img/icon-tag.png" alt="">[诚信业主]</div>
                             </div>
                         </router-link>
                     </div>
@@ -32,18 +32,18 @@
                         <span class="more">更多</span>
                         <span>私人产业</span>
                     </router-link>
-                    <div class="bd">
-                        <router-link to="/c/Detail" class="item" v-for="v in 2" :key="v">
-                            <div class="img">
-                                <div class="tit">标题标题标题标题</div>
+                    <div class="bd" v-if="index_industry_person">
+                        <router-link to="/c/Detail" class="item" v-for="v in index_industry_person.records" :key="v.id">
+                            <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''">
+                                <div class="tit">{{v.newsText}}</div>
                             </div>
                             <div class="flag">
                                 <div class="level">
-                                    <span>诚信值100</span>
+                                    <span>诚信值{{v.visitNum}}</span>
                                 </div>
                                 <div class="head"></div>
-                                <div class="name">姓名</div>
-                                <div class="tag"><img src="@/assets/img/icon-tag.png" alt="">[诚信业主]</div>
+                                <div class="name">{{v.newsTitle}}</div>
+                                <div class="tag" v-if="v.status"><img src="@/assets/img/icon-tag.png" alt="">[诚信业主]</div>
                             </div>
                         </router-link>
                     </div>
@@ -56,32 +56,19 @@
 export default {
     data() {
         return {
-            isadd: false,
-            menu: [],
-            menucurr: {},
         }
     },
+    computed: {
+        index_industry_person() {
+            return this.$store.state.homeData.index_industry_person
+        },
+        index_industry_public() {
+            return this.$store.state.homeData.index_industry_public
+        },
+    },
     mounted: function () {
-        this.getMenu()
     },
     methods: {
-        getMenu() {
-            this.menu = [{
-                id: 1,
-                name: '家族产业',
-            }, {
-                id: 2,
-                name: '私人产业',
-            }]
-            this.menucurr = this.menu[0]
-        },
-        getList() {
-
-        },
-        chgMenu(e) {
-            this.menucurr = e;
-            this.getList();
-        },
     },
 };
 </script>

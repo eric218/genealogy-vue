@@ -9,7 +9,7 @@ import None from '@/components/common/None.vue'
 Vue.component('Iconfont', Iconfont)
 Vue.component('None', None)
 export default {
-    mounted() {
+    beforeCreate() {
         this.$store.dispatch('handleNavlist')
     },
 }

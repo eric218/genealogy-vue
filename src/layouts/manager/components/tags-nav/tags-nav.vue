@@ -35,7 +35,7 @@
             :name="item.name"
             @on-close="handleClose(item)"
             @click.native="handleClick(item)"
-            :closable="item.name !== $config.homeName"
+            :closable="true"
             :color="isCurrentTag(item) ? 'primary' : 'default'"
             @contextmenu.prevent.native="contextMenu(item, $event)"
           >{{ showTitleInside(item) }}</Tag>

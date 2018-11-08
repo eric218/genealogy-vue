@@ -5,7 +5,7 @@
                 <div class="tit"></div>
             </div>
             <div class="b">
-                <a href="http://www.baidu.com" target="_blank" class="item" v-for="v in 32" :key="v">
+                <a href="http://www.baidu.com" target="_blank" class="item" v-for="v in 2" :key="v">
                     湖北省
                 </a>
             </div>

@@ -9,43 +9,18 @@
                 <div class="card">
                     <div class="tit">
                         <span class="mini">发言人数：</span>
-                        <span>99</span>
+                        <span>{{index_message ? index_message.total :''}}</span>
                     </div>
                     <div class="info">
-                        <div class="other item">
-                            <div class="img">
-                                <div class="head"></div>
-                                <div class="name">张三</div>
-                            </div>
-                            <div class="obj">
-                                <div class="text">大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好</div>
-                            </div>
-                        </div>
-                        <div class="other item">
-                            <div class="img">
-                                <div class="head"></div>
-                                <div class="name">张三</div>
-                            </div>
-                            <div class="obj">
-                                <div class="text">大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好</div>
-                            </div>
-                        </div>
-                        <div class="mine item">
-                            <div class="img">
-                                <div class="head"></div>
-                                <div class="name">张三</div>
-                            </div>
-                            <div class="obj">
-                                <div class="text">大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好</div>
-                            </div>
-                        </div>
-                        <div class="other item">
-                            <div class="img">
-                                <div class="head"></div>
-                                <div class="name">张三</div>
-                            </div>
-                            <div class="obj">
-                                <div class="text">大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好</div>
+                        <div v-if="index_message">
+                            <div class="other item" v-for="v in index_message.records" :key="v.id">
+                                <div class="img">
+                                    <div class="head"></div>
+                                    <div class="name">{{v.nickname}}</div>
+                                </div>
+                                <div class="obj">
+                                    <div class="text">{{v.message}}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -63,12 +38,22 @@
                     <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.id == menucurr.id ? 'curr':''" v-html="v.name" @click="chgMenu(v)"></span>
                 </div>
                 <div class="card">
-                    <div class="items">
-                        <router-link to="/c/Detail" class="item" v-for="v in 3" :key="v">
-                            <div class="img"></div>
+                    <div class="items" v-if="menucurr.id == 1 && index_family_record1">
+                        <router-link to="/c/Detail" class="item" v-for="v in index_family_record1.records" :key="v.id">
+                            <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
                             <div class="obj">
-                                <div class="tit">新闻标题</div>
-                                <div class="intro">正文描述正文描述正文描述正文描述正文描述正文描述正文描述正文描述正文描述正文描述正文描述正文描述正文描述正文描述</div>
+                                <div class="tit" v-html="v.newsTitle"></div>
+                                <div class="intro" v-html="v.newsText"></div>
+                                <div class="more">查看详情>></div>
+                            </div>
+                        </router-link>
+                    </div>
+                    <div class="items" v-if="menucurr.id == 2 && index_family_record2">
+                        <router-link to="/c/Detail" class="item" v-for="v in index_family_record2.records" :key="v.id">
+                            <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
+                            <div class="obj">
+                                <div class="tit" v-html="v.newsTitle"></div>
+                                <div class="intro" v-html="v.newsText"></div>
                                 <div class="more">查看详情>></div>
                             </div>
                         </router-link>
@@ -86,6 +71,17 @@ export default {
             menucurr: {},
         }
     },
+    computed: {
+        index_message() {
+            return this.$store.state.homeData.index_message
+        },
+        index_family_record1() {
+            return this.$store.state.homeData.index_family_record1
+        },
+        index_family_record2() {
+            return this.$store.state.homeData.index_family_record2
+        },
+    },
     mounted: function () {
         this.getMenu()
     },
@@ -100,12 +96,8 @@ export default {
             }]
             this.menucurr = this.menu[0]
         },
-        getList() {
-
-        },
         chgMenu(e) {
             this.menucurr = e;
-            this.getList();
         },
     },
 };

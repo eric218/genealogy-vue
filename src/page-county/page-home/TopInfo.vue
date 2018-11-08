@@ -4,42 +4,42 @@
             <div class="left-card card">
                 <div class="info">
                     <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide" v-for="v in 3" :key="v">
+                        <div class="swiper-wrapper" v-if="index_fan_summary">
+                            <div class="swiper-slide" v-for="v in index_fan_summary.records" :key="v">
                                 <div class="img"></div>
                                 <div class="obj">
                                     <div class="intro">
-                                        <div>堂：清和堂</div>
-                                        <div>始迁祖：钟启功</div>
-                                        <div>负责人：张启明：123456789</div>
+                                        <div>堂：{{v.rootGroup}}</div>
+                                        <div>始迁祖：{{v.rootPerson}}</div>
+                                        <div>负责人：{{v.leader}}：{{v.leaderPhone}}</div>
                                         <div class="mobai">
-                                            <span>膜拜：</span><span class="num">+27</span>
+                                            <span>膜拜：</span><span class="num">+{{v.worshipNum}}</span>
                                         </div>
                                         <div class="zan">
                                             <iconfont name="appreciatefill" />
-                                            <span>+34</span>
+                                            <span>+{{v.praiseNum}}</span>
                                         </div>
                                     </div>
                                     <div class="total">
                                         <div class="item">
                                             <div class="label">总谱人数：</div>
-                                            <div class="value">4892</div>
+                                            <div class="value">1</div>
                                         </div>
                                         <div class="item">
                                             <div class="label">本族男丁：</div>
-                                            <div class="value">3825</div>
+                                            <div class="value">1</div>
                                         </div>
                                         <div class="item">
                                             <div class="label">本族女丁：</div>
-                                            <div class="value">3825</div>
+                                            <div class="value">0</div>
                                         </div>
                                         <div class="item">
                                             <div class="label">最大年龄：</div>
-                                            <div class="value">92岁（张大大）</div>
+                                            <div class="value">30</div>
                                         </div>
                                         <div class="item">
                                             <div class="label">最小年龄：</div>
-                                            <div class="value">1岁（张小小）</div>
+                                            <div class="value">30</div>
                                         </div>
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="b">
                         <span>公益基金：</span>
-                        <span class="num">88888.00</span>
+                        <span class="num">{{index_fund_1 ? index_fund_1.remain : '0'}}</span>
                         <span>元</span>
                     </div>
                     <div class="f">
@@ -78,16 +78,16 @@
                 <div class="f">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide" v-for="v in 3" :key="v">
+                            <div class="swiper-slide">
                                 <div class="tit">
                                     张氏本支字派：
                                 </div>
                                 <router-link to="/c/Culture" class="more">更多>></router-link>
                                 <div class="list">
-                                    <div class="item" v-for="v in 20" :key="v">
-                                        <div class="red sub" v-if="v<4">{{v+80}}</div>
-                                        <div class="blue sub" v-if="v<4">{{v+20}}</div>
-                                        <span>张</span>
+                                    <div class="item" v-for="(itm,idx) in zipai_list" :key="idx">
+                                        <div class="red sub">{{itm[0]}}</div>
+                                        <div class="blue sub">{{itm[1]}}</div>
+                                        <span>{{itm[2]}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -108,6 +108,30 @@ export default {
     name: "TopInfo",
     components: {
         topay,
+    },
+    computed: {
+        index_fund_1() {
+            return this.$store.state.homeData.index_fund_1
+        },
+        index_fan_summary() {
+            return this.$store.state.homeData.index_fan_summary
+        },
+        index_architecture_pay_in_person_1() {
+            return this.$store.state.homeData.index_architecture_pay_in_person_1
+        },
+        index_zipai() {
+            return this.$store.state.homeData.index_zipai
+        },
+        zipai_list() {
+            let list = this.index_zipai ? this.index_zipai.split(';') : [];
+            let obj = [];
+            if (list.length) {
+                obj = list.map(v => {
+                    return v.split('|')
+                })
+            }
+            return obj;
+        }
     },
     data() {
         return {
@@ -269,6 +293,7 @@ export default {
           &.num {
             font-size: 32px;
             color: $color;
+            margin: 0 8px;
           }
         }
       }
