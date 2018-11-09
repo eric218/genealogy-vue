@@ -5,7 +5,6 @@
 
 <script>
 export default {
-    name: 'home',
     components: {
     },
     data() {

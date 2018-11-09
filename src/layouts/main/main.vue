@@ -3,7 +3,6 @@
 </template>
 <script>
 import Vue from 'vue'
-import '@/assets/theme/iview.less'
 import Iconfont from '@/components/common/iconfont.vue'
 import None from '@/components/common/None.vue'
 Vue.component('Iconfont', Iconfont)
@@ -14,6 +13,7 @@ export default {
     },
 }
 </script>
+
 <style lang="scss">
 @import "@/assets/css/app.scss";
 .tabs {

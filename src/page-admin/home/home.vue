@@ -110,7 +110,6 @@
 import { ChartPie, ChartBar, ChartTotal } from '_c/charts'
 import ModelDeposit from './coms/deposit'
 export default {
-    name: 'home',
     components: {
         ChartPie,
         ChartBar,

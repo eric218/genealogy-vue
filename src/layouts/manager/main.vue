@@ -37,11 +37,9 @@ import HeaderBar from './components/header-bar'
 import TagsNav from './components/tags-nav'
 import User from './components/user'
 import Fullscreen from './components/fullscreen'
-import ErrorStore from './components/error-store'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 import { getNewTagList, getNextRoute, routeEqual } from '@/libs/util'
 import Logo from '@/assets/images/logo.png'
-import './index.less'
 import './main.less'
 export default {
     name: 'Main',
@@ -50,7 +48,6 @@ export default {
         HeaderBar,
         TagsNav,
         Fullscreen,
-        ErrorStore,
         User
     },
     data() {

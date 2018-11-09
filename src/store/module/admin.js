@@ -12,11 +12,8 @@ import {
     localRead
 } from '@/libs/util'
 import beforeClose from '@/router/before-close'
-import {
-    saveErrorLogger
-} from '@/api/data'
 import router from '@/router'
-import routers from '@/router/routers'
+import routersAdmin from '@/router/admin'
 import config from '@/config'
 const {
     homeName
@@ -34,12 +31,12 @@ export default {
     state: {
         breadCrumbList: [],
         tagNavList: [],
-        homeRoute: getHomeRoute(routers, homeName),
+        homeRoute: getHomeRoute(routersAdmin, homeName),
         errorList: [],
         hasReadErrorPage: false
     },
     getters: {
-        menuList: (state, getters, rootState) => getMenuByRouter(routers, rootState.user.access),
+        menuList: (state, getters, rootState) => getMenuByRouter(routersAdmin, rootState.user.access),
         errorCount: state => state.errorList.length
     },
     mutations: {
