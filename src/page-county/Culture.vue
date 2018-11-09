@@ -11,11 +11,10 @@
                     <span class="tit">资讯</span>
                     <span class="menu" v-for="(v,i) in menuData" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v)"></span>
                 </div>
-                <div class="in" v-if="menucurr && data.total">
-                    <ZipaiList :data="data" v-if="menucurr.menuType == 'culture_zipai'" />
-                    <NewsList :data="data" v-if="menucurr.menuType == 'culture_news'" />
+                <div class="in" v-if="menucurr && url.length">
+                    <ZipaiList :url="url" v-if="menucurr.menuType == 'culture_zipai'" />
+                    <Culture :url="url" v-if="menucurr.menuType == 'culture_news'" />
                 </div>
-                <None v-else />
             </div>
         </div>
         <FootBar />
@@ -24,15 +23,21 @@
 
 <script>
 import { Topbar, NavBar, FootBar } from './c'
-import NewsList from '@/components/list/news.vue';
+import Culture from '@/components/list/culture.vue';
 import ZipaiList from '@/components/list/zipai.vue';
 export default {
     components: {
         Topbar,
         NavBar,
         FootBar,
-        NewsList,
+        Culture,
         ZipaiList
+    },
+    data() {
+        return {
+            menucurr: {},
+            url: '',
+        }
     },
     computed: {
         navlist() {
@@ -52,25 +57,14 @@ export default {
             return menu;
         },
     },
-    data() {
-        return {
-            menucurr: {},
-            data: {},
-        }
-    },
     mounted: function () {
     },
     methods: {
-        getList() {
-            let url = this.menucurr.apiUrl;
-            this.api.get(url, {}).then(res => {
-                this.data = res.data;
-            })
-        },
         chgMenu(e) {
             this.menucurr = e;
+            this.url = '';
             setTimeout(() => {
-                this.getList();
+                this.url = this.menucurr ? this.menucurr.apiUrl : '';
             }, 300);
         },
     },

@@ -8,15 +8,10 @@
                     <div class="l">
                         <div class="h">
                             <span>基金总额：</span>
-                            <span class="num">8888.8</span>
+                            <span class="num">{{index_fund_3.remain}}</span>
                             <span>元</span>
                         </div>
                         <div class="b">
-                            <div class="item" v-for="v in 5" :key="v">
-                                <span>修缮祠堂使用</span>
-                                <span class="num">999</span>
-                                <span>元</span>
-                            </div>
                         </div>
                     </div>
                     <div class="r">
@@ -25,14 +20,14 @@
                                 <img src="@/assets/img/icon-help.png" /></div>
                         </div>
                         <div class="b">
-                            <div class="item" v-for="v in 3" :key="v">
+                            <div class="item" v-for="v in index_architecture_pay_in_person_3" :key="v.id">
                                 <div class="img"></div>
-                                <div class="name">姓名</div>
+                                <div class="name">{{v.allUserLogin.userName}}</div>
                                 <div class="txt">
                                     <small>捐款</small>
-                                    <span>8000元</span>
+                                    <span>{{v.fanNewsCharityPayIn.payAmount}}元</span>
                                 </div>
-                                <div class="act">
+                                <div class="act" v-if="1==2">
                                     <div class="flow">
                                         <span>关注</span>
                                     </div>
@@ -54,7 +49,9 @@
                     <span class="tit">资讯</span>
                     <span class="menu" v-for="(v,i) in menuData" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v)"></span>
                 </div>
-                <NewsList :data="data" />
+                <div class="in" v-if="menucurr && url.length">
+                    <NewsList :url="url" />
+                </div>
             </div>
         </div>
         <FootBar />
@@ -77,6 +74,12 @@ export default {
         topay,
     },
     computed: {
+        index_architecture_pay_in_person_3() {
+            return this.$store.state.homeData.index_architecture_pay_in_person_3
+        },
+        index_fund_3() {
+            return this.$store.state.homeData.index_fund_3
+        },
         navlist() {
             return this.$store.state.navList
         },
@@ -97,23 +100,18 @@ export default {
     data() {
         return {
             menucurr: {},
-            data: {},
+            url: {},
             handleTopay: false,
         }
     },
     mounted: function () {
     },
     methods: {
-        getList() {
-            let url = this.menucurr.apiUrl;
-            this.api.get(url, {}).then(res => {
-                this.data = res.data;
-            })
-        },
         chgMenu(e) {
             this.menucurr = e;
+            this.url = '';
             setTimeout(() => {
-                this.getList();
+                this.url = this.menucurr ? this.menucurr.apiUrl : '';
             }, 300);
         },
     },

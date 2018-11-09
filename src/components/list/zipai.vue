@@ -1,9 +1,9 @@
 <template>
     <div class="zipai">
-        <div class="item" v-for="v in data.records" :key="v.id">
+        <div class="item" v-for="v in list" :key="v.id">
             <div class="tit">
-                <span>地域：{{v.ziapiLocation}}</span>
-                <span>祖先：{{v.ancestorsName}}</span>
+                <span v-if="v.ziapiLocation">地域：{{v.ziapiLocation}}</span>
+                <span v-if="v.ancestorsName">祖先：{{v.ancestorsName}}</span>
             </div>
             <div class="intro">
                 <div class="itm" v-for="(itm,idx) in formatZipai(v.zipaiTxt)" :key="idx">
@@ -31,12 +31,41 @@
                 </div>
             </div>
         </div>
-        <Page :total="data.total" on-change="chgPage" :page-size="8"/>
+        <Page :total="total" @on-change="chgPage" :page-size="8" />
     </div>
 </template>
 <script>
 export default {
+    data() {
+        return {
+            list: [],
+            page: 1,
+            total: 0,
+        }
+    },
+    watch: {
+        url: function (curVal, oldVal) {
+            if (curVal != oldVal) {
+                this.getList();
+            }
+        },
+    },
+    mounted: function () {
+        this.getList()
+    },
     methods: {
+        getList() {
+            this.api.get(this.url, {
+                pageNo: this.page
+            }).then(res => {
+                this.list = res.data.records
+                this.total = res.data.total
+            })
+        },
+        chgPage(e) {
+            this.page = e;
+            this.getList();
+        },
         formatZipai(e) {
             let list = e ? e.split(';') : [];
             let obj = [];
@@ -47,11 +76,8 @@ export default {
             }
             return obj;
         },
-        chgPage(e){
-            console.log(e);
-        }
     },
-    props: ['data']
+    props: ['url']
 };
 </script>
 

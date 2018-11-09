@@ -11,7 +11,9 @@
                     <span class="tit">人物</span>
                     <span class="menu" v-for="(v,i) in menuData" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v)"></span>
                 </div>
-                <HumanList :data="data" />
+                <div class="in" v-if="menucurr && url.length">
+                    <HumanList :url="url" />
+                </div>
             </div>
         </div>
         <FootBar />
@@ -48,23 +50,17 @@ export default {
     data() {
         return {
             menucurr: {},
-            data: {},
+            url: {},
         }
     },
     mounted: function () {
     },
     methods: {
-        getList() {
-            let url = this.menucurr.apiUrl;
-            console.log(url)
-            this.api.get(url, {}).then(res => {
-                this.data = res.data;
-            })
-        },
         chgMenu(e) {
             this.menucurr = e;
+            this.url = '';
             setTimeout(() => {
-                this.getList();
+                this.url = this.menucurr ? this.menucurr.apiUrl : '';
             }, 300);
         },
     },

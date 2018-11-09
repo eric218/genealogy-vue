@@ -1,11 +1,11 @@
 <template>
     <div class="humanlist">
-        <Card class="item" v-for="(v,i) in data.records" :key="i">
+        <Card class="item" v-for="(v,i) in list" :key="i">
             <router-link to="/c/Detail">
                 <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
                 <div class="obj">
-                    <div class="tit" v-html="v.newsTitle"></div>
-                    <div class="intro" v-html="v.newsText"></div>
+                    <div class="tit" v-html="v.personName"></div>
+                    <div class="intro" v-html="v.personSummary"></div>
                     <div class="tag">
                         <div class="attention fr">
                             <iconfont name="attention" />
@@ -23,12 +23,43 @@
                 </div>
             </router-link>
         </Card>
-        <Page :total="data.total" />
+        <Page :total="total" @on-change="chgPage" :page-size="8" />
     </div>
 </template>
 <script>
 export default {
-    props: ['data']
+    data() {
+        return {
+            list: [],
+            page: 1,
+            total: 0,
+        }
+    },
+    watch: {
+        url: function (curVal, oldVal) {
+            if (curVal != oldVal) {
+                this.getList();
+            }
+        },
+    },
+    mounted: function () {
+        this.getList()
+    },
+    methods: {
+        getList() {
+            this.api.get(this.url, {
+                pageNo: this.page
+            }).then(res => {
+                this.list = res.data.records
+                this.total = res.data.total
+            })
+        },
+        chgPage(e) {
+            this.page = e;
+            this.getList();
+        },
+    },
+    props: ['url']
 };
 </script>
 <style lang="scss" scoped>

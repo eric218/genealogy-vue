@@ -49,7 +49,7 @@ const api = {
         })
     },
     get: function (url, data) {
-        if (!data.pageNow) {
+        if (!data.pageNo) {
             data.pageNo = 1
         }
         if (!data.pageSize) {
