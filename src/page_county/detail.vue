@@ -52,7 +52,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="feeds">
+                <div class="feedback">
                     <div class="h">
                         <div class="img"></div>
                         <div class="obj">
