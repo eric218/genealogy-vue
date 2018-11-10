@@ -5,7 +5,7 @@
         <div class="main">
             <sua />
             <div class="suc">
-                <div class="inner grad">
+                <div class="inner grid">
                     <div class="h">
                         <div class="more act">
                             <iconfont name="upload"/>

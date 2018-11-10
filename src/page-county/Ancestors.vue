@@ -41,7 +41,7 @@
             </div>
             <div class="sic">
                 <div class="inner">
-                    <div class="grad">
+                    <div class="grid">
                         <div class="item" v-for="v in 4" :key="v">
                             <div class="img"></div>
                             <div class="obj">
@@ -151,7 +151,7 @@ export default {
 }
 .sic {
   padding: 32px 0;
-  .grad {
+  .grid {
     width: 960px;
     display: flex;
     flex-wrap: wrap;

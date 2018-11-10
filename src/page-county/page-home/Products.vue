@@ -6,7 +6,7 @@
                 <span class="menu curr">家族产业</span>
             </div>
             <div class="items">
-                <div class="grad">
+                <div class="grid">
                     <router-link to="/Products" class="hd kt">
                         <span class="more">更多</span>
                         <span>公共产业</span>
@@ -27,7 +27,7 @@
                         </router-link>
                     </div>
                 </div>
-                <div class="grad">
+                <div class="grid">
                     <router-link to="/Products" class="hd kt">
                         <span class="more">更多</span>
                         <span>私人产业</span>
@@ -83,7 +83,7 @@ export default {
     justify-content: space-between;
   }
 
-  .grad {
+  .grid {
     width: 48%;
     background: #ece9e9;
     border-radius: 8px;

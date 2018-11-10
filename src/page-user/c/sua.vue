@@ -187,7 +187,7 @@ export default {
       justify-content: space-between;
     }
 
-    .grad {
+    .grid {
       width: 48%;
       background: #fff;
       height: 400px;
@@ -269,7 +269,7 @@ export default {
       padding-top: 0;
     }
 
-    .grad {
+    .grid {
       background: #fff;
     }
 

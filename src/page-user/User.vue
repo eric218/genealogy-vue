@@ -6,7 +6,7 @@
             <sua />
             <div class="sub">
                 <div class="inner">
-                    <div class="grad">
+                    <div class="grid">
                         <div class="h">
                             <div class="tit">最新文章</div>
                         </div>
@@ -14,7 +14,7 @@
                             <div class="text">正文部分</div>
                         </div>
                     </div>
-                    <div class="grad">
+                    <div class="grid">
                         <div class="h">
                             <div class="tit">精彩说说</div>
                         </div>
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="suc">
-                <div class="inner grad">
+                <div class="inner grid">
                     <div class="h">
                         <div class="more">全部</div>
                         <div class="tit">视频</div>
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="suc">
-                <div class="inner grad">
+                <div class="inner grid">
                     <div class="h">
                         <div class="more">全部</div>
                         <div class="tit">图片</div>

@@ -1,7 +1,7 @@
 <template>
     <div class="dynamic">
         <div class="inner">
-            <div class="grad im">
+            <div class="grid im">
                 <div class="tabs kt">
                     <span class="tit">动态</span>
                     <span class="menu curr">族人实时回话</span>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            <div class="grad list">
+            <div class="grid list">
                 <div class="tabs kt">
                     <span class="tit">动态</span>
                     <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.id == menucurr.id ? 'curr':''" v-html="v.name" @click="chgMenu(v)"></span>

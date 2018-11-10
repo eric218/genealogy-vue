@@ -5,7 +5,7 @@
         <div class="main">
             <sua />
             <div class="suc">
-                <div class="inner grad">
+                <div class="inner grid">
                     <div class="h">
                         <div class="more act">
                             <iconfont name="edit" />
@@ -53,7 +53,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .suc{
-    .grad{
+    .grid{
         background: transparent;
         .h{
             background: #fff;

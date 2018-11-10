@@ -5,7 +5,7 @@
         <div class="main">
             <div class="dynamic">
                 <div class="inner">
-                    <div class="grad im">
+                    <div class="grid im">
                         <div class="tabs kt">
                             <span class="tit">动态</span>
                             <span class="menu curr">族人实时回话</span>
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="grad list">
+                    <div class="grid list">
                         <div class="tabs kt">
                             <span class="tit">动态</span>
                             <span class="menu" v-for="(v,i) in menuData" v-if="i < 2" :key="i" :class="v.orderIndex == menucurr_a.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v,i)"></span>

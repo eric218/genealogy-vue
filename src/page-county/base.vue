@@ -19,7 +19,7 @@
                                 <Input type="text" v-model.number="form.uploadurl" placeholder="需带http://" @input="chgIpt" />
                             </FormItem>
                             <FormItem>
-                                <Upload multiple :before-upload="handleUpload" action="">
+                                <Upload :before-upload="handleUpload" action="">
                                     <Button icon="ios-cloud-upload-outline">选择文件上传</Button>
                                 </Upload>
                             </FormItem>

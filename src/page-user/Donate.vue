@@ -5,7 +5,7 @@
         <div class="main">
             <sua />
             <div class="suc">
-                <div class="inner grad">
+                <div class="inner grid">
                     <div class="h">
                         <div class="tit">捐款记录</div>
                     </div>

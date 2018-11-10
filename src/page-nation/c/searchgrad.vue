@@ -1,6 +1,6 @@
 <template>
     <div class="search">
-        <div class="grad">
+        <div class="grid">
             <div class="h">
                 <div class="item curr">地区</div>
                 <div class="item">开基祖</div>
@@ -34,7 +34,7 @@ export default {
 
 .search {
   background: #72130b;
-  .grad {
+  .grid {
     height: 160px;
     padding: 32px 0;
     width: 720px;

@@ -7,7 +7,7 @@
             </div>
             <div class="cards">
                 <div class="left">
-                    <div class="grad one">
+                    <div class="grid one">
                         <router-link class="h" to="/Charity">
                             <span class="more">更多</span>
                             <span>支出公开栏</span>
@@ -20,7 +20,7 @@
                             </router-link>
                         </div>
                     </div>
-                    <div class="grad two">
+                    <div class="grid two">
                         <router-link class="h" to="/Charity">
                             <span class="more">更多</span>
                             <span>收益公开栏</span>
@@ -132,7 +132,7 @@ export default {
       height: 48%;
     }
 
-    .grad {
+    .grid {
       background: #ece9e9;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
