@@ -1,10 +1,8 @@
 <template>
     <div>
-        <div class="tabs">
-            <Tabs>
-                <TabPane :label="v.name" :name="v.name" v-for="(v,i) in menu" :key="i"></TabPane>
-            </Tabs>
-        </div>
+        <Tabs>
+            <TabPane :label="v.name" :name="v.name" v-for="(v,i) in menu" :key="i"></TabPane>
+        </Tabs>
         <Button type="primary">添加人物</Button>
         <Table border :columns="columns1" :data="data1" style="margin:16px 0;"></Table>
         <Page :total="50" />

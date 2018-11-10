@@ -16,7 +16,7 @@ export default {
 
 <style lang="scss">
 @import "@/assets/css/app.scss";
-.tabs {
+.tabs.kt {
   padding: 8px 16px;
   padding-left: 40px;
   line-height: 48px;
