@@ -4,49 +4,49 @@ export default [{
         meta: {
             title: "首页"
         },
-        component: () => import('@/page-county/Home')
+        component: () => import('@/page_county/home')
     }, {
         path: 'culture_home',
         name: 'culture_home',
         meta: {
             title: "家族文化"
         },
-        component: () => import('@/page-county/culture')
+        component: () => import('@/page_county/culture')
     }, {
         path: 'charity_home',
         name: 'charity_home',
         meta: {
             title: "慈善公益"
         },
-        component: () => import('@/page-county/charity')
+        component: () => import('@/page_county/charity')
     }, {
         path: 'industry_home',
         name: 'industry_home',
         meta: {
             title: "家族产业"
         },
-        component: () => import('@/page-county/industry')
+        component: () => import('@/page_county/industry')
     }, {
         path: 'famous_home',
         name: 'famous_home',
         meta: {
             title: "家族名人"
         },
-        component: () => import('@/page-county/famous')
+        component: () => import('@/page_county/famous')
     }, {
         path: 'ancestors',
         name: 'ancestors_home',
         meta: {
             title: "祖先分支"
         },
-        component: () => import('@/page-county/Ancestors')
+        component: () => import('@/page_county/ancestors')
     }, {
         path: 'family_record_home',
         name: 'family_record_home',
         meta: {
             title: "记录家族"
         },
-        component: () => import('@/page-county/family_record')
+        component: () => import('@/page_county/family_record')
     },
     {
         path: "tongpu_home",
