@@ -54,7 +54,7 @@ export default [{
         meta: {
             title: "统谱编修"
         },
-        component: () => import('@/page-county/tongpu')
+        component: () => import('@/page_county/tongpu')
     },
     {
         path: 'detail',
@@ -62,6 +62,6 @@ export default [{
         meta: {
             title: "文章详情"
         },
-        component: () => import('@/page-county/Detail')
+        component: () => import('@/page_county/detail')
     }
 ]
