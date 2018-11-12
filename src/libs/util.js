@@ -36,7 +36,6 @@ const showThisMenuEle = (item, access) => {
  * @returns {Array}
  */
 export const getMenuByRouter = (list, access) => {
-    console.log(list);
     let res = []
     forEach(list, item => {
         if (!item.meta || (item.meta && !item.meta.hideInMenu)) {
@@ -124,9 +123,14 @@ export const getHomeRoute = (routers, homeName = 'home') => {
         let item = routers[i]
         if (item.children && item.children.length) {
             let res = getHomeRoute(item.children, homeName)
-            if (res.name) return res
+            console.log(res)
+            if (res.name) {
+                return res
+            }
         } else {
-            if (item.name === homeName) homeRoute = item
+            if (item.name === homeName) {
+                homeRoute = item
+            }
         }
     }
     return homeRoute

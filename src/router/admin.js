@@ -1,7 +1,6 @@
 import Manager from '@/layouts/manager'
 export default [{
         path: 'home',
-        name: '_home',
         redirect: 'home/home',
         component: Manager,
         children: [{
@@ -10,7 +9,6 @@ export default [{
             meta: {
                 title: '控制台',
                 icon: 'md-home',
-                hide: true,
             },
             component: () => import('@/page-admin/home/home')
         }]

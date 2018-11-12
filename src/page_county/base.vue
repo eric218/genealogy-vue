@@ -4,7 +4,7 @@
             <Row :gutter="32" style="width:80%;max-width:960px;margin:0 auto;">
                 <i-col :span="24">
                     <div style="padding:64px 0;">
-                        <Form :model="form" :label-width="80">
+                        <Form :model="form" :label-width="80" @submit.native.prevent="toHome">
                             <FormItem label="网站id">
                                 <Input type="text" v-model.number="form.siteid" placeholder="网站id" :maxlength="5" />
                             </FormItem>
@@ -14,7 +14,7 @@
                         </Form>
                     </div>
                     <div style="padding:64px 0;">
-                        <Form :model="form" :label-width="80">
+                        <Form :model="form" :label-width="80" @submit.native.prevent>
                             <FormItem label="上传url">
                                 <Input type="text" v-model.number="form.uploadurl" placeholder="需带http://" @input="chgIpt" />
                             </FormItem>
@@ -65,14 +65,14 @@ export default {
                     title: '提示',
                     content: '请输入网站id'
                 });
-                return;
+                return false;
             }
             this.$store.commit('updateSiteid', this.form.siteid);
             this.$router.push('/c');
         },
         handleUpload(e) {
             if (!this.form.uploadurl) {
-                alert('未配置upload URL');
+                this.$Message.error('未配置upload URL')
                 return false;
             }
             this.api.upload(this.form.uploadurl, {}, {

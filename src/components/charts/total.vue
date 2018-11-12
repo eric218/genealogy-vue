@@ -83,7 +83,6 @@ export default {
                         }
                 }
             })
-            console.log(seriesData);
             let option = {
                 title: {
                     text: this.text,
