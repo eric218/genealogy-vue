@@ -5,14 +5,18 @@
                 <TabPane :label="v.menuName" :name="i+''" v-for="(v,i) in menu" :key="i"></TabPane>
             </Tabs>
         </div>
+        <Zipailist :url="url" v-if="url.length && menucurr.menuType == 'culture_zipai'" :menu="menucurr.menuType" :type='menucurr.showId'/>
+        <Newslist :url="url" v-if="url.length && menucurr.menuType == 'culture_news'" :menu="menucurr.menuType" :type='menucurr.showId'/>
     </div>
 </template>
 
 <script>
-import zipailist from './c/zipai-list'
+import Zipailist from './c/zipai-list'
+import Newslist from './c/news-list'
 export default {
-    components() {
-        zipailist
+    components: {
+        Zipailist,
+        Newslist
     },
     data() {
         return {
@@ -31,12 +35,11 @@ export default {
                 menuId: 2
             }).then(res => {
                 this.menu = res.data
-                this.menucurr = this.menu[0]
+                this.chgMenu(0)
             })
         },
         chgMenu(e) {
             this.menucurr = this.menu[e];
-            this.url = '';
             setTimeout(() => {
                 this.url = this.menucurr ? this.menucurr.apiUrl : '';
             }, 300);

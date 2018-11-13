@@ -110,15 +110,6 @@ export default [{
                 title: '类别设置',
             },
             component: () => import('@/page-admin/culture/type')
-        }, {
-            path: 'detail',
-            name: 'culture-detail',
-            meta: {
-                icon: 'md-settings',
-                title: '详细',
-                hideInMenu: true,
-            },
-            component: () => import('@/page-admin/culture/detail')
         }]
     },
     {

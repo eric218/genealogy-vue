@@ -30,8 +30,21 @@ const api = {
         LIST_ZIPAI: 'genogram/fanNewsCulture/commonality',
 
         culture_list: 'genogram/admin/fanMenu/getTitlesByMenuId', //家族文化导航
-        culture_zipai_add: '/genogram/admin/fanNewsCulture/addOrUpdateZiPai', //字派添加
-        culture_zipai_del: '/genogram/admin/fanNewsCulture/deleteZipaiById', //字派删除
+        culture_zipai_info: 'genogram/admin/fanNewsCulture/getZiPaiDetail', //字派详情
+        culture_zipai_add: 'genogram/admin/fanNewsCulture/addOrUpdateZiPai', //字派添加
+        culture_zipai_del: 'genogram/admin/fanNewsCulture/deleteZipaiById', //字派删除
+        // genogram/admin/fanNewsCulture/getFamilyCulturePage
+
+        culture_news_info: 'genogram/admin/fanNewsCulture/getFamilyCultureDetail', //家族文化详情
+        culture_news_add: 'genogram/admin/fanNewsCulture/addOrUpdateCulture', //家族文化添加
+        culture_news_drft: 'genogram/admin/fanNewsCulture/addOrUpdateCultureDrft', //家族文化草稿
+        culture_news_del: 'genogram/admin/fanNewsCulture/deleteCulturById', //家族文化删除
+    },
+    serverurl: function (e) {
+        if (!e) {
+            return '';
+        }
+        return e.indexOf('http') > -1 ? e : this.server + e;
     },
     post: function (url, data) {
         if (!data.pageNow) {
@@ -45,7 +58,7 @@ const api = {
             params.append(v, data[v]);
         }
         return new Promise((resolve, reject) => {
-            axios.post(this.server + this.urls[url], params).then(res => {
+            axios.post(url, params).then(res => {
                 console.log(res.data)
                 resolve(res.data);
             })
@@ -58,6 +71,7 @@ const api = {
         if (!data.pageSize) {
             data.pageSize = 8
         }
+
         return new Promise((resolve, reject) => {
             axios.get(url, {
                 params: data

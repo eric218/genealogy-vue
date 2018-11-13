@@ -15,19 +15,7 @@
             <div class="tag">
                 <div class="fl">
                     <iconfont name="formfill" />
-                    <span>150</span>
-                </div>
-                <div class="fl">
-                    <iconfont name="picfill" />
-                    <span>150</span>
-                </div>
-                <div class="fl">
-                    <iconfont name="video_fill_light" />
-                    <span>150</span>
-                </div>
-                <div class="fl">
-                    <iconfont name="communityfill" />
-                    <span>150</span>
+                    <span>{{v.visitNum}}</span>
                 </div>
             </div>
         </div>
