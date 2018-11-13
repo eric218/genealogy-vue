@@ -2,10 +2,12 @@ import axios from 'axios';
 
 const api = {
     pageSize: 20,
-    host: 'http://192.168.2.179:8090/',
+    imghost: 'http://192.168.2.132:8090/',
     server: 'http://192.168.2.179:8090/',
     admin: 'http://192.168.2.179:8050/',
     urls: {
+        upload_img: 'fan/uploadFastdfs', //图片上传
+
         USER_LOGIN: 'home/login', //登录//用户名、密码
         USER_REG: "home/reg01", //注册//用户名、密码、姓氏、地区、
         USER_SMS: 'home/send', //验证码//类型（注册、找回密码）、手机号、新的密码
@@ -33,18 +35,16 @@ const api = {
         culture_zipai_info: 'genogram/admin/fanNewsCulture/getZiPaiDetail', //字派详情
         culture_zipai_add: 'genogram/admin/fanNewsCulture/addOrUpdateZiPai', //字派添加
         culture_zipai_del: 'genogram/admin/fanNewsCulture/deleteZipaiById', //字派删除
-        // genogram/admin/fanNewsCulture/getFamilyCulturePage
 
         culture_news_info: 'genogram/admin/fanNewsCulture/getFamilyCultureDetail', //家族文化详情
         culture_news_add: 'genogram/admin/fanNewsCulture/addOrUpdateCulture', //家族文化添加
         culture_news_drft: 'genogram/admin/fanNewsCulture/addOrUpdateCultureDrft', //家族文化草稿
         culture_news_del: 'genogram/admin/fanNewsCulture/deleteCulturById', //家族文化删除
-    },
-    serverurl: function (e) {
-        if (!e) {
-            return '';
-        }
-        return e.indexOf('http') > -1 ? e : this.server + e;
+
+        industry_info: 'genogram/admin/fanNewsIndustry/getFamilyIndustryDetail', //家族产业详情
+        industry_add: 'genogram/admin/fanNewsIndustry/addOrUpdateIndustry', //家族产业添加
+        industry_drft: 'genogram/admin/fanNewsIndustry/addOrUpdateIndustryDrft', //家族产业草稿
+        industry_del: 'genogram/admin/fanNewsIndustry/deleteIndustryById', //家族产业删除
     },
     post: function (url, data) {
         if (!data.pageNow) {
@@ -153,7 +153,7 @@ const api = {
         if (!e) {
             return '';
         }
-        return e.indexOf('http') > -1 ? e : this.host + e;
+        return e.indexOf('http') > -1 ? e : this.imghost + e;
     },
     imgBG: function (e) {
         return 'backgroundImage:url(' + this.imgurl(e) + ')';

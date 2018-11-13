@@ -13,18 +13,6 @@
                             </FormItem>
                         </Form>
                     </div>
-                    <div style="padding:64px 0;">
-                        <Form :model="form" :label-width="80" @submit.native.prevent>
-                            <FormItem label="上传url">
-                                <Input type="text" v-model.number="form.uploadurl" placeholder="需带http://" @input="chgIpt" />
-                            </FormItem>
-                            <FormItem>
-                                <Upload :before-upload="handleUpload" action="">
-                                    <Button icon="ios-cloud-upload-outline">选择文件上传</Button>
-                                </Upload>
-                            </FormItem>
-                        </Form>
-                    </div>
                 </i-col>
             </Row>
         </Content>
@@ -55,10 +43,6 @@ export default {
         }
     },
     methods: {
-        chgIpt(e) {
-            this.form.uploadurl = e;
-            localStorage.uploadurl = e;
-        },
         toHome() {
             if (!this.form.siteid) {
                 this.$Modal.warning({
@@ -69,18 +53,6 @@ export default {
             }
             this.$store.commit('updateSiteid', this.form.siteid);
             this.$router.push('/c');
-        },
-        handleUpload(e) {
-            if (!this.form.uploadurl) {
-                this.$Message.error('未配置upload URL')
-                return false;
-            }
-            this.api.upload(this.form.uploadurl, {}, {
-                key: 'file',
-                file: e,
-            }).then(res => {
-                return false;
-            })
         },
     }
 };

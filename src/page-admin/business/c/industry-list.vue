@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Button type="primary" @click="toEdit(0)">添加文章</Button>
+        <Button type="primary" @click="toEdit(0)">添加</Button>
         <Table border :columns="columns" :data="list" style="margin:16px 0;"></Table>
         <Page :total="total" @on-change="chgPage" :page-size="8" />
         <Drawer :title="formData.id ? '修改':'添加'" width="50%" :closable="false" v-model="isedit">
@@ -8,13 +8,8 @@
                 <FormItem label="标题">
                     <Input v-model="formData.newsTitle" placeholder="标题" />
                 </FormItem>
-                <FormItem label="预览图">
-                    <Upload class="upload" :action="api.admin + api.urls.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess">
-                        <Button type="dashed">
-                            <div class="img" :style="api.imgBG(fileNames)" v-if="fileNames" />
-                            <Icon type="ios-camera" size="40" color="#ccc" v-else></Icon>
-                        </Button>
-                    </Upload>
+                <FormItem label="位于">
+                    <Input v-model="formData.industryLocation" placeholder="位于" />
                 </FormItem>
                 <FormItem label="正文">
                     <Input type="textarea" v-model="formData.newsText" placeholder="正文" />
@@ -43,7 +38,6 @@ export default {
             formData: {
                 id: '',
             },
-            fileNames: '',
             columns: [
                 {
                     title: 'ID',
@@ -126,12 +120,11 @@ export default {
             this.getList();
         },
         toEdit(e) {
-            this.fileNames = '';
             if (!e) {
                 this.formData = {}
                 this.isedit = true;
             } else {
-                this.api.get(this.api.admin + this.api.urls.culture_news_info, {
+                this.api.get(this.api.admin + this.api.urls.industry_info, {
                     id: e
                 }).then(res => {
                     this.formData = res.data;
@@ -144,7 +137,7 @@ export default {
                 title: '提示',
                 content: '确定删除这个文章？',
                 onOk: () => {
-                    this.api.get(this.api.admin + this.api.urls.culture_news_del, {
+                    this.api.get(this.api.admin + this.api.urls.industry_del, {
                         id: this.list[index].id
                     }).then(res => {
                         this.list.splice(index, 1);
@@ -153,23 +146,18 @@ export default {
                 },
             });
         },
-        handleSuccess(res, file) {
-            if (res.code == 200) {
-                this.fileNames = res.data.url
-            }
-        },
         toSubmit() {
             let data = {
                 showId: this.type,
                 newsTitle: this.formData.newsTitle,
                 newsText: this.formData.newsText,
+                industryLocation:this.formData.industryLocation,
                 visitNum: this.formData.visitNum ? this.formData.visitNum : 0,
-                fileNames: this.fileNames
             }
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin + this.api.urls.culture_news_add, data).then(res => {
+            this.api.post(this.api.admin + this.api.urls.industry_add, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');
@@ -186,13 +174,13 @@ export default {
                 showId: this.type,
                 newsTitle: this.formData.newsTitle,
                 newsText: this.formData.newsText,
+                industryLocation:this.formData.industryLocation,
                 visitNum: this.formData.visitNum ? this.formData.visitNum : 0,
-                fileNames: this.fileNames,
             }
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin + this.api.urls.culture_news_drft, data).then(res => {
+            this.api.post(this.api.admin + this.api.urls.industry_drft, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');
@@ -203,23 +191,8 @@ export default {
                     this.isedit = false;
                 }
             })
-        },
+        }
     },
     props: ['url', 'menu', 'type']
 }
 </script>
-<style lang="scss" scoped>
-.upload {
-  button {
-    width: 162px;
-    height: 122px;
-    padding: 0;
-    .img {
-      width: 160px;
-      height: 120px;
-      padding: 0;
-      background: no-repeat center / cover;
-    }
-  }
-}
-</style>
