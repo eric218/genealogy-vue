@@ -65,7 +65,7 @@ export default [{
         }]
     },
     {
-        path: '/Admin/podium',
+        path: 'podium',
         name: '_podium',
         redirect: 'podium/podium',
         component: Manager,
@@ -85,7 +85,7 @@ export default [{
         }]
     },
     {
-        path: '/Admin/culture',
+        path: 'culture',
         name: '_culture',
         redirect: '/culture/list',
         component: Manager,
@@ -122,7 +122,7 @@ export default [{
         }]
     },
     {
-        path: '/Admin/charitable',
+        path: 'charitable',
         name: '_charitable',
         redirect: '/charitable/list',
         component: Manager,
@@ -169,7 +169,7 @@ export default [{
         }]
     },
     {
-        path: '/Admin/business',
+        path: 'business',
         name: '_business',
         redirect: '/business/list',
         component: Manager,
@@ -208,7 +208,7 @@ export default [{
         }]
     },
     {
-        path: '/Admin/notable',
+        path: 'notable',
         name: '_notable',
         redirect: '/notable/list',
         component: Manager,
@@ -248,7 +248,7 @@ export default [{
         }]
     },
     {
-        path: '/Admin/record',
+        path: 'record',
         name: '_record',
         redirect: '/record/list',
         component: Manager,
@@ -292,7 +292,7 @@ export default [{
         }]
     },
     {
-        path: '/Admin/users',
+        path: 'users',
         name: '_users',
         redirect: '/users/list',
         component: Manager,
@@ -329,7 +329,7 @@ export default [{
         }]
     },
     {
-        path: '/Admin/help',
+        path: 'help',
         name: '_help',
         redirect: '/help/help',
         component: Manager,
