@@ -1,63 +1,64 @@
 {
-    "name": "pu",
-    "version": "1.0.0",
-    "description": "",
-    "homepage": "http://www.mopui.com",
-    "author": "yhtpw",
-    "private": false,
-    "keywords": [
-        "yhtpw"
-    ],
-    "scripts": {
-        "start": "vue-cli-service serve",
-        "build": "vue-cli-service build --modern"
-    },
-    "dependencies": {
-        "axios": "^0.18.0",
-        "iview": "^3.1.4",
-        "swiper": "^4.4.2",
-        "vue": "^2.5.17",
-        "vue-router": "^3.0.1",
-        "vuex": "^3.0.1",
-        "clipboard": "^2.0.1",
-        "codemirror": "^5.41.0",
-        "echarts": "^4.2.0-rc.2",
-        "js-cookie": "^2.2.0",
-        "wangeditor": "^3.1.1"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.1.2",
-        "@vue/cli-plugin-babel": "^3.1.1",
-        "@vue/cli-plugin-eslint": "^3.1.4",
-        "@vue/cli-plugin-unit-mocha": "^3.1.0",
-        "@vue/cli-service": "^3.1.2",
-        "@vue/eslint-config-airbnb": "^4.0.0",
-        "@vue/eslint-config-standard": "^4.0.0",
-        "vue-template-compiler": "^2.5.17",
-        "eslint-plugin-cypress": "^2.1.1",
-        "eslint-plugin-vue": "^4.7.1",
-        "less": "^2.7.3",
-        "less-loader": "^4.1.0",
-        "node-sass": "^4.10.0",
-        "sass-loader": "^7.1.0"
-    },
-    "repository": {
-        "type": "",
-        "url": ""
-    },
-    "publishConfig": {
-        "access": "public",
-        "registry": "http://registry.npmjs.com"
-    },
-    "browserslist": [
-        "> 1%",
-        "last 2 versions",
-        "not ie <= 8"
-    ],
-    "scaffoldConfig": {
-        "name": "",
-        "title": "",
-        "screenshot": ""
-    },
-    "title": "炎黄"
+  "name": "pu",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "http://www.mopui.com",
+  "author": "yhtpw",
+  "private": false,
+  "keywords": [
+    "yhtpw"
+  ],
+  "scripts": {
+    "start": "vue-cli-service serve",
+    "build": "vue-cli-service build --modern"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "clipboard": "^2.0.1",
+    "codemirror": "^5.41.0",
+    "dayjs": "^1.7.7",
+    "echarts": "^4.2.0-rc.2",
+    "iview": "^3.1.4",
+    "js-cookie": "^2.2.0",
+    "swiper": "^4.4.2",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1",
+    "wangeditor": "^3.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@vue/cli-plugin-babel": "^3.1.1",
+    "@vue/cli-plugin-eslint": "^3.1.4",
+    "@vue/cli-plugin-unit-mocha": "^3.1.0",
+    "@vue/cli-service": "^3.1.2",
+    "@vue/eslint-config-airbnb": "^4.0.0",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "vue-template-compiler": "^2.5.17",
+    "eslint-plugin-cypress": "^2.1.1",
+    "eslint-plugin-vue": "^4.7.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.1.0",
+    "node-sass": "^4.10.0",
+    "sass-loader": "^7.1.0"
+  },
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://registry.npmjs.com"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "scaffoldConfig": {
+    "name": "",
+    "title": "",
+    "screenshot": ""
+  },
+  "title": "炎黄"
 }

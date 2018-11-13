@@ -2,7 +2,6 @@
     <Layout style="height: 100%" class="main">
         <Sider hide-trigger collapsible :width="256" :collapsed-width="64" v-model="collapsed" class="left-sider" :style="{overflow: 'hidden'}">
             <side-menu accordion ref="sideMenu" :active-name="$route.name" :collapsed="collapsed" @on-select="turnToPage" :menu-list="menuList">
-                <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
                 <div class="logo-con">
                     <img :src="Logo" key="Logo" />
                     <div v-if="!collapsed">炎黄统谱网</div>
@@ -14,6 +13,7 @@
                 <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
                     <user :user-avator="userAvator" />
                     <fullscreen v-model="isFullscreen" style="margin-right: 10px;" />
+                    <a href="/c" style="margin-right:10px;" target="_blank">联谊会首页</a>
                 </header-bar>
             </Header>
             <Content class="main-content-con">
@@ -76,9 +76,6 @@ export default {
         menuList() {
             return this.$store.getters.menuList
         },
-        hasReadErrorPage() {
-            return this.$store.state.admin.hasReadErrorPage
-        }
     },
     methods: {
         ...mapMutations([

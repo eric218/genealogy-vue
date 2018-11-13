@@ -4,6 +4,7 @@ const api = {
     pageSize: 20,
     host: 'http://192.168.2.179:8090/',
     server: 'http://192.168.2.179:8090/',
+    admin: 'http://192.168.2.179:8050/',
     urls: {
         USER_LOGIN: 'home/login', //登录//用户名、密码
         USER_REG: "home/reg01", //注册//用户名、密码、姓氏、地区、
@@ -12,7 +13,6 @@ const api = {
         PAY_WX: "pay/wechatPay", //微信支付//token、支付金额
         SYS_SITE: '', //网站信息//网站ID、地区、姓氏
         SYS_NAV: 'genogram/fanMenu/getMenuBySiteId', //网站导航栏//网站ID
-
         //家族文化列表
         //字派列表
         //财政收入、支出
@@ -26,9 +26,12 @@ const api = {
         //个人图片
         //个人日志
         //个人说说
-
         LIST_: 'columnIndustry/commonality',
         LIST_ZIPAI: 'genogram/fanNewsCulture/commonality',
+
+        culture_list: 'genogram/admin/fanMenu/getTitlesByMenuId', //家族文化导航
+        culture_zipai_add: '/genogram/admin/fanNewsCulture/addOrUpdateZiPai', //字派添加
+        culture_zipai_del: '/genogram/admin/fanNewsCulture/deleteZipaiById', //字派删除
     },
     post: function (url, data) {
         if (!data.pageNow) {

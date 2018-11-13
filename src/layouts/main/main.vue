@@ -23,7 +23,6 @@ export default {
   font-size: 18px;
   background: url(../../assets/img/icon-title-bar.png) no-repeat left center /
     auto 24px;
-
   .act {
     font-size: 14px;
     float: right;

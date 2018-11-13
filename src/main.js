@@ -6,10 +6,12 @@ import App from './App.vue';
 import iView from 'iview';
 import config from '@/config'
 import '@/assets/theme/iview.less'
-import './assets/icon/iconfont.css';
+import '@/assets/icon/iconfont.css';
+import dayjs from 'dayjs'
 Vue.use(iView);
 
 Vue.prototype.api = Api
+Vue.prototype.dayjs = dayjs
 Vue.prototype.$config = config
 new Vue({
     router,
