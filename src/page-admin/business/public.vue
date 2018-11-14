@@ -33,7 +33,7 @@ export default {
         chgMenu(e) {
             this.menucurr = this.menu[e];
             setTimeout(() => {
-                this.url = this.menucurr ? this.menucurr.apiUrl : '';
+                this.url = this.menucurr ? this.menucurr.apiAdminUrl : '';
             }, 300);
         },
     }

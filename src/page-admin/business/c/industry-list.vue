@@ -8,6 +8,15 @@
                 <FormItem label="标题">
                     <Input v-model="formData.newsTitle" placeholder="标题" />
                 </FormItem>
+                <FormItem label="预览图">
+                    <Upload class="upload" :action="api.admin + api.urls.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
+                        <Button type="dashed">
+                            <div class="img" :style="api.imgBG(filePath)" v-if="filePath" />
+                            <div class="img" :style="api.imgBG(formData.fanNewsUploadFileList[0].filePath)" v-else-if="formData.fanNewsUploadFileList.length"></div>
+                            <Icon type="ios-camera" size="40" color="#ccc" v-else></Icon>
+                        </Button>
+                    </Upload>
+                </FormItem>
                 <FormItem label="位于">
                     <Input v-model="formData.industryLocation" placeholder="位于" />
                 </FormItem>
@@ -34,10 +43,12 @@ export default {
             list: [],
             total: 0,
             page: 1,
-            zipai_txt: '',
             formData: {
                 id: '',
+                fanNewsUploadFileList: [],
             },
+            fileName: '',
+            filePath:'',
             columns: [
                 {
                     title: 'ID',
@@ -120,6 +131,8 @@ export default {
             this.getList();
         },
         toEdit(e) {
+            this.fileName = '';
+            this.filePath = '';
             if (!e) {
                 this.formData = {}
                 this.isedit = true;
@@ -146,13 +159,21 @@ export default {
                 },
             });
         },
+        handleSuccess(res, file) {
+            if (res.code == 200) {
+                this.fileName = res.data.file_name
+                this.filePath = res.data.file_path
+            }
+        },
         toSubmit() {
             let data = {
                 showId: this.type,
                 newsTitle: this.formData.newsTitle,
                 newsText: this.formData.newsText,
-                industryLocation:this.formData.industryLocation,
+                industryLocation: this.formData.industryLocation,
                 visitNum: this.formData.visitNum ? this.formData.visitNum : 0,
+                fileName: this.fileName,
+                filePath: this.filePath,
             }
             if (this.formData.id) {
                 data.id = this.formData.id
@@ -174,8 +195,10 @@ export default {
                 showId: this.type,
                 newsTitle: this.formData.newsTitle,
                 newsText: this.formData.newsText,
-                industryLocation:this.formData.industryLocation,
+                industryLocation: this.formData.industryLocation,
                 visitNum: this.formData.visitNum ? this.formData.visitNum : 0,
+                fileName: this.fileName,
+                filePath: this.filePath,
             }
             if (this.formData.id) {
                 data.id = this.formData.id
@@ -196,3 +219,18 @@ export default {
     props: ['url', 'menu', 'type']
 }
 </script>
+<style lang="scss" scoped>
+.upload {
+  button {
+    width: 162px;
+    height: 122px;
+    padding: 0;
+    .img {
+      width: 160px;
+      height: 120px;
+      padding: 0;
+      background: no-repeat center / cover;
+    }
+  }
+}
+</style>

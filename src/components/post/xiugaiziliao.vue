@@ -2,7 +2,7 @@
     <div>
         <Form :label-width="80">
             <FormItem label="头像">
-                <Upload class="avatar-uploader" action="//jsonplaceholder.typicode.com/posts/">
+                <Upload class="avatar-uploader" action="//jsonplaceholder.typicode.com/posts/" :format="['jpg','jpeg','png']">
                     <img v-if="imageUrl" :src="imageUrl" class="avatar">
                     <iconfont v-else name="add" />
                 </Upload>

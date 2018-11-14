@@ -1,71 +1,27 @@
 <template>
     <div>
-        <Row :gutter="16">
-            <i-col :span="8">
-                <Card style="height:160px">
-                    <p slot="title">姓氏图腾</p>
-                    <Upload multiple type="drag" action="//jsonplaceholder.typicode.com/posts/">
-                        <div style="padding:20px 0">
-                            <Icon type="ios-cloud-upload" size="32" style="color: #3399ff"></Icon>
-                            <span>点击上传</span>
-                        </div>
-                    </Upload>
-                </Card>
-                <Card style="margin:16px 0;height:160px;">
-                    <p slot="title">简介</p>
-                    <a href="#" slot="extra">编辑</a>
-                    <p>
-                        dasasdsasasa
-                    </p>
-                </Card>
-            </i-col>
-            <i-col :span="8">
-                <Card style="height:160px">
-                    <p slot="title">宣言</p>
-                    <a href="#" slot="extra">编辑</a>
-                    <p>
-                        dasasdsasasa
-                    </p>
-                </Card>
-                <Card style="margin:16px 0;height:160px;">
-                    <p slot="title">线下捐款</p>
-                    <Form inline>
-                        <FormItem prop="user">
-                            <i-input type="text" placeholder="请输入金额">
-                                <Icon type="logo-yen" slot="prepend"></Icon>
-                            </i-input>
-                        </FormItem>
-                        <FormItem>
-                            <Button type="primary">增加</Button>
-                        </FormItem>
-                        <FormItem>
-                            <Button>减少</Button>
-                        </FormItem>
-                    </Form>
-                </Card>
-            </i-col>
-            <i-col :span="8">
-                <Card style="height:336px">
-                    <p slot="title">联谊会概况[18个]</p>
-                    <Button type="warning" slot="extra" size="small">添加</Button>
-                    <Table />
-                </Card>
-            </i-col>
-        </Row>
-        <Row :gutter="16">
-            <i-col :span="12">
-                <Card style="height:336px">
-                    <p slot="title">文章审核</p>
-                    <Table />
-                </Card>
-            </i-col>
-            <i-col :span="12">
-                <Card style="height:336px">
-                    <p slot="title">聊天记录审核</p>
-                    <Table />
-                </Card>
-            </i-col>
-        </Row>
+        <Form :model="formData" :label-width="80">
+            <FormItem label="网站名">
+                <Input v-model="formData.siteName" placeholder="标题" />
+            </FormItem>
+            <FormItem label="徽标">
+                <Upload class="upload" :action="api.admin + api.urls.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
+                    <Button type="dashed">
+                        <div class="img" :style="api.imgBG(formData.totemPicSrc)" v-if="formData.totemPicSrc" />
+                        <Icon type="ios-camera" size="40" color="#ccc" v-else></Icon>
+                    </Button>
+                </Upload>
+            </FormItem>
+            <FormItem label="宣言">
+                <Input v-model="formData.title" placeholder="宣言" />
+            </FormItem>
+            <FormItem label="祖先描述">
+                <Input v-model="formData.description" placeholder="祖先描述" />
+            </FormItem>
+            <FormItem label="">
+                <Button type="primary" @click="toSubmit">保存</Button>
+            </FormItem>
+        </Form>
     </div>
 </template>
 
@@ -75,9 +31,59 @@ export default {
     },
     data() {
         return {
+            formData: {
+                totemPicSrc: '',
+            },
         }
     },
     mounted() {
+        this.getInfo();
+    },
+    methods: {
+        getInfo() {
+            this.api.get(this.api.admin + this.api.urls.admin_site_info, {
+                siteId: this.$store.state.siteId,
+            }).then(res => {
+                this.formData = res.data
+            })
+        },
+        handleSuccess(res, file) {
+            if (res.code == 200) {
+                this.formData.totemPicSrc = res.data.file_path
+            }
+        },
+        toSubmit() {
+            if (!this.formData.id) {
+                return;
+            }
+            this.api.post(this.api.admin + this.api.urls.admin_site_edit, {
+                id: this.formData.id,
+                totemPicSrc: this.formData.totemPicSrc,
+                title: this.formData.title,
+                description: this.formData.description
+            }).then(res => {
+                if (res.code === 200) {
+                    this.$Message.success('修改成功');
+                    this.getInfo();
+                }
+            })
+        }
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.upload {
+  button {
+    width: 162px;
+    height: 162px;
+    padding: 0;
+    .img {
+      width: 160px;
+      height: 160px;
+      padding: 0;
+      background: no-repeat center / cover;
+    }
+  }
+}
+</style>

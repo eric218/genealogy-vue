@@ -43,7 +43,7 @@ export default [{
             name: 'list',
             meta: {
                 icon: 'md-text',
-                title: '内容管理'
+                title: '内容审核'
             },
             component: () => import('@/page-admin/setting/list')
         }, {
@@ -124,13 +124,13 @@ export default [{
         },
 
         children: [{
-            path: 'list',
+            path: 'in',
             name: 'charitable-list',
             meta: {
-                icon: 'md-heart',
-                title: '公益记录',
+                icon: 'md-albums',
+                title: '财务收益',
             },
-            component: () => import('@/page-admin/charitable/list')
+            component: () => import('@/page-admin/charitable/in')
         }, {
             path: 'out',
             name: 'charitable-out',
@@ -140,13 +140,13 @@ export default [{
             },
             component: () => import('@/page-admin/charitable/out')
         }, {
-            path: 'in',
+            path: 'list',
             name: 'charitable-in',
             meta: {
-                icon: 'md-albums',
+                icon: 'md-heart',
                 title: '捐款名录',
             },
-            component: () => import('@/page-admin/charitable/in')
+            component: () => import('@/page-admin/charitable/list')
         }, {
             path: 'detail',
             name: 'charitable-detail',
@@ -249,11 +249,19 @@ export default [{
         },
 
         children: [{
+            path: 'notice',
+            name: 'notice',
+            meta: {
+                icon: 'ios-bookmarks-outline',
+                title: '县级公告',
+            },
+            component: () => import('@/page-admin/record/list')
+        }, {
             path: 'list',
-            name: 'ios-cloud',
+            name: '_list',
             meta: {
                 icon: 'logo-rss',
-                title: '记录家族',
+                title: '家族动态',
             },
             component: () => import('@/page-admin/record/list')
         }, {
@@ -261,25 +269,9 @@ export default [{
             name: 'video',
             meta: {
                 icon: 'md-videocam',
-                title: '视频',
+                title: '家族视频',
             },
             component: () => import('@/page-admin/record/video')
-        }, {
-            path: 'image',
-            name: 'image',
-            meta: {
-                icon: 'md-image',
-                title: '图片',
-            },
-            component: () => import('@/page-admin/record/image')
-        }, {
-            path: 'message',
-            name: 'message',
-            meta: {
-                icon: 'ios-megaphone',
-                title: '说说',
-            },
-            component: () => import('@/page-admin/record/message')
         }]
     },
     {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Button type="primary" @click="toEdit(0)">添加文章</Button>
+        <Button type="primary" @click="toEdit(0)">添加</Button>
         <Table border :columns="columns" :data="list" style="margin:16px 0;"></Table>
         <Page :total="total" @on-change="chgPage" :page-size="8" />
         <Drawer :title="formData.id ? '修改':'添加'" width="50%" :closable="false" v-model="isedit">
@@ -134,7 +134,7 @@ export default {
                 this.formData = {}
                 this.isedit = true;
             } else {
-                this.api.get(this.api.admin + this.api.urls.culture_news_info, {
+                this.api.get(this.api.admin + this.api.urls.charity_list_info, {
                     id: e
                 }).then(res => {
                     this.formData = res.data;
@@ -147,7 +147,7 @@ export default {
                 title: '提示',
                 content: '确定删除这个文章？',
                 onOk: () => {
-                    this.api.get(this.api.admin + this.api.urls.culture_news_del, {
+                    this.api.get(this.api.admin + this.api.urls.charity_list_del, {
                         id: this.list[index].id
                     }).then(res => {
                         this.list.splice(index, 1);
@@ -158,7 +158,6 @@ export default {
         },
         handleSuccess(res, file) {
             if (res.code == 200) {
-                console.log(res)
                 this.fileName = res.data.file_name
                 this.filePath = res.data.file_path
             }
@@ -168,6 +167,7 @@ export default {
                 showId: this.type,
                 newsTitle: this.formData.newsTitle,
                 newsText: this.formData.newsText,
+                charity_listLocation: this.formData.charity_listLocation,
                 visitNum: this.formData.visitNum ? this.formData.visitNum : 0,
                 fileName: this.fileName,
                 filePath: this.filePath,
@@ -175,7 +175,7 @@ export default {
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin + this.api.urls.culture_news_add, data).then(res => {
+            this.api.post(this.api.admin + this.api.urls.charity_list_add, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');
@@ -192,13 +192,15 @@ export default {
                 showId: this.type,
                 newsTitle: this.formData.newsTitle,
                 newsText: this.formData.newsText,
+                charity_listLocation: this.formData.charity_listLocation,
                 visitNum: this.formData.visitNum ? this.formData.visitNum : 0,
                 fileName: this.fileName,
+                filePath: this.filePath,
             }
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin + this.api.urls.culture_news_drft, data).then(res => {
+            this.api.post(this.api.admin + this.api.urls.charity_list_drft, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');
@@ -209,7 +211,7 @@ export default {
                     this.isedit = false;
                 }
             })
-        },
+        }
     },
     props: ['url', 'menu', 'type']
 }

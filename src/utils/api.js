@@ -31,6 +31,10 @@ const api = {
         LIST_: 'columnIndustry/commonality',
         LIST_ZIPAI: 'genogram/fanNewsCulture/commonality',
 
+
+        admin_site_info: 'genogram/admin/fanIndex/getFanIndexInfo', //网站信息--后台
+        admin_site_edit: 'genogram/admin/fanIndex/insertOrUpdateFanIndexInfo', //网站信息--修改
+
         culture_list: 'genogram/admin/fanMenu/getTitlesByMenuId', //家族文化导航
         culture_zipai_info: 'genogram/admin/fanNewsCulture/getZiPaiDetail', //字派详情
         culture_zipai_add: 'genogram/admin/fanNewsCulture/addOrUpdateZiPai', //字派添加
@@ -40,6 +44,11 @@ const api = {
         culture_news_add: 'genogram/admin/fanNewsCulture/addOrUpdateCulture', //家族文化添加
         culture_news_drft: 'genogram/admin/fanNewsCulture/addOrUpdateCultureDrft', //家族文化草稿
         culture_news_del: 'genogram/admin/fanNewsCulture/deleteCulturById', //家族文化删除
+
+        charity_list_info: 'genogram/admin/fanNewsCharity/getFanNewsCharityDetail', //财务收支详情
+        charity_list_add: 'genogram/admin/fanNewsCharity/insertOrUpdateFanNewsCharityOut', //财务收支增加
+        charity_list_drft: 'genogram/admin/fanNewsCharity/insertOrUpdateFanNewsCharityOutDrft', //财务收支草稿
+        charity_list_del: 'genogram/admin/fanNewsCharity/deleteFanNewsCharityOut', //财务收支删除
 
         industry_info: 'genogram/admin/fanNewsIndustry/getFamilyIndustryDetail', //家族产业详情
         industry_add: 'genogram/admin/fanNewsIndustry/addOrUpdateIndustry', //家族产业添加

@@ -1,13 +1,13 @@
 <template>
     <div>
-        <Button type="primary" @click="toEdit(0)">添加文章</Button>
+        <Button type="primary" @click="toEdit(0)">添加</Button>
         <Table border :columns="columns" :data="list" style="margin:16px 0;"></Table>
         <Page :total="total" @on-change="chgPage" :page-size="8" />
         <Drawer :title="formData.id ? '修改':'添加'" width="50%" :closable="false" v-model="isedit">
             <Form :model="formData" :label-width="80">
                 <FormItem label="标题">
                     <Input v-model="formData.newsTitle" placeholder="标题" />
-                </FormItem>
+                </FormItem> 
                 <FormItem label="预览图">
                     <Upload class="upload" :action="api.admin + api.urls.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
                         <Button type="dashed">
@@ -158,7 +158,6 @@ export default {
         },
         handleSuccess(res, file) {
             if (res.code == 200) {
-                console.log(res)
                 this.fileName = res.data.file_name
                 this.filePath = res.data.file_path
             }
