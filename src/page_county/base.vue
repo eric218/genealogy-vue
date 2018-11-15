@@ -25,7 +25,7 @@ export default {
     data() {
         return {
             form: {
-                siteid: '',
+                siteid: this.$store.state.siteId,
                 uploadurl: '',
             },
             index: 1,

@@ -1,14 +1,14 @@
 <template>
     <div>
-        <Videolist :url="url" v-if="url.length" :menu="menucurr.menuType" :type='menucurr.showId' />
+        <Rsslist :url="url" v-if="url.length" :menu="menucurr.menuType" :type='menucurr.showId' />
     </div>
 </template>
 
 <script>
-import Videolist from './c/video-list'
+import Rsslist from './c/rss-list'
 export default {
     components: {
-        Videolist,
+        Rsslist,
     },
     data() {
         return {
@@ -27,7 +27,7 @@ export default {
                 menuId: 6
             }).then(res => {
                 this.menu = res.data
-                this.chgMenu(2)
+                this.chgMenu(0)
             })
         },
         chgMenu(e) {

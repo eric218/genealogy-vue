@@ -18,7 +18,7 @@
                     </Upload>
                 </FormItem>
                 <FormItem label="正文">
-                    <Input type="textarea" v-model="formData.newsText" placeholder="正文" />
+                    <editor ref="Editor" :value="formData.newsText" @on-change="handleChange" />
                 </FormItem>
                 <FormItem label="浏览数" v-if="formData.id">
                     <Input v-model="formData.visitNum" placeholder="浏览数" />
@@ -33,7 +33,11 @@
 </template>
 
 <script>
+import Editor from '_c/editor'
 export default {
+    components: {
+        Editor
+    },
     data() {
         return {
             isedit: false,
@@ -45,7 +49,7 @@ export default {
                 fanNewsUploadFileList: [],
             },
             fileName: '',
-            filePath:'',
+            filePath: '',
             columns: [
                 {
                     title: 'ID',
@@ -126,6 +130,9 @@ export default {
         chgPage(e) {
             this.page = e;
             this.getList();
+        },
+        handleChange(html, text) {
+            console.log(html, text)
         },
         toEdit(e) {
             this.fileName = '';

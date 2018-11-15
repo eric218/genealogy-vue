@@ -44,10 +44,10 @@
                     <div class="b" v-if="index_architecture_pay_in_person_2">
                         <div class="item" v-for="v in index_architecture_pay_in_person_2" :key="v.id">
                             <div class="img"></div>
-                            <div class="name">{{v.allUserLogin.userName}}</div>
+                            <div class="name">{{v.allUserLogin ? v.allUserLogin.userName:''}}</div>
                             <div class="txt">
                                 <small>捐款</small>
-                                <span>{{v.fanNewsCharityPayIn.payAmount}}元</span>
+                                <span>{{v.fanNewsCharityPayIn?v.fanNewsCharityPayIn.payAmount:0}}元</span>
                             </div>
                             <div class="act" v-if="1==2">
                                 <div class="flow">

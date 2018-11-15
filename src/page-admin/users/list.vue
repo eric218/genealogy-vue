@@ -9,7 +9,6 @@
 
 <script>
 import Tables from '_c/tables'
-import { getTableData } from '@/api/data'
 export default {
     name: 'tables_page',
     components: {
@@ -60,9 +59,6 @@ export default {
         }
     },
     mounted() {
-        getTableData().then(res => {
-            this.tableData = res.data
-        })
     }
 }
 </script>

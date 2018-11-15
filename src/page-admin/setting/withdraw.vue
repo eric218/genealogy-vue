@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Summarys :url="url" v-if="url.length" />
+        <Withdraw :url="url" v-if="url.length" />
     </div>
 </template>
 
@@ -12,10 +12,12 @@ export default {
     },
     data() {
         return {
-            url: ''
+            url: this.api.admin + this.api.urls.admin_site_withdraw_list
         }
     },
     mounted() {
+    },
+    methods: {
     },
 }
 </script>

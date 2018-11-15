@@ -279,15 +279,15 @@ export default [{
                 icon: 'ios-bookmarks-outline',
                 title: '县级公告',
             },
-            component: () => import('@/page-admin/record/list')
+            component: () => import('@/page-admin/record/notice')
         }, {
-            path: 'list',
-            name: '_list',
+            path: 'rss',
+            name: 'rss',
             meta: {
                 icon: 'logo-rss',
                 title: '家族动态',
             },
-            component: () => import('@/page-admin/record/list')
+            component: () => import('@/page-admin/record/rss')
         }, {
             path: 'video',
             name: 'video',

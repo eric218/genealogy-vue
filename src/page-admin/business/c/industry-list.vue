@@ -12,7 +12,7 @@
                     <Upload class="upload" :action="api.admin + api.urls.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
                         <Button type="dashed">
                             <div class="img" :style="api.imgBG(filePath)" v-if="filePath" />
-                            <div class="img" :style="api.imgBG(formData.fanNewsUploadFileList[0].filePath)" v-else-if="formData.fanNewsUploadFileList.length"></div>
+                            <div class="img" :style="formData.fanNewsUploadFileList.length ? api.imgBG(formData.fanNewsUploadFileList[0].filePath) :''" v-else-if="formData.fanNewsUploadFileList"></div>
                             <Icon type="ios-camera" size="40" color="#ccc" v-else></Icon>
                         </Button>
                     </Upload>
@@ -48,7 +48,7 @@ export default {
                 fanNewsUploadFileList: [],
             },
             fileName: '',
-            filePath:'',
+            filePath: '',
             columns: [
                 {
                     title: 'ID',
@@ -117,13 +117,15 @@ export default {
             this.api.get(this.url, {
                 pageNo: this.page
             }).then(res => {
-                let list = res.data.records;
-                list.forEach(v => {
-                    v.title = v.status == 2 ? v.newsTitle + '[草稿]' : v.newsTitle
-                    v.datetime = this.dayjs(v.updateTime).format('YYYY-MM-DD HH:mm:ss')
-                })
-                this.list = list;
-                this.total = res.data.total
+                if (res.code == 200) {
+                    let list = res.data.records;
+                    list.forEach(v => {
+                        v.title = v.status == 2 ? v.newsTitle + '[草稿]' : v.newsTitle
+                        v.datetime = this.dayjs(v.updateTime).format('YYYY-MM-DD HH:mm:ss')
+                    })
+                    this.list = list;
+                    this.total = res.data.total
+                }
             })
         },
         chgPage(e) {

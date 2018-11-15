@@ -19,7 +19,7 @@
                             <div class="act" @click="handleTopay = true">
                                 <img src="@/assets/img/icon-help.png" /></div>
                         </div>
-                        <div class="b">
+                        <div class="b" v-if="index_architecture_pay_in_person_3.length">
                             <div class="item" v-for="v in index_architecture_pay_in_person_3" :key="v.id">
                                 <div class="img"></div>
                                 <div class="name">{{v.allUserLogin.userName}}</div>

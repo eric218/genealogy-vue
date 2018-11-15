@@ -1,22 +1,22 @@
 <template>
     <div>
         <Row :gutter="32" class="videolist">
-            <i-col :span="6" v-for="v in data.records" :key="v">
+            <i-col :span="6" v-for="v in data.records" :key="v.id">
                 <div class="item">
-                    <div class="img">
-                        <img src="@/assets/img/100x100.png" alt="" />
+                    <div class="img" :style="v.fanNewsUploadFile.length ? api.imgBG(v.fanNewsUploadFile[0].filePath) : ''">
+                        <img src="@/assets/img/100x100.png" />
                     </div>
                     <div class="obj">
-                        <div class="tit">标题</div>
+                        <div class="tit">{{v.title}}</div>
                         <div class="user">
                             <div class="head"></div>
-                            <div class="name">姓名</div>
+                            <div class="name">{{v.auth}}</div>
                         </div>
                         <div class="tag">
                             <div class="date">2018-10-10</div>
                             <div class="total">
                                 <iconfont name="recordfill" />
-                                <span>150</span>
+                                <span>0</span>
                             </div>
                         </div>
                     </div>
@@ -43,6 +43,10 @@ export default {
     .img {
       width: 100%;
       background: whitesmoke no-repeat center / cover;
+      img {
+        width: 100%;
+        visibility: hidden;
+      }
     }
 
     .obj {

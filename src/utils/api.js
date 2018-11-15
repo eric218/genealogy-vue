@@ -35,7 +35,7 @@ const api = {
         admin_site_info: 'genogram/admin/fanIndex/getFanIndexInfo', //网站信息--后台
         admin_site_edit: 'genogram/admin/fanIndex/insertOrUpdateFanIndexInfo', //网站信息--修改
         admin_site_withdraw: 'genogram/admin/fanNewsCharity/insertFanIndexFundDrowing', //线上提现
-        admin_site_withdraw_list: '', //提现记录
+        admin_site_withdraw_list: 'genogram/admin/fanNewsCharity/getFanIndexFundDrowing', //提现记录
         admin_site_outline: 'genogram/admin/fanNewsCharity/insertFanNewsCharityPayIn', //线下捐款
 
         admin_slider_list: 'genogram/admin/fanIndex/getFanIndexSlidePicList', //轮播图
@@ -73,6 +73,17 @@ const api = {
         admin_famous_edit: 'genogram/admin/fanNewsFamous/addOrUpdatePersion', //家族名人修改
         admin_famous_drft: 'genogram/admin/fanNewsFamous/addOrUpdateIndustryDrft', //家族名人草稿
         admin_famous_del: 'genogram/admin/fanNewsFamous/deletePersionById', //家族名人删除
+
+        record_list: 'genogram/admin/fanNewsFamilyRecord/selectRecort', //记录家族列表
+        record_info: 'genogram/admin/fanNewsFamilyRecord/getFamilyRecord', //记录家族详情
+        record_edit: 'genogram/admin/fanNewsFamilyRecord/addOrUpdateRecord', //记录家族修改
+        record_drft: 'genogram/admin/fanNewsFamilyRecord/addOrUpdateRecordDrft', //记录家族草稿
+        record_del: 'genogram/admin/fanNewsFamilyRecord/deleteRecordById', //记录家族删除
+
+        media_list: 'genogram/admin/fanNewsFamilyRecord/selectRecortVedioPage', //官方视频
+        media_info: 'genogram/admin/fanNewsFamilyRecord/getFamilyRecordVedioDetail', //信息
+        media_edit: 'genogram/admin/fanNewsFamilyRecord/addOrUpdateVedioRecord', //修改
+        media_del: 'genogram/admin/fanNewsFamilyRecord/deleteRecordVedioById', //删除
 
     },
     post: function (url, data) {

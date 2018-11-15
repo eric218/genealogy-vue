@@ -5,19 +5,11 @@
         <Page :total="total" @on-change="chgPage" :page-size="8" />
         <Drawer :title="formData.id ? '修改':'添加'" width="50%" :closable="false" v-model="isedit">
             <Form :model="formData" :label-width="80">
-                <FormItem label="人物">
-                    <Input v-model="formData.personName" placeholder="姓名" />
+                <FormItem label="标题">
+                    <Input v-model="formData.newsTitle" placeholder="标题" />
                 </FormItem>
-                <FormItem label="头像">
-                    <Upload class="upload" :action="api.admin + api.urls.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
-                        <Button type="dashed">
-                            <div class="img" :style="api.imgBG(formData.picFileSrc)" v-if="formData.picFileSrc" />
-                            <Icon type="ios-camera" size="40" color="#ccc" v-else></Icon>
-                        </Button>
-                    </Upload>
-                </FormItem>
-                <FormItem label="人物简介">
-                    <Input type="textarea" v-model="formData.personSummary" placeholder="人物简介" />
+                <FormItem label="正文">
+                    <Input type="textarea" v-model="formData.newsText" placeholder="正文" />
                 </FormItem>
                 <FormItem label="浏览数" v-if="formData.id">
                     <Input v-model="formData.visitNum" placeholder="浏览数" />
@@ -40,17 +32,15 @@ export default {
             total: 0,
             page: 1,
             formData: {
-                personName: '',
-                personSummary: '',
-                picFileName: '',
-                picFileSrc: '',
+                id: '',
+                fanNewsUploadFileList: [],
             },
             columns: [
                 {
                     title: 'ID',
                     key: 'id'
                 }, {
-                    title: '人物',
+                    title: '标题',
                     key: 'title'
                 }, {
                     title: '浏览数',
@@ -116,13 +106,11 @@ export default {
                 if (res.code == 200) {
                     let list = res.data.records;
                     list.forEach(v => {
-                        v.title = v.status == 2 ? v.personName + '[草稿]' : v.personName
+                        v.title = v.status == 2 ? v.newsTitle + '[草稿]' : v.newsTitle
                         v.datetime = this.dayjs(v.updateTime).format('YYYY-MM-DD HH:mm:ss')
                     })
                     this.list = list;
                     this.total = res.data.total
-                } else {
-                    this.list = [];
                 }
             })
         },
@@ -131,18 +119,11 @@ export default {
             this.getList();
         },
         toEdit(e) {
-            this.fileName = '';
-            this.filePath = '';
             if (!e) {
-                this.formData = {
-                    personName: '',
-                    personSummary: '',
-                    picFileName: '',
-                    picFileSrc: '',
-                }
+                this.formData = {}
                 this.isedit = true;
             } else {
-                this.api.get(this.api.admin + this.api.urls.admin_famous_info, {
+                this.api.get(this.api.admin + this.api.urls.record_info, {
                     id: e
                 }).then(res => {
                     this.formData = res.data;
@@ -155,7 +136,7 @@ export default {
                 title: '提示',
                 content: '确定删除这个文章？',
                 onOk: () => {
-                    this.api.get(this.api.admin + this.api.urls.admin_famous_del, {
+                    this.api.get(this.api.admin + this.api.urls.record_del, {
                         id: this.list[index].id
                     }).then(res => {
                         this.list.splice(index, 1);
@@ -166,23 +147,23 @@ export default {
         },
         handleSuccess(res, file) {
             if (res.code == 200) {
-                this.formData.picFileName = res.data.file_name
-                this.formData.picFileSrc = res.data.file_path
+                this.fileName = res.data.file_name
+                this.filePath = res.data.file_path
             }
         },
         toSubmit() {
             let data = {
                 showId: this.type,
-                personName: this.formData.personName,
-                personSummary: this.formData.personSummary,
-                picFileName: this.formData.picFileName,
-                picFileSrc: this.formData.picFileSrc,
+                newsTitle: this.formData.newsTitle,
+                newsText: this.formData.newsText,
                 visitNum: this.formData.visitNum ? this.formData.visitNum : 0,
+                fileName: this.fileName,
+                filePath: this.filePath,
             }
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin + this.api.urls.admin_famous_edit, data).then(res => {
+            this.api.post(this.api.admin + this.api.urls.record_edit, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');
@@ -197,16 +178,16 @@ export default {
         toDrft() {
             let data = {
                 showId: this.type,
-                personName: this.formData.personName,
-                personSummary: this.formData.personSummary,
-                picFileName: this.formData.picFileName,
-                picFileSrc: this.formData.picFileSrc,
+                newsTitle: this.formData.newsTitle,
+                newsText: this.formData.newsText,
                 visitNum: this.formData.visitNum ? this.formData.visitNum : 0,
+                fileName: this.fileName,
+                filePath: this.filePath,
             }
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin + this.api.urls.admin_famous_drft, data).then(res => {
+            this.api.post(this.api.admin + this.api.urls.record_drft, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');
@@ -217,7 +198,7 @@ export default {
                     this.isedit = false;
                 }
             })
-        },
+        }
     },
     props: ['url', 'menu', 'type']
 }
@@ -226,11 +207,11 @@ export default {
 .upload {
   button {
     width: 162px;
-    height: 162px;
+    height: 122px;
     padding: 0;
     .img {
       width: 160px;
-      height: 160px;
+      height: 120px;
       padding: 0;
       background: no-repeat center / cover;
     }

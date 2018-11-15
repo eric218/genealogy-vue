@@ -13,43 +13,18 @@
                         <div class="card">
                             <div class="tit">
                                 <span class="mini">发言人数：</span>
-                                <span>99</span>
+                                <span>{{index_message ? index_message.total :''}}</span>
                             </div>
                             <div class="info">
-                                <div class="other item">
-                                    <div class="img">
-                                        <div class="head"></div>
-                                        <div class="name">张三</div>
-                                    </div>
-                                    <div class="obj">
-                                        <div class="text">大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好</div>
-                                    </div>
-                                </div>
-                                <div class="other item">
-                                    <div class="img">
-                                        <div class="head"></div>
-                                        <div class="name">张三</div>
-                                    </div>
-                                    <div class="obj">
-                                        <div class="text">大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好</div>
-                                    </div>
-                                </div>
-                                <div class="mine item">
-                                    <div class="img">
-                                        <div class="head"></div>
-                                        <div class="name">张三</div>
-                                    </div>
-                                    <div class="obj">
-                                        <div class="text">大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好</div>
-                                    </div>
-                                </div>
-                                <div class="other item">
-                                    <div class="img">
-                                        <div class="head"></div>
-                                        <div class="name">张三</div>
-                                    </div>
-                                    <div class="obj">
-                                        <div class="text">大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好大家好</div>
+                                <div v-if="index_message">
+                                    <div class="other item" v-for="v in index_message.records" :key="v.id">
+                                        <div class="img">
+                                            <div class="head"></div>
+                                            <div class="name">{{v.nickname}}</div>
+                                        </div>
+                                        <div class="obj">
+                                            <div class="text">{{v.message}}</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +70,7 @@
 
 <script>
 import { Topbar, NavBar, FootBar } from './c'
-import VideoList from '@/components/list/video.vue';
+import VideoList from './c/video-list.vue';
 export default {
     name: "Culture",
     components: {
@@ -105,6 +80,9 @@ export default {
         VideoList
     },
     computed: {
+        index_message() {
+            return this.$store.state.homeData.index_message
+        },
         navlist() {
             return this.$store.state.navList
         },
@@ -135,6 +113,9 @@ export default {
     },
     methods: {
         getList(i) {
+            if(!this.menucurr_b && !this.menucurr_a){
+                return;
+            }
             let url = i > 1 ? this.menucurr_b.apiUrl : this.menucurr_a.apiUrl;
             this.api.get(url, {}).then(res => {
                 if (i > 1) {

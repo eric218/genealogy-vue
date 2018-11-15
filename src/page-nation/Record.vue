@@ -33,7 +33,6 @@
                         <div class="item">最新视频</div>
                     </div>
                     <div class="b">
-                        <VideoList />
                     </div>
                 </div>
             </div>
@@ -42,7 +41,6 @@
     </div>
 </template>
 <script>
-import VideoList from '@/components/list/video.vue';
 import { Topbar, NavBar, Banner, FootBar } from './c'
 export default {
     name: "Home",
@@ -51,7 +49,6 @@ export default {
         NavBar,
         Banner,
         FootBar,
-        VideoList
     },
     data() {
         return {

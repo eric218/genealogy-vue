@@ -67,7 +67,7 @@ export default {
         handleRemove(e) {
             this.$Modal.confirm({
                 title: '提示',
-                content: '确定删除这个文章？',
+                content: '确定删除？',
                 onOk: () => {
                     this.api.get(this.api.admin + this.api.urls.admin_slider_del, {
                         id: e.id
