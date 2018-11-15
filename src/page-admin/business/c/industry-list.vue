@@ -178,7 +178,7 @@ export default {
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin + this.api.urls.industry_add, data).then(res => {
+            this.api.post(this.api.admin + this.api.urls.industry_edit, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');

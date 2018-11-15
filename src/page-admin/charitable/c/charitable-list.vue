@@ -175,7 +175,7 @@ export default {
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin + this.api.urls.charity_list_add, data).then(res => {
+            this.api.post(this.api.admin + this.api.urls.charity_list_edit, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');

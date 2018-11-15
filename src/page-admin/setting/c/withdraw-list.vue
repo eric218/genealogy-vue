@@ -1,27 +1,27 @@
 <template>
     <div>
-        <Button type="primary" @click="toEdit(0)">添加文章</Button>
+        <Button type="primary" @click="toEdit(0)">添加</Button>
         <Table border :columns="columns" :data="list" style="margin:16px 0;"></Table>
         <Page :total="total" @on-change="chgPage" :page-size="8" />
         <Drawer :title="formData.id ? '修改':'添加'" width="50%" :closable="false" v-model="isedit">
             <Form :model="formData" :label-width="80">
-                <FormItem label="标题">
-                    <Input v-model="formData.newsTitle" placeholder="标题" />
+                <FormItem label="堂">
+                    <Input v-model="formData.rootGroup" placeholder="堂" />
                 </FormItem>
-                <FormItem label="预览图">
-                    <Upload class="upload" :action="api.admin + api.urls.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
-                        <Button type="dashed">
-                            <div class="img" :style="api.imgBG(filePath)" v-if="filePath" />
-                            <div class="img" :style="api.imgBG(formData.fanNewsUploadFileList[0].filePath)" v-else-if="formData.fanNewsUploadFileList.length"></div>
-                            <Icon type="ios-camera" size="40" color="#ccc" v-else></Icon>
-                        </Button>
-                    </Upload>
+                <FormItem label="始迁祖">
+                    <Input v-model="formData.rootPerson" placeholder="始迁祖" />
                 </FormItem>
-                <FormItem label="正文">
-                    <Input type="textarea" v-model="formData.newsText" placeholder="正文" />
+                <FormItem label="负责人">
+                    <Input v-model="formData.leader" placeholder="负责人" />
                 </FormItem>
-                <FormItem label="浏览数" v-if="formData.id">
-                    <Input v-model="formData.visitNum" placeholder="浏览数" />
+                <FormItem label="负责人电话">
+                    <Input v-model="formData.leaderPhone" placeholder="负责人电话" />
+                </FormItem>
+                <FormItem label="膜拜" v-if="formData.id">
+                    <Input v-model="formData.worshipNum" placeholder="膜拜" />
+                </FormItem>
+                <FormItem label="点赞" v-if="formData.id">
+                    <Input v-model="formData.praiseNum" placeholder="点赞" />
                 </FormItem>
                 <FormItem label="">
                     <Button type="primary" @click="toSubmit">提交</Button>
@@ -45,20 +45,23 @@ export default {
                 fanNewsUploadFileList: [],
             },
             fileName: '',
-            filePath:'',
+            filePath: '',
             columns: [
                 {
                     title: 'ID',
                     key: 'id'
                 }, {
-                    title: '标题',
+                    title: '堂',
                     key: 'title'
                 }, {
-                    title: '浏览数',
-                    key: 'visitNum'
+                    title: '始迁祖',
+                    key: 'rootPerson'
                 }, {
-                    title: '日期',
-                    key: 'datetime',
+                    title: '负责人',
+                    key: 'leader',
+                }, {
+                    title: '负责人电话',
+                    key: 'leaderPhone',
                 }, {
                     title: '操作',
                     key: 'action',
@@ -112,11 +115,12 @@ export default {
     methods: {
         getList(e) {
             this.api.get(this.url, {
+                siteId: this.$store.state.siteId,
                 pageNo: this.page
             }).then(res => {
                 let list = res.data.records;
                 list.forEach(v => {
-                    v.title = v.status == 2 ? v.newsTitle + '[草稿]' : v.newsTitle
+                    v.title = v.status == 2 ? v.rootGroup + '[草稿]' : v.rootGroup
                     v.datetime = this.dayjs(v.updateTime).format('YYYY-MM-DD HH:mm:ss')
                 })
                 this.list = list;
@@ -134,7 +138,7 @@ export default {
                 this.formData = {}
                 this.isedit = true;
             } else {
-                this.api.get(this.api.admin + this.api.urls.culture_news_info, {
+                this.api.get(this.api.admin + this.api.urls.admin_summarys_info, {
                     id: e
                 }).then(res => {
                     this.formData = res.data;
@@ -147,7 +151,7 @@ export default {
                 title: '提示',
                 content: '确定删除这个文章？',
                 onOk: () => {
-                    this.api.get(this.api.admin + this.api.urls.culture_news_del, {
+                    this.api.get(this.api.admin + this.api.urls.admin_summarys_del, {
                         id: this.list[index].id
                     }).then(res => {
                         this.list.splice(index, 1);
@@ -158,24 +162,26 @@ export default {
         },
         handleSuccess(res, file) {
             if (res.code == 200) {
-                console.log(res)
                 this.fileName = res.data.file_name
                 this.filePath = res.data.file_path
             }
         },
         toSubmit() {
             let data = {
-                showId: this.type,
-                newsTitle: this.formData.newsTitle,
-                newsText: this.formData.newsText,
-                visitNum: this.formData.visitNum ? this.formData.visitNum : 0,
+                siteId: this.$store.state.siteId,
+                rootGroup: this.formData.rootGroup,
+                rootPerson: this.formData.rootPerson,
+                leader: this.formData.leader,
+                leaderPhone: this.formData.leaderPhone,
+                worshipNum: this.formData.worshipNum ? this.formData.worshipNum : 0,
+                praiseNum: this.formData.praiseNum ? this.formData.praiseNum : 0,
                 fileName: this.fileName,
                 filePath: this.filePath,
             }
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin + this.api.urls.culture_news_edit, data).then(res => {
+            this.api.post(this.api.admin + this.api.urls.admin_summarys_edit, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');
@@ -189,16 +195,20 @@ export default {
         },
         toDrft() {
             let data = {
-                showId: this.type,
-                newsTitle: this.formData.newsTitle,
-                newsText: this.formData.newsText,
-                visitNum: this.formData.visitNum ? this.formData.visitNum : 0,
+                siteId: this.$store.state.siteId,
+                rootGroup: this.formData.rootGroup,
+                rootPerson: this.formData.rootPerson,
+                leader: this.formData.leader,
+                leaderPhone: this.formData.leaderPhone,
+                worshipNum: this.formData.worshipNum ? this.formData.worshipNum : 0,
+                praiseNum: this.formData.praiseNum ? this.formData.praiseNum : 0,
                 fileName: this.fileName,
+                filePath: this.filePath,
             }
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin + this.api.urls.culture_news_drft, data).then(res => {
+            this.api.post(this.api.admin + this.api.urls.admin_summarys_drft, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');
@@ -209,7 +219,7 @@ export default {
                     this.isedit = false;
                 }
             })
-        },
+        }
     },
     props: ['url', 'menu', 'type']
 }

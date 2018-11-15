@@ -34,26 +34,46 @@ const api = {
 
         admin_site_info: 'genogram/admin/fanIndex/getFanIndexInfo', //网站信息--后台
         admin_site_edit: 'genogram/admin/fanIndex/insertOrUpdateFanIndexInfo', //网站信息--修改
+        admin_site_withdraw: 'genogram/admin/fanNewsCharity/insertFanIndexFundDrowing', //线上提现
+        admin_site_withdraw_list: '', //提现记录
+        admin_site_outline: 'genogram/admin/fanNewsCharity/insertFanNewsCharityPayIn', //线下捐款
+
+        admin_slider_list: 'genogram/admin/fanIndex/getFanIndexSlidePicList', //轮播图
+        admin_slider_edit: 'genogram/admin/fanIndex/insertOrUpdateFanIndexSlidePic', //轮播图修改
+        admin_slider_del: 'genogram/admin/fanIndex/deleteFanIndexSlidePic', //轮播图删除
+
+        admin_summarys_list: 'genogram/admin/fanIndex/getFanIndexFamilySummarysPage', //联谊会列表
+        admin_summarys_info: 'genogram/admin/fanIndex/getFanIndexFamilySummarys', //联谊会详情
+        admin_summarys_edit: 'genogram/admin/fanIndex/insertOrUpdateFanIndexFamilySummarys', //联谊会新增修改
+        admin_summarys_drft: 'genogram/admin/fanIndex/insertOrUpdateFanIndexFamilySummarysDrft', //联谊会草稿
+        admin_summarys_del: 'genogram/admin/fanIndex/deleteFanIndexFamilySummarys', //联谊会删除
 
         culture_list: 'genogram/admin/fanMenu/getTitlesByMenuId', //家族文化导航
         culture_zipai_info: 'genogram/admin/fanNewsCulture/getZiPaiDetail', //字派详情
-        culture_zipai_add: 'genogram/admin/fanNewsCulture/addOrUpdateZiPai', //字派添加
+        culture_zipai_edit: 'genogram/admin/fanNewsCulture/addOrUpdateZiPai', //字派添加
         culture_zipai_del: 'genogram/admin/fanNewsCulture/deleteZipaiById', //字派删除
 
         culture_news_info: 'genogram/admin/fanNewsCulture/getFamilyCultureDetail', //家族文化详情
-        culture_news_add: 'genogram/admin/fanNewsCulture/addOrUpdateCulture', //家族文化添加
+        culture_news_edit: 'genogram/admin/fanNewsCulture/addOrUpdateCulture', //家族文化添加
         culture_news_drft: 'genogram/admin/fanNewsCulture/addOrUpdateCultureDrft', //家族文化草稿
         culture_news_del: 'genogram/admin/fanNewsCulture/deleteCulturById', //家族文化删除
 
         charity_list_info: 'genogram/admin/fanNewsCharity/getFanNewsCharityDetail', //财务收支详情
-        charity_list_add: 'genogram/admin/fanNewsCharity/insertOrUpdateFanNewsCharityOut', //财务收支增加
+        charity_list_edit: 'genogram/admin/fanNewsCharity/insertOrUpdateFanNewsCharityOut', //财务收支增加
         charity_list_drft: 'genogram/admin/fanNewsCharity/insertOrUpdateFanNewsCharityOutDrft', //财务收支草稿
         charity_list_del: 'genogram/admin/fanNewsCharity/deleteFanNewsCharityOut', //财务收支删除
 
         industry_info: 'genogram/admin/fanNewsIndustry/getFamilyIndustryDetail', //家族产业详情
-        industry_add: 'genogram/admin/fanNewsIndustry/addOrUpdateIndustry', //家族产业添加
+        industry_edit: 'genogram/admin/fanNewsIndustry/addOrUpdateIndustry', //家族产业添加
         industry_drft: 'genogram/admin/fanNewsIndustry/addOrUpdateIndustryDrft', //家族产业草稿
         industry_del: 'genogram/admin/fanNewsIndustry/deleteIndustryById', //家族产业删除
+
+        admin_famous_list: 'genogram/admin/fanNewsFamous/getFamilyPersionPage', //家族名人列表
+        admin_famous_info: 'genogram/admin/fanNewsFamous/getFamilyPersionDetail', //家族名人详情
+        admin_famous_edit: 'genogram/admin/fanNewsFamous/addOrUpdatePersion', //家族名人修改
+        admin_famous_drft: 'genogram/admin/fanNewsFamous/addOrUpdateIndustryDrft', //家族名人草稿
+        admin_famous_del: 'genogram/admin/fanNewsFamous/deletePersionById', //家族名人删除
+
     },
     post: function (url, data) {
         if (!data.pageNow) {

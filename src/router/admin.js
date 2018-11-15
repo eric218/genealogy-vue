@@ -27,9 +27,25 @@ export default [{
             name: 'setting',
             meta: {
                 icon: 'md-settings',
-                title: '基本设置'
+                title: '网站设置'
             },
             component: () => import('@/page-admin/setting/setting')
+        }, {
+            path: 'summarys',
+            name: 'summarys',
+            meta: {
+                icon: 'ios-analytics',
+                title: '联谊会设置'
+            },
+            component: () => import('@/page-admin/setting/summarys')
+        }, {
+            path: 'withdraw',
+            name: 'withdraw',
+            meta: {
+                icon: 'ios-clock-outline',
+                title: '提现'
+            },
+            component: () => import('@/page-admin/setting/withdraw')
         }, {
             path: 'feeds',
             name: 'feeds',
@@ -42,7 +58,7 @@ export default [{
             path: 'list',
             name: 'list',
             meta: {
-                icon: 'md-text',
+                icon: 'ios-ionic',
                 title: '内容审核'
             },
             component: () => import('@/page-admin/setting/list')
@@ -82,6 +98,14 @@ export default [{
                 title: '数据中心'
             },
             component: () => import('@/page-admin/podium/podium')
+        }, {
+            path: 'outline',
+            name: 'outline',
+            meta: {
+                icon: 'ios-infinite',
+                title: '线下捐款'
+            },
+            component: () => import('@/page-admin/podium/outline')
         }]
     },
     {

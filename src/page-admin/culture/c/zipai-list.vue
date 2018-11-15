@@ -224,7 +224,7 @@ export default {
                 return jinshi + '|' + lidai + '|' + v
             })
             data.zipaiTxt = list.join(';')
-            this.api.post(this.api.admin + this.api.urls.culture_zipai_add, data).then(res => {
+            this.api.post(this.api.admin + this.api.urls.culture_zipai_edit, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');

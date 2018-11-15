@@ -5,15 +5,15 @@
                 <TabPane :label="v.menuName" :name="i+''" v-for="(v,i) in menu" :key="i"></TabPane>
             </Tabs>
         </div>
-        <Newslist :url="url" v-if="url.length" :menu="menucurr.menuType" :type='menucurr.showId'/>
+        <Famouslist :url="url" v-if="url.length" :menu="menucurr.menuType" :type='menucurr.showId'/>
     </div>
 </template>
 
 <script>
-import Newslist from './c/news-list'
+import Famouslist from './c/famous-list' 
 export default {
     components: {
-        Newslist
+        Famouslist
     },
     data() {
         return {
