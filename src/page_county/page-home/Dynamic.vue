@@ -38,18 +38,16 @@
                     <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.id == menucurr.id ? 'curr':''" v-html="v.name" @click="chgMenu(v)"></span>
                 </div>
                 <div class="card">
-                    <div class="items" v-if="menucurr.id == 1 && index_family_record1">
-                        <router-link to="/c/Detail" class="item" v-for="v in index_family_record1.records" :key="v.id">
-                            <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
+                    <div class="items" v-if="menucurr.id == 1 && index_family_record2">
+                        <router-link :to="'/c/detail?id='+v.id" class="item" v-for="v in index_family_record2.records" :key="v.id">
                             <div class="obj">
                                 <div class="tit" v-html="v.newsTitle"></div>
                                 <div class="intro" v-html="v.newsText"></div>
-                                <div class="more">查看详情>></div>
                             </div>
                         </router-link>
                     </div>
-                    <div class="items" v-if="menucurr.id == 2 && index_family_record2">
-                        <router-link to="/c/Detail" class="item" v-for="v in index_family_record2.records" :key="v.id">
+                    <div class="items" v-if="menucurr.id == 2 && index_family_record1">
+                        <router-link :to="'/c/detail?id='+v.id" class="item" v-for="v in index_family_record1.records" :key="v.id">
                             <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
                             <div class="obj">
                                 <div class="tit" v-html="v.newsTitle"></div>
@@ -89,10 +87,10 @@ export default {
         getMenu() {
             this.menu = [{
                 id: 1,
-                name: '家族动态',
+                name: '县级公告',
             }, {
                 id: 2,
-                name: '县级公告',
+                name: '家族动态',
             }]
             this.menucurr = this.menu[0]
         },

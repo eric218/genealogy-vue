@@ -65,7 +65,7 @@
                     </div>
                     <div class="f">
                         <div class="item" v-for="v in index_architecture_pay_in_person_1" :key="v.id"></div>
-                        <router-link class="item more" to="/Charity">···</router-link>
+                        <router-link class="item more" to="/c/charity_home">···</router-link>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" v-for="(v,i) in zipai_list" :key="i">
                                 <div class="tit">张氏本支字派：</div>
-                                <router-link to="/c/Culture" class="more">更多>></router-link>
+                                <router-link to="/c/culture_home" class="more">更多>></router-link>
                                 <div class="list">
                                     <div class="item" v-for="(itm,idx) in v" :key="idx">
                                         <div class="red sub">{{itm[0]}}</div>

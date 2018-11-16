@@ -8,26 +8,26 @@
             <div class="cards">
                 <div class="left">
                     <div class="grid one">
-                        <router-link class="h" to="/Charity">
+                        <router-link class="h" to="/c/charity_home">
                             <span class="more">更多</span>
                             <span>支出公开栏</span>
                         </router-link>
                         <div class="b" v-if="leftPayout">
-                            <router-link to="/c/Detail" class="item" v-for="v in leftPayout.records" :key="v.id">
-                                <div class="date">{{v.createTime}}</div>
+                            <router-link :to="'/c/detail?id='+v.id" class="item" v-for="v in leftPayout.records" :key="v.id">
+                                <div class="date">{{dayjs(v.createTime).format('YYYY-MM-DD HH:mm:ss')}}</div>
                                 <div class="tag">【慈善纪要】</div>
                                 <div class="tit">{{v.newsTitle}}</div>
                             </router-link>
                         </div>
                     </div>
                     <div class="grid two">
-                        <router-link class="h" to="/Charity">
+                        <router-link class="h" to="/c/charity_home">
                             <span class="more">更多</span>
                             <span>收益公开栏</span>
                         </router-link>
                         <div class="b" v-if="leftPayin">
-                            <router-link to="/c/Detail" class="item" v-for="v in leftPayin.records" :key="v.id">
-                                <div class="date">{{v.createTime}}</div>
+                            <router-link :to="'/c/detail?id='+v.id" class="item" v-for="v in leftPayin.records" :key="v.id">
+                                <div class="date">{{dayjs(v.createTime).format('YYYY-MM-DD HH:mm:ss')}}</div>
                                 <div class="tag">【慈善纪要】</div>
                                 <div class="tit">{{v.newsTitle}}</div>
                             </router-link>

@@ -8,12 +8,14 @@
             <Row class="items" :gutter="32" v-if="index_family_culture">
                 <i-col :span="12" v-for="v in index_family_culture.records" :key="v.id">
                     <Card class="item">
-                        <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
-                        <div class="obj">
-                            <div class="tit">{{v.newsTitle}}</div>
-                            <div class="intro">{{v.newsText}}</div>
-                            <div class="more">查看详情>></div>
-                        </div>
+                        <router-link :to="'/c/detail?id='+v.id">
+                            <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
+                            <div class="obj">
+                                <div class="tit">{{v.newsTitle}}</div>
+                                <div class="intro">{{v.newsText}}</div>
+                                <div class="more">查看详情>></div>
+                            </div>
+                        </router-link>
                     </Card>
                 </i-col>
             </Row>
@@ -43,33 +45,16 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
-
-.pages {
-  padding: 16px;
-  overflow: hidden;
-  clear: both;
-  text-align: center;
-
-  .item {
-    background: url(../../assets/img/pages-bg.png) no-repeat center / 100% 100%;
-    display: inline-block;
-    margin: 4px;
-    line-height: 40px;
-    text-align: center;
-    width: 40px;
-    &.curr,
-    &:hover {
-      background-image: url(../../assets/img/pages-curr.png);
-      color: $color;
-    }
-  }
-}
 .news {
   .items {
     .item {
       background: #ece9e9;
-      margin: 8px 0;
+      display: block;
       white-space: nowrap;
+      margin-bottom: 16px;
+      a{
+          display: block;
+      }
       .img {
         width: 96px;
         height: 96px;

@@ -6,7 +6,7 @@
                 <div class="date">2018年8月15日</div>
             </div>
             <div class="b">
-                <router-link to="/c/Detail" class="item" v-for="v in 6" :key="v">
+                <div class="item" v-for="v in 6" :key="v">
                     <div class="hd">
                         <div class="img"></div>
                         <div class="obj">标题</div>
@@ -15,7 +15,7 @@
                         <div class="intro">描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述 </div>
                         <div class="more">详细>></div>
                     </div>
-                </router-link>
+                </div>
             </div>
         </div>
     </div>
@@ -25,7 +25,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '@/assets/css/var.scss';
+@import "@/assets/css/var.scss";
 .newnews {
   .inner {
     overflow: hidden;
@@ -34,14 +34,15 @@ export default {
   .h {
     position: relative;
     text-align: center;
-    background: url(../../assets/img/icon-title-tip.png) no-repeat bottom center / auto
-      24px;
+    background: url(../../assets/img/icon-title-tip.png) no-repeat bottom center /
+      auto 24px;
     padding: 24px 0;
 
     .tit {
       display: block;
       height: 32px;
-      background: url(../../assets/img/home_newnews.png) no-repeat center / auto 24px;
+      background: url(../../assets/img/home_newnews.png) no-repeat center / auto
+        24px;
     }
 
     .date {
