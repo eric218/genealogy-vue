@@ -9,7 +9,7 @@
                     <Input v-model="formData.newsTitle" placeholder="标题" />
                 </FormItem>
                 <FormItem label="正文">
-                    <Input type="textarea" v-model="formData.newsText" placeholder="正文" />
+                    <editor ref="editor" @on-change="handleChange" />
                 </FormItem>
                 <FormItem label="浏览数" v-if="formData.id">
                     <Input v-model="formData.visitNum" placeholder="浏览数" />
@@ -24,7 +24,11 @@
 </template>
 
 <script>
+import Editor from '_c/editor'
 export default {
+    components: {
+        Editor
+    },
     data() {
         return {
             isedit: false,
@@ -118,16 +122,28 @@ export default {
             this.page = e;
             this.getList();
         },
+        handleChange(html, text) {
+            this.formData.newsText = html
+        },
         toEdit(e) {
+            this.$refs.editor.setHtml('')
             if (!e) {
-                this.formData = {}
+                this.formData = {
+                    id: '',
+                    fanNewsUploadFileList: [],
+                }
                 this.isedit = true;
             } else {
                 this.api.get(this.api.admin + this.api.urls.record_info, {
                     id: e
                 }).then(res => {
-                    this.formData = res.data;
-                    this.isedit = true;
+                    if (res.code == 200) {
+                        this.formData = res.data;
+                        this.$refs.editor.setHtml(this.formData.newsText)
+                        this.isedit = true;
+                    } else {
+                        this.$Message.error('发生错误')
+                    }
                 })
             }
         },

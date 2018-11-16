@@ -17,7 +17,7 @@
                     </Upload>
                 </FormItem>
                 <FormItem label="人物简介">
-                    <Input type="textarea" v-model="formData.personSummary" placeholder="人物简介" />
+                    <editor ref="editor" @on-change="handleChange" />
                 </FormItem>
                 <FormItem label="浏览数" v-if="formData.id">
                     <Input v-model="formData.visitNum" placeholder="浏览数" />
@@ -32,7 +32,11 @@
 </template>
 
 <script>
+import Editor from '_c/editor'
 export default {
+    components: {
+        Editor
+    },
     data() {
         return {
             isedit: false,
@@ -130,9 +134,13 @@ export default {
             this.page = e;
             this.getList();
         },
+        handleChange(html, text) {
+            this.formData.personSummary = html
+        },
         toEdit(e) {
             this.fileName = '';
             this.filePath = '';
+            this.$refs.editor.setHtml('')
             if (!e) {
                 this.formData = {
                     personName: '',
@@ -145,8 +153,13 @@ export default {
                 this.api.get(this.api.admin + this.api.urls.admin_famous_info, {
                     id: e
                 }).then(res => {
-                    this.formData = res.data;
-                    this.isedit = true;
+                    if (res.code == 200) {
+                        this.formData = res.data;
+                        this.$refs.editor.setHtml(this.formData.personSummary)
+                        this.isedit = true;
+                    } else {
+                        this.$Message.error('发生错误')
+                    }
                 })
             }
         },

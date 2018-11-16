@@ -20,7 +20,6 @@
         <FootBar />
     </div>
 </template>
-
 <script>
 import { Topbar, NavBar, FootBar } from './c'
 import Culture from '@/components/list/culture.vue';

@@ -16,11 +16,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="tit">{{v.title}}</div>
             </i-col>
         </Row>
         <Page :total="total" @on-change="chgPage" :page-size="8" v-if="list.length" />
-        <Modal title="查看视频" v-model="visible">
-            {{curr}}
+        <Modal title="查看视频" v-model="visible" style="text-align:center;">
+            <video width="320" height="240" controls v-if="curr">
+                <source :src="api.imgurl(curr)" type="video/mp4">
+            </video>
         </Modal>
         <Drawer :title="formData.id ? '修改':'添加'" width="50%" :closable="false" v-model="isedit">
             <Form :model="formData" :label-width="80">
@@ -148,25 +151,30 @@ export default {
             this.$Message.warning('最大支持上传2M图片');
         },
         toSubmit() {
-            if (!picfileName) {
-                this.$Message.warning('未上传图片');
-                return;
-            }
-            if (!vedioFileName) {
-                this.$Message.warning('未上传视频');
-                return;
-            }
             let data = {
                 showId: this.type,
                 title: this.formData.title,
-                picfileName: this.picfileName,
-                picPath: this.picPath,
-                vedioFileName: this.vedioFileName,
-                vedioPath: this.vedioPath,
                 visitNum: this.formData.visitNum ? this.formData.visitNum : 0,
             }
             if (this.formData.id) {
                 data.id = this.formData.id
+            } else {
+                if (!this.picfileName) {
+                    this.$Message.warning('未上传图片');
+                    return;
+                }
+                if (!this.vedioFileName) {
+                    this.$Message.warning('未上传视频');
+                    return;
+                }
+            }
+            if (this.picfileName) {
+                data.picfileName = this.picfileName
+                data.picPath = this.picPath
+            }
+            if (this.vedioFileName) {
+                data.vedioFileName = this.vedioFileName
+                data.vedioPath = this.vedioPath
             }
             this.api.post(this.api.admin + this.api.urls.media_edit, data).then(res => {
                 if (res.code === 200) {
@@ -191,6 +199,14 @@ export default {
     visibility: hidden;
     width: 100%;
   }
+}
+.tit {
+  font-size: 14px;
+  line-height: 32px;
+  height: 32px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 .in {
   position: absolute;
