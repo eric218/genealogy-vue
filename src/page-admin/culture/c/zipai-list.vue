@@ -19,7 +19,7 @@
                 </FormItem>
                 <FormItem label="字派列表">
                     <Tag checkable type="dot" v-for="(v,i) in formData.list" :key="i" :name="i" closable @on-close="handleClose">{{v}}</Tag>
-                    <Poptip placement="top" width="300" title="添加字派名">
+                    <Poptip width="300" title="添加字派名">
                         <Button icon="ios-add" type="dashed">添加</Button>
                         <div class="api" slot="content">
                             <Row>
@@ -204,8 +204,8 @@ export default {
             this.zipai_txt = ''
         },
         toSubmit() {
-            if (!this.formData.list) {
-                this.$Message.error('未录入字派');
+            if (!this.formData.jinshi || !this.formData.lidai) {
+                this.$Message.error('未录入近世历代');
                 return;
             }
             let data = {
@@ -223,6 +223,10 @@ export default {
                 let lidai = i + parseInt(this.formData.lidai)
                 return jinshi + '|' + lidai + '|' + v
             })
+            if (!list.length) {
+                this.$Message.error('未录入字派');
+                return;
+            }
             data.zipaiTxt = list.join(';')
             this.api.post(this.api.admin + this.api.urls.culture_zipai_edit, data).then(res => {
                 if (res.code === 200) {

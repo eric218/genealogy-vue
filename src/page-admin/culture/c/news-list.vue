@@ -18,7 +18,7 @@
                     </Upload>
                 </FormItem>
                 <FormItem label="正文">
-                    <editor ref="Editor" :value="formData.newsText" @on-change="handleChange" />
+                    <editor ref="editor" @on-change="handleChange" />
                 </FormItem>
                 <FormItem label="浏览数" v-if="formData.id">
                     <Input v-model="formData.visitNum" placeholder="浏览数" />
@@ -46,6 +46,8 @@ export default {
             page: 1,
             formData: {
                 id: '',
+                newsTitle: '',
+                newsText: '',
                 fanNewsUploadFileList: [],
             },
             fileName: '',
@@ -132,20 +134,31 @@ export default {
             this.getList();
         },
         handleChange(html, text) {
-            console.log(html, text)
+            this.formData.newsText = html
         },
         toEdit(e) {
-            this.fileName = '';
-            this.filePath = '';
+            this.fileName = ''
+            this.filePath = ''
+            this.$refs.editor.setHtml('')
             if (!e) {
-                this.formData = {}
+                this.formData = {
+                    id: '',
+                    newsTitle: '',
+                    newsText: '',
+                    fanNewsUploadFileList: [],
+                }
                 this.isedit = true;
             } else {
                 this.api.get(this.api.admin + this.api.urls.culture_news_info, {
                     id: e
                 }).then(res => {
-                    this.formData = res.data;
-                    this.isedit = true;
+                    if (res.code == 200) {
+                        this.formData = res.data;
+                        this.$refs.editor.setHtml(this.formData.newsText)
+                        this.isedit = true;
+                    } else {
+                        this.$Message.error('发生错误')
+                    }
                 })
             }
         },
@@ -171,6 +184,14 @@ export default {
             }
         },
         toSubmit() {
+            if (!this.formData.newsTitle) {
+                this.$Message.error('未输入标题');
+                return;
+            }
+            if (!this.formData.newsText) {
+                this.$Message.error('未输入正文');
+                return;
+            }
             let data = {
                 showId: this.type,
                 newsTitle: this.formData.newsTitle,
@@ -195,6 +216,10 @@ export default {
             })
         },
         toDrft() {
+            if (!this.formData.newsTitle) {
+                this.$Message.error('未输入标题');
+                return;
+            }
             let data = {
                 showId: this.type,
                 newsTitle: this.formData.newsTitle,

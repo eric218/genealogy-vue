@@ -20,8 +20,9 @@
                 <FormItem label="正文">
                     <Input type="textarea" v-model="formData.newsText" placeholder="正文" />
                 </FormItem>
-                <FormItem label="浏览数" v-if="formData.id">
-                    <Input v-model="formData.visitNum" placeholder="浏览数" />
+                <FormItem label="金额">
+                    <Input v-model="formData.visitNum" :disabled="formData.visitNum != 0" placeholder="金额" v-if="formData.id" />
+                    <Input v-model="formData.visitNum" placeholder="金额" v-else />
                 </FormItem>
                 <FormItem label="">
                     <Button type="primary" @click="toSubmit">提交</Button>
@@ -45,7 +46,7 @@ export default {
                 fanNewsUploadFileList: [],
             },
             fileName: '',
-            filePath:'',
+            filePath: '',
             columns: [
                 {
                     title: 'ID',
@@ -54,7 +55,7 @@ export default {
                     title: '标题',
                     key: 'title'
                 }, {
-                    title: '浏览数',
+                    title: '金额',
                     key: 'visitNum'
                 }, {
                     title: '日期',
@@ -131,7 +132,10 @@ export default {
             this.fileName = '';
             this.filePath = '';
             if (!e) {
-                this.formData = {}
+                this.formData = {
+                    id: '',
+                    fanNewsUploadFileList: [],
+                }
                 this.isedit = true;
             } else {
                 this.api.get(this.api.admin + this.api.urls.charity_list_info, {

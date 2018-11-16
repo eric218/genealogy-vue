@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Tree :data="data5" :render="renderContent"></Tree>
+        <Tree :data="data" :render="renderContent"></Tree>
     </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
     data() {
         return {
-            data5: [
+            data: [
                 {
                     title: '家族文化',
                     expand: true,
