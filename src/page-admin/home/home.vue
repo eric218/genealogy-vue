@@ -108,7 +108,7 @@
 </template>
 <script>
 import { ChartPie, ChartBar, ChartTotal } from '_c/charts'
-import ModelDeposit from './coms/deposit'
+import ModelDeposit from './c/deposit'
 export default {
     components: {
         ChartPie,

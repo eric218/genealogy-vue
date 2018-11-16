@@ -14,7 +14,7 @@ import {
 import beforeClose from '@/router/before-close'
 import router from '@/router'
 import routersAdmin from '@/router/admin'
-import config from '@/config'
+import config from '@/libs/config'
 const {
     homeName
 } = config

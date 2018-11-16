@@ -8,9 +8,7 @@ class HttpRequest {
     getInsideConfig() {
         const config = {
             baseURL: this.baseUrl,
-            headers: {
-                //
-            }
+            headers: {}
         }
         return config
     }

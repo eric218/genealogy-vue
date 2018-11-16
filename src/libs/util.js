@@ -1,6 +1,4 @@
 import Cookies from 'js-cookie'
-// cookie保存的天数
-import config from '@/config'
 import {
     forEach,
     hasOneOf,
@@ -8,10 +6,9 @@ import {
 } from '@/libs/tools'
 
 export const TOKEN_KEY = 'token'
-
 export const setToken = (token) => {
     Cookies.set(TOKEN_KEY, token, {
-        expires: config.cookieExpires || 1
+        expires: 1
     })
 }
 

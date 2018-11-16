@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import router from './router/';
 import store from './store/';
-import Api from './utils/api.js';
 import App from './App.vue';
 import iView from 'iview';
-import config from '@/config'
+import Api from './libs/api.js';
+import config from './libs/config'
 import '@/assets/theme/iview.less'
 import '@/assets/icon/iconfont.css';
 import dayjs from 'dayjs'
