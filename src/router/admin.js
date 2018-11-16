@@ -35,7 +35,7 @@ export default [{
             name: 'summarys',
             meta: {
                 icon: 'ios-analytics',
-                title: '联谊会设置'
+                title: '联谊会概况设置'
             },
             component: () => import('@/page-admin/setting/summarys')
         }, {

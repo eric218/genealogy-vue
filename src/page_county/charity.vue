@@ -63,7 +63,7 @@
 <script>
 import { Topbar, NavBar, FootBar } from './c'
 import NewsList from '@/components/list/news.vue';
-import topay from '@/components/post/topay.vue'
+import topay from './c/topay.vue'
 export default {
     name: "Charity",
     components: {

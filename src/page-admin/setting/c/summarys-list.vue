@@ -167,6 +167,10 @@ export default {
             }
         },
         toSubmit() {
+            if (!this.api.isMobile(this.formData.leaderPhone)) {
+                this.$Message.error('请输入正确的手机号');
+                return;
+            }
             let data = {
                 siteId: this.$store.state.siteId,
                 rootGroup: this.formData.rootGroup,

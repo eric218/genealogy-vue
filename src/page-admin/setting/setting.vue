@@ -2,7 +2,14 @@
     <div>
         <Form :model="formData" :label-width="80">
             <FormItem label="网站名">
-                <Input v-model="formData.siteName" placeholder="标题" />
+                <Row :gutter="16">
+                    <i-col :span="12">
+                        <Input v-model="formData.siteName" placeholder="标题" :maxlength="6" />
+                    </i-col>
+                    <i-col :span="6">
+                        {{formData.siteName.length}} / 6
+                    </i-col>
+                </Row>
             </FormItem>
             <FormItem label="徽标">
                 <Upload class="upload" :action="api.admin + api.urls.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
@@ -16,7 +23,8 @@
                 <Input v-model="formData.title" placeholder="宣言" />
             </FormItem>
             <FormItem label="祖先描述">
-                <Input v-model="formData.description" placeholder="祖先描述" />
+                <Input type="textarea" :rows="6" v-model="formData.description" placeholder="祖先描述" style="font-size:12px;" :maxlength="300" />
+                {{formData.description.length}} / 300
             </FormItem>
             <FormItem label="">
                 <Button type="primary" @click="toSubmit">保存</Button>
@@ -32,6 +40,8 @@ export default {
     data() {
         return {
             formData: {
+                siteName: '',
+                description: '',
                 totemPicSrc: '',
             },
         }
@@ -58,6 +68,7 @@ export default {
             }
             this.api.post(this.api.admin + this.api.urls.admin_site_edit, {
                 id: this.formData.id,
+                siteName: this.formData.siteName,
                 totemPicSrc: this.formData.totemPicSrc,
                 title: this.formData.title,
                 description: this.formData.description

@@ -70,7 +70,7 @@
     </div>
 </template>
 <script>
-import xiugaiziliao from '@/components/post/xiugaiziliao.vue'
+import xiugaiziliao from './xiugaiziliao.vue'
 export default {
     components: {
         xiugaiziliao,

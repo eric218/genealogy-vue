@@ -101,7 +101,7 @@
 </template>
 <script>
 import Swiper from 'swiper';
-import topay from '@/components/post/topay.vue'
+import topay from '../c/topay.vue'
 export default {
     name: "TopInfo",
     components: {

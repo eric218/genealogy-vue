@@ -69,7 +69,7 @@
     </div>
 </template>
 <script>
-import topay from '@/components/post/topay.vue'
+import topay from '../c/topay.vue'
 export default {
     components: {
         topay,

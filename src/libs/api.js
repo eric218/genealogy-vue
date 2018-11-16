@@ -182,8 +182,8 @@ const api = {
             return null;
         }
     },
-    checkPhone: function (phone) {
-        if (!(/^1[345789]\d{9}$/.test(phone))) {
+    isMobile: function (phone) {
+        if (!(/^1[3456789]\d{9}$/.test(phone))) {
             return false;
         } else {
             return true;
