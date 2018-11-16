@@ -25,7 +25,7 @@
                 <source :src="api.imgurl(curr)" type="video/mp4">
             </video>
         </Modal>
-        <Drawer :title="formData.id ? '修改':'添加'" width="50%" :closable="false" v-model="isedit">
+        <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%"  v-model="isedit">
             <Form :model="formData" :label-width="80">
                 <FormItem label="标题">
                     <Input v-model="formData.title" placeholder="标题" />

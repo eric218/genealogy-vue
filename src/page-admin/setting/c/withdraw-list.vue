@@ -3,7 +3,7 @@
         <Button type="primary" @click="toEdit()">申请提现</Button>
         <Table border :columns="columns" :data="list" style="margin:16px 0;"></Table>
         <Page :total="total" @on-change="chgPage" :page-size="8" />
-        <Drawer title="申请提现" width="50%" :closable="false" v-model="isedit">
+        <Drawer :mask-closable="false" title="申请提现" width="50%" v-model="isedit">
             <Form :model="formData" :label-width="80">
                 <FormItem label="资金概况">¥ 0.00</FormItem>
                 <FormItem label="提现金额">
@@ -37,6 +37,9 @@ export default {
             list: [],
             total: 0,
             page: 1,
+            finance: {
+                remain: ''
+            },
             formData: {},
             columns: [
                 {
@@ -86,6 +89,7 @@ export default {
                 siteId: this.$store.state.siteId,
                 pageNo: this.page
             }).then(res => {
+                this.getFinance();
                 if (res.code == 200) {
                     let list = res.data.records;
                     list.forEach(v => {
@@ -96,6 +100,13 @@ export default {
                 } else {
                     this.list = [];
                 }
+            })
+        },
+        getFinance() {
+            this.api.get(this.api.admin + this.api.urls.admin_site_finance, {
+                siteId: this.$store.state.siteId
+            }).then(res => {
+                this.finance = res.data
             })
         },
         chgPage(e) {

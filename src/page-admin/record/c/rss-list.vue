@@ -3,7 +3,7 @@
         <Button type="primary" @click="toEdit(0)">添加</Button>
         <Table border :columns="columns" :data="list" style="margin:16px 0;"></Table>
         <Page :total="total" @on-change="chgPage" :page-size="8" />
-        <Drawer :title="formData.id ? '修改':'添加'" width="50%" :closable="false" v-model="isedit">
+        <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%"  v-model="isedit">
             <Form :model="formData" :label-width="80">
                 <FormItem label="标题">
                     <Input v-model="formData.newsTitle" placeholder="标题" />

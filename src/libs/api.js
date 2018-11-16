@@ -37,6 +37,7 @@ const api = {
         admin_site_withdraw: 'genogram/admin/fanNewsCharity/insertFanIndexFundDrowing', //线上提现
         admin_site_withdraw_list: 'genogram/admin/fanNewsCharity/getFanIndexFundDrowing', //提现记录
         admin_site_outline: 'genogram/admin/fanNewsCharity/insertFanNewsCharityPayIn', //线下捐款
+        admin_site_finance: 'genogram/admin/fanNewsCharity/getFanIndexFund', //当前资金
 
         admin_slider_list: 'genogram/admin/fanIndex/getFanIndexSlidePicList', //轮播图
         admin_slider_edit: 'genogram/admin/fanIndex/insertOrUpdateFanIndexSlidePic', //轮播图修改
