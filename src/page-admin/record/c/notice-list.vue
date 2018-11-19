@@ -104,7 +104,7 @@ export default {
     },
     methods: {
         getList(e) {
-            this.api.get(this.url, {
+            this.api.get(this.api.admin.base + this.url, {
                 pageNo: this.page
             }).then(res => {
                 if (res.code == 200) {
@@ -134,7 +134,7 @@ export default {
                 }
                 this.isedit = true;
             } else {
-                this.api.get(this.api.admin + this.api.urls.record_info, {
+                this.api.get(this.api.admin.base + this.api.urls.record_info, {
                     id: e
                 }).then(res => {
                     if (res.code == 200) {
@@ -152,7 +152,7 @@ export default {
                 title: '提示',
                 content: '确定删除这个文章？',
                 onOk: () => {
-                    this.api.get(this.api.admin + this.api.urls.record_del, {
+                    this.api.get(this.api.admin.base + this.api.urls.record_del, {
                         id: this.list[index].id
                     }).then(res => {
                         this.list.splice(index, 1);
@@ -179,7 +179,7 @@ export default {
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin + this.api.urls.record_edit, data).then(res => {
+            this.api.post(this.api.admin.base + this.api.urls.record_edit, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');
@@ -203,7 +203,7 @@ export default {
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin + this.api.urls.record_drft, data).then(res => {
+            this.api.post(this.api.admin.base + this.api.urls.record_drft, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');

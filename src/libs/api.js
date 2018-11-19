@@ -4,7 +4,14 @@ const api = {
     pageSize: 20,
     imghost: 'http://192.168.2.132:8090/',
     server: 'http://192.168.2.179:8090/',
-    admin: 'http://192.168.2.179:8050/',
+    admin: {
+        base: 'http://192.168.2.179:8050/',
+    },
+    county: {
+        base: 'http://192.168.2.179:8090/',
+        common_home_all: 'genogram/fanMenu/getIndexMenuBySiteId', //首页api
+        common_site_menu: 'genogram/fanMenu/getTitlesByMenuId', //导航栏
+    },
     urls: {
         upload_img: 'fan/uploadFastdfs', //图片上传
 
@@ -14,22 +21,6 @@ const api = {
         PAY_ALI: "pay/aliPay", //支付宝支付//token、支付金额
         PAY_WX: "pay/wechatPay", //微信支付//token、支付金额
         SYS_SITE: '', //网站信息//网站ID、地区、姓氏
-        SYS_NAV: 'genogram/fanMenu/getMenuBySiteId', //网站导航栏//网站ID
-        //家族文化列表
-        //字派列表
-        //财政收入、支出
-        //捐款名录
-        //家族名人
-        //家族公告
-        //记录家族
-        //家族动态
-        //家族视频
-        //个人视频
-        //个人图片
-        //个人日志
-        //个人说说
-        LIST_: 'columnIndustry/commonality',
-        LIST_ZIPAI: 'genogram/fanNewsCulture/commonality',
 
 
         admin_site_info: 'genogram/admin/fanIndex/getFanIndexInfo', //网站信息--后台
@@ -112,13 +103,14 @@ const api = {
         if (!data.pageSize) {
             data.pageSize = 8
         }
-
         return new Promise((resolve, reject) => {
             axios.get(url, {
                 params: data
             }).then(res => {
                 console.log(res.data)
                 resolve(res.data);
+            }).catch(err => {
+                reject(err)
             })
         })
     },

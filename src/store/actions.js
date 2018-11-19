@@ -14,7 +14,7 @@ async function handleHomeAll(store) {
     let list = store.state.apiList;
     let res = null;
     for (let v in list) {
-        if (list[v].apiUrl != 'http://192.168.2.179:8090/#') {
+        if (list[v].apiUrl != 'http://192.168.2.179:8090/#' && list[v].apiUrl != '#') {
             res = await getHomeApi(list[v].apiUrl)
             store.commit('setHomeData', {
                 type: v,

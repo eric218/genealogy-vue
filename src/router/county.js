@@ -4,7 +4,7 @@ export default [{
         meta: {
             title: "首页"
         },
-        component: () => import('@/page_county/home')
+        component: () => import('@/page_county/home/home')
     }, {
         path: 'culture_home',
         name: 'culture_home',

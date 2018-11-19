@@ -85,7 +85,7 @@ export default {
     },
     methods: {
         getList(e) {
-            this.api.get(this.url, {
+            this.api.get(this.api.admin.base + this.url, {
                 siteId: this.$store.state.siteId,
                 pageNo: this.page
             }).then(res => {
@@ -103,7 +103,7 @@ export default {
             })
         },
         getFinance() {
-            this.api.get(this.api.admin + this.api.urls.admin_site_finance, {
+            this.api.get(this.api.admin.base + this.api.urls.admin_site_finance, {
                 siteId: this.$store.state.siteId
             }).then(res => {
                 this.finance = res.data
@@ -126,7 +126,7 @@ export default {
                 drowInAccountCard: this.formData.drowInAccountCard,
                 drowInAccountName: this.formData.drowInAccountName,
             }
-            this.api.post(this.api.admin + this.api.urls.admin_site_withdraw, data).then(res => {
+            this.api.post(this.api.admin.base + this.api.urls.admin_site_withdraw, data).then(res => {
                 if (res.code === 200) {
                     this.$Message.success('提交申请，请等待审核');
                     this.getList();

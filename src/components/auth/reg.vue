@@ -27,7 +27,7 @@
                 <Input placeholder="输入姓氏" clearable />
             </FormItem>
             <FormItem label="地区">
-                <Cascader trigger="hover" :data="options" v-model="selectedOptions" style="width:100%" />
+                <al-cascader v-model="selected" :level="2" style="width:100%" placeholder="请选择地区" />
             </FormItem>
             <FormItem>
                 <Button type="primary" @click="toSubmit">注册</Button>
@@ -55,56 +55,7 @@ export default {
             looptime: 60,
             looptext: "获取验证码",
             loop: null,
-            options: [{
-                value: '1',
-                label: '中国',
-                children: [{
-                    value: '11',
-                    label: '北京'
-                }, {
-                    value: '12',
-                    label: '上海'
-                }, {
-                    value: '13',
-                    label: '天津'
-                }, {
-                    value: '14',
-                    label: '重庆'
-                }, {
-                    value: '19',
-                    label: '湖北',
-                    children: [{
-                        value: '191',
-                        label: '武汉'
-                    }, {
-                        value: '192',
-                        label: '咸宁',
-                        children: [{
-                            value: '1921',
-                            label: '咸安'
-                        }, {
-                            value: '1922',
-                            label: '赤壁'
-                        }, {
-                            value: '1923',
-                            label: '嘉鱼'
-                        }, {
-                            value: '1924',
-                            label: '崇阳'
-                        }, {
-                            value: '1925',
-                            label: '通山'
-                        }, {
-                            value: '1926',
-                            label: '通城'
-                        }]
-                    }]
-                }]
-            }, {
-                value: '2',
-                label: '其它',
-            }],
-            selectedOptions: ['1', '19', '192', '1921'],
+            selected: ['湖北省', '咸宁市', '崇阳县'],
         };
     },
     mounted: function () {

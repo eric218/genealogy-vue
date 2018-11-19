@@ -31,7 +31,7 @@
                     <Input v-model="formData.title" placeholder="标题" />
                 </FormItem>
                 <FormItem label="预览图">
-                    <Upload class="upload" :action="api.admin + api.urls.upload_img" name="file" :show-upload-list="false" :on-success="uploadImage" :format="['jpg','jpeg','png']">
+                    <Upload class="upload" :action="api.admin.base + api.urls.upload_img" name="file" :show-upload-list="false" :on-success="uploadImage" :format="['jpg','jpeg','png']">
                         <Button type="dashed">
                             <div class="img" :style="api.imgBG(picPath)" v-if="picPath"></div>
                             <div class="img" :style="formData.fanNewsUploadFile.length ? api.imgBG(formData.fanNewsUploadFile[0].filePath) : ''" v-else-if="formData.fanNewsUploadFile.length"></div>
@@ -40,7 +40,7 @@
                     </Upload>
                 </FormItem>
                 <FormItem label="视频文件">
-                    <Upload :action="api.admin + api.urls.upload_img" name="file" :on-success="uploadVideo">
+                    <Upload :action="api.admin.base + api.urls.upload_img" name="file" :on-success="uploadVideo">
                         <Button type="dashed">{{formData.fanUploadVedioList.length || vedioPath ? '替换':'上传'}}</Button>
                     </Upload>
                 </FormItem>
@@ -87,7 +87,7 @@ export default {
     },
     methods: {
         getList() {
-            this.api.get(this.url, {
+            this.api.get(this.api.admin.base + this.url, {
                 siteId: this.$store.state.siteId,
                 pageNo: this.page,
             }).then(res => {
@@ -111,7 +111,7 @@ export default {
                 }
                 this.isedit = true;
             } else {
-                this.api.get(this.api.admin + this.api.urls.media_info, {
+                this.api.get(this.api.admin.base + this.api.urls.media_info, {
                     id: e
                 }).then(res => {
                     this.formData = res.data;
@@ -128,7 +128,7 @@ export default {
                 title: '提示',
                 content: '确定删除？',
                 onOk: () => {
-                    this.api.get(this.api.admin + this.api.urls.media_del, {
+                    this.api.get(this.api.admin.base + this.api.urls.media_del, {
                         id: e.id
                     }).then(res => {
                         this.getList();
@@ -176,7 +176,7 @@ export default {
                 data.vedioFileName = this.vedioFileName
                 data.vedioPath = this.vedioPath
             }
-            this.api.post(this.api.admin + this.api.urls.media_edit, data).then(res => {
+            this.api.post(this.api.admin.base + this.api.urls.media_edit, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');

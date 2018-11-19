@@ -2,20 +2,36 @@
     <div class="navbar">
         <div class="inner">
             <router-link to="/c/home" class="item" :class="navcurr == 1 ?'curr':''">首页</router-link>
-            <router-link class="item" v-for="(v,i) in navsData" :key="i" v-html="v.menuName" :class="[navcurr == v.fanSysWebMenuId ?'curr':'',navsData.length + 1 == v.fanSysWebMenuId ? 'right':'']" :to="v.menuType" />
+            <router-link class="item" v-for="(v,i) in navsData" :key="i" v-html="v.menuName" :class="[navcurr == v.fanSysWebMenuId ? 'curr': '', navsData.length + 1 == v.fanSysWebMenuId ? 'right':'']" :to="v.menuType" v-if="v.menuType" />
         </div>
     </div>
 </template>
 <script>
 export default {
     name: "NavBar",
+    data() {
+        return {
+            navsData: []
+        }
+    },
     computed: {
-        navsData() {
-            return this.$store.state.navList
-        },
+    },
+    mounted: function () {
+        this.getNav()
+    },
+    methods: {
+        getNav() {
+            this.api.get(this.api.county.base + this.api.county.common_site_menu, {
+                siteId: this.$store.state.siteId,
+                menuId: 1,
+            }).then(res => {
+                this.navsData = res.data;
+            })
+        }
     },
     props: {
         'navcurr': {
+            type: Number,
             default: 1
         }
     }

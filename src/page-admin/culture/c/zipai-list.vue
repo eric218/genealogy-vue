@@ -130,7 +130,7 @@ export default {
     },
     methods: {
         getList(e) {
-            this.api.get(this.url, {
+            this.api.get(this.api.admin.base + this.url, {
                 pageNo: this.page
             }).then(res => {
                 let list = res.data.records;
@@ -158,7 +158,7 @@ export default {
                 }
                 this.isedit = true;
             } else {
-                this.api.get(this.api.admin + this.api.urls.culture_zipai_info, {
+                this.api.get(this.api.admin.base + this.api.urls.culture_zipai_info, {
                     id: e
                 }).then(res => {
                     this.formData.id = res.data.id;
@@ -183,7 +183,7 @@ export default {
                 title: '提示',
                 content: '确定删除这条记录？',
                 onOk: () => {
-                    this.api.get(this.api.admin + this.api.urls.culture_zipai_del, {
+                    this.api.get(this.api.admin.base + this.api.urls.culture_zipai_del, {
                         id: this.list[index].id
                     }).then(res => {
                         this.list.splice(index, 1);
@@ -228,7 +228,7 @@ export default {
                 return;
             }
             data.zipaiTxt = list.join(';')
-            this.api.post(this.api.admin + this.api.urls.culture_zipai_edit, data).then(res => {
+            this.api.post(this.api.admin.base + this.api.urls.culture_zipai_edit, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');

@@ -3,13 +3,13 @@
         <Button type="primary" @click="toEdit(0)">添加文章</Button>
         <Table border :columns="columns" :data="list" style="margin:16px 0;"></Table>
         <Page :total="total" @on-change="chgPage" :page-size="8" />
-        <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%"  v-model="isedit">
+        <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%" v-model="isedit">
             <Form :model="formData" :label-width="80">
                 <FormItem label="标题">
                     <Input v-model="formData.newsTitle" placeholder="标题" />
                 </FormItem>
                 <FormItem label="预览图">
-                    <Upload class="upload" :action="api.admin + api.urls.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
+                    <Upload class="upload" :action="api.admin.base + api.urls.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
                         <Button type="dashed">
                             <div class="img" :style="api.imgBG(filePath)" v-if="filePath" />
                             <div class="img" :style="api.imgBG(formData.fanNewsUploadFileList[0].filePath)" v-else-if="formData.fanNewsUploadFileList.length"></div>
@@ -117,16 +117,20 @@ export default {
     },
     methods: {
         getList(e) {
-            this.api.get(this.url, {
+            this.api.get(this.api.admin.base + this.url, {
                 pageNo: this.page
             }).then(res => {
-                let list = res.data.records;
-                list.forEach(v => {
-                    v.title = v.status == 2 ? v.newsTitle + '[草稿]' : v.newsTitle
-                    v.datetime = this.dayjs(v.updateTime).format('YYYY-MM-DD HH:mm:ss')
-                })
-                this.list = list;
-                this.total = res.data.total
+                if (res.code == 200) {
+                    let list = res.data.records;
+                    list.forEach(v => {
+                        v.title = v.status == 2 ? v.newsTitle + '[草稿]' : v.newsTitle
+                        v.datetime = this.dayjs(v.updateTime).format('YYYY-MM-DD HH:mm:ss')
+                    })
+                    this.list = list;
+                    this.total = res.data.total
+                } else {
+                    this.list = [];
+                }
             })
         },
         chgPage(e) {
@@ -149,7 +153,7 @@ export default {
                 }
                 this.isedit = true;
             } else {
-                this.api.get(this.api.admin + this.api.urls.culture_news_info, {
+                this.api.get(this.api.admin.base + this.api.urls.culture_news_info, {
                     id: e
                 }).then(res => {
                     if (res.code == 200) {
@@ -167,7 +171,7 @@ export default {
                 title: '提示',
                 content: '确定删除这个文章？',
                 onOk: () => {
-                    this.api.get(this.api.admin + this.api.urls.culture_news_del, {
+                    this.api.get(this.api.admin.base + this.api.urls.culture_news_del, {
                         id: this.list[index].id
                     }).then(res => {
                         this.list.splice(index, 1);
@@ -203,7 +207,7 @@ export default {
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin + this.api.urls.culture_news_edit, data).then(res => {
+            this.api.post(this.api.admin.base + this.api.urls.culture_news_edit, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');
@@ -230,7 +234,7 @@ export default {
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin + this.api.urls.culture_news_drft, data).then(res => {
+            this.api.post(this.api.admin.base + this.api.urls.culture_news_drft, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');

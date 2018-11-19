@@ -27,7 +27,7 @@ export default {
     },
     methods: {
         getMenu() {
-            this.api.get(this.api.admin + this.api.urls.culture_list, {
+            this.api.get(this.api.admin.base + this.api.urls.culture_list, {
                 siteId: this.$store.state.siteId,
                 menuId: 5
             }).then(res => {

@@ -124,7 +124,7 @@ export default {
             return this.$store.state.homeData.index_zipai
         },
         zipai_list() {
-            let list = this.index_zipai ? this.index_zipai.split(',') : [];
+            let list = this.index_zipai.length ? this.index_zipai.split(',') : [];
             let obj = [];
             if (list.length) {
                 obj = list.map(v => {

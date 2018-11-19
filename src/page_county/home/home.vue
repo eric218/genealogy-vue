@@ -5,7 +5,7 @@
         <Banner />
         <div class="main">
             <TopInfo />
-            <Dynamic />
+            <!-- <Dynamic />
             <NewNews />
             <Famous />
             <div class="adlinks">
@@ -14,14 +14,14 @@
             <HomeNews />
             <Gongyi />
             <Products />
-            <Friends />
+            <Friends /> -->
         </div>
         <FootBar />
     </div>
 </template>
 <script>
-import { Topbar, NavBar, Banner, FootBar } from './c'
-import { TopInfo, Dynamic, NewNews, Famous, HomeNews, Gongyi, Products, Friends } from './page-home';
+import { Topbar, NavBar, Banner, FootBar } from '../c'
+import { TopInfo, Dynamic, NewNews, Famous, HomeNews, Gongyi, Products, Friends } from '/';
 
 export default {
     name: "Home",
