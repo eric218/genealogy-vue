@@ -1,10 +1,10 @@
 <template>
     <div class="topbar">
         <div class="brand">
-            <div class="img" :style="homeData?api.imgBG(homeData.index_summary.totemPicSrc):''"></div>
+            <div class="img" :style="api.imgBG(info.totemPicSrc)"></div>
             <div class="obj kt">
-                <div class="cn">{{homeData.index_summary?homeData.index_summary.siteName:''}}</div>
-                <div class="en">{{homeData.index_summary?homeData.index_summary.title:''}}</div>
+                <div class="cn">{{info.siteName}}</div>
+                <div class="en">{{info.title}}</div>
             </div>
         </div>
         <div class="authform">
@@ -20,7 +20,6 @@
     </div>
 </template>
 <script>
-import { mapActions, mapState } from 'vuex'
 import loginform from '@/components/auth/login.vue'
 import regform from '@/components/auth/reg.vue'
 export default {
@@ -30,18 +29,28 @@ export default {
         regform,
     },
     computed: {
-        ...mapState(["homeData"])
+        url() {
+            return this.$store.state.county.apiList.index_summary.apiUrl
+        }
     },
     data() {
         return {
+            info: {},
             isreg: false,
             islogin: false,
         };
     },
     mounted: function () {
-
+        this.getInfo();
     },
     methods: {
+        getInfo() {
+            this.api.get(this.api.county.base + this.url, {}).then(res => {
+                if (res.code == 200) {
+                    this.info = res.data
+                }
+            })
+        },
         urlToReg() {
             this.islogin = false;
             setTimeout(() => {

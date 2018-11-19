@@ -1,27 +1,27 @@
 <template>
-    <div class="page page-home">
+    <div class="page" v-if="$store.state.county.apiList">
         <Topbar />
         <NavBar :navcurr="1" />
         <Banner />
         <div class="main">
             <TopInfo />
-            <!-- <Dynamic />
+            <Dynamic />
             <NewNews />
             <Famous />
             <div class="adlinks">
                 <img src="@/assets/jpg/gg.png" alt="">
             </div>
-            <HomeNews />
+            <Culture />
             <Gongyi />
             <Products />
-            <Friends /> -->
+            <Friends />
         </div>
         <FootBar />
     </div>
 </template>
 <script>
 import { Topbar, NavBar, Banner, FootBar } from '../c'
-import { TopInfo, Dynamic, NewNews, Famous, HomeNews, Gongyi, Products, Friends } from '/';
+import { TopInfo, Dynamic, NewNews, Famous, Culture, Gongyi, Products, Friends } from '/';
 
 export default {
     name: "Home",
@@ -34,16 +34,19 @@ export default {
         Dynamic,
         NewNews,
         Famous,
-        HomeNews,
+        Culture,
         Gongyi,
         Products,
         Friends,
     },
+    computed: {
+        apiList() {
+            return this.$store.state.county.apiList
+        }
+    },
     data() {
         return {
-        };
-    },
-    computed: {
+        }
     },
     mounted: function () {
     },

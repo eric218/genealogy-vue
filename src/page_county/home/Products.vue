@@ -56,19 +56,38 @@
 export default {
     data() {
         return {
+            index_industry_person: {},
+            index_industry_public: {},
         }
     },
     computed: {
-        index_industry_person() {
-            return this.$store.state.homeData.index_industry_person
-        },
-        index_industry_public() {
-            return this.$store.state.homeData.index_industry_public
+        apiList() {
+            return this.$store.state.county.apiList
         },
     },
     mounted: function () {
+        this.get_index_industry_public()
+        this.get_index_industry_person()
     },
     methods: {
+        get_index_industry_public() {
+            this.api.get(this.api.county.base + this.apiList.index_industry_public.apiUrl, {
+                pageSize: 2,
+            }).then(res => {
+                if (res.code == 200) {
+                    this.index_industry_public = res.data
+                }
+            })
+        },
+        get_index_industry_person() {
+            this.api.get(this.api.county.base + this.apiList.index_industry_person.apiUrl, {
+                pageSize: 2,
+            }).then(res => {
+                if (res.code == 200) {
+                    this.index_industry_person = res.data
+                }
+            })
+        },
     },
 };
 </script>

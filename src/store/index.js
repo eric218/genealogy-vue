@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import user from './module/user'
 import admin from './module/admin'
+import county from './module/county'
 import state from './state'
 import mutations from './mutations'
 import actions from './actions'
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     getters: getters,
     modules: {
         user,
-        admin
+        admin,
+        county,
     }
 })

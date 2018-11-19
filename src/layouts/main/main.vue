@@ -9,7 +9,7 @@ Vue.component('Iconfont', Iconfont)
 Vue.component('None', None)
 export default {
     beforeCreate() {
-        this.$store.dispatch('handleNavlist')
+        this.$store.dispatch('handleHomeApi')
     },
 }
 </script>

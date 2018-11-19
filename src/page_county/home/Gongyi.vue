@@ -12,8 +12,8 @@
                             <span class="more">更多</span>
                             <span>支出公开栏</span>
                         </router-link>
-                        <div class="b" v-if="leftPayout">
-                            <router-link :to="'/c/detail?id='+v.id" class="item" v-for="v in leftPayout.records" :key="v.id">
+                        <div class="b">
+                            <router-link :to="'/c/detail?id='+v.id" class="item" v-for="v in index_architecture_pay_in.records" :key="v.id">
                                 <div class="date">{{dayjs(v.createTime).format('YYYY-MM-DD HH:mm:ss')}}</div>
                                 <div class="tag">【慈善纪要】</div>
                                 <div class="tit">{{v.newsTitle}}</div>
@@ -25,8 +25,8 @@
                             <span class="more">更多</span>
                             <span>收益公开栏</span>
                         </router-link>
-                        <div class="b" v-if="leftPayin">
-                            <router-link :to="'/c/detail?id='+v.id" class="item" v-for="v in leftPayin.records" :key="v.id">
+                        <div class="b">
+                            <router-link :to="'/c/detail?id='+v.id" class="item" v-for="v in index_charity_pay_out.records" :key="v.id">
                                 <div class="date">{{dayjs(v.createTime).format('YYYY-MM-DD HH:mm:ss')}}</div>
                                 <div class="tag">【慈善纪要】</div>
                                 <div class="tit">{{v.newsTitle}}</div>
@@ -75,30 +75,57 @@ export default {
         topay,
     },
     computed: {
-        index_fund_2() {
-            return this.$store.state.homeData.index_fund_2
+        apiList() {
+            return this.$store.state.county.apiList
         },
-        index_architecture_pay_in_person_2() {
-            return this.$store.state.homeData.index_architecture_pay_in_person_2
-        },
-        leftPayin() {
-            return this.$store.state.homeData.index_architecture_pay_in
-        },
-        leftPayout() {
-            return this.$store.state.homeData.index_charity_pay_out
-        }
     },
     data() {
         return {
             handleTopay: false,
+            index_fund_2:{},
+            index_architecture_pay_in_person_2:{},
+            index_architecture_pay_in:{},
+            index_charity_pay_out:{},
             menu: [],
             menucurr: {},
         }
     },
     mounted: function () {
         this.getMenu()
+        this.get_index_fund_2()
+        this.get_index_architecture_pay_in_person_2()
+        this.get_index_architecture_pay_in()
+        this.get_index_charity_pay_out()
     },
     methods: {
+        get_index_fund_2() {
+            this.api.get(this.api.county.base + this.apiList.index_fund_2.apiUrl, {}).then(res => {
+                if (res.code == 200) {
+                    this.index_fund_2 = res.data
+                }
+            })
+        },
+        get_index_architecture_pay_in_person_2() {
+            this.api.get(this.api.county.base + this.apiList.index_architecture_pay_in_person_2.apiUrl, {}).then(res => {
+                if (res.code == 200) {
+                    this.index_architecture_pay_in_person_2 = res.data
+                }
+            })
+        },
+        get_index_architecture_pay_in() {
+            this.api.get(this.api.county.base + this.apiList.index_architecture_pay_in.apiUrl, {}).then(res => {
+                if (res.code == 200) {
+                    this.index_architecture_pay_in = res.data
+                }
+            })
+        },
+        get_index_charity_pay_out() {
+            this.api.get(this.api.county.base + this.apiList.index_charity_pay_out.apiUrl, {}).then(res => {
+                if (res.code == 200) {
+                    this.index_charity_pay_out = res.data
+                }
+            })
+        },
         getMenu() {
             this.menu = [{
                 id: 1,

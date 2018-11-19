@@ -2,7 +2,7 @@
     <div class="navbar">
         <div class="inner">
             <router-link to="/c/home" class="item" :class="navcurr == 1 ?'curr':''">首页</router-link>
-            <router-link class="item" v-for="(v,i) in navsData" :key="i" v-html="v.menuName" :class="[navcurr == v.fanSysWebMenuId ? 'curr': '', navsData.length + 1 == v.fanSysWebMenuId ? 'right':'']" :to="v.menuType" v-if="v.menuType" />
+            <router-link class="item" v-for="(v,i) in navsData" :key="i" v-html="v.menuName" :class="[navcurr == v.menuId ? 'curr': '', navsData.length + 1 == v.fanSysWebMenuId ? 'right':'']" :to="v.menuType" v-if="v.menuType" />
         </div>
     </div>
 </template>
@@ -31,7 +31,6 @@ export default {
     },
     props: {
         'navcurr': {
-            type: Number,
             default: 1
         }
     }

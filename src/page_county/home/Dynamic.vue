@@ -9,18 +9,16 @@
                 <div class="card">
                     <div class="tit">
                         <span class="mini">发言人数：</span>
-                        <span>{{index_message ? index_message.total :''}}</span>
+                        <span>{{index_message.total}}</span>
                     </div>
                     <div class="info">
-                        <div v-if="index_message">
-                            <div class="other item" v-for="v in index_message.records" :key="v.id">
-                                <div class="img">
-                                    <div class="head"></div>
-                                    <div class="name">{{v.nickname}}</div>
-                                </div>
-                                <div class="obj">
-                                    <div class="text">{{v.message}}</div>
-                                </div>
+                        <div class="other item" v-for="v in index_message.records" :key="v.id">
+                            <div class="img">
+                                <div class="head"></div>
+                                <div class="name">{{v.nickname}}</div>
+                            </div>
+                            <div class="obj">
+                                <div class="text">{{v.message}}</div>
                             </div>
                         </div>
                     </div>
@@ -67,23 +65,53 @@ export default {
         return {
             menu: [],
             menucurr: {},
+            index_message: {
+                total: 0,
+                records: [],
+            },
+            index_family_record1: {
+                total: 0,
+                records: [],
+            },
+            index_family_record2: {
+                total: 0,
+                records: [],
+            },
         }
     },
     computed: {
-        index_message() {
-            return this.$store.state.homeData.index_message
-        },
-        index_family_record1() {
-            return this.$store.state.homeData.index_family_record1
-        },
-        index_family_record2() {
-            return this.$store.state.homeData.index_family_record2
+        apiList() {
+            return this.$store.state.county.apiList
         },
     },
     mounted: function () {
+        this.get_index_message()
+        this.get_index_family_record1()
+        this.get_index_family_record2()
         this.getMenu()
     },
     methods: {
+        get_index_message() {
+            this.api.get(this.api.county.base + this.apiList.index_message.apiUrl, {}).then(res => {
+                if (res.code == 200) {
+                    this.index_message = res.data
+                }
+            })
+        },
+        get_index_family_record1() {
+            this.api.get(this.api.county.base + this.apiList.index_family_record1.apiUrl, {}).then(res => {
+                if (res.code == 200) {
+                    this.index_family_record1 = res.data
+                }
+            })
+        },
+        get_index_family_record2() {
+            this.api.get(this.api.county.base + this.apiList.index_family_record2.apiUrl, {}).then(res => {
+                if (res.code == 200) {
+                    this.index_family_record2 = res.data
+                }
+            })
+        },
         getMenu() {
             this.menu = [{
                 id: 1,

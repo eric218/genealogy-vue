@@ -5,8 +5,8 @@
                 <span class="tit">资讯</span>
                 <span class="menu curr">家族文化</span>
             </div>
-            <Row class="items" :gutter="32" v-if="index_family_culture">
-                <i-col :span="12" v-for="v in index_family_culture.records" :key="v.id">
+            <Row class="items" :gutter="32">
+                <i-col :span="12" v-for="v in list" :key="v.id">
                     <Card class="item">
                         <router-link :to="'/c/detail?id='+v.id">
                             <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
@@ -20,7 +20,7 @@
                 </i-col>
             </Row>
             <div class="pages">
-                <Page :total="index_family_culture ? index_family_culture.total :0" />
+                <Page :total="total" @on-change="chgPage" :page-size="pageSize" />
             </div>
         </div>
     </div>
@@ -29,17 +29,36 @@
 export default {
     data() {
         return {
-            pagecurr: 1,
+            list: [],
+            total: 0,
+            page: 1,
+            pageSize: 6,
         }
     },
     computed: {
-        index_family_culture() {
-            return this.$store.state.homeData.index_family_culture
+        url() {
+            return this.$store.state.county.apiList.index_family_culture.apiUrl
         },
     },
     mounted: function () {
+        this.getInfo();
     },
     methods: {
+        getInfo() {
+            this.api.get(this.api.county.base + this.url, {
+                pageSize: this.pageSize,
+                pageNo: this.page
+            }).then(res => {
+                if (res.code == 200) {
+                    this.list = res.data.records
+                    this.total = res.data.total
+                }
+            })
+        },
+        chgPage(e) {
+            this.page = e;
+            this.getInfo();
+        },
     },
 };
 </script>
@@ -52,8 +71,8 @@ export default {
       display: block;
       white-space: nowrap;
       margin-bottom: 16px;
-      a{
-          display: block;
+      a {
+        display: block;
       }
       .img {
         width: 96px;

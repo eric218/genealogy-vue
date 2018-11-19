@@ -2,52 +2,49 @@
     <div class="topinfo">
         <div class="inner">
             <div class="left-card card">
-                <div class="info">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper" v-if="index_fan_summary">
-                            <div class="swiper-slide" v-for="v in index_fan_summary.records" :key="v.id">
-                                <div class="img"></div>
-                                <div class="obj">
-                                    <div class="intro">
-                                        <div>堂：{{v.rootGroup}}</div>
-                                        <div>始迁祖：{{v.rootPerson}}</div>
-                                        <div>负责人：{{v.leader}}：{{v.leaderPhone}}</div>
-                                        <div class="mobai">
-                                            <span>膜拜：</span><span class="num">+{{v.worshipNum}}</span>
-                                        </div>
-                                        <div class="zan">
-                                            <iconfont name="appreciatefill" />
-                                            <span>+{{v.praiseNum}}</span>
-                                        </div>
+                <Carousel loop v-model="summary">
+                    <CarouselItem v-for="v in index_fan_summary" :key="v.id">
+                        <div class="info">
+                            <div class="img"></div>
+                            <div class="obj">
+                                <div class="intro">
+                                    <div>堂：{{v.rootGroup}}</div>
+                                    <div>始迁祖：{{v.rootPerson}}</div>
+                                    <div>负责人：{{v.leader}}：{{v.leaderPhone}}</div>
+                                    <div class="mobai">
+                                        <span>膜拜：</span><span class="num">+{{v.worshipNum}}</span>
                                     </div>
-                                    <div class="total">
-                                        <div class="item">
-                                            <div class="label">总谱人数：</div>
-                                            <div class="value">1</div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="label">本族男丁：</div>
-                                            <div class="value">1</div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="label">本族女丁：</div>
-                                            <div class="value">0</div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="label">最大年龄：</div>
-                                            <div class="value">30</div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="label">最小年龄：</div>
-                                            <div class="value">30</div>
-                                        </div>
+                                    <div class="zan">
+                                        <iconfont name="appreciatefill" />
+                                        <span>+{{v.praiseNum}}</span>
+                                    </div>
+                                </div>
+                                <div class="total">
+                                    <div class="item">
+                                        <div class="label">总谱人数：</div>
+                                        <div class="value">1</div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="label">本族男丁：</div>
+                                        <div class="value">1</div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="label">本族女丁：</div>
+                                        <div class="value">0</div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="label">最大年龄：</div>
+                                        <div class="value">30</div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="label">最小年龄：</div>
+                                        <div class="value">30</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-pagination"></div>
-                    </div>
-                </div>
+                    </CarouselItem>
+                </Carousel>
             </div>
             <div class="right-card card">
                 <div class="info">
@@ -60,7 +57,7 @@
                     </div>
                     <div class="b">
                         <span>公益基金：</span>
-                        <span class="num">{{index_fund_1 ? index_fund_1.remain : '0'}}</span>
+                        <span class="num" v-text="index_fund_1.remain"></span>
                         <span>元</span>
                     </div>
                     <div class="f">
@@ -74,11 +71,11 @@
             <div class="about">
                 <div class="h"></div>
                 <div class="tag">简介</div>
-                <div class="b">{{index_summary ? index_summary.description:''}}</div>
+                <div class="b" v-text="index_summary.description"></div>
                 <div class="f">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide" v-for="(v,i) in zipai_list" :key="i">
+                    <Carousel loop v-model="zipai">
+                        <CarouselItem v-for="(v,i) in index_zipai" :key="i">
+                            <div class="info">
                                 <div class="tit">张氏本支字派：</div>
                                 <router-link to="/c/culture_home" class="more">更多>></router-link>
                                 <div class="list">
@@ -89,8 +86,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </CarouselItem>
+                    </Carousel>
                 </div>
             </div>
         </div>
@@ -100,7 +97,6 @@
     </div>
 </template>
 <script>
-import Swiper from 'swiper';
 import topay from '../c/topay.vue'
 export default {
     name: "TopInfo",
@@ -108,56 +104,76 @@ export default {
         topay,
     },
     computed: {
-        index_summary() {
-            return this.$store.state.homeData.index_summary
+        apiList() {
+            return this.$store.state.county.apiList
         },
-        index_fund_1() {
-            return this.$store.state.homeData.index_fund_1
-        },
-        index_fan_summary() {
-            return this.$store.state.homeData.index_fan_summary
-        },
-        index_architecture_pay_in_person_1() {
-            return this.$store.state.homeData.index_architecture_pay_in_person_1
-        },
-        index_zipai() {
-            return this.$store.state.homeData.index_zipai
-        },
-        zipai_list() {
-            let list = this.index_zipai.length ? this.index_zipai.split(',') : [];
-            let obj = [];
-            if (list.length) {
-                obj = list.map(v => {
-                    let _obj = v ? v.split(';') : [];
-                    return _obj.map(_v => {
-                        return _v.split('|')
-                    })
-                })
-            }
-            return obj;
-        }
     },
     data() {
         return {
+            summary: 0,
+            zipai: 0,
+            index_summary: {},
+            index_fan_summary: [],
+            index_fund_1: {},
+            index_architecture_pay_in_person_1: {},
+            index_zipai: [],
             handleTopay: false,
         }
     },
     mounted: function () {
-        new Swiper('.topinfo .card .info .swiper-container', {
-            loop: 'auto',
-            autoplay: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-        });
-        new Swiper('.topinfo .about .swiper-container', {
-            loop: 'auto',
-            autoplay: true,
-            direction: 'vertical',
-        });
+        this.get_index_summary()
+        this.get_index_zipai()
+        this.get_index_fan_summary()
+        this.get_index_fund()
+        this.get_index_architecture_pay_in_person_1()
     },
     methods: {
+        get_index_summary() {
+            this.api.get(this.api.county.base + this.apiList.index_summary.apiUrl, {}).then(res => {
+                if (res.code == 200) {
+                    this.index_summary = res.data
+                }
+            })
+        },
+        get_index_fan_summary() {
+            this.api.get(this.api.county.base + this.apiList.index_fan_summary.apiUrl, {}).then(res => {
+                if (res.code == 200) {
+                    this.index_fan_summary = res.data.records
+                }
+            })
+        },
+        get_index_fund() {
+            this.api.get(this.api.county.base + this.apiList.index_fund_1.apiUrl, {}).then(res => {
+                if (res.code == 200) {
+                    this.index_fund_1 = res.data
+                }
+            })
+        },
+        get_index_architecture_pay_in_person_1() {
+            this.api.get(this.api.county.base + this.apiList.index_architecture_pay_in_person_1.apiUrl, {}).then(res => {
+                if (res.code == 200) {
+                    this.index_fund_1 = res.data
+                }
+            })
+        },
+        get_index_zipai() {
+            this.api.get(this.api.county.base + this.apiList.index_zipai.apiUrl, {}).then(res => {
+                if (res.code == 200) {
+                    let list = res.data;
+                    this.index_zipai = this.format_zipai(list)
+                }
+            })
+        },
+        format_zipai(e) {
+            let list = e.split(',')
+            let obj = list.map(v => {
+                let _obj = v ? v.split(';') : [];
+                return _obj.map(_v => {
+                    return _v.split('|')
+                })
+            })
+            return obj;
+        }
     },
 };
 </script>
@@ -189,6 +205,7 @@ export default {
       position: relative;
       padding: 20px;
       white-space: nowrap;
+      background: #fff;
       overflow: hidden;
 
       .img {
@@ -350,7 +367,9 @@ export default {
       overflow: hidden;
       white-space: nowrap;
       height: 80px;
-
+      .info{
+          background: #fff;
+      }
       .tit {
         font-size: 24px;
         color: $color;

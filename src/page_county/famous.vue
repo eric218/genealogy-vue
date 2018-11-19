@@ -1,5 +1,5 @@
 <template>
-    <div class="page page-famous">
+    <div class="page" v-if="$store.state.county.apiList">
         <Topbar />
         <NavBar :navcurr="5" />
         <div class="main">
@@ -9,7 +9,7 @@
             <div class="inner">
                 <div class="tabs kt">
                     <span class="tit">人物</span>
-                    <span class="menu" v-for="(v,i) in menuData" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v)"></span>
+                    <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
                 </div>
                 <div class="in" v-if="menucurr && url.length">
                     <HumanList :url="url" />
@@ -29,38 +29,33 @@ export default {
         FootBar,
         HumanList,
     },
-    computed: {
-        navlist() {
-            return this.$store.state.navList
-        },
-        current() {
-            return this.$router.history.current.name
-        },
-        menuData() {
-            let menu = [];
-            this.navlist.forEach(v => {
-                if (v.menuType == this.current) {
-                    menu = v.child
-                }
-            })
-            this.chgMenu(menu[0]);
-            return menu;
-        },
-    },
     data() {
         return {
+            menu: [],
             menucurr: {},
-            url: {},
+            url: '',
         }
     },
     mounted: function () {
+        this.getNav()
     },
     methods: {
+        getNav() {
+            this.api.get(this.api.county.base + this.api.county.common_site_menu, {
+                siteId: this.$store.state.siteId,
+                menuId: 5,
+            }).then(res => {
+                if (res.code == 200) {
+                    this.menu = res.data
+                    this.chgMenu(0)
+                }
+            })
+        },
         chgMenu(e) {
-            this.menucurr = e;
-            this.url = '';
+            this.url = ''
+            this.menucurr = this.menu[e];
             setTimeout(() => {
-                this.url = this.menucurr ? this.menucurr.apiUrl : '';
+                this.url = this.menucurr ? this.api.county.base + this.menucurr.apiUrl : '';
             }, 300);
         },
     },

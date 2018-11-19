@@ -1,5 +1,5 @@
 <template>
-    <div class="page page-charity">
+    <div class="page" v-if="$store.state.county.apiList">
         <Topbar />
         <NavBar :navcurr="3" />
         <div class="main">
@@ -47,7 +47,7 @@
             <div class="inner">
                 <div class="tabs kt">
                     <span class="tit">资讯</span>
-                    <span class="menu" v-for="(v,i) in menuData" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v)"></span>
+                    <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
                 </div>
                 <div class="in" v-if="menucurr && url.length">
                     <NewsList :url="url" />
@@ -74,44 +74,56 @@ export default {
         topay,
     },
     computed: {
-        index_architecture_pay_in_person_3() {
-            return this.$store.state.homeData.index_architecture_pay_in_person_3
-        },
-        index_fund_3() {
-            return this.$store.state.homeData.index_fund_3
-        },
-        navlist() {
-            return this.$store.state.navList
-        },
-        current() {
-            return this.$router.history.current.name
-        },
-        menuData() {
-            let menu = [];
-            this.navlist.forEach(v => {
-                if (v.menuType == this.current) {
-                    menu = v.child
-                }
-            })
-            this.chgMenu(menu[0]);
-            return menu;
+        apiList() {
+            return this.$store.state.county.apiList
         },
     },
     data() {
         return {
+            menu: [],
             menucurr: {},
-            url: {},
+            url: '',
             handleTopay: false,
+            index_architecture_pay_in_person_3: {},
+            index_fund_3: {},
         }
     },
     mounted: function () {
+        this.getNav()
+        this.get_index_architecture_pay_in_person_3()
+        this.get_index_fund_3()
     },
     methods: {
+        get_index_architecture_pay_in_person_3() {
+            this.api.get(this.api.county.base + this.apiList.index_architecture_pay_in_person_3.apiUrl, {}).then(res => {
+                if (res.code == 200) {
+                    this.index_architecture_pay_in_person_3 = res.data
+                }
+            })
+        },
+        get_index_fund_3() {
+            this.api.get(this.api.county.base + this.apiList.index_fund_3.apiUrl, {}).then(res => {
+                if (res.code == 200) {
+                    this.index_fund_3 = res.data
+                }
+            })
+        },
+        getNav() {
+            this.api.get(this.api.county.base + this.api.county.common_site_menu, {
+                siteId: this.$store.state.siteId,
+                menuId: 3,
+            }).then(res => {
+                if (res.code == 200) {
+                    this.menu = res.data
+                    this.chgMenu(0)
+                }
+            })
+        },
         chgMenu(e) {
-            this.menucurr = e;
-            this.url = '';
+            this.url = ''
+            this.menucurr = this.menu[e];
             setTimeout(() => {
-                this.url = this.menucurr ? this.menucurr.apiUrl : '';
+                this.url = this.menucurr ? this.api.county.base + this.menucurr.apiUrl : '';
             }, 300);
         },
     },
