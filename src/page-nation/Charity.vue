@@ -21,8 +21,6 @@
                     <div class="h">
                         <div class="item" v-for="(v,i) in menu" :key="i" :class="v.id == menucurr.id ? 'curr':''" v-html="v.name" @click="chgMenu(v)"></div>
                     </div>
-                    <Charity v-if="menucurr.id == 3" />
-                    <NewsList v-else />
                 </div>
             </div>
         </div>
@@ -30,8 +28,6 @@
     </div>
 </template>
 <script>
-import NewsList from '@/components/list/news.vue';
-import Charity from '@/components/list/charity.vue';
 import { Topbar, NavBar, Banner, FootBar } from './c'
 export default {
     name: "Home",
@@ -39,8 +35,6 @@ export default {
         Topbar,
         NavBar,
         FootBar,
-        NewsList,
-        Charity
     },
     data() {
         return {

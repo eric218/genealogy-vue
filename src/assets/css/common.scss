@@ -63,7 +63,7 @@
         width: 540px;
 
         .card {
-            height:450px;
+            height: 450px;
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -173,7 +173,7 @@
 
             .form {
                 background: #ece9e9;
-                padding:10px 8px;
+                padding: 10px 8px;
                 position: relative;
 
                 .ipt {
@@ -228,12 +228,18 @@
                     white-space: normal;
 
                     .tit {
-                        font-size: 20px;
+                        font-size: 18px;
+                        line-height: 24px;
+                        height:24px;
+                        text-overflow: ellipsis;
+                        width: 100%;
+                        overflow: hidden;
                         color: $color;
                     }
 
                     .intro {
-                        height: 48px;
+                        margin-top:24px;
+                        height: 72px;
                         line-height: 24px;
                         overflow: hidden;
                         color: #999;
@@ -267,221 +273,6 @@
     }
 }
 
-.detail {
-    background: #fff;
-    padding: 16px;
-    border-radius: 8px;
-    margin-bottom: 32px;
-
-    .h {
-        text-align: center;
-
-        .tit {
-            padding: 16px;
-            font-size: 24px;
-            color: $color;
-        }
-
-        .tag {
-            .item {
-                color: #999;
-                display: inline-block;
-                padding: 0 16px;
-            }
-        }
-    }
-
-    .b {
-        padding: 32px 0;
-
-        .intro {
-            background: whitesmoke;
-            border: 1px dashed #ddd;
-            padding: 8px 16px;
-            border-radius: 8px;
-        }
-
-        .content {
-            display: block;
-            padding: 32px 0;
-            min-height: 450px;
-
-            p {
-                margin-bottom: 1em;
-            }
-        }
-    }
-
-    .f {
-        position: relative;
-        text-align: center;
-
-        .share {
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            margin: auto;
-            line-height: 64px;
-
-            i {
-                font-size: 24px;
-            }
-        }
-
-        .act {
-            span {
-                display: inline-block;
-                height: 64px;
-                width: 64px;
-                line-height: 64px;
-                font-size: 32px;
-                color: #fff;
-                background: $color;
-                border-radius: 50%;
-            }
-        }
-
-        .total {
-            color: #999;
-            line-height: 64px;
-
-            .num {
-                margin: 0 8px;
-                color: $color;
-            }
-        }
-    }
-}
-
-.feedback {
-    background: #fff;
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 32px;
-
-    .h {
-        white-space: nowrap;
-        overflow: hidden;
-
-        .img {
-            margin-right: 16px;
-            float: left;
-            height: 64px;
-            width: 64px;
-            background: whitesmoke no-repeat center / cover;
-            border-radius: 50%;
-        }
-
-        .obj {
-            overflow: hidden;
-
-            .user {
-                line-height: 40px;
-
-                span {
-                    margin-right: 16px;
-                }
-
-                i {
-                    color: orange;
-                }
-
-                .count {
-                    float: right;
-                    color: #999;
-                    font-size: 12px;
-                }
-            }
-
-            .textarea {
-                textarea {
-                    border: 1px solid #ddd;
-                    width: 100%;
-                    border-radius: 8px;
-                }
-            }
-        }
-    }
-
-    .pagination {
-        text-align: right;
-
-        .item {
-            display: inline-block;
-            width: 40px;
-            line-height: 40px;
-            border: 1px solid #eee;
-            color: #999;
-            text-align: center;
-            margin: 0 4px;
-            border-radius: 4px;
-            cursor: pointer;
-
-            &:hover,
-            &.curr {
-                color: #fff;
-                background: $color;
-                border-color: $color;
-            }
-        }
-    }
-
-    .b {
-        overflow: hidden;
-        padding: 16px;
-
-        .item {
-            border-bottom: 1px solid #eee;
-            overflow: hidden;
-            white-space: nowrap;
-            padding: 8px 16px;
-
-            .img {
-                margin-right: 16px;
-                float: left;
-                height: 64px;
-                width: 64px;
-                background: whitesmoke no-repeat center / cover;
-                border-radius: 50%;
-            }
-
-            .obj {
-                overflow: hidden;
-
-                .user {
-                    line-height: 32px;
-
-                    .name {
-                        color: $color;
-                    }
-
-                    i {
-                        margin: 8px;
-                        color: orange;
-                    }
-
-                    .date {
-                        color: #999;
-                    }
-                }
-
-                .text {
-                    white-space: normal;
-                }
-
-                .tag {
-                    color: #999;
-
-                    .itm {
-                        margin-right: 16px;
-                        display: inline-block;
-                    }
-                }
-            }
-        }
-    }
-}
 
 html,
 body,

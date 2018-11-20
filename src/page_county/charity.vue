@@ -50,7 +50,7 @@
                     <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
                 </div>
                 <div class="in" v-if="menucurr && url.length">
-                    <NewsList :url="url" />
+                    <CharityList :url="url" />
                 </div>
             </div>
         </div>
@@ -62,7 +62,7 @@
 </template>
 <script>
 import { Topbar, NavBar, FootBar } from './c'
-import NewsList from '@/components/list/news.vue';
+import CharityList from './list/charity-list';
 import topay from './c/topay.vue'
 export default {
     name: "Charity",
@@ -70,7 +70,7 @@ export default {
         Topbar,
         NavBar,
         FootBar,
-        NewsList,
+        CharityList,
         topay,
     },
     computed: {

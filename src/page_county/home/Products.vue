@@ -12,7 +12,7 @@
                         <span>公共产业</span>
                     </router-link>
                     <div class="bd" v-if="index_industry_public">
-                        <router-link to="/c/Detail" class="item" v-for="v in index_industry_public.records" :key="v.id">
+                        <router-link :to="'/c/Detail?type=industry&id='+v.id" class="item" v-for="v in index_industry_public.records" :key="v.id">
                             <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''">
                                 <div class="tit">{{v.newsText}}</div>
                             </div>
@@ -33,7 +33,7 @@
                         <span>私人产业</span>
                     </router-link>
                     <div class="bd" v-if="index_industry_person">
-                        <router-link to="/c/Detail" class="item" v-for="v in index_industry_person.records" :key="v.id">
+                        <router-link :to="'/c/Detail?type=industry&id='+v.id" class="item" v-for="v in index_industry_person.records" :key="v.id">
                             <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''">
                                 <div class="tit">{{v.newsText}}</div>
                             </div>

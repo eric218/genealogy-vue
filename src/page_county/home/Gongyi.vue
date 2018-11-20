@@ -13,7 +13,7 @@
                             <span>支出公开栏</span>
                         </router-link>
                         <div class="b">
-                            <router-link :to="'/c/detail?id='+v.id" class="item" v-for="v in index_architecture_pay_in.records" :key="v.id">
+                            <router-link :to="'/c/detail?type=charity&id='+v.id" class="item" v-for="v in index_architecture_pay_in.records" :key="v.id">
                                 <div class="date">{{dayjs(v.createTime).format('YYYY-MM-DD HH:mm:ss')}}</div>
                                 <div class="tag">【慈善纪要】</div>
                                 <div class="tit">{{v.newsTitle}}</div>
@@ -26,7 +26,7 @@
                             <span>收益公开栏</span>
                         </router-link>
                         <div class="b">
-                            <router-link :to="'/c/detail?id='+v.id" class="item" v-for="v in index_charity_pay_out.records" :key="v.id">
+                            <router-link :to="'/c/detail?type=charity?id='+v.id" class="item" v-for="v in index_charity_pay_out.records" :key="v.id">
                                 <div class="date">{{dayjs(v.createTime).format('YYYY-MM-DD HH:mm:ss')}}</div>
                                 <div class="tag">【慈善纪要】</div>
                                 <div class="tit">{{v.newsTitle}}</div>
@@ -82,10 +82,10 @@ export default {
     data() {
         return {
             handleTopay: false,
-            index_fund_2:{},
-            index_architecture_pay_in_person_2:{},
-            index_architecture_pay_in:{},
-            index_charity_pay_out:{},
+            index_fund_2: {},
+            index_architecture_pay_in_person_2: {},
+            index_architecture_pay_in: {},
+            index_charity_pay_out: {},
             menu: [],
             menucurr: {},
         }

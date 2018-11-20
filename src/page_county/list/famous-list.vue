@@ -1,11 +1,11 @@
 <template>
-    <div class="newslist">
+    <div class="humanlist">
         <Card class="item" v-for="(v,i) in list" :key="i">
-            <router-link to="/c/Detail">
-                <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
+            <router-link :to="'/c/Detail?type=famous&id='+v.id">
+                <div class="img" :style="v.picFileSrc? api.imgBG(v.picFileSrc):''" />
                 <div class="obj">
-                    <div class="tit" v-html="v.newsTitle"></div>
-                    <div class="intro" v-html="v.newsText"></div>
+                    <div class="tit" v-html="v.personName"></div>
+                    <div class="intro" v-html="v.personSummary"></div>
                     <div class="tag">
                         <div class="attention fr">
                             <iconfont name="attention" />
@@ -18,10 +18,6 @@
                         <div class="appreciate fr">
                             <iconfont name="appreciate" />
                             <span v-html="v.visitNum"></span>
-                        </div>
-                        <div class="site fl">
-                            <iconfont name="locationfill" />
-                            <span>湖北省武汉市</span>
                         </div>
                     </div>
                 </div>
@@ -68,7 +64,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
-.newslist {
+.humanlist {
   padding: 16px 0;
   .item {
     white-space: nowrap;

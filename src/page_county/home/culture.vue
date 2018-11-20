@@ -8,7 +8,7 @@
             <Row class="items" :gutter="32">
                 <i-col :span="12" v-for="v in list" :key="v.id">
                     <Card class="item">
-                        <router-link :to="'/c/detail?id='+v.id">
+                        <router-link :to="'/c/detail?type=culture&id='+v.id">
                             <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
                             <div class="obj">
                                 <div class="tit">{{v.newsTitle}}</div>
@@ -75,7 +75,7 @@ export default {
         display: block;
       }
       .img {
-        width: 96px;
+        width: 128px;
         height: 96px;
         margin-right: 16px;
         float: left;
@@ -90,6 +90,10 @@ export default {
           font-size: 16px;
           color: $color;
           line-height: 24px;
+          height: 24px;
+          overflow: hidden;
+          width: 100%;
+          text-overflow: ellipsis;
         }
 
         .intro {

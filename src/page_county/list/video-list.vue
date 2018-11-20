@@ -75,6 +75,7 @@ export default {
       img {
         width: 100%;
         visibility: hidden;
+        display: block;
       }
       .hover {
         position: absolute;
@@ -102,6 +103,7 @@ export default {
     .obj {
       .tit {
         font-size: 16px;
+        height: 40px;
         line-height: 40px;
       }
 
@@ -109,7 +111,7 @@ export default {
         overflow: hidden;
         white-space: nowrap;
         line-height: 32px;
-
+        height: 32px;
         .head {
           height: 32px;
           width: 32px;
@@ -151,10 +153,10 @@ export default {
       top: 5%;
       i {
         font-size: 40px;
-        color:#fff;
-        opacity: .5;
-        &:hover{
-            opacity: 1;
+        color: #fff;
+        opacity: 0.5;
+        &:hover {
+          opacity: 1;
         }
       }
     }

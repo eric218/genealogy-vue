@@ -12,7 +12,7 @@
                     <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
                 </div>
                 <div class="in" v-if="menucurr && url.length">
-                    <HumanList :url="url" />
+                    <FamousList :url="url" />
                 </div>
             </div>
         </div>
@@ -20,14 +20,14 @@
     </div>
 </template>
 <script>
-import HumanList from '@/components/list/human.vue';
+import FamousList from './list/famous-list.vue';
 import { Topbar, NavBar, FootBar } from './c'
 export default {
     components: {
         Topbar,
         NavBar,
         FootBar,
-        HumanList,
+        FamousList,
     },
     data() {
         return {

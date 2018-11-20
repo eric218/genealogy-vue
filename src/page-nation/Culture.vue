@@ -11,8 +11,6 @@
                     <div class="h">
                         <div class="item" v-for="(v,i) in menu" :key="i" :class="v.id == menucurr.id ? 'curr':''" v-html="v.name" @click="chgMenu(v)"></div>
                     </div>
-                    <ZipaiList v-if="menucurr.id == 1" />
-                    <NewsList v-else />
                 </div>
             </div>
         </div>
@@ -20,8 +18,6 @@
     </div>
 </template>
 <script>
-import NewsList from '@/components/list/news.vue';
-import ZipaiList from '@/components/list/zipai.vue';
 import { Topbar, NavBar, Banner, FootBar } from './c'
 export default {
     name: "Home",
@@ -29,8 +25,6 @@ export default {
         Topbar,
         NavBar,
         FootBar,
-        NewsList,
-        ZipaiList
     },
     data() {
         return {

@@ -37,7 +37,7 @@
                 </div>
                 <div class="card">
                     <div class="items" v-if="menucurr.id == 1 && index_family_record2">
-                        <router-link :to="'/c/detail?id='+v.id" class="item" v-for="v in index_family_record2.records" :key="v.id">
+                        <router-link :to="'/c/detail?type=family_record&id='+v.id" class="item" v-for="v in index_family_record2.records" :key="v.id">
                             <div class="obj">
                                 <div class="tit" v-html="v.newsTitle"></div>
                                 <div class="intro" v-html="v.newsText"></div>
@@ -45,7 +45,7 @@
                         </router-link>
                     </div>
                     <div class="items" v-if="menucurr.id == 2 && index_family_record1">
-                        <router-link :to="'/c/detail?id='+v.id" class="item" v-for="v in index_family_record1.records" :key="v.id">
+                        <router-link :to="'/c/detail?type=family_record&id='+v.id" class="item" v-for="v in index_family_record1.records" :key="v.id">
                             <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
                             <div class="obj">
                                 <div class="tit" v-html="v.newsTitle"></div>

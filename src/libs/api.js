@@ -65,6 +65,13 @@ const api = {
         base: 'http://192.168.2.179:8090/',
         common_home_all: 'genogram/fanMenu/getIndexMenuBySiteId', //首页api
         common_site_menu: 'genogram/fanMenu/getTitlesByMenuId', //导航栏
+        detail: {
+            culture: 'genogram/fanNewsCulture/getFamilyCultureDetail', //家族文化
+            charity: 'genogram/fanNewsCharity/getFanNewsCharityDetail', //慈善公益详情
+            industry: 'genogram/fanNewsIndustry/getFamilyIndustryDetail', //家族产业详情
+            famous: 'genogram/fanNewsFamous/getFamilyFamilyDetail', //家族名人
+            family_record: 'genogram/fanNewsFamilyRecord/getFamilyRecordDetail', //家族动态
+        },
     },
     post: function (url, data) {
         if (!data.pageNow) {

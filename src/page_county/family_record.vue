@@ -41,8 +41,8 @@
                         </div>
                         <div class="card">
                             <div class="items">
-                                <router-link to="/c/detail" class="item" v-for="v in data_a" :key="v.id">
-                                    <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
+                                <router-link :to="'/c/detail?type=family_record&id='+v.id" class="item" v-for="v in data_a" :key="v.id">
+                                    <div v-if="menucurr_a.menuCode == 'index_family_record1'" class="img" :style="v.fanNewsUploadFileList.length ? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
                                     <div class="obj">
                                         <div class="tit" v-html="v.newsTitle"></div>
                                         <div class="intro" v-html="v.newsText"></div>
@@ -68,7 +68,7 @@
 
 <script>
 import { Topbar, NavBar, FootBar } from './c'
-import VideoList from './c/video-list.vue';
+import VideoList from './list/video-list.vue';
 export default {
     name: "Culture",
     components: {
@@ -146,9 +146,7 @@ export default {
             } else {
                 this.menucurr_a = e;
             }
-            setTimeout(() => {
-                this.getList(i);
-            }, 300);
+            this.getList(i);
         },
     },
 };

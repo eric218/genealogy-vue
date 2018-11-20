@@ -12,7 +12,7 @@
                     <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
                 </div>
                 <div class="in" v-if="menucurr && url.length">
-                    <NewsList :url="url" />
+                    <Industry :url="url" />
                 </div>
             </div>
         </div>
@@ -22,13 +22,13 @@
 
 <script>
 import { Topbar, NavBar, FootBar } from './c'
-import NewsList from '@/components/list/news.vue';
+import Industry from './list/industry-list.vue';
 export default {
     components: {
         Topbar,
         NavBar,
         FootBar,
-        NewsList,
+        Industry,
     },
     data() {
         return {

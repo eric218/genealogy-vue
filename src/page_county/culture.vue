@@ -22,8 +22,8 @@
 </template>
 <script>
 import { Topbar, NavBar, FootBar } from './c'
-import Culture from '@/components/list/culture.vue';
-import ZipaiList from '@/components/list/zipai.vue';
+import Culture from './list/culture-list.vue';
+import ZipaiList from './list/zipai.vue';
 export default {
     components: {
         Topbar,
