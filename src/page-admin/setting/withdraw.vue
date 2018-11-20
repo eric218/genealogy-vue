@@ -12,7 +12,7 @@ export default {
     },
     data() {
         return {
-            url: this.api.urls.admin_site_withdraw_list
+            url: this.api.admin.admin_site_withdraw_list
         }
     },
     mounted() {

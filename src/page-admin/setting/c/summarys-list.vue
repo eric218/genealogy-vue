@@ -138,7 +138,7 @@ export default {
                 this.formData = {}
                 this.isedit = true;
             } else {
-                this.api.get(this.api.admin.base + this.api.urls.admin_summarys_info, {
+                this.api.get(this.api.admin.base + this.api.admin.admin_summarys_info, {
                     id: e
                 }).then(res => {
                     this.formData = res.data;
@@ -151,7 +151,7 @@ export default {
                 title: '提示',
                 content: '确定删除这个文章？',
                 onOk: () => {
-                    this.api.get(this.api.admin.base + this.api.urls.admin_summarys_del, {
+                    this.api.get(this.api.admin.base + this.api.admin.admin_summarys_del, {
                         id: this.list[index].id
                     }).then(res => {
                         this.list.splice(index, 1);
@@ -185,7 +185,7 @@ export default {
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin.base + this.api.urls.admin_summarys_edit, data).then(res => {
+            this.api.post(this.api.admin.base + this.api.admin.admin_summarys_edit, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');
@@ -212,7 +212,7 @@ export default {
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin.base + this.api.urls.admin_summarys_drft, data).then(res => {
+            this.api.post(this.api.admin.base + this.api.admin.admin_summarys_drft, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');

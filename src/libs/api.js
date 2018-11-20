@@ -6,23 +6,7 @@ const api = {
     server: 'http://192.168.2.179:8090/',
     admin: {
         base: 'http://192.168.2.179:8050/',
-    },
-    county: {
-        base: 'http://192.168.2.179:8090/',
-        common_home_all: 'genogram/fanMenu/getIndexMenuBySiteId', //首页api
-        common_site_menu: 'genogram/fanMenu/getTitlesByMenuId', //导航栏
-    },
-    urls: {
         upload_img: 'fan/uploadFastdfs', //图片上传
-
-        USER_LOGIN: 'home/login', //登录//用户名、密码
-        USER_REG: "home/reg01", //注册//用户名、密码、姓氏、地区、
-        USER_SMS: 'home/send', //验证码//类型（注册、找回密码）、手机号、新的密码
-        PAY_ALI: "pay/aliPay", //支付宝支付//token、支付金额
-        PAY_WX: "pay/wechatPay", //微信支付//token、支付金额
-        SYS_SITE: '', //网站信息//网站ID、地区、姓氏
-
-
         admin_site_info: 'genogram/admin/fanIndex/getFanIndexInfo', //网站信息--后台
         admin_site_edit: 'genogram/admin/fanIndex/insertOrUpdateFanIndexInfo', //网站信息--修改
         admin_site_withdraw: 'genogram/admin/fanNewsCharity/insertFanIndexFundDrowing', //线上提现
@@ -76,7 +60,11 @@ const api = {
         media_info: 'genogram/admin/fanNewsFamilyRecord/getFamilyRecordVedioDetail', //信息
         media_edit: 'genogram/admin/fanNewsFamilyRecord/addOrUpdateVedioRecord', //修改
         media_del: 'genogram/admin/fanNewsFamilyRecord/deleteRecordVedioById', //删除
-
+    },
+    county: {
+        base: 'http://192.168.2.179:8090/',
+        common_home_all: 'genogram/fanMenu/getIndexMenuBySiteId', //首页api
+        common_site_menu: 'genogram/fanMenu/getTitlesByMenuId', //导航栏
     },
     post: function (url, data) {
         if (!data.pageNow) {

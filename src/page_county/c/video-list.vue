@@ -27,11 +27,18 @@
             </i-col>
         </Row>
         <Page :total="data.total" />
-        <Modal title="查看" v-model="visible" style="text-align:center;" :footer-hide='true' width="630">
-            <video width="600" height="480" controls controlsList='nofullscreen nodownload noremote footbar' autoplay v-if="curr">
-                <source :src="api.imgurl(curr)" type="video/mp4">
-            </video>
-        </Modal>
+        <div class="modal" v-if="visible">
+            <div class="bg" @click="visible = false">
+                <div class="close">
+                    <iconfont name="close" />
+                </div>
+            </div>
+            <div class="in">
+                <video width="100%" controls controlsList='nofullscreen nodownload noremote footbar' autoplay v-if="curr">
+                    <source :src="api.imgurl(curr)" type="video/mp4">
+                </video>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -121,6 +128,46 @@ export default {
           float: right;
         }
       }
+    }
+  }
+}
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+  .bg {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: rgba(black, 0.8);
+    .close {
+      position: absolute;
+      z-index: 1;
+      cursor: pointer;
+      right: 5%;
+      top: 5%;
+      i {
+        font-size: 40px;
+        color:#fff;
+        opacity: .5;
+        &:hover{
+            opacity: 1;
+        }
+      }
+    }
+  }
+  .in {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    video {
+      min-width: 600px;
+      max-width: 90%;
     }
   }
 }

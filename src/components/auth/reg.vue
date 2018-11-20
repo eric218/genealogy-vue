@@ -67,7 +67,7 @@ export default {
                 this.$Message.error('请输入手机号');
                 return;
             }
-            this.api.post('USER_SMS', {
+            this.api.post('', {
                 mobilPhone: this.regform.mobile
             }).then(res => {
                 this.loopData();
@@ -99,7 +99,7 @@ export default {
                 this.$Message.error('两次密码不一致');
                 return;
             }
-            this.api.post('USER_REG', {
+            this.api.post('', {
                 mobilePhone: this.form.mobile,
                 yanzheng: this.form.sms,
                 password: this.form.password,

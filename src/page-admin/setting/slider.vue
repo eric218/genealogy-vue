@@ -1,7 +1,7 @@
 <template>
     <div>
         <Button type="primary" @click="handleAdd">添加</Button>
-        <Upload ref="upload" class="upload" :action="api.admin.base + api.urls.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']" :max-size="2048" :on-format-error="handleFormatError" :on-exceeded-size="handleMaxSize" :default-file-list="list">
+        <Upload ref="upload" class="upload" :action="api.admin.base + api.admin.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']" :max-size="2048" :on-format-error="handleFormatError" :on-exceeded-size="handleMaxSize" :default-file-list="list">
             <Button type="primary" id="slider_upload" style="visibility:hidden">上传</Button>
         </Upload>
         <Row :gutter="32" style="margin-top:16px;">
@@ -46,7 +46,7 @@ export default {
     },
     methods: {
         getList() {
-            this.api.get(this.api.admin.base + this.api.urls.admin_slider_list, {
+            this.api.get(this.api.admin.base + this.api.admin.admin_slider_list, {
                 siteId: this.$store.state.siteId,
             }).then(res => {
                 this.list = res.data;
@@ -69,7 +69,7 @@ export default {
                 title: '提示',
                 content: '确定删除？',
                 onOk: () => {
-                    this.api.get(this.api.admin.base + this.api.urls.admin_slider_del, {
+                    this.api.get(this.api.admin.base + this.api.admin.admin_slider_del, {
                         id: e.id
                     }).then(res => {
                         this.getList();
@@ -85,7 +85,7 @@ export default {
             if (this.curr.id) {
                 data.id = this.curr.id
             }
-            this.api.post(this.api.admin.base + this.api.urls.admin_slider_edit, data).then(res => {
+            this.api.post(this.api.admin.base + this.api.admin.admin_slider_edit, data).then(res => {
                 this.getList();
             })
         },

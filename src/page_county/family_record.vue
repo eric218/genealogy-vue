@@ -44,8 +44,8 @@
                                 <router-link to="/c/detail" class="item" v-for="v in data_a" :key="v.id">
                                     <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
                                     <div class="obj">
-                                        <div class="tit" v-text="v.newsTitle"></div>
-                                        <div class="intro" v-text="v.newsText"></div>
+                                        <div class="tit" v-html="v.newsTitle"></div>
+                                        <div class="intro" v-html="v.newsText"></div>
                                     </div>
                                 </router-link>
                             </div>

@@ -16,7 +16,7 @@ export default {
         }
     },
     mounted() {
-        this.url = this.api.urls.admin_summarys_list
+        this.url = this.api.admin.admin_summarys_list
     },
 }
 </script>

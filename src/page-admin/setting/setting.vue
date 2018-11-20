@@ -12,7 +12,7 @@
                 </Row>
             </FormItem>
             <FormItem label="徽标">
-                <Upload class="upload" :action="api.admin.base + api.urls.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
+                <Upload class="upload" :action="api.admin.base + api.admin.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
                     <Button type="dashed">
                         <div class="img" :style="api.imgBG(formData.totemPicSrc)" v-if="formData.totemPicSrc" />
                         <Icon type="ios-camera" size="40" color="#ccc" v-else></Icon>
@@ -51,7 +51,7 @@ export default {
     },
     methods: {
         getInfo() {
-            this.api.get(this.api.admin.base + this.api.urls.admin_site_info, {
+            this.api.get(this.api.admin.base + this.api.admin.admin_site_info, {
                 siteId: this.$store.state.siteId,
             }).then(res => {
                 this.formData = res.data
@@ -66,7 +66,7 @@ export default {
             if (!this.formData.id) {
                 return;
             }
-            this.api.post(this.api.admin.base + this.api.urls.admin_site_edit, {
+            this.api.post(this.api.admin.base + this.api.admin.admin_site_edit, {
                 id: this.formData.id,
                 siteName: this.formData.siteName,
                 totemPicSrc: this.formData.totemPicSrc,

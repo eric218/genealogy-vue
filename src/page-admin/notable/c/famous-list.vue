@@ -9,7 +9,7 @@
                     <Input v-model="formData.personName" placeholder="姓名" />
                 </FormItem>
                 <FormItem label="头像">
-                    <Upload class="upload" :action="api.admin.base + api.urls.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
+                    <Upload class="upload" :action="api.admin.base + api.admin.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
                         <Button type="dashed">
                             <div class="img" :style="api.imgBG(formData.picFileSrc)" v-if="formData.picFileSrc" />
                             <Icon type="ios-camera" size="40" color="#ccc" v-else></Icon>
@@ -150,7 +150,7 @@ export default {
                 }
                 this.isedit = true;
             } else {
-                this.api.get(this.api.admin.base + this.api.urls.admin_famous_info, {
+                this.api.get(this.api.admin.base + this.api.admin.admin_famous_info, {
                     id: e
                 }).then(res => {
                     if (res.code == 200) {
@@ -168,7 +168,7 @@ export default {
                 title: '提示',
                 content: '确定删除这个文章？',
                 onOk: () => {
-                    this.api.get(this.api.admin.base + this.api.urls.admin_famous_del, {
+                    this.api.get(this.api.admin.base + this.api.admin.admin_famous_del, {
                         id: this.list[index].id
                     }).then(res => {
                         this.list.splice(index, 1);
@@ -195,7 +195,7 @@ export default {
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin.base + this.api.urls.admin_famous_edit, data).then(res => {
+            this.api.post(this.api.admin.base + this.api.admin.admin_famous_edit, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');
@@ -219,7 +219,7 @@ export default {
             if (this.formData.id) {
                 data.id = this.formData.id
             }
-            this.api.post(this.api.admin.base + this.api.urls.admin_famous_drft, data).then(res => {
+            this.api.post(this.api.admin.base + this.api.admin.admin_famous_drft, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');
