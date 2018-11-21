@@ -4,49 +4,49 @@ export default [{
         meta: {
             title: "首页"
         },
-        component: () => import('@/page_county/home/home')
+        component: () => import('@/page-county/home/home')
     }, {
         path: 'culture_home',
         name: 'culture_home',
         meta: {
             title: "家族文化"
         },
-        component: () => import('@/page_county/culture')
+        component: () => import('@/page-county/culture')
     }, {
         path: 'charity_home',
         name: 'charity_home',
         meta: {
             title: "慈善公益"
         },
-        component: () => import('@/page_county/charity')
+        component: () => import('@/page-county/charity')
     }, {
         path: 'industry_home',
         name: 'industry_home',
         meta: {
             title: "家族产业"
         },
-        component: () => import('@/page_county/industry')
+        component: () => import('@/page-county/industry')
     }, {
         path: 'famous_home',
         name: 'famous_home',
         meta: {
             title: "家族名人"
         },
-        component: () => import('@/page_county/famous')
+        component: () => import('@/page-county/famous')
     }, {
         path: 'ancestors',
         name: 'ancestors_home',
         meta: {
             title: "祖先分支"
         },
-        component: () => import('@/page_county/ancestors')
+        component: () => import('@/page-county/ancestors')
     }, {
         path: 'family_record_home',
         name: 'family_record_home',
         meta: {
             title: "记录家族"
         },
-        component: () => import('@/page_county/family_record')
+        component: () => import('@/page-county/family_record')
     },
     {
         path: "tongpu_home",
@@ -54,7 +54,7 @@ export default [{
         meta: {
             title: "统谱编修"
         },
-        component: () => import('@/page_county/tongpu')
+        component: () => import('@/page-county/tongpu')
     },
     {
         path: 'detail',
@@ -62,6 +62,6 @@ export default [{
         meta: {
             title: "文章详情"
         },
-        component: () => import('@/page_county/detail')
+        component: () => import('@/page-county/detail')
     }
 ]

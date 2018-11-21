@@ -16,7 +16,7 @@ export default [{
         meta: {
             title: '配置',
         },
-        component: () => import('@/page_county/base.vue')
+        component: () => import('@/page-county/base.vue')
     },
     {
         path: '/a',
