@@ -2,7 +2,8 @@
     <div class="friends">
         <div class="inner">
             <div class="h">
-                <div class="tit"></div>
+                <div class="cn">最铁盟友</div>
+                <Divider class="en">Ally</Divider>
             </div>
             <div class="b">
                 <a href="http://www.baidu.com" target="_blank" class="item" v-for="v in 2" :key="v">
@@ -19,44 +20,19 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .friends {
-  background: #ece9e9;
-
+  padding: 32px 0;
   .inner {
     overflow: hidden;
   }
 
   .h {
-    position: relative;
     text-align: center;
-    background: url(../../assets/img/icon-title-tip.png) no-repeat bottom center /
-      auto 24px;
-    padding: 24px 0;
-
-    .tit {
-      display: block;
-      height: 32px;
-      background: url(../../assets/img/home-friends.png) no-repeat center / auto
-        24px;
+    padding: 32px 0;
+    .cn {
+      font-size: 24px;
     }
-
-    .date {
-      font-size: 12px;
-      line-height: 16px;
-    }
-
-    &:before,
-    &:after {
-      content: "";
-      display: block;
-      position: absolute;
-      top: 50%;
-      height: 1px;
-      width: 40%;
-      background: $color;
-    }
-
-    &:before {
-      right: 0;
+    .en {
+      font-weight: 300;
     }
   }
 

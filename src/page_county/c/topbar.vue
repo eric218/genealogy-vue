@@ -1,15 +1,14 @@
 <template>
     <div class="topbar">
-        <div class="brand">
-            <div class="img" :style="api.imgBG(info.totemPicSrc)"></div>
-            <div class="obj kt">
-                <div class="cn">{{info.siteName}}</div>
-                <div class="en">{{info.title}}</div>
+        <div class="inner">
+            <div class="user">
+                <span class="btn login" @click="islogin = true">登录</span>
+                <span>|</span>
+                <span class="btn reg" @click="isreg = true">注册</span>
             </div>
-        </div>
-        <div class="authform">
-            <div class="btn login" @click="islogin = true">登录</div>
-            <div class="btn reg" @click="isreg = true">注册</div>
+            <div class="welcome">
+                <span>欢迎进入「炎黄统谱网」</span>
+            </div>
         </div>
         <Modal v-model="islogin" width="480px" class="g-auth" :footer-hide='true'>
             <loginform @urlToReg="urlToReg" />
@@ -28,29 +27,15 @@ export default {
         loginform,
         regform,
     },
-    computed: {
-        url() {
-            return this.$store.state.county.apiList.index_summary.apiUrl
-        }
-    },
     data() {
         return {
-            info: {},
             isreg: false,
             islogin: false,
         };
     },
     mounted: function () {
-        this.getInfo();
     },
     methods: {
-        getInfo() {
-            this.api.get(this.api.county.base + this.url, {}).then(res => {
-                if (res.code == 200) {
-                    this.info = res.data
-                }
-            })
-        },
         urlToReg() {
             this.islogin = false;
             setTimeout(() => {
@@ -69,113 +54,30 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .topbar {
-  background: #fafafa;
-  height: 120px;
-  .brand {
-    position: absolute;
-    left: 50%;
-    top: 20px;
-    z-index: 9;
-    margin-left: -580px;
-    white-space: nowrap;
-    overflow: hidden;
-
-    .img {
-      height: 80px;
-      width: 80px;
-      background: url(../../assets/img/logo.png) no-repeat center / auto 100%;
-      margin-right: 16px;
-      float: left;
-    }
-
-    .obj {
-      overflow: hidden;
-      font-size: 24px;
-
-      .cn {
-        font-weight: 700;
-        letter-spacing: 3px;
-      }
-
-      .en {
-        font-size: 16px;
-      }
-    }
-  }
-
-  .authform {
-    position: absolute;
-    right: 50%;
-    top: 20px;
-    z-index: 9;
-    margin-right: -580px;
-    overflow: hidden;
-
-    .btn {
-      display: block;
-      float: left;
-      padding: 0 20px;
-      color: #fff;
-      margin: 0 1px;
+  position: fixed;
+  right: 0;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  background-color: #eee;
+  box-shadow: 0 1px 2px rgba(#000, 0.2);
+  height: 32px;
+  width: 100%;
+  line-height: 32px;
+  overflow: hidden;
+  font-size: 12px;
+  .user {
+    float: right;
+    span {
+      display: inline-block;
       cursor: pointer;
-
-      &.reg {
-        background: #666;
-      }
-
-      &.login {
-        background: #000;
-      }
-    }
-  }
-
-  .authuser {
-    position: absolute;
-    right: 50%;
-    top: 20px;
-    z-index: 9;
-    padding: 16px;
-    margin-right: -580px;
-    white-space: nowrap;
-    cursor: pointer;
-
-    .img {
-      position: relative;
-      height: 40px;
-      width: 40px;
-      border-radius: 50%;
-      background: whitesmoke no-repeat center / cover;
-      float: left;
-      margin-right: 16px;
-
-      .tag {
-        position: absolute;
-        top: -8px;
-        right: -8px;
-        font-size: 12px;
-        border-radius: 8px;
-        line-height: 20px;
-        background: #f56c6c;
-        min-width: 24px;
-        text-align: center;
-        color: #fff;
-      }
-    }
-
-    .obj {
-      overflow: hidden;
-      line-height: 40px;
-      color: #fff;
-    }
-  }
-
-  &._user {
-    background: $color;
-
-    .brand {
-      .img {
-        width: 320px;
-        background: url(../../assets/img/logo-white.png) no-repeat center;
+      padding: 0 4px;
+      color: #ccc;
+      &.btn {
+        color: #333;
+        &:hover {
+          color: $color;
+        }
       }
     }
   }

@@ -1,15 +1,19 @@
 import TopInfo from './TopInfo.vue'
+import About from './About.vue'
 import Dynamic from './Dynamic.vue'
-import NewNews from './NewNews.vue'
+import Record from './Record.vue'
+import TheNew from './TheNew.vue'
 import Famous from './Famous.vue'
-import Culture from './culture.vue'
+import Culture from './Culture.vue'
 import Gongyi from './Gongyi.vue'
 import Products from './Products.vue'
 import Friends from './Friends.vue'
 export {
     TopInfo,
+    About,
     Dynamic,
-    NewNews,
+    Record,
+    TheNew,
     Famous,
     Culture,
     Gongyi,

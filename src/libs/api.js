@@ -2,10 +2,11 @@ import axios from 'axios';
 
 const api = {
     pageSize: 20,
-    imghost: 'http://192.168.2.132:8090/',
-    server: 'http://192.168.2.179:8090/',
+    // imghost: 'http://47.105.177.1:6090/',
+    imghost: 'http://192.168.2.132:8090/', //图片资源地址
+    server: 'http://192.168.2.179:8090/', //后台接口地址
     admin: {
-        base: 'http://192.168.2.179:8050/',
+        base: 'http://192.168.2.179:8050/', //后台接口地址
         upload_img: 'fan/uploadFastdfs', //图片上传
         admin_site_info: 'genogram/admin/fanIndex/getFanIndexInfo', //网站信息--后台
         admin_site_edit: 'genogram/admin/fanIndex/insertOrUpdateFanIndexInfo', //网站信息--修改
@@ -62,7 +63,7 @@ const api = {
         media_del: 'genogram/admin/fanNewsFamilyRecord/deleteRecordVedioById', //删除
     },
     county: {
-        base: 'http://192.168.2.179:8090/',
+        base: 'http://192.168.2.179:8090/', //联谊会前台接口地址
         common_home_all: 'genogram/fanMenu/getIndexMenuBySiteId', //首页api
         common_site_menu: 'genogram/fanMenu/getTitlesByMenuId', //导航栏
         detail: {
@@ -73,12 +74,20 @@ const api = {
             family_record: 'genogram/fanNewsFamilyRecord/getFamilyRecordDetail', //家族动态
         },
     },
+    user: {
+        base: 'http://192.168.2.179:8090/', //用户中心接口地址
+        login: 'genogram/userLogin/login', //登录
+        reg: 'genogram/userLogin/signIn', //注册
+    },
     post: function (url, data) {
         if (!data.pageNow) {
             data.pageNo = 1
         }
         if (!data.pageSize) {
             data.pageSize = 8
+        }
+        if (!data.token) {
+            data.token = '111'
         }
         let params = new URLSearchParams();
         for (let v in data) {

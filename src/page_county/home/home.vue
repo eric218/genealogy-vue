@@ -5,11 +5,13 @@
         <Banner />
         <div class="main">
             <TopInfo />
+            <About />
             <Dynamic />
-            <NewNews />
+            <Record />
+            <TheNew />
             <Famous />
             <div class="adlinks">
-                <img src="@/assets/jpg/gg.png" alt="">
+                <img src="@/assets/jpg/gg.jpg">
             </div>
             <Culture />
             <Gongyi />
@@ -21,7 +23,7 @@
 </template>
 <script>
 import { Topbar, NavBar, Banner, FootBar } from '../c'
-import { TopInfo, Dynamic, NewNews, Famous, Culture, Gongyi, Products, Friends } from '/';
+import { TopInfo, About, Dynamic, Record, TheNew, Famous, Culture, Gongyi, Products, Friends } from '/';
 
 export default {
     name: "Home",
@@ -31,8 +33,10 @@ export default {
         Banner,
         FootBar,
         TopInfo,
+        About,
         Dynamic,
-        NewNews,
+        Record,
+        TheNew,
         Famous,
         Culture,
         Gongyi,

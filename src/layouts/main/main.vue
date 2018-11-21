@@ -21,8 +21,6 @@ export default {
   padding-left: 40px;
   line-height: 48px;
   font-size: 18px;
-  background: url(../../assets/img/icon-title-bar.png) no-repeat left center /
-    auto 24px;
   .act {
     font-size: 14px;
     float: right;

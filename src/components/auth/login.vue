@@ -47,14 +47,13 @@ export default {
                 this.$Message.error('请输入密码');
                 return;
             }
-            this.api.post('', {
-                user: {
-                    username: this.form.mobile,
-                    password: this.form.password,
-                }
+            this.api.post(this.api.user.base + this.api.user.login, {
+                userName: this.form.mobile,
+                password: this.form.password,
             }).then(res => {
+                return;
                 if (res.code === 200) {
-                    this.$router.push('/User')
+                    this.$router.push('/u')
                 } else {
                     this.$Message.error(res.msg);
                 }

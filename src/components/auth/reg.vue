@@ -24,7 +24,9 @@
                 <Input v-model="form.repassword" type="password" placeholder="再次输入密码" clearable />
             </FormItem>
             <FormItem label="姓氏">
-                <Input placeholder="输入姓氏" clearable />
+                <Select v-model="form.truename" style="width:200px">
+                    <Option label="张" value="张"></Option>
+                </Select>
             </FormItem>
             <FormItem label="地区">
                 <al-cascader v-model="selected" :level="2" style="width:100%" placeholder="请选择地区" />
@@ -55,7 +57,7 @@ export default {
             looptime: 60,
             looptext: "获取验证码",
             loop: null,
-            selected: ['湖北省', '咸宁市', '崇阳县'],
+            selected: [],
         };
     },
     mounted: function () {
@@ -99,12 +101,22 @@ export default {
                 this.$Message.error('两次密码不一致');
                 return;
             }
-            this.api.post('', {
+            if (this.selected.length < 3) {
+                this.$Message.error('请选择地区');
+                return;
+            }
+            this.api.post(this.api.user.base + this.api.user.reg, {
                 mobilePhone: this.form.mobile,
-                yanzheng: this.form.sms,
+                sms: this.form.sms,
                 password: this.form.password,
+                familyCode: this.form.truename,
+                region: this.selected[2].code,
             }).then(res => {
-
+                if (res.code == 200) {
+                    this.$Message.success('注册成功')
+                } else {
+                    this.$Message.error(res.msg)
+                }
             })
         },
     }

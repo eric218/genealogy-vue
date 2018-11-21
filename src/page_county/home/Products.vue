@@ -1,49 +1,51 @@
 <template>
     <div class="products">
         <div class="inner">
-            <div class="tabs kt">
-                <span class="tit">产业</span>
-                <span class="menu curr">家族产业</span>
+            <div class="h">
+                <div class="cn">家族产业 奋斗的精神</div>
+                <Divider class="en">Industry</Divider>
             </div>
-            <div class="items">
+            <div class="b">
                 <div class="grid">
-                    <router-link to="/Products" class="hd kt">
-                        <span class="more">更多</span>
-                        <span>公共产业</span>
+                    <router-link to="industry_home" class="hd">
+                        <span class="more">More</span>
+                        <span class="tit kt">公共产业</span>
                     </router-link>
                     <div class="bd" v-if="index_industry_public">
                         <router-link :to="'/c/Detail?type=industry&id='+v.id" class="item" v-for="v in index_industry_public.records" :key="v.id">
                             <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''">
-                                <div class="tit">{{v.newsText}}</div>
+                                <div class="tit">{{v.newsTitle}}</div>
                             </div>
+                            <div class="intro">{{v.newsText}}</div>
                             <div class="flag">
                                 <div class="level">
                                     <span>诚信值{{v.visitNum}}</span>
                                 </div>
                                 <div class="head"></div>
-                                <div class="name">{{v.newsTitle}}</div>
-                                <div class="tag" v-if="v.status"><img src="@/assets/img/icon-tag.png" alt="">[诚信业主]</div>
+                                <div class="name">张三</div>
+                                <div class="tag" v-if="v.status">[诚信业主]</div>
                             </div>
                         </router-link>
                     </div>
                 </div>
                 <div class="grid">
-                    <router-link to="/Products" class="hd kt">
-                        <span class="more">更多</span>
-                        <span>私人产业</span>
+                    <router-link to="industry_home" class="hd">
+                        <span class="more">More</span>
+                        <span class="tit kt">私人产业</span>
                     </router-link>
                     <div class="bd" v-if="index_industry_person">
                         <router-link :to="'/c/Detail?type=industry&id='+v.id" class="item" v-for="v in index_industry_person.records" :key="v.id">
                             <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''">
-                                <div class="tit">{{v.newsText}}</div>
+                                <div class="tit">{{v.newsTitle}}</div>
                             </div>
+                            <div class="intro">{{v.newsText}}</div>
                             <div class="flag">
                                 <div class="level">
                                     <span>诚信值{{v.visitNum}}</span>
                                 </div>
                                 <div class="head"></div>
-                                <div class="name">{{v.newsTitle}}</div>
-                                <div class="tag" v-if="v.status"><img src="@/assets/img/icon-tag.png" alt="">[诚信业主]</div>
+                                <div class="name">张三</div>
+                                <div class="tag" v-if="v.status">[诚信业主]</div>
                             </div>
                         </router-link>
                     </div>
@@ -94,9 +96,20 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .products {
-  padding: 8px 0 32px;
+  overflow: hidden;
+  padding: 32px 0;
+  .h {
+    text-align: center;
+    padding: 32px 0;
+    .cn {
+      font-size: 24px;
+    }
+    .en {
+      font-weight: 300;
+    }
+  }
 
-  .items {
+  .b {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -104,20 +117,27 @@ export default {
 
   .grid {
     width: 48%;
-    background: #ece9e9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 
   .hd {
     font-size: 16px;
-    margin: 0 8px;
+    padding: 8px 0;
     display: block;
-    border-bottom: 1px solid $color;
-    line-height: 40px;
-
+    line-height: 32px;
+    .tit {
+      display: inline-block;
+      padding: 0 32px;
+      background: $color;
+      color: #fff;
+      border-radius: 16px;
+    }
     .more {
       float: right;
+      font-weight: 300;
+      transition: all 0.3s;
+      &:hover {
+        transform: translate(-16px);
+      }
     }
   }
 
@@ -146,7 +166,12 @@ export default {
           background: rgba(0, 0, 0, 0.5);
         }
       }
-
+      .intro {
+        height: 48px;
+        line-height: 24px;
+        overflow: hidden;
+        color: #999;
+      }
       .flag {
         white-space: nowrap;
         overflow: hidden;
@@ -180,10 +205,9 @@ export default {
 
         .level {
           float: right;
-
           span {
-            background: $color;
-            color: #fff;
+            color: $color;
+            border: 1px solid;
             padding: 8px 16px;
             border-radius: 4px;
             font-size: 12px;
