@@ -3,56 +3,7 @@
         <Topbar />
         <NavBar :navcurr="6" />
         <div class="main">
-            <div class="dynamic">
-                <div class="inner">
-                    <div class="grid im">
-                        <div class="tabs kt">
-                            <span class="tit">动态</span>
-                            <span class="menu curr">族人实时回话</span>
-                        </div>
-                        <div class="card" v-if="index_message">
-                            <div class="tit">
-                                <span class="mini">发言人数：</span>
-                                <span>{{index_message.total}}</span>
-                            </div>
-                            <div class="info">
-                                <div class="other item" v-for="v in index_message.records" :key="v.id">
-                                    <div class="img">
-                                        <div class="head"></div>
-                                        <div class="name">{{v.nickname}}</div>
-                                    </div>
-                                    <div class="obj">
-                                        <div class="text">{{v.message}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form">
-                                <div class="act">发送</div>
-                                <div class="ipt">
-                                    <input type="text" placeholder="请输入内容" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid list">
-                        <div class="tabs kt">
-                            <span class="tit">动态</span>
-                            <span class="menu" v-for="(v,i) in menu" v-if="i < 2" :key="i" :class="v.orderIndex == menucurr_a.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v,i)"></span>
-                        </div>
-                        <div class="card">
-                            <div class="items">
-                                <router-link :to="'/c/detail?type=family_record&id='+v.id" class="item" v-for="v in data_a" :key="v.id">
-                                    <div v-if="menucurr_a.menuCode == 'index_family_record1'" class="img" :style="v.fanNewsUploadFileList.length ? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
-                                    <div class="obj">
-                                        <div class="tit" v-html="v.newsTitle"></div>
-                                        <div class="intro" v-html="v.newsText"></div>
-                                    </div>
-                                </router-link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Record />
             <div class="inner">
                 <div class="tabs kt">
                     <span class="tit">动态</span>
@@ -68,6 +19,7 @@
 
 <script>
 import { Topbar, NavBar, FootBar } from './c'
+import { Record } from './home';
 import VideoList from './list/video-list.vue';
 export default {
     name: "Culture",
@@ -75,6 +27,7 @@ export default {
         Topbar,
         NavBar,
         FootBar,
+        Record,
         VideoList
     },
     computed: {

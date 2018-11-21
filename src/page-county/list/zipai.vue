@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <Page :total="total" @on-change="chgPage" :page-size="8" />
+        <Page :total="total" @on-change="chgPage" :page-size="8" v-if="total" />
     </div>
 </template>
 <script>
@@ -78,7 +78,7 @@ export default {
     white-space: nowrap;
     margin: 16px 0;
     padding: 16px;
-    background: #ece9e9;
+    border-bottom: 1px solid #ddd;
     border-radius: 8px;
     .tit {
       span {

@@ -4,7 +4,7 @@
         <NavBar :navcurr="5" />
         <div class="main">
             <div class="adlinks">
-                <img src="@/assets/jpg/bg-human.png" alt="">
+                <img src="./img/famous.jpg" />
             </div>
             <div class="inner">
                 <div class="tabs kt">

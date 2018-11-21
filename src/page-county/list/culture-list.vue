@@ -1,33 +1,27 @@
 <template>
     <div class="newslist">
-        <Card class="item" v-for="(v,i) in list" :key="i">
-            <router-link :to="'/c/Detail?type=culture&id='+v.id">
-                <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
-                <div class="obj">
-                    <div class="tit" v-html="v.newsTitle"></div>
-                    <div class="intro" v-html="v.newsText"></div>
-                    <div class="tag">
-                        <div class="attention fr">
-                            <iconfont name="attention" />
-                            <span v-html="v.like"></span>
-                        </div>
-                        <div class="favor fr">
-                            <iconfont name="favorfill" />
-                            <span v-html="v.focus"></span>
-                        </div>
-                        <div class="appreciate fr">
-                            <iconfont name="appreciate" />
-                            <span v-html="v.visitNum"></span>
-                        </div>
-                        <div class="site fl">
-                            <iconfont name="locationfill" />
-                            <span>湖北省武汉市</span>
-                        </div>
+        <router-link :to="'/c/Detail?type=culture&id='+v.id" class="item" v-for="(v,i) in list" :key="i">
+            <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''" />
+            <div class="obj">
+                <div class="tit" v-html="v.newsTitle"></div>
+                <div class="intro" v-html="v.newsText"></div>
+                <div class="tag">
+                    <div class="attention fr">
+                        <iconfont name="attention" v-if="v.visitNum"/>
+                        <span v-html="v.visitNum"></span>
+                    </div>
+                    <div class="favor fr" v-if="v.focus">
+                        <iconfont name="favorfill" />
+                        <span v-html="v.focus"></span>
+                    </div>
+                    <div class="appreciate fr" v-if="v.like">
+                        <iconfont name="appreciate" />
+                        <span v-html="v.like"></span>
                     </div>
                 </div>
-            </router-link>
-        </Card>
-        <Page :total="total" @on-change="chgPage" :page-size="8" />
+            </div>
+        </router-link>
+        <Page :total="total" @on-change="chgPage" :page-size="8" v-if="total" />
     </div>
 </template>
 <script>
@@ -72,8 +66,9 @@ export default {
   padding: 16px 0;
   .item {
     white-space: nowrap;
-    margin: 16px 0;
-    background: #ece9e9;
+    display: block;
+    border-bottom: 1px solid #eee;
+    padding: 16px 0;
     .img {
       height: 150px;
       width: 200px;

@@ -4,16 +4,19 @@
         <NavBar :navcurr="2" />
         <div class="main">
             <div class="adlinks">
-                <img src="@/assets/jpg/bgculture.png">
+                <img src="./img/culture.jpg" />
             </div>
             <div class="inner">
-                <div class="tabs kt">
-                    <span class="tit">资讯</span>
+                <div class="h">
+                    <div class="cn">家族文化</div>
+                    <Divider class="en">Information</Divider>
+                </div>
+                <div class="menus">
                     <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
                 </div>
-                <div class="in" v-if="menucurr && url">
+                <div class="grid" v-if="menucurr && url">
                     <ZipaiList :url="url" v-if="menucurr.menuType == 'culture_zipai'" />
-                    <Culture :url="url" v-if="menucurr.menuType == 'culture_news'" />
+                    <Culture :url="url" v-else-if="menucurr.menuType == 'culture_news'" />
                 </div>
             </div>
         </div>
@@ -64,3 +67,35 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/css/var.scss";
+.h {
+  text-align: center;
+  padding: 32px 0;
+  .cn {
+    font-size: 24px;
+  }
+  .en {
+    font-weight: 300;
+  }
+}
+.menus {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 16px;
+  .menu {
+    padding: 0 16px;
+    margin: 0 4px;
+    cursor: pointer;
+    line-height: 32px;
+    &.curr,
+    &:hover {
+      background: $color;
+      color: #fff;
+      border-radius: 16px;
+    }
+  }
+}
+</style>

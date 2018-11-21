@@ -1,8 +1,11 @@
 <template>
-    <div class="page" v-if="$store.state.county.apiList" style="background-color:#ece9e9">
+    <div class="page" v-if="$store.state.county.apiList" style="background-color:#f1f2f3">
         <Topbar />
         <NavBar :navcurr="navcurr" />
         <div class="main">
+            <div class="adlinks">
+                <img src="./img/detail.jpg" />
+            </div>
             <div class="inner">
                 <Breadcrumb>
                     <BreadcrumbItem to="/">首页</BreadcrumbItem>
@@ -165,8 +168,9 @@ export default {
 .detail {
   background: #fff;
   padding: 16px;
-  border-radius: 8px;
+  border-radius: 4px;
   margin-bottom: 32px;
+  box-shadow: 0 1px 3px rgba(#000, 0.1);
 
   .h {
     text-align: center;
@@ -191,9 +195,7 @@ export default {
 
     .intro {
       background: whitesmoke;
-      border: 1px dashed #ddd;
       padding: 8px 16px;
-      border-radius: 8px;
     }
 
     .content {

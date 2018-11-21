@@ -74,7 +74,6 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .sia {
-  background: url(../assets/jpg/bg-charity-fill.png) no-repeat center;
   padding: 32px 0;
   .card {
     width: 600px;
