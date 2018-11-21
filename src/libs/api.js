@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const api = {
     pageSize: 20,
-    // imghost: 'http://47.105.177.1:6090/',
-    imghost: 'http://192.168.2.132:8090/', //图片资源地址
+    imghost: 'http://47.105.177.1:6090/', //图片资源地址
+    // imghost: 'http://192.168.2.132:8090/', //图片资源地址
     server: 'http://192.168.2.179:8090/', //后台接口地址
     admin: {
         base: 'http://192.168.2.179:8050/', //后台接口地址
@@ -86,8 +86,8 @@ const api = {
         if (!data.pageSize) {
             data.pageSize = 8
         }
-        if (!data.token) {
-            data.token = '111'
+        if (!data.token && localStorage.token) {
+            data.token = localStorage.token
         }
         let params = new URLSearchParams();
         for (let v in data) {
@@ -95,8 +95,12 @@ const api = {
         }
         return new Promise((resolve, reject) => {
             axios.post(url, params).then(res => {
-                console.log(res.data)
-                resolve(res.data);
+                if (res.code == 401) {
+                    alert(res.msg);
+                    return;
+                } else {
+                    resolve(res.data);
+                }
             })
         })
     },
@@ -106,6 +110,9 @@ const api = {
         }
         if (!data.pageSize) {
             data.pageSize = 8
+        }
+        if (!data.token && localStorage.token) {
+            data.token = localStorage.token
         }
         return new Promise((resolve, reject) => {
             axios.get(url, {
@@ -121,6 +128,9 @@ const api = {
     upload: function (url, data, files) {
         let params = new FormData();
         params.append(files['key'], files['file']);
+        if (!data.token && localStorage.token) {
+            data.token = localStorage.token
+        }
         for (let v in data) {
             params.append(v, data[v]);
         }
@@ -185,6 +195,9 @@ const api = {
         } else {
             return true;
         }
+    },
+    isNumber: e => {
+        e === +e
     },
     imgurl: function (e) {
         if (!e) {

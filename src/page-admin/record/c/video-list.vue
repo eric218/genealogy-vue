@@ -151,6 +151,10 @@ export default {
             this.$Message.warning('最大支持上传2M图片');
         },
         toSubmit() {
+            if(!this.formData.title){
+                this.$Message.warning('请输入标题')
+                return;
+            }
             let data = {
                 showId: this.type,
                 title: this.formData.title,

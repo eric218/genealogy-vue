@@ -54,7 +54,9 @@ export default {
             this.api.get(this.api.admin.base + this.api.admin.admin_site_info, {
                 siteId: this.$store.state.siteId,
             }).then(res => {
-                this.formData = res.data
+                if (res.code == 200) {
+                    this.formData = res.data
+                }
             })
         },
         handleSuccess(res, file) {

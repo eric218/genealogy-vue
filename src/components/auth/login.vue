@@ -51,8 +51,8 @@ export default {
                 userName: this.form.mobile,
                 password: this.form.password,
             }).then(res => {
-                return;
                 if (res.code === 200) {
+                    this.$store.commit('updateUser', res.data);
                     this.$router.push('/u')
                 } else {
                     this.$Message.error(res.msg);

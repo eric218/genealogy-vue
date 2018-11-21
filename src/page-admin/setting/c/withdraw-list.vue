@@ -5,9 +5,12 @@
         <Page :total="total" @on-change="chgPage" :page-size="8" />
         <Drawer :mask-closable="false" title="申请提现" width="50%" v-model="isedit">
             <Form :model="formData" :label-width="80">
-                <FormItem label="资金概况">¥ 0.00</FormItem>
+                <FormItem label="资金概况">¥ {{finance.remain}}</FormItem>
                 <FormItem label="提现金额">
-                    <Input v-model="formData.drowAmount" placeholder="提现金额" />
+                    <Poptip trigger="focus" placement="right">
+                        <Input v-model="formData.drowAmount" prefix="logo-yen" placeholder="提现金额" />
+                        <div slot="content">{{ formatNumber }}</div>
+                    </Poptip>
                 </FormItem>
                 <FormItem label="提现银行">
                     <Input v-model="formData.drowBank" placeholder="提现银行" />
@@ -17,6 +20,9 @@
                 </FormItem>
                 <FormItem label="银行卡号">
                     <Input v-model="formData.drowInAccountCard" placeholder="银行卡号" />
+                </FormItem>
+                <FormItem label="确认卡号">
+                    <Input v-model="formData.drowInAccountCardRe" placeholder="再次输入银行卡号" />
                 </FormItem>
                 <FormItem label="开户名">
                     <Input v-model="formData.drowInAccountName" placeholder="开户名" />
@@ -40,7 +46,9 @@ export default {
             finance: {
                 remain: ''
             },
-            formData: {},
+            formData: {
+                drowAmount: ''
+            },
             columns: [
                 {
                     title: 'ID',
@@ -80,6 +88,12 @@ export default {
             }
         },
     },
+    computed: {
+        formatNumber() {
+            if (!this.formData.drowAmount) return '输入提现金额';
+            return this.formData.drowAmount;
+        }
+    },
     mounted: function () {
         this.getList()
     },
@@ -118,6 +132,39 @@ export default {
             this.isedit = true;
         },
         toSubmit() {
+            if (!this.formData.drowAmount) {
+                this.$Message.error('请输入提现金额');
+                return;
+            }
+            if (!Number(this.formData.drowAmount)) {
+                this.$Message.error('请输入正确的提现金额');
+                return;
+            }
+            this.formData.drowAmount = Number(this.formData.drowAmount);
+            if (this.formData.drowAmount < 0 || this.formData.drowAmount > this.finance.remain) {
+                this.$Message.error('没有足够的可提现金额');
+                return;
+            }
+            if (!this.formData.drowBank) {
+                this.$Message.error('请输入开户行');
+                return;
+            }
+            if (!this.formData.drowInAccountCard) {
+                this.$Message.error('请输入银行卡号');
+                return;
+            }
+            if (!this.formData.drowInAccountName) {
+                this.$Message.error('请输入开户人姓名');
+                return;
+            }
+            if (!this.formData.drowAmount) {
+                this.$Message.error('请输入提现金额');
+                return;
+            }
+            if (!this.formData.drowInAccountCardRe != this.formData.drowInAccountCard) {
+                this.$Message.error('两次输入的银行卡号不一致');
+                return;
+            }
             let data = {
                 siteId: this.$store.state.siteId,
                 drowAmount: this.formData.drowAmount,

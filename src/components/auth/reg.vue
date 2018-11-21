@@ -110,7 +110,7 @@ export default {
                 sms: this.form.sms,
                 password: this.form.password,
                 familyCode: this.form.truename,
-                region: this.selected[2].code,
+                regionCode: this.selected[2].code,
             }).then(res => {
                 if (res.code == 200) {
                     this.$Message.success('注册成功')

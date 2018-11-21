@@ -3,7 +3,7 @@
         <Button type="primary" @click="toEdit(0)">添加字派</Button>
         <Table border :columns="columns" :data="list" style="margin:16px 0;"></Table>
         <Page :total="total" @on-change="chgPage" :page-size="8" />
-        <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%"  v-model="isedit">
+        <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%" v-model="isedit">
             <Form :model="formData" :label-width="80">
                 <FormItem label="字派所在地">
                     <Input v-model="formData.ziapiLocation" placeholder="输入字派所在地" />
@@ -198,6 +198,10 @@ export default {
         toAddZipai() {
             if (!this.zipai_txt) {
                 this.$Message.error('请输入内容')
+                return;
+            }
+            if (this.zipai_txt.length > 2) {
+                this.$Message.warning('字派名过长')
                 return;
             }
             this.formData.list.push(this.zipai_txt);
