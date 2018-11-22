@@ -2,7 +2,7 @@
     <div class="charity">
         <div class="sort">
             <div class="searchbar">
-                <div class="act">搜索</div>
+                <div class="link">搜索</div>
                 <input type="text" placeholder="输入搜索关键词">
             </div>
             <div class="item label">排序</div>
@@ -16,7 +16,7 @@
                     <div class="img"></div>
                     <div class="name">张三</div>
                     <div class="count">捐款<span>1.00</span>元</div>
-                    <div class="act">
+                    <div class="link">
                         <span>关注</span>
                         <span>点赞</span>
                     </div>
@@ -48,7 +48,7 @@ export default {
       border-radius: 4px;
       border: 0;
     }
-    .act {
+    .link{
       float: right;
       padding: 0 8px;
       background: $color;
@@ -97,7 +97,7 @@ export default {
         color: $color;
       }
     }
-    .act {
+    .link {
       display: flex;
       font-size: 12px;
       justify-content: space-between;

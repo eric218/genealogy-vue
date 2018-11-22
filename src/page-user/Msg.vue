@@ -7,7 +7,7 @@
             <div class="suc">
                 <div class="inner grid">
                     <div class="h">
-                        <div class="more act">
+                        <div class="more link">
                             <iconfont name="edit" />
                             <span>发布</span>
                         </div>

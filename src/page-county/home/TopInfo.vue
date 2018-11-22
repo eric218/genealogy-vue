@@ -53,7 +53,7 @@
                         <div class="tit">
                             <img src="@/assets/img/gongdejuankuan.png">
                         </div>
-                        <div class="act" @click="handleTopay = true">
+                        <div class="link" @click="handleTopay = true">
                             <img src="../img/topay.png" /></div>
                     </div>
                     <div class="b">
@@ -233,7 +233,7 @@ export default {
           }
         }
 
-        .act {
+        .link {
           float: right;
 
           img {

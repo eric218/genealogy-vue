@@ -41,7 +41,7 @@
                                     <div class="img"></div>
                                     <div class="name">张三</div>
                                     <div class="count">捐款<span>1.00</span>元</div>
-                                    <div class="act">
+                                    <div class="link">
                                         <span>关注</span>
                                         <span>点赞</span>
                                     </div>
@@ -299,7 +299,7 @@ export default {
             color: $color;
           }
         }
-        .act {
+        .link {
           font-size: 12px;
           display: flex;
           justify-content: space-between;

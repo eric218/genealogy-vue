@@ -1,5 +1,5 @@
 <template>
-    <div class="navbar">
+    <div class="navbar" style="margin-top:32px;">
         <router-link :to="v.url" class="item" v-for="(v,i) in menus" :key="i" :class="name == i ? 'curr':''"><span>{{v.name}}</span></router-link>
     </div>
 </template>
@@ -8,13 +8,13 @@ export default {
     data() {
         return {
             menus: [{
-                url: '/User',
+                url: 'user',
                 name: '个人主页',
             }, {
-                url: '/User/Family',
+                url: 'family',
                 name: '我的族谱',
             }, {
-                url: '/User/Donate',
+                url: 'donate',
                 name: '捐款记录',
             }],
         };

@@ -105,7 +105,7 @@ export default {
           border-radius: 4px;
           border: 0;
         }
-        .act {
+        .link {
           float: right;
           padding: 0 8px;
           background: $color;
@@ -154,7 +154,7 @@ export default {
             color: $color;
           }
         }
-        .act {
+        .link {
           display: flex;
           font-size: 12px;
           justify-content: space-between;

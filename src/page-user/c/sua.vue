@@ -41,22 +41,22 @@
                     <div class="item">统派：张氏</div>
                 </div>
                 <div class="more">
-                    <router-link to="/User/Note" class="item">
+                    <router-link to="note" class="item">
                         <iconfont name="formfill" />
                         <span>日志</span>
                         <span>150</span>
                     </router-link>
-                    <router-link to="/User/Image" class="item">
+                    <router-link to="image" class="item">
                         <iconfont name="picfill" />
                         <span>照片</span>
                         <span>150</span>
                     </router-link>
-                    <router-link to="/User/Video" class="item">
+                    <router-link to="video" class="item">
                         <iconfont name="video_fill_light" />
                         <span>视频</span>
                         <span>150</span>
                     </router-link>
-                    <router-link to="/User/Msg" class="item">
+                    <router-link to="msg" class="item">
                         <iconfont name="communityfill" />
                         <span>说说</span>
                         <span>150</span>
@@ -88,7 +88,7 @@ export default {
 };
 </script>
 <style lang="scss">
-@import '@/assets/css/var.scss';
+@import "@/assets/css/var.scss";
 .page-user {
   .sua {
     .bg {
@@ -290,7 +290,7 @@ export default {
         font-size: 12px;
         cursor: pointer;
         display: block;
-        &.act {
+        &.link {
           color: $color;
         }
       }

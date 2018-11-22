@@ -45,7 +45,6 @@ export default {
         };
     },
     mounted: function () {
-
     },
     methods: {
         toSubmit() {
@@ -64,12 +63,15 @@ export default {
                     siteId: this.$store.state.siteId,
                     payAmount: this.form.num,
                     anonymous: 1,
-                    url: location.href
+                    url: location.origin + '/#/c/home?back=pay&'
                 }).then(res => {
-                    const div = document.createElement('div');
-                    div.innerHTML = res;
-                    document.body.appendChild(div);
-                    document.forms.punchout_form.submit();
+                    if (res.code == 200) {
+                        sessionStorage.callback = 1
+                        const div = document.createElement('div');
+                        div.innerHTML = res.data;
+                        document.body.appendChild(div);
+                        document.forms.punchout_form.submit();
+                    }
                 })
             }
         },

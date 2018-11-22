@@ -2,7 +2,7 @@
     <div class="charity">
         <div class="sort">
             <div class="searchbar">
-                <div class="act">搜索</div>
+                <div class="link">搜索</div>
                 <input type="text" placeholder="输入搜索关键词">
             </div>
             <Select v-model="model" style="width:120px;">
@@ -57,7 +57,7 @@ export default {
       border-radius: 4px;
       border: 0;
     }
-    .act {
+    .link {
       float: right;
       padding: 0 8px;
       background: $color;

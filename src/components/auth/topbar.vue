@@ -64,6 +64,13 @@ export default {
         },
     },
     mounted: function () {
+        if (this.$route.query.back && sessionStorage.callback) {
+            sessionStorage.removeItem('callback')
+            this.$Modal.success({
+                title: '提示',
+                content: '成功支付：' + this.$route.query.total_amount + '元<br/><br/>感谢您的支持'
+            });
+        }
     },
     methods: {
         onDrop(e) {

@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="form">
-                    <div class="act">发送</div>
+                    <div class="link">发送</div>
                     <div class="ipt">
                         <Input type="text" placeholder="请输入内容" />
                     </div>
@@ -188,7 +188,7 @@ export default {
         }
       }
 
-      .act {
+      .link {
         position: absolute;
         z-index: 1;
         cursor: pointer;

@@ -187,7 +187,7 @@ export default {
         }
       }
     }
-    .act {
+    .link {
       text-align: center;
       padding: 15px;
     }

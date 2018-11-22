@@ -36,16 +36,16 @@
                         <div class="content" v-html="info.newsText || info.personSummary"></div>
                     </div>
                     <div class="f">
-                        <div class="share">
+                        <div class="share" v-show="false">
                             <span>分享到：</span>
                             <iconfont name="weibo" />
                         </div>
-                        <div class="act">
+                        <div class="link" >
                             <span>赏</span>
                         </div>
                         <div class="total">
                             <span>收到打赏</span>
-                            <span class="num">333</span>
+                            <span class="num">0</span>
                             <span>次</span>
                         </div>
                     </div>
@@ -229,7 +229,7 @@ export default {
       }
     }
 
-    .act {
+    .link {
       span {
         display: inline-block;
         height: 64px;

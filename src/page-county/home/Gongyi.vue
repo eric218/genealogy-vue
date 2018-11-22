@@ -45,7 +45,7 @@
             </div>
             <div class="f" v-if="1==2">
                 <div class="hd">
-                    <div class="act" @click="handleTopay = true"></div>
+                    <div class="link" @click="handleTopay = true"></div>
                     <span>公益基金总金额：</span>
                     <span class="num">{{index_fund_2 ? index_fund_2.remain : 0}}</span>
                     <span>元</span>
@@ -58,7 +58,7 @@
                             <small>捐款</small>
                             <span>{{v.fanNewsCharityPayIn?v.fanNewsCharityPayIn.payAmount:0}}元</span>
                         </div>
-                        <div class="act" v-if="1==2">
+                        <div class="link" v-if="1==2">
                             <div class="flow">
                                 <span>关注</span>
                             </div>
@@ -256,7 +256,7 @@ export default {
         }
       }
 
-      .act {
+      .link {
         float: right;
         background: url(../../assets/img/icon-help.png) no-repeat center / cover;
         height: 48px;
@@ -291,7 +291,7 @@ export default {
           font-size: 16px;
         }
 
-        .act {
+        .link {
           overflow: hidden;
           font-size: 12px;
 

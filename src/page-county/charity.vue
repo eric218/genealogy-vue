@@ -16,7 +16,7 @@
                     </div>
                     <div class="r">
                         <div class="hd">
-                            <div class="act" @click="handleTopay = true">
+                            <div class="link" @click="handleTopay = true">
                                 <img src="@/assets/img/icon-help.png" /></div>
                         </div>
                         <div class="bd" v-if="index_architecture_pay_in_person_3.length">
@@ -27,7 +27,7 @@
                                     <small>捐款</small>
                                     <span>{{v.fanNewsCharityPayIn.payAmount}}元</span>
                                 </div>
-                                <div class="act" v-if="1==2">
+                                <div class="link" v-if="1==2">
                                     <div class="flow">
                                         <span>关注</span>
                                     </div>

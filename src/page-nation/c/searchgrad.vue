@@ -11,7 +11,7 @@
                 <div class="item">堂号</div>
             </div>
             <div class="b">
-                <div class="act">搜索</div>
+                <div class="link">搜索</div>
                 <div class="obj">
                     <input type="text" />
                 </div>
@@ -59,7 +59,7 @@ export default {
   .b {
     margin-top: 16px;
     white-space: nowrap;
-    .act {
+    .link {
       float: right;
       height: 40px;
       line-height: 40px;
