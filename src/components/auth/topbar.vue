@@ -119,11 +119,11 @@ export default {
   line-height: 32px;
   font-size: 12px;
   .user {
+    cursor: pointer;
     white-space: nowrap;
     float: right;
     span {
       display: inline-block;
-      cursor: pointer;
       padding: 0 4px;
       color: #ccc;
       &.btn {

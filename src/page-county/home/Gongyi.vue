@@ -77,7 +77,7 @@
     </div>
 </template>
 <script>
-import topay from '../c/topay.vue'
+import topay from '_c/auth/topay.vue'
 export default {
     components: {
         topay,

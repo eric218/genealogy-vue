@@ -67,7 +67,9 @@ export default {
     },
     methods: {
         get_index_family_record1() {
-            this.api.get(this.api.county.base + this.apiList.index_family_record1.apiUrl, {}).then(res => {
+            this.api.get(this.api.county.base + this.apiList.index_family_record1.apiUrl, {
+                pageSize: 3
+            }).then(res => {
                 if (res.code == 200) {
                     this.index_family_record1 = res.data
                     this.curr = this.index_family_record1.records[0]
@@ -76,7 +78,9 @@ export default {
             })
         },
         get_index_family_record2() {
-            this.api.get(this.api.county.base + this.apiList.index_family_record2.apiUrl, {}).then(res => {
+            this.api.get(this.api.county.base + this.apiList.index_family_record2.apiUrl, {
+                pageSize: 3
+            }).then(res => {
                 if (res.code == 200) {
                     this.index_family_record2 = res.data
                 }

@@ -66,7 +66,7 @@
 <script>
 import { Topbar, NavBar, FootBar } from './c'
 import CharityList from './list/charity-list';
-import topay from './c/topay.vue'
+import topay from '_c/auth/topay.vue'
 export default {
     name: "Charity",
     components: {

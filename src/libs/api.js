@@ -78,6 +78,10 @@ const api = {
         base: 'http://192.168.2.179:8090/', //用户中心接口地址
         login: 'genogram/userLogin/login', //登录
         reg: 'genogram/userLogin/signIn', //注册
+        pay: {
+            ali: 'genogram/pay/aLiPay', //支付宝支付
+            wx: 'genogram/pay/weChatPay', //微信支付
+        }
     },
     post: function (url, data) {
         if (!data.pageNow) {
@@ -86,8 +90,8 @@ const api = {
         if (!data.pageSize) {
             data.pageSize = 8
         }
-        if (!data.token && localStorage.token) {
-            data.token = localStorage.token
+        if (!data.token && localStorage.user) {
+            data.token = JSON.parse(localStorage.user).token
         }
         let params = new URLSearchParams();
         for (let v in data) {
@@ -111,8 +115,8 @@ const api = {
         if (!data.pageSize) {
             data.pageSize = 8
         }
-        if (!data.token && localStorage.token) {
-            data.token = localStorage.token
+        if (!data.token && localStorage.user) {
+            data.token = JSON.parse(localStorage.user).token
         }
         return new Promise((resolve, reject) => {
             axios.get(url, {
@@ -128,9 +132,6 @@ const api = {
     upload: function (url, data, files) {
         let params = new FormData();
         params.append(files['key'], files['file']);
-        if (!data.token && localStorage.token) {
-            data.token = localStorage.token
-        }
         for (let v in data) {
             params.append(v, data[v]);
         }
@@ -196,8 +197,12 @@ const api = {
             return true;
         }
     },
-    isNumber: e => {
-        e === +e
+    isNumber: function (e) {
+        if (!(/^\d+$/).test(e)) {
+            return false;
+        } else {
+            return true;
+        }
     },
     imgurl: function (e) {
         if (!e) {

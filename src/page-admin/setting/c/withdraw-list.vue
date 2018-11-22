@@ -136,11 +136,11 @@ export default {
                 this.$Message.error('请输入提现金额');
                 return;
             }
-            if (!Number(this.formData.drowAmount)) {
-                this.$Message.error('请输入正确的提现金额');
+            if(!this.api.isNumber(this.formData.drowAmount)){
+                this.$Message.error('请输入正确的金额');
                 return;
             }
-            this.formData.drowAmount = Number(this.formData.drowAmount);
+            this.formData.drowAmount = parseFloat(this.formData.drowAmount);
             if (this.formData.drowAmount < 0 || this.formData.drowAmount > this.finance.remain) {
                 this.$Message.error('没有足够的可提现金额');
                 return;

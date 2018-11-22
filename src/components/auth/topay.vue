@@ -51,22 +51,18 @@ export default {
         toSubmit() {
             if (!this.form.num) {
                 this.$Message.error('请选择支付金额');
+                return;
             }
-            if (!this.form.num < 0) {
+            if (!this.api.isNumber(this.form.num)) {
                 this.$Message.error('请输入正确的金额');
+                return;
             }
             if (this.form.paytype) {
-                this.api.post('', {
-                    money: this.form.num,
-                    url: location.href
-                }).then(res => {
-
-                })
+                this.$Message.warning('暂未开放');
             } else {
-                console.log(location.href);
-                this.api.post('', {
-                    money: this.form.num,
-                    url: location.href
+                this.api.get(this.api.user.base + this.api.user.pay.ali, {
+                    siteId: this.$store.state.siteId,
+                    payAmount: this.form.num
                 }).then(res => {
                     const div = document.createElement('div');
                     div.innerHTML = res;
