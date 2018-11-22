@@ -2,9 +2,9 @@
     <div>
         <Button type="primary" @click="toEdit(0)">添加</Button>
         <Row :gutter="32" style="margin-top:16px;">
-            <i-col :xs="24" :sm="12" :md="6" :lg="4" v-for="(v,i) in list" :key="i" style="margin-bottom:32px;">
+            <i-col :xs="24" :sm="12" :md="8" :lg="6" v-for="(v,i) in list" :key="i" style="margin-bottom:32px;">
                 <div class="bg">
-                    <img src="@/assets/img/100x100.png" class="bgimg">
+                    <img src="http://iph.href.lu/80x45" class="bgimg" />
                     <div class="in">
                         <div class="img" :style="api.imgBG(v.fanNewsUploadFile[0].filePath)" />
                         <div class="cover">
@@ -20,8 +20,8 @@
             </i-col>
         </Row>
         <Page :total="total" @on-change="chgPage" :page-size="8" v-if="list.length" />
-        <Modal title="查看视频" v-model="visible" style="text-align:center;">
-            <video width="320" height="240" controls v-if="curr">
+        <Modal v-model="visible" style="text-align:center;" width="830" :footer-hide='true'>
+            <video width="800" height="450" controls v-if="curr">
                 <source :src="api.imgurl(curr)" type="video/mp4">
             </video>
         </Modal>
@@ -120,8 +120,11 @@ export default {
             }
         },
         handleView(e) {
-            this.curr = e;
+            this.curr = '';
             this.visible = true;
+            setTimeout(() => {
+                this.curr = e;
+            }, 300);
         },
         handleRemove(e) {
             this.$Modal.confirm({
@@ -151,7 +154,7 @@ export default {
             this.$Message.warning('最大支持上传2M图片');
         },
         toSubmit() {
-            if(!this.formData.title){
+            if (!this.formData.title) {
                 this.$Message.warning('请输入标题')
                 return;
             }

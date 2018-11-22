@@ -65,6 +65,7 @@ export default {
             columns: [
                 {
                     title: 'ID',
+                    width: 80,
                     key: 'id'
                 }, {
                     title: '字派所在地',

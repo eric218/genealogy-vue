@@ -14,7 +14,7 @@
                             <i-col :span="8" v-for="v in 6" :key="v">
                                 <div class="item">
                                     <div class="img">
-                                        <img src="@/assets/img/100x100.png" alt="">
+                                        <img src="http://iph.href.lu/60x60" />
                                     </div>
                                     <div class="obj">
                                         <div class="tit">标题</div>
@@ -73,8 +73,8 @@ export default {
       margin-bottom: 16px;
       .img {
         position: relative;
-        img{
-            width: 100%;
+        img {
+          width: 100%;
         }
       }
       .obj {
@@ -93,24 +93,24 @@ export default {
           height: 48px;
           overflow: hidden;
         }
-        .more{
-            position: absolute;
-            top: 0;
-            right: 0;
-            line-height: 32px;
-            padding: 0 16px;
-            border-radius: 4px;
-            border:1px solid #ddd;
-            transition: all .3s;
+        .more {
+          position: absolute;
+          top: 0;
+          right: 0;
+          line-height: 32px;
+          padding: 0 16px;
+          border-radius: 4px;
+          border: 1px solid #ddd;
+          transition: all 0.3s;
         }
       }
-      &:hover{
-          cursor: pointer;
-          .more{
-              background: $color;
-              color: #fff;
-              border-color: $color;
-          }
+      &:hover {
+        cursor: pointer;
+        .more {
+          background: $color;
+          color: #fff;
+          border-color: $color;
+        }
       }
     }
   }

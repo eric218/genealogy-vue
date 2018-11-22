@@ -52,8 +52,8 @@
                 <div class="menus">
                     <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
                 </div>
-                <div class="grid" v-if="menucurr && url.length">
-                    <CharityList :url="url" />
+                <div class="grid" style="minHeight:450px;">
+                    <CharityList :url="url" v-if="menucurr && url.length" />
                 </div>
             </div>
         </div>

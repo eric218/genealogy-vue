@@ -4,7 +4,7 @@
             <i-col :span="6" v-for="v in data.records" :key="v.id">
                 <div class="item">
                     <div class="img" :style="v.fanNewsUploadFile.length ? api.imgBG(v.fanNewsUploadFile[0].filePath) : ''">
-                        <img src="@/assets/img/100x100.png" />
+                        <img src="http://iph.href.lu/80x45" />
                         <div class="hover" @click="toShow(v.fanUploadVedioList[0].filePath)">
                             <Icon type="ios-videocam" />
                         </div>
@@ -170,6 +170,8 @@ export default {
     video {
       min-width: 600px;
       max-width: 90%;
+      max-height: 600px;
+      min-height: 300px;
     }
   }
 }

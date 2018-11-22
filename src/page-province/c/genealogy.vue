@@ -18,7 +18,7 @@
             <i-col :span="4" v-for="v in 12" :key="v">
                 <Card class="item">
                     <div class="img">
-                        <img src="@/assets/img/100x100.png" alt="">
+                        <img src="http://iph.href.lu/60x60" />
                     </div>
                     <div class="name">张三</div>
                     <div class="site">区域：乌鲁木齐</div>

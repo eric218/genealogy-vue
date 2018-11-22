@@ -14,8 +14,8 @@
                 <div class="menus">
                     <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
                 </div>
-                <div class="in" v-if="menucurr && url.length">
-                    <FamousList :url="url" />
+                <div class="grid" style="minHeight:450px;">
+                    <FamousList :url="url" v-if="menucurr && url.length" />
                 </div>
             </div>
         </div>

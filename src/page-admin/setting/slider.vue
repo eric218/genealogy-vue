@@ -1,13 +1,14 @@
 <template>
     <div>
+        <Alert>建议：上传像素为1920*550的图片效果最佳</Alert>
         <Button type="primary" @click="handleAdd">添加</Button>
         <Upload ref="upload" class="upload" :action="api.admin.base + api.admin.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']" :max-size="2048" :on-format-error="handleFormatError" :on-exceeded-size="handleMaxSize" :default-file-list="list">
             <Button type="primary" id="slider_upload" style="visibility:hidden">上传</Button>
         </Upload>
         <Row :gutter="32" style="margin-top:16px;">
-            <i-col :xs="24" :sm="12" :md="6" :lg="4" v-for="item in list" :key="item.id" style="margin-bottom:32px;">
+            <i-col :xs="24" :sm="24" :md="12" :lg="12" v-for="item in list" :key="item.id" style="margin-bottom:32px;">
                 <div class="bg">
-                    <img src="@/assets/img/100x100.png" class="bgimg">
+                    <img src="http://iph.href.lu/192x55" class="bgimg">
                     <div class="in">
                         <template v-if="item.status === 'finished'">
                             <div class="img" :style="api.imgBG(item.picUrl)" />

@@ -91,7 +91,7 @@
                     <Row :gutter="16">
                         <i-col :span="6" v-for="v in 8" :key="v" class="item">
                             <div class="obj">
-                                <img src="@/assets/images/img.png" alt="">
+                                <img src="http://iph.href.lu/1000x1000" class="bgimg" />
                                 <div class="bg">
                                     <Icon type="md-arrow-dropright-circle" />
                                 </div>
@@ -101,7 +101,7 @@
                 </Card>
             </i-col>
         </Row>
-        <Modal title="申请提现" v-model="model_deposit" width="640px" :footer-hide="true" >
+        <Modal title="申请提现" v-model="model_deposit" width="640px" :footer-hide="true">
             <ModelDeposit />
         </Modal>
     </div>
@@ -118,7 +118,7 @@ export default {
     },
     data() {
         return {
-            model_deposit:false,
+            model_deposit: false,
             pieData: [
                 { value: 335, name: '个人捐款' },
                 { value: 310, name: '企业捐款' },

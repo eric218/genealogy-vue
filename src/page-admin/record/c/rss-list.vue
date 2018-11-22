@@ -53,7 +53,24 @@ export default {
             columns: [
                 {
                     title: 'ID',
+                    width: 80,
                     key: 'id'
+                }, {
+                    title: ' ',
+                    width: 64,
+                    align: 'center',
+                    key: 'status',
+                    render: (h, e) => {
+                        if (e.row.status != 2) {
+                            return null
+                        }
+                        return h('Icon', {
+                            props: {
+                                type: 'ios-lock',
+                                size: '20'
+                            }
+                        })
+                    }
                 }, {
                     title: '标题',
                     key: 'title'

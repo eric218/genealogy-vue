@@ -52,10 +52,27 @@ export default {
             columns: [
                 {
                     title: 'ID',
+                    width: 80,
                     key: 'id'
                 }, {
+                    title: ' ',
+                    width: 64,
+                    align: 'center',
+                    key: 'status',
+                    render: (h, e) => {
+                        if (e.row.status != 2) {
+                            return null
+                        }
+                        return h('Icon', {
+                            props: {
+                                type: 'ios-lock',
+                                size: '20'
+                            }
+                        })
+                    }
+                }, {
                     title: '标题',
-                    key: 'title'
+                    key: 'newsTitle'
                 }, {
                     title: '金额',
                     key: 'visitNum'
@@ -119,7 +136,6 @@ export default {
             }).then(res => {
                 let list = res.data.records;
                 list.forEach(v => {
-                    v.title = v.status == 2 ? v.newsTitle + '[草稿]' : v.newsTitle
                     v.datetime = this.dayjs(v.updateTime).format('YYYY-MM-DD HH:mm:ss')
                 })
                 this.list = list;

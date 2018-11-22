@@ -12,7 +12,9 @@
                 <div class="menus">
                     <span class="menu" v-for="(v,i) in menu" v-if="i > 1" :key="i" :class="v.orderIndex == menucurr_b.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v,i)"></span>
                 </div>
-                <VideoList :data="data_b" v-if="data_b" />
+                <div class="grid" style="minHeight:450px;">
+                    <VideoList :data="data_b" v-if="data_b" />
+                </div>
             </div>
         </div>
         <FootBar />

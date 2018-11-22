@@ -14,9 +14,11 @@
                 <div class="menus">
                     <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
                 </div>
-                <div class="grid" v-if="menucurr && url">
-                    <ZipaiList :url="url" v-if="menucurr.menuType == 'culture_zipai'" />
-                    <Culture :url="url" v-else-if="menucurr.menuType == 'culture_news'" />
+                <div class="grid" style="minHeight:450px;">
+                    <div v-if="menucurr && url">
+                        <ZipaiList :url="url" v-if="menucurr.menuType == 'culture_zipai'" />
+                        <Culture :url="url" v-else-if="menucurr.menuType == 'culture_news'" />
+                    </div>
                 </div>
             </div>
         </div>
