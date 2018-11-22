@@ -1,70 +1,18 @@
 <template>
     <div class="famous">
-        <div class="inner">
+        <div class="inner" v-if="list.length">
             <Anchor :affix="false" show-ink container="#card">
-                <AnchorLink href="#rongyuhuizhang" title="荣誉会长" />
-                <AnchorLink href="#huizhang" title="会长" />
-                <AnchorLink href="#zhixinghuizhang" title="执行会长" />
-                <AnchorLink href="#fuhuizhang" title="副会长" />
-                <AnchorLink href="#qita" title="其它" />
+                <AnchorLink :href="'#aaa_'+i" :title="v" v-for="(v,i) in keys" :key="i" />
             </Anchor>
             <div class="card" id="card">
-                <div class="row" id="rongyuhuizhang">
-                    <div class="h kt"><span>荣誉会长</span></div>
+                <div class="row" :id="'aaa_'+i" v-for="(v,i) in list" :key="i">
+                    <div class="h kt"><span>{{keys[i]}}</span></div>
                     <div class="b">
-                        <div class="item" v-for="(v,i) in 5" :key="i">
+                        <div class="item" v-for="itm in index_architecture[keys[i]]" :key="itm.id">
                             <div class="img"></div>
                             <div class="obj">
-                                <div class="tit">姓名（称谓）</div>
-                                <div class="intro">简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" id="huizhang">
-                    <div class="h kt"><span>会长</span></div>
-                    <div class="b">
-                        <div class="item" v-for="(v,i) in 6" :key="i">
-                            <div class="img"></div>
-                            <div class="obj">
-                                <div class="tit">姓名（称谓）</div>
-                                <div class="intro">简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" id="zhixinghuizhang">
-                    <div class="h kt"><span>执行会长</span></div>
-                    <div class="b">
-                        <div class="item" v-for="(v,i) in 6" :key="i">
-                            <div class="img"></div>
-                            <div class="obj">
-                                <div class="tit">姓名（称谓）</div>
-                                <div class="intro">简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" id="fuhuizhang">
-                    <div class="h kt"><span>副会长</span></div>
-                    <div class="b">
-                        <div class="item" v-for="(v,i) in 6" :key="i">
-                            <div class="img"></div>
-                            <div class="obj">
-                                <div class="tit">姓名（称谓）</div>
-                                <div class="intro">简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" id="qita">
-                    <div class="h kt"><span>其它</span></div>
-                    <div class="b">
-                        <div class="item" v-for="(v,i) in 6" :key="i">
-                            <div class="img"></div>
-                            <div class="obj">
-                                <div class="tit">姓名（称谓）</div>
-                                <div class="intro">简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
+                                <div class="tit">{{itm.personName}}</div>
+                                <div class="intro">{{itm.personSummary}}</div>
                             </div>
                         </div>
                     </div>
@@ -75,7 +23,38 @@
 </template>
 <script>
 export default {
-};
+    data() {
+        return {
+            index_architecture: {},
+            keys: [],
+            list: [],
+        }
+    },
+    computed: {
+        apiList() {
+            return this.$store.state.county.apiList
+        },
+    },
+    mounted: function () {
+        this.get_index_architecture()
+    },
+    methods: {
+        get_index_architecture() {
+            this.api.get(this.api.county.base + this.apiList.index_architecture.apiUrl, {}).then(res => {
+                if (res.code == 200) {
+                    let list = res.data
+                    this.index_architecture = list
+                    this.keys = Object.keys(list)
+                    this.list = Object.values(list)
+                    console.log(this.list);
+                }
+            })
+        },
+        formatname(e) {
+            return JSON.parse(e)
+        }
+    }
+}
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
