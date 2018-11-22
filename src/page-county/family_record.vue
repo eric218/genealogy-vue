@@ -5,8 +5,11 @@
         <div class="main">
             <Record />
             <div class="inner">
-                <div class="tabs kt">
-                    <span class="tit">动态</span>
+                <div class="h">
+                    <div class="cn">视频</div>
+                    <Divider class="en">Video</Divider>
+                </div>
+                <div class="menus">
                     <span class="menu" v-for="(v,i) in menu" v-if="i > 1" :key="i" :class="v.orderIndex == menucurr_b.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v,i)"></span>
                 </div>
                 <VideoList :data="data_b" v-if="data_b" />
@@ -104,3 +107,34 @@ export default {
     },
 };
 </script>
+<style lang="scss" scoped>
+@import "@/assets/css/var.scss";
+.h {
+  text-align: center;
+  padding: 32px 0;
+  .cn {
+    font-size: 24px;
+  }
+  .en {
+    font-weight: 300;
+  }
+}
+.menus {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 16px;
+  .menu {
+    padding: 0 16px;
+    margin: 0 4px;
+    cursor: pointer;
+    line-height: 32px;
+    &.curr,
+    &:hover {
+      background: $color;
+      color: #fff;
+      border-radius: 16px;
+    }
+  }
+}
+</style>

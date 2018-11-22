@@ -1,37 +1,41 @@
 <template>
-    <div class="topbar _user">
-        <div class="brand">
-            <div class="img"></div>
-        </div>
-        <div class="authuser">
-            <div class="img">
-                <Avatar icon="ios-person" size="large" />
+    <div class="topbar">
+        <div class="inner">
+            <div class="user" v-if="user.token">
+                <div class="img">
+                    <Avatar :src="user.picSrc" size="small" />
+                </div>
+                <div class="obj">
+                    <Dropdown trigger="click" @on-click="onDrop">
+                        {{user.nickName}}
+                        <Icon type="ios-arrow-down"></Icon>
+                        <DropdownMenu slot="list">
+                            <DropdownItem name="/u">个人中心</DropdownItem>
+                            <DropdownItem name="isMsgBox" divided>我的消息</DropdownItem>
+                            <DropdownItem name="/a">联谊会后台管理</DropdownItem>
+                            <DropdownItem name="/c" divided>返回首页</DropdownItem>
+                            <DropdownItem name="logout" divided>退出登录</DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
+                </div>
             </div>
-            <div class="obj">
-                <Dropdown trigger="click">
-                    张三丰
-                    <Icon type="ios-arrow-down"></Icon>
-                    <DropdownMenu slot="list">
-                        <DropdownItem>
-                            <div @click="handleMsgBox = true">我的消息</div>
-                        </DropdownItem>
-                        <DropdownItem>
-                            <a href="http://192.168.2.106:4445/" target="_blank">后台管理</a>
-                        </DropdownItem>
-                        <DropdownItem>
-                            <router-link to='/c/Home' style="display:block">返回首页</router-link>
-                        </DropdownItem>
-                    </DropdownMenu>
-                </Dropdown>
+
+            <div class="user" v-else>
+                <span class="btn login" @click="islogin = true">登录</span>
+                <span>|</span>
+                <span class="btn reg" @click="isreg = true">注册</span>
+            </div>
+            <div class="welcome">
+                <span>欢迎进入「炎黄统谱网」</span>
             </div>
         </div>
-        <Modal v-model="islogin" width="400px" class="g-auth" :footer-hide="true">
-            <loginform />
+        <Modal v-model="islogin" width="480px" class="g-auth" :footer-hide='true'>
+            <loginform @urlToReg="urlToReg" @closedialog="closedialog" />
         </Modal>
-        <Modal v-model="isreg" width="400px" class="g-auth" :footer-hide="true">
-            <regform />
+        <Modal v-model="isreg" width="480px" class="g-auth" :footer-hide='true'>
+            <regform @urlToLogin="urlToLogin" @closedialog="closedialog" />
         </Modal>
-        <Modal title="消息列表" v-model="handleMsgBox" width="640px" :footer-hide="true">
+        <Modal title="消息列表" v-model="isMsgBox" width="640px" :footer-hide="true">
             <msgBox />
         </Modal>
     </div>
@@ -39,8 +43,9 @@
 <script>
 import loginform from '@/components/auth/login.vue'
 import regform from '@/components/auth/reg.vue'
-import msgBox from '@/components/list/msgBox.vue'
+import msgBox from '@/components/auth/msgBox.vue'
 export default {
+    name: "Topbar",
     components: {
         loginform,
         regform,
@@ -50,13 +55,36 @@ export default {
         return {
             isreg: false,
             islogin: false,
-            handleMsgBox: false,
+            isMsgBox: false,
         };
     },
+    computed: {
+        user() {
+            return this.$store.state.user
+        },
+    },
     mounted: function () {
-
     },
     methods: {
+        onDrop(e) {
+            switch (e) {
+                case 'isMsgBox':
+                    this.isMsgBox = true;
+                    break;
+                case 'logout':
+                    this.$Modal.confirm({
+                        title: '提示',
+                        content: '确定退出账号？',
+                        onOk: () => {
+                            this.$store.commit('updateUser', [])
+                        },
+                    });
+                    break;
+                default:
+                    this.$router.push(e)
+                    break;
+            }
+        },
         urlToReg() {
             this.islogin = false;
             setTimeout(() => {
@@ -69,121 +97,48 @@ export default {
                 this.islogin = true;
             }, 300);
         },
+        closedialog() {
+            this.islogin = false;
+            this.isreg = false;
+        }
     }
 };
 </script>
-
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .topbar {
-  background: #fafafa;
-  height: 120px;
-  .brand {
-    position: absolute;
-    left: 50%;
-    top: 20px;
-    z-index: 9;
-    margin-left: -580px;
+  position: fixed;
+  right: 0;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  background-color: #eee;
+  box-shadow: 0 1px 2px rgba(#000, 0.2);
+  height: 32px;
+  width: 100%;
+  line-height: 32px;
+  font-size: 12px;
+  .user {
     white-space: nowrap;
-    overflow: hidden;
-
-    .img {
-      height: 80px;
-      width: 80px;
-      background: url(../../assets/img/logo.png) no-repeat center / auto 100%;
-      margin-right: 16px;
-      float: left;
-    }
-
-    .obj {
-      overflow: hidden;
-      font-size: 24px;
-
-      .cn {
-        font-weight: 700;
-        letter-spacing: 3px;
-      }
-
-      .en {
-        font-size: 16px;
-      }
-    }
-  }
-
-  .authform {
-    position: absolute;
-    right: 50%;
-    top: 20px;
-    z-index: 9;
-    margin-right: -580px;
-    overflow: hidden;
-
-    .btn {
-      display: block;
-      float: left;
-      padding: 0 20px;
-      color: #fff;
-      margin: 0 1px;
+    float: right;
+    span {
+      display: inline-block;
       cursor: pointer;
-
-      &.reg {
-        background: #666;
-      }
-
-      &.login {
-        background: #000;
+      padding: 0 4px;
+      color: #ccc;
+      &.btn {
+        color: #333;
+        &:hover {
+          color: $color;
+        }
       }
     }
-  }
-
-  .authuser {
-    position: absolute;
-    right: 50%;
-    top: 20px;
-    z-index: 9;
-    padding: 16px;
-    margin-right: -580px;
-    white-space: nowrap;
-    cursor: pointer;
-
     .img {
-      position: relative;
-      height: 40px;
-      width: 40px;
-      border-radius: 50%;
-      background: whitesmoke no-repeat center / cover;
       float: left;
       margin-right: 16px;
-
-      .tag {
-        position: absolute;
-        top: -8px;
-        right: -8px;
-        font-size: 12px;
-        border-radius: 8px;
-        line-height: 20px;
-        background: #f56c6c;
-        min-width: 24px;
-        text-align: center;
-        color: #fff;
-      }
     }
-
     .obj {
       overflow: hidden;
-      line-height: 40px;
-      color: #fff;
-    }
-  }
-
-  &._user {
-    background: $color;
-
-    .brand {
-      .img {
-        width: 320px;
-        background: url(../../assets/img/logo-white.png) no-repeat center;
-      }
     }
   }
 }

@@ -7,8 +7,11 @@
                 <img src="./img/famous.jpg" />
             </div>
             <div class="inner">
-                <div class="tabs kt">
-                    <span class="tit">人物</span>
+                <div class="h">
+                    <div class="cn">家族名人</div>
+                    <Divider class="en">Famous</Divider>
+                </div>
+                <div class="menus">
                     <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
                 </div>
                 <div class="in" v-if="menucurr && url.length">
@@ -61,3 +64,34 @@ export default {
     },
 };
 </script>
+<style lang="scss" scoped>
+@import "@/assets/css/var.scss";
+.h {
+  text-align: center;
+  padding: 32px 0;
+  .cn {
+    font-size: 24px;
+  }
+  .en {
+    font-weight: 300;
+  }
+}
+.menus {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 16px;
+  .menu {
+    padding: 0 16px;
+    margin: 0 4px;
+    cursor: pointer;
+    line-height: 32px;
+    &.curr,
+    &:hover {
+      background: $color;
+      color: #fff;
+      border-radius: 16px;
+    }
+  }
+}
+</style>

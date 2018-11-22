@@ -21,7 +21,7 @@
     </div>
 </template>
 <script>
-import Genealogy from '@/components/list/genealogy.vue';
+import Genealogy from './c/genealogy.vue';
 import { Topbar, NavBar, Banner, FootBar } from './c'
 export default {
     name: "Home",

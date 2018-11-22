@@ -53,7 +53,7 @@ export default {
             }).then(res => {
                 if (res.code === 200) {
                     this.$store.commit('updateUser', res.data);
-                    this.$router.push('/u')
+                    this.$emit('closedialog',true);
                 } else {
                     this.$Message.error(res.msg);
                 }

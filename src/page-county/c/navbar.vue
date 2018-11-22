@@ -6,19 +6,20 @@
                     <div class="cn">首页</div>
                     <div class="en">home</div>
                 </router-link>
-                <router-link class="item" v-for="(v,i) in navsData" :key="i" :class="v.id == navcurr ?'curr':''" :to="v.menuType" v-if="i < 3">
+                <router-link class="item" v-for="(v,i) in navsData" :key="i" :class="v.id == navcurr ?'curr':''" :to="v.menuType" v-if="i < 3 && v.isWeb">
                     <div class="cn">{{v.menuName}}</div>
                     <div class="en">{{v.menuCode}}</div>
                 </router-link>
             </div>
             <div class="c">
                 <div class="img">
-                    <img src="@/assets/img/logo-white.png" />
+                    <img :src="api.imgurl(index_summary.totemPicSrc)" />
                 </div>
                 <div class="txt kt">{{index_summary.siteName}}</div>
+                <div class="site">{{regionCode}}</div>
             </div>
             <div class="r">
-                <router-link class="item" v-for="(v,i) in navsData" :key="i" :class="v.id == navcurr ?'curr':''" :to="v.menuType || 'home'" v-if="i > 2">
+                <router-link class="item" v-for="(v,i) in navsData" :key="i" :class="v.id == navcurr ?'curr':''" :to="v.menuType || 'home'" v-if="i > 2 && v.isWeb">
                     <div class="cn">{{v.menuName}}</div>
                     <div class="en">{{v.menuCode}}</div>
                 </router-link>
@@ -27,18 +28,20 @@
     </div>
 </template>
 <script>
+import { pca, pcaa } from 'area-data';
 export default {
     name: "NavBar",
     data() {
         return {
             index_summary: {},
-            navsData: []
+            navsData: [],
+            regionCode: '',
         }
     },
     computed: {
         apiList() {
             return this.$store.state.county.apiList
-        }
+        },
     },
     mounted: function () {
         this.get_index_summary()
@@ -49,6 +52,10 @@ export default {
             this.api.get(this.api.county.base + this.apiList.index_summary.apiUrl, {}).then(res => {
                 if (res.code == 200) {
                     this.index_summary = res.data
+                    let a = parseInt(Number(this.index_summary.regionCode) * 0.0001) * 10000
+                    let b = parseInt(Number(this.index_summary.regionCode) * 0.01) * 100
+                    let c = Number(this.index_summary.regionCode)
+                    this.regionCode = pca[86][a] + ' · ' + pcaa[b][c]
                 }
             })
         },
@@ -95,15 +102,18 @@ export default {
     margin-left: -96px;
     background: url(../img/logobg.jpg) no-repeat center / cover;
     text-align: center;
-    font-size: 24px;
-    line-height: 1.5;
     padding: 16px 0;
     img {
       width: 80px;
     }
     .txt {
+      font-size: 24px;
       color: #fff;
       font-weight: 700;
+    }
+    .site {
+      font-size: 12px;
+      color: #fff;
     }
   }
   .item {

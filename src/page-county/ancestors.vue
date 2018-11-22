@@ -1,7 +1,7 @@
 <template>
     <div class="page page-ancestors">
         <Topbar />
-        <NavBar :navcurr="6" />
+        <NavBar :navcurr="8" />
         <div class="main">
             <div class="sia">
                 <div class="inner">

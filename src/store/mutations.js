@@ -3,7 +3,7 @@ const mutations = {
         state.siteId = obj;
     },
     updateUser(state, obj) {
-        localStorage.token = obj.token
+        localStorage.user = JSON.stringify(obj)
         state.user = obj
     },
 }

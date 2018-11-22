@@ -8,7 +8,6 @@ async function handleHomeApi(store, obj) {
         siteId: base_store.state.siteId
     });
     store.commit('setApiList', res.data.data.index_show)
-    console.log(res.data.data.index_show)
 }
 export default {
     state: {
