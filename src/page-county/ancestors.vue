@@ -3,6 +3,9 @@
         <Topbar />
         <NavBar :navcurr="8" />
         <div class="main">
+            <div class="adlinks">
+                <img src="./img/detail.jpg" />
+            </div>
             <div class="sia">
                 <div class="inner">
                     <div class="h">

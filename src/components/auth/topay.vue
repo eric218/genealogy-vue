@@ -53,16 +53,18 @@ export default {
                 this.$Message.error('请选择支付金额');
                 return;
             }
-            if (!this.api.isNumber(this.form.num)) {
+            if (!this.api.isNumber(this.form.num * 100)) {
                 this.$Message.error('请输入正确的金额');
                 return;
             }
             if (this.form.paytype) {
                 this.$Message.warning('暂未开放');
             } else {
-                this.api.get(this.api.user.base + this.api.user.pay.ali, {
+                this.api.post(this.api.user.base + this.api.user.pay.ali, {
                     siteId: this.$store.state.siteId,
-                    payAmount: this.form.num
+                    payAmount: this.form.num,
+                    anonymous: 1,
+                    url: location.href
                 }).then(res => {
                     const div = document.createElement('div');
                     div.innerHTML = res;

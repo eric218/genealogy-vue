@@ -184,6 +184,14 @@ export default {
             }
         },
         toSubmit() {
+            if (!this.formData.newsTitle) {
+                this.$Message.error('未输入标题');
+                return;
+            }
+            if (!this.formData.newsText) {
+                this.$Message.error('未输入正文');
+                return;
+            }
             let data = {
                 showId: this.type,
                 newsTitle: this.formData.newsTitle,
@@ -209,6 +217,14 @@ export default {
             })
         },
         toDrft() {
+            if (!this.formData.newsTitle) {
+                this.$Message.error('未输入标题');
+                return;
+            }
+            if (!this.formData.newsText) {
+                this.$Message.error('未输入正文');
+                return;
+            }
             let data = {
                 showId: this.type,
                 newsTitle: this.formData.newsTitle,

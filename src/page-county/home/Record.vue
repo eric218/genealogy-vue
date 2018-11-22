@@ -28,6 +28,8 @@
                                 </div>
                             </router-link>
                         </div>
+                        <Page :total="index_family_record1.total" @on-change="chgPage1" :page-size="3" v-if="menucurr.id == 2" size="small" />
+                        <Page :total="index_family_record2.total" @on-change="chgPage2" :page-size="3" v-else size="small" />
                     </div>
                 </div>
             </div>
@@ -53,6 +55,10 @@ export default {
                 total: 0,
                 records: [],
             },
+            page: {
+                a: 1,
+                b: 1,
+            }
         }
     },
     computed: {
@@ -68,6 +74,7 @@ export default {
     methods: {
         get_index_family_record1() {
             this.api.get(this.api.county.base + this.apiList.index_family_record1.apiUrl, {
+                pageNo: this.page.a,
                 pageSize: 3
             }).then(res => {
                 if (res.code == 200) {
@@ -79,6 +86,7 @@ export default {
         },
         get_index_family_record2() {
             this.api.get(this.api.county.base + this.apiList.index_family_record2.apiUrl, {
+                pageNo: this.page.b,
                 pageSize: 3
             }).then(res => {
                 if (res.code == 200) {
@@ -98,6 +106,14 @@ export default {
         },
         chgMenu(e) {
             this.menucurr = e;
+        },
+        chgPage1(e) {
+            this.page.a = e;
+            this.get_index_family_record1();
+        },
+        chgPage2(e) {
+            this.page.b = e;
+            this.get_index_family_record2();
         },
     },
 };
@@ -133,6 +149,8 @@ export default {
   }
   .items {
     padding: 8px;
+    height: 294px;
+    overflow: hidden;
     .item {
       display: block;
       overflow: hidden;

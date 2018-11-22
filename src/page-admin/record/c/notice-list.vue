@@ -3,7 +3,7 @@
         <Button type="primary" @click="toEdit(0)">添加</Button>
         <Table border :columns="columns" :data="list" style="margin:16px 0;"></Table>
         <Page :total="total" @on-change="chgPage" :page-size="8" />
-        <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%"  v-model="isedit">
+        <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%" v-model="isedit">
             <Form :model="formData" :label-width="80">
                 <FormItem label="标题">
                     <Input v-model="formData.newsTitle" placeholder="标题" />
@@ -168,6 +168,14 @@ export default {
             }
         },
         toSubmit() {
+            if (!this.formData.newsTitle) {
+                this.$Message.error('请填写标题');
+                return;
+            }
+            if (!this.formData.newsText) {
+                this.$Message.error('请填写正文');
+                return;
+            }
             let data = {
                 showId: this.type,
                 newsTitle: this.formData.newsTitle,
@@ -192,6 +200,14 @@ export default {
             })
         },
         toDrft() {
+            if (!this.formData.newsTitle) {
+                this.$Message.error('请填写标题');
+                return;
+            }
+            if (!this.formData.newsText) {
+                this.$Message.error('请填写正文');
+                return;
+            }
             let data = {
                 showId: this.type,
                 newsTitle: this.formData.newsTitle,

@@ -184,6 +184,14 @@ export default {
             }
         },
         toSubmit() {
+            if (!this.formData.personName) {
+                this.$Message.error('请填写人物姓名');
+                return;
+            }
+            if (!this.formData.personSummary) {
+                this.$Message.error('请填写人物简介');
+                return;
+            }
             let data = {
                 showId: this.type,
                 personName: this.formData.personName,
@@ -208,6 +216,14 @@ export default {
             })
         },
         toDrft() {
+            if (!this.formData.personName) {
+                this.$Message.error('请填写人物姓名');
+                return;
+            }
+            if (!this.formData.personSummary) {
+                this.$Message.error('请填写人物简介');
+                return;
+            }
             let data = {
                 showId: this.type,
                 personName: this.formData.personName,
