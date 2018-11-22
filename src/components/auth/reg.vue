@@ -114,6 +114,7 @@ export default {
             }).then(res => {
                 if (res.code == 200) {
                     this.$Message.success('注册成功')
+                    this.$emit('closedialog',true);
                 } else {
                     this.$Message.error(res.msg)
                 }

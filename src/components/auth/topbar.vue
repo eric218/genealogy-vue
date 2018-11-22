@@ -41,9 +41,9 @@
     </div>
 </template>
 <script>
-import loginform from '@/components/auth/login.vue'
-import regform from '@/components/auth/reg.vue'
-import msgBox from '@/components/auth/msgBox.vue'
+import loginform from './login'
+import regform from './reg'
+import msgBox from './msgBox'
 export default {
     name: "Topbar",
     components: {
