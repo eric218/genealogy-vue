@@ -13,7 +13,7 @@ import {
 } from '@/libs/util'
 import beforeClose from '@/router/before-close'
 import router from '@/router'
-import routersAdmin from '@/router/admin'
+import routersAdmin from '@/router/admin/admin'
 import api from '@/libs/api'
 const homeName = api.admin.index
 

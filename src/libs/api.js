@@ -4,11 +4,11 @@ const api = {
     imghost: 'http://47.105.177.1:6090/', //图片资源地址
     urls: {
         base: 'http://192.168.2.179:8090/', //后台接口地址
-        common_home_all: 'genogram/fanMenu/getIndexMenuBySiteId', //首页api
-        common_site_menu: 'genogram/fanMenu/getTitlesByMenuId', //导航栏
     },
     county: {
         base: 'http://192.168.2.179:8090/', //联谊会前台接口地址
+        common_home_all: 'genogram/fanMenu/getIndexMenuBySiteId', //首页api
+        common_site_menu: 'genogram/fanMenu/getTitlesByMenuId', //导航栏
         detail: {
             culture: 'genogram/fanNewsCulture/getFamilyCultureDetail', //家族文化
             charity: 'genogram/fanNewsCharity/getFanNewsCharityDetail', //慈善公益详情

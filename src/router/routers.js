@@ -1,10 +1,11 @@
-import BASE from '@/layouts/base'
-import Main from '@/layouts/main'
-import admin from './admin'
-import nation from './nation'
-import province from './province'
-import county from './county'
-import user from './user'
+import LayoutBase from '@/layouts/base'
+import LayoutCounty from '@/layouts/county'
+
+import admin from './admin/admin'
+import nation from './nation/nation'
+import province from './province/province'
+import county from './county/county'
+import user from './user/user'
 
 export default [{
         path: "/",
@@ -16,12 +17,12 @@ export default [{
         meta: {
             title: '配置',
         },
-        component: () => import('@/page-county/base.vue')
+        component: () => import('@/pages/error/base.vue')
     },
     {
         path: '/a',
         redirect: '/a/home',
-        component: BASE,
+        component: LayoutBase,
         meta: {
             hideInMenu: true,
         },
@@ -30,49 +31,52 @@ export default [{
     {
         path: "/n",
         redirect: "/n/home",
-        component: Main,
+        component: LayoutBase,
         children: nation
     },
     {
         path: "/p",
         redirect: "/p/Home",
-        component: Main,
+        component: LayoutBase,
         children: province
     },
     {
         path: "/c",
         redirect: "/c/home",
-        component: Main,
+        component: LayoutCounty,
         children: county
     },
     {
         path: "/u",
         redirect: "/u/user",
-        component: Main,
+        component: LayoutBase,
         children: user
     },
     {
         path: '/Admin/401',
         name: 'error_401',
         meta: {
+            title: '401错误',
             hideInMenu: true
         },
-        component: () => import('@/page-admin/error/401.vue')
+        component: () => import('@/pages/error/401.vue')
     },
     {
         path: '/Admin/500',
         name: 'error_500',
         meta: {
+            title: '500错误',
             hideInMenu: true
         },
-        component: () => import('@/page-admin/error/500.vue')
+        component: () => import('@/pages/error/500.vue')
     },
     {
         path: '*',
         name: 'error_404',
         meta: {
+            title: '404错误',
             hideInMenu: true
         },
-        component: () => import('@/page-admin/error/404.vue')
+        component: () => import('@/pages/error/404.vue')
     }
 ]
