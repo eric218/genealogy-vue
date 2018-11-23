@@ -14,10 +14,8 @@ import {
 import beforeClose from '@/router/before-close'
 import router from '@/router'
 import routersAdmin from '@/router/admin'
-import config from '@/libs/config'
-const {
-    homeName
-} = config
+import api from '@/libs/api'
+const homeName = api.admin.index
 
 const closePage = (state, route) => {
     const nextRoute = getNextRoute(state.tagNavList, route)

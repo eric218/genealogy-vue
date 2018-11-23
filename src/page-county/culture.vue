@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         getNav() {
-            this.api.get(this.api.county.base + this.api.county.common_site_menu, {
+            this.api.get(this.api.county.base + this.api.urls.common_site_menu, {
                 siteId: this.$store.state.siteId,
                 menuId: 2,
             }).then(res => {

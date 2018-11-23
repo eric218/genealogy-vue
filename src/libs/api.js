@@ -1,11 +1,33 @@
 import axios from 'axios';
-
 const api = {
     pageSize: 20,
     imghost: 'http://47.105.177.1:6090/', //图片资源地址
-    // imghost: 'http://192.168.2.132:8090/', //图片资源地址
-    server: 'http://192.168.2.179:8090/', //后台接口地址
+    urls: {
+        base: 'http://192.168.2.179:8090/', //后台接口地址
+        common_home_all: 'genogram/fanMenu/getIndexMenuBySiteId', //首页api
+        common_site_menu: 'genogram/fanMenu/getTitlesByMenuId', //导航栏
+    },
+    county: {
+        base: 'http://192.168.2.179:8090/', //联谊会前台接口地址
+        detail: {
+            culture: 'genogram/fanNewsCulture/getFamilyCultureDetail', //家族文化
+            charity: 'genogram/fanNewsCharity/getFanNewsCharityDetail', //慈善公益详情
+            industry: 'genogram/fanNewsIndustry/getFamilyIndustryDetail', //家族产业详情
+            famous: 'genogram/fanNewsFamous/getFamilyFamilyDetail', //家族名人
+            family_record: 'genogram/fanNewsFamilyRecord/getFamilyRecordDetail', //家族动态
+        },
+    },
+    user: {
+        base: 'http://192.168.2.179:8090/', //用户中心接口地址
+        login: 'genogram/userLogin/login', //登录
+        reg: 'genogram/userLogin/signIn', //注册
+        pay: {
+            ali: 'genogram/pay/aLiPay', //支付宝支付
+            wx: 'genogram/pay/weChatPay', //微信支付
+        }
+    },
     admin: {
+        index: 'home',
         base: 'http://192.168.2.179:8050/', //后台接口地址
         upload_img: 'fan/uploadFastdfs', //图片上传
         admin_site_info: 'genogram/admin/fanIndex/getFanIndexInfo', //网站信息--后台
@@ -61,27 +83,6 @@ const api = {
         media_info: 'genogram/admin/fanNewsFamilyRecord/getFamilyRecordVedioDetail', //信息
         media_edit: 'genogram/admin/fanNewsFamilyRecord/addOrUpdateVedioRecord', //修改
         media_del: 'genogram/admin/fanNewsFamilyRecord/deleteRecordVedioById', //删除
-    },
-    county: {
-        base: 'http://192.168.2.179:8090/', //联谊会前台接口地址
-        common_home_all: 'genogram/fanMenu/getIndexMenuBySiteId', //首页api
-        common_site_menu: 'genogram/fanMenu/getTitlesByMenuId', //导航栏
-        detail: {
-            culture: 'genogram/fanNewsCulture/getFamilyCultureDetail', //家族文化
-            charity: 'genogram/fanNewsCharity/getFanNewsCharityDetail', //慈善公益详情
-            industry: 'genogram/fanNewsIndustry/getFamilyIndustryDetail', //家族产业详情
-            famous: 'genogram/fanNewsFamous/getFamilyFamilyDetail', //家族名人
-            family_record: 'genogram/fanNewsFamilyRecord/getFamilyRecordDetail', //家族动态
-        },
-    },
-    user: {
-        base: 'http://192.168.2.179:8090/', //用户中心接口地址
-        login: 'genogram/userLogin/login', //登录
-        reg: 'genogram/userLogin/signIn', //注册
-        pay: {
-            ali: 'genogram/pay/aLiPay', //支付宝支付
-            wx: 'genogram/pay/weChatPay', //微信支付
-        }
     },
     post: function (url, data) {
         if (!data.pageNow) {
