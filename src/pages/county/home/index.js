@@ -1,3 +1,4 @@
+import Banner from './banner.vue'
 import TopInfo from './TopInfo.vue'
 import About from './About.vue'
 import Dynamic from './Dynamic.vue'
@@ -9,6 +10,7 @@ import Gongyi from './Gongyi.vue'
 import Products from './Products.vue'
 import Friends from './Friends.vue'
 export {
+    Banner,
     TopInfo,
     About,
     Dynamic,

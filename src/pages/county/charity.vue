@@ -1,40 +1,31 @@
 <template>
-    <div class="page" v-if="$store.state.county.apiList">
-        <Topbar />
-        <NavBar :navcurr="3" />
-        <div class="main">
-            <div class="adlinks">
-                <img src="./img/culture.jpg" />
+    <div class="main">
+        <div class="adlinks">
+            <img src="./img/culture.jpg" />
+        </div>
+        <div class="inner">
+            <div class="h">
+                <div class="cn">慈善公益</div>
+                <Divider class="en">Charitable</Divider>
             </div>
-            <div class="inner">
-                <div class="h">
-                    <div class="cn">慈善公益</div>
-                    <Divider class="en">Charitable</Divider>
-                </div>
-                <div class="menus">
-                    <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
-                </div>
-                <div class="grid" style="minHeight:450px;">
-                    <CharityList :url="url" v-if="menucurr && url.length" />
-                </div>
+            <div class="menus">
+                <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
+            </div>
+            <div class="grid" style="minHeight:450px;">
+                <CharityList :url="url" v-if="menucurr && url.length" />
             </div>
         </div>
-        <FootBar />
         <Modal v-model="handleTopay" width="480px" :footer-hide="true" class="g-pay">
             <topay />
         </Modal>
     </div>
 </template>
 <script>
-import { Topbar, NavBar, FootBar } from './c'
 import CharityList from './list/charity-list';
 import topay from '_c/auth/topay.vue'
 export default {
     name: "Charity",
     components: {
-        Topbar,
-        NavBar,
-        FootBar,
         CharityList,
         topay,
     },

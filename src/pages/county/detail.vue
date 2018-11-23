@@ -1,93 +1,89 @@
 <template>
-    <div class="page" v-if="$store.state.county.apiList" style="background-color:#f1f2f3">
-        <Topbar />
-        <NavBar :navcurr="navcurr" />
-        <div class="main">
-            <div class="adlinks">
-                <img src="./img/detail.jpg" />
-            </div>
-            <div class="inner">
-                <Breadcrumb>
-                    <BreadcrumbItem to="/">首页</BreadcrumbItem>
-                    <BreadcrumbItem to="/">分类</BreadcrumbItem>
-                    <BreadcrumbItem>详情</BreadcrumbItem>
-                </Breadcrumb>
-            </div>
-            <div class="inner">
-                <div class="detail" v-if="isload">
-                    <div class="h">
-                        <div class="tit" v-html="info.newsTitle || info.personName"></div>
-                        <div class="tag">
-                            <div class="item">
-                                <span>时间：</span>
-                                <span>{{dayjs(info.createTime).format('YYYY年MM月DD日 HH:mm:ss')}}</span>
-                            </div>
-                            <div class="item" v-if="info.createUserName">
-                                <span>作者：</span>
-                                <span>{{info.createUserName}}</span>
-                            </div>
-                            <div class="item" v-if="info.visitNum">
-                                <span>浏览：</span>
-                                <span>{{info.visitNum}}</span>
-                            </div>
+    <div class="main">
+        <div class="adlinks">
+            <img src="./img/detail.jpg" />
+        </div>
+        <div class="inner">
+            <Breadcrumb>
+                <BreadcrumbItem to="/">首页</BreadcrumbItem>
+                <BreadcrumbItem to="/">分类</BreadcrumbItem>
+                <BreadcrumbItem>详情</BreadcrumbItem>
+            </Breadcrumb>
+        </div>
+        <div class="inner">
+            <div class="detail" v-if="isload">
+                <div class="h">
+                    <div class="tit" v-html="info.newsTitle || info.personName"></div>
+                    <div class="tag">
+                        <div class="item">
+                            <span>时间：</span>
+                            <span>{{dayjs(info.createTime).format('YYYY年MM月DD日 HH:mm:ss')}}</span>
                         </div>
-                    </div>
-                    <div class="b">
-                        <div class="content" v-html="info.newsText || info.personSummary"></div>
-                    </div>
-                    <div class="f">
-                        <div class="share" v-show="false">
-                            <span>分享到：</span>
-                            <iconfont name="weibo" />
+                        <div class="item" v-if="info.createUserName">
+                            <span>作者：</span>
+                            <span>{{info.createUserName}}</span>
                         </div>
-                        <div class="link" >
-                            <span>赏</span>
-                        </div>
-                        <div class="total">
-                            <span>收到打赏</span>
-                            <span class="num">0</span>
-                            <span>次</span>
+                        <div class="item" v-if="info.visitNum">
+                            <span>浏览：</span>
+                            <span>{{info.visitNum}}</span>
                         </div>
                     </div>
                 </div>
-                <Spin size="large" fix v-else></Spin>
-                <div class="feedback" v-if="1 == 2">
-                    <div class="h">
+                <div class="b">
+                    <div class="content" v-html="info.newsText || info.personSummary"></div>
+                </div>
+                <div class="f">
+                    <div class="share" v-show="false">
+                        <span>分享到：</span>
+                        <iconfont name="weibo" />
+                    </div>
+                    <div class="link">
+                        <span>赏</span>
+                    </div>
+                    <div class="total">
+                        <span>收到打赏</span>
+                        <span class="num">0</span>
+                        <span>次</span>
+                    </div>
+                </div>
+            </div>
+            <Spin size="large" fix v-else></Spin>
+            <div class="feedback" v-if="1 == 2">
+                <div class="h">
+                    <div class="img"></div>
+                    <div class="obj">
+                        <div class="user">
+                            <div class="count">0/300</div>
+                            <span>张三</span>
+                            <iconfont name="crownfill" />
+                        </div>
+                        <div class="textarea">
+                            <textarea name="" id="" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="b">
+                    <div class="item" v-for="v in 5" :key="v">
                         <div class="img"></div>
                         <div class="obj">
                             <div class="user">
-                                <div class="count">0/300</div>
-                                <span>张三</span>
+                                <span class="name">用户名</span>
                                 <iconfont name="crownfill" />
+                                <span class="date">昨天</span>
                             </div>
-                            <div class="textarea">
-                                <textarea name="" id="" rows="4"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="b">
-                        <div class="item" v-for="v in 5" :key="v">
-                            <div class="img"></div>
-                            <div class="obj">
-                                <div class="user">
-                                    <span class="name">用户名</span>
-                                    <iconfont name="crownfill" />
-                                    <span class="date">昨天</span>
+                            <div class="text">描述描述</div>
+                            <div class="tag">
+                                <div class="itm">
+                                    <iconfont name="appreciate_light" />
+                                    <span>150</span>
                                 </div>
-                                <div class="text">描述描述</div>
-                                <div class="tag">
-                                    <div class="itm">
-                                        <iconfont name="appreciate_light" />
-                                        <span>150</span>
-                                    </div>
-                                    <div class="itm">
-                                        <iconfont name="footprint" />
-                                        <span>199</span>
-                                    </div>
-                                    <div class="itm">
-                                        <iconfont name="message_light" />
-                                        <span>199</span>
-                                    </div>
+                                <div class="itm">
+                                    <iconfont name="footprint" />
+                                    <span>199</span>
+                                </div>
+                                <div class="itm">
+                                    <iconfont name="message_light" />
+                                    <span>199</span>
                                 </div>
                             </div>
                         </div>
@@ -95,20 +91,12 @@
                 </div>
             </div>
         </div>
-        <FootBar />
     </div>
 </template>
 <script>
-import { Topbar, NavBar, FootBar } from './c'
 export default {
-    components: {
-        Topbar,
-        NavBar,
-        FootBar,
-    },
     data() {
         return {
-            navcurr: 0,
             url: '',
             info: {
 

@@ -1,79 +1,66 @@
 <template>
-    <div class="page page-ancestors">
-        <Topbar />
-        <NavBar :navcurr="8" />
-        <div class="main">
-            <div class="adlinks">
-                <img src="./img/detail.jpg" />
-            </div>
-            <div class="sia">
-                <div class="inner">
-                    <div class="h">
-                        <div class="tabs kt">
-                            <span class="tit">祖先分支</span>
-                        </div>
-                    </div>
-                    <div class="b">
-                        <div class="item" v-for="v in 10" :key="v">
-                            <div class="img"></div>
-                            <div class="obj">张三</div>
-                        </div>
-                    </div>
-                    <div class="f">
-                        <Page :total="50" />
+    <div class="main">
+        <div class="adlinks">
+            <img src="./img/detail.jpg" />
+        </div>
+        <div class="sia">
+            <div class="inner">
+                <div class="h">
+                    <div class="tabs kt">
+                        <span class="tit">祖先分支</span>
                     </div>
                 </div>
+                <div class="b">
+                    <div class="item" v-for="v in 10" :key="v">
+                        <div class="img"></div>
+                        <div class="obj">张三</div>
+                    </div>
+                </div>
+                <div class="f">
+                    <Page :total="50" />
+                </div>
             </div>
-            <div class="sib">
-                <div class="inner">
-                    <div class="h">
+        </div>
+        <div class="sib">
+            <div class="inner">
+                <div class="h">
+                    <div class="img"></div>
+                    <div class="obj">
+                        <div class="flag"><span>千支同源</span></div>
+                        <div class="name">姓名</div>
+                        <div class="tag">名头</div>
+                    </div>
+                    <div class="txt">介绍</div>
+                </div>
+                <div class="f">
+                    <div class="item">字派：</div>
+                    <div class="item">郡望：</div>
+                    <div class="item">堂号：</div>
+                </div>
+            </div>
+        </div>
+        <div class="sic">
+            <div class="inner">
+                <div class="grid">
+                    <div class="item" v-for="v in 4" :key="v">
                         <div class="img"></div>
                         <div class="obj">
-                            <div class="flag"><span>千支同源</span></div>
-                            <div class="name">姓名</div>
-                            <div class="tag">名头</div>
-                        </div>
-                        <div class="txt">介绍</div>
-                    </div>
-                    <div class="f">
-                        <div class="item">字派：</div>
-                        <div class="item">郡望：</div>
-                        <div class="item">堂号：</div>
-                    </div>
-                </div>
-            </div>
-            <div class="sic">
-                <div class="inner">
-                    <div class="grid">
-                        <div class="item" v-for="v in 4" :key="v">
-                            <div class="img"></div>
-                            <div class="obj">
-                                <div class="tit">宗谱</div>
-                                <div class="txt">
-                                    <div>联系人：李四</div>
-                                    <div>地区：咸宁</div>
-                                    <div>入谱人数：50</div>
-                                    <div>始修于2018-10-10</div>
-                                </div>
+                            <div class="tit">宗谱</div>
+                            <div class="txt">
+                                <div>联系人：李四</div>
+                                <div>地区：咸宁</div>
+                                <div>入谱人数：50</div>
+                                <div>始修于2018-10-10</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <FootBar />
     </div>
 </template>
-
-
 <script>
-import { Topbar, NavBar, FootBar } from './c'
 export default {
-    components: {
-        Topbar,
-        NavBar,
-        FootBar,
-    },
     data() {
         return {
         };
@@ -87,9 +74,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.page-ancestors {
-  background-color: whitesmoke;
-}
 .sia {
   .b {
     overflow: hidden;

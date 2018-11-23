@@ -1,37 +1,26 @@
 <template>
-    <div class="page" v-if="apiList">
-        <Topbar />
-        <NavBar :navcurr="6" />
-        <div class="main">
-            <Record />
-            <div class="inner">
-                <div class="h">
-                    <div class="cn">视频</div>
-                    <Divider class="en">Video</Divider>
-                </div>
-                <div class="menus">
-                    <span class="menu" v-for="(v,i) in menu" v-if="i > 1" :key="i" :class="v.orderIndex == menucurr_b.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v,i)"></span>
-                </div>
-                <div class="grid" style="minHeight:450px;">
-                    <VideoList :data="data_b" v-if="data_b" />
-                </div>
+    <div class="main">
+        <Record />
+        <div class="inner">
+            <div class="h">
+                <div class="cn">视频</div>
+                <Divider class="en">Video</Divider>
+            </div>
+            <div class="menus">
+                <span class="menu" v-for="(v,i) in menu" v-if="i > 1" :key="i" :class="v.orderIndex == menucurr_b.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(v,i)"></span>
+            </div>
+            <div class="grid" style="minHeight:450px;">
+                <VideoList :data="data_b" v-if="data_b" />
             </div>
         </div>
-        <FootBar />
     </div>
 </template>
-
-
 <script>
-import { Topbar, NavBar, FootBar } from './c'
 import { Record } from './home';
 import VideoList from './list/video-list.vue';
 export default {
     name: "Culture",
     components: {
-        Topbar,
-        NavBar,
-        FootBar,
         Record,
         VideoList
     },

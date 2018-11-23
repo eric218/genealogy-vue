@@ -1,35 +1,26 @@
 <template>
-    <div class="page" v-if="$store.state.county.apiList">
-        <Topbar />
-        <NavBar :navcurr="5" />
-        <div class="main">
-            <div class="adlinks">
-                <img src="./img/famous.jpg" />
+    <div class="main">
+        <div class="adlinks">
+            <img src="./img/famous.jpg" />
+        </div>
+        <div class="inner">
+            <div class="h">
+                <div class="cn">家族名人</div>
+                <Divider class="en">Famous</Divider>
             </div>
-            <div class="inner">
-                <div class="h">
-                    <div class="cn">家族名人</div>
-                    <Divider class="en">Famous</Divider>
-                </div>
-                <div class="menus">
-                    <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
-                </div>
-                <div class="grid" style="minHeight:450px;">
-                    <FamousList :url="url" v-if="menucurr && url.length" />
-                </div>
+            <div class="menus">
+                <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
+            </div>
+            <div class="grid" style="minHeight:450px;">
+                <FamousList :url="url" v-if="menucurr && url.length" />
             </div>
         </div>
-        <FootBar />
     </div>
 </template>
 <script>
 import FamousList from './list/famous-list.vue';
-import { Topbar, NavBar, FootBar } from './c'
 export default {
     components: {
-        Topbar,
-        NavBar,
-        FootBar,
         FamousList,
     },
     data() {

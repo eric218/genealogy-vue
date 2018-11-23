@@ -1,39 +1,30 @@
 <template>
-    <div class="page" v-if="$store.state.county.apiList">
-        <Topbar />
-        <NavBar :navcurr="2" />
-        <div class="main">
-            <div class="adlinks">
-                <img src="./img/culture.jpg" />
+    <div class="main">
+        <div class="adlinks">
+            <img src="./img/culture.jpg" />
+        </div>
+        <div class="inner">
+            <div class="h">
+                <div class="cn">家族文化</div>
+                <Divider class="en">Information</Divider>
             </div>
-            <div class="inner">
-                <div class="h">
-                    <div class="cn">家族文化</div>
-                    <Divider class="en">Information</Divider>
-                </div>
-                <div class="menus">
-                    <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
-                </div>
-                <div class="grid" style="minHeight:450px;">
-                    <div v-if="menucurr && url">
-                        <ZipaiList :url="url" v-if="menucurr.menuType == 'culture_zipai'" />
-                        <Culture :url="url" v-else-if="menucurr.menuType == 'culture_news'" />
-                    </div>
+            <div class="menus">
+                <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
+            </div>
+            <div class="grid" style="minHeight:450px;">
+                <div v-if="menucurr && url">
+                    <ZipaiList :url="url" v-if="menucurr.menuType == 'culture_zipai'" />
+                    <Culture :url="url" v-else-if="menucurr.menuType == 'culture_news'" />
                 </div>
             </div>
         </div>
-        <FootBar />
     </div>
 </template>
 <script>
-import { Topbar, NavBar, FootBar } from './c'
 import Culture from './list/culture-list.vue';
 import ZipaiList from './list/zipai.vue';
 export default {
     components: {
-        Topbar,
-        NavBar,
-        FootBar,
         Culture,
         ZipaiList
     },

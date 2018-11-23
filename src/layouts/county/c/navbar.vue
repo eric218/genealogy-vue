@@ -2,14 +2,14 @@
     <div class="navbar">
         <div class="inner">
             <div class="l">
-                <router-link class="item" :class="navcurr == 1?'curr':''" to="home">
+                <div class="item" :class="navcurr == 'home'?'curr':''" @click="jumpurl('home')">
                     <div class="cn">首页</div>
                     <div class="en">home</div>
-                </router-link>
-                <router-link class="item" v-for="(v,i) in navsData" :key="i" :class="v.id == navcurr ?'curr':''" :to="v.menuType" v-if="i < 3 && v.isWeb">
+                </div>
+                <div class="item" v-for="(v,i) in navsData" :key="i" :class="v.menuType == navcurr ?'curr':''" v-if="i < 3 && v.isWeb" @click="jumpurl(v.menuType)">
                     <div class="cn">{{v.menuName}}</div>
                     <div class="en">{{v.menuCode}}</div>
-                </router-link>
+                </div>
             </div>
             <div class="c">
                 <div class="img">
@@ -19,10 +19,10 @@
                 <div class="site">{{regionCode}}</div>
             </div>
             <div class="r">
-                <router-link class="item" v-for="(v,i) in navsData" :key="i" :class="v.id == navcurr ?'curr':''" :to="v.menuType || 'home'" v-if="i > 2 && v.isWeb">
+                <div class="item" v-for="(v,i) in navsData" :key="i" :class="v.menuType == navcurr ?'curr':''" v-if="i > 2 && v.isWeb" @click="jumpurl(v.menuType)">
                     <div class="cn">{{v.menuName}}</div>
                     <div class="en">{{v.menuCode}}</div>
-                </router-link>
+                </div>
             </div>
         </div>
     </div>
@@ -34,6 +34,7 @@ export default {
     data() {
         return {
             index_summary: {},
+            navcurr: 1,
             navsData: [],
             regionCode: '',
         }
@@ -44,6 +45,7 @@ export default {
         },
     },
     mounted: function () {
+        this.navcurr = this.$route.name
         this.get_index_summary()
         this.getNav()
     },
@@ -66,13 +68,12 @@ export default {
             }).then(res => {
                 this.navsData = res.data;
             })
+        },
+        jumpurl(e) {
+            this.navcurr = e
+            this.$router.push(e)
         }
     },
-    props: {
-        'navcurr': {
-            default: 1
-        }
-    }
 };
 </script>
 <style lang="scss" scoped>

@@ -1,36 +1,26 @@
 <template>
-    <div class="page" v-if="$store.state.county.apiList">
-        <Topbar />
-        <NavBar :navcurr="4" />
-        <div class="main">
-            <div class="adlinks">
-                <img src="./img/industry.jpg" />
+    <div class="main">
+        <div class="adlinks">
+            <img src="./img/industry.jpg" />
+        </div>
+        <div class="inner">
+            <div class="h">
+                <div class="cn">家族产业</div>
+                <Divider class="en">Industry</Divider>
             </div>
-            <div class="inner">
-                <div class="h">
-                    <div class="cn">家族产业</div>
-                    <Divider class="en">Industry</Divider>
-                </div>
-                <div class="menus">
-                    <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
-                </div>
-                <div class="grid" style="minHeight:450px;">
-                    <Industry :url="url" v-if="menucurr && url.length" />
-                </div>
+            <div class="menus">
+                <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
+            </div>
+            <div class="grid" style="minHeight:450px;">
+                <Industry :url="url" v-if="menucurr && url.length" />
             </div>
         </div>
-        <FootBar />
     </div>
 </template>
-
 <script>
-import { Topbar, NavBar, FootBar } from './c'
 import Industry from './list/industry-list.vue';
 export default {
     components: {
-        Topbar,
-        NavBar,
-        FootBar,
         Industry,
     },
     data() {

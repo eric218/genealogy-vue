@@ -1,6 +1,6 @@
 export default [{
         path: 'home',
-        name: 'county_home',
+        name: 'home',
         meta: {
             title: "首页"
         },
@@ -58,7 +58,7 @@ export default [{
     },
     {
         path: 'detail',
-        name: 'county_detail',
+        name: 'detail',
         meta: {
             title: "文章详情"
         },

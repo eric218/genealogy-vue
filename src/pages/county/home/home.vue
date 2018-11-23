@@ -1,37 +1,27 @@
 <template>
-    <div class="page" v-if="$store.state.county.apiList">
-        <Topbar />
-        <NavBar :navcurr="1" />
+    <div class="main">
         <Banner />
-        <div class="main">
-            <TopInfo />
-            <About />
-            <Dynamic />
-            <Record />
-            <TheNew />
-            <Famous />
-            <div class="adlinks">
-                <img src="@/assets/img/adlinks.jpg">
-            </div>
-            <Culture />
-            <Gongyi />
-            <Products />
-            <Friends />
+        <TopInfo />
+        <About />
+        <Dynamic />
+        <Record />
+        <TheNew />
+        <Famous />
+        <div class="adlinks">
+            <img src="@/assets/img/adlinks.jpg">
         </div>
-        <FootBar />
+        <Culture />
+        <Gongyi />
+        <Products />
+        <Friends />
     </div>
 </template>
 <script>
-import { Topbar, NavBar, Banner, FootBar } from '../c'
-import { TopInfo, About, Dynamic, Record, TheNew, Famous, Culture, Gongyi, Products, Friends } from '/';
-
+import { Banner, TopInfo, About, Dynamic, Record, TheNew, Famous, Culture, Gongyi, Products, Friends } from '/';
 export default {
     name: "Home",
     components: {
-        Topbar,
-        NavBar,
         Banner,
-        FootBar,
         TopInfo,
         About,
         Dynamic,
