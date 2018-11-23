@@ -9,7 +9,7 @@
                     <div class="h kt"><span>{{keys[i]}}</span></div>
                     <div class="b">
                         <div class="item" v-for="itm in index_architecture[keys[i]]" :key="itm.id">
-                            <div class="img"></div>
+                            <div class="img" :style="itm.picFileSrc? api.imgBG(itm.picFileSrc):''" :alt="itm.personName" />
                             <div class="obj">
                                 <div class="tit">{{itm.personName}}</div>
                                 <div class="intro">{{itm.personSummary}}</div>

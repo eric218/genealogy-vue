@@ -63,7 +63,7 @@
                                 <span>关注</span>
                             </div>
                             <div class="zan">
-                                <img src="@/assets/img/icon-zan.png" alt="">
+                                <Icon type="ios-thumbs-up" color="darkred"/>
                                 <span>150</span>
                             </div>
                         </div>

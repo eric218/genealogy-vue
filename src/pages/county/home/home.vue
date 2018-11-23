@@ -11,7 +11,7 @@
             <TheNew />
             <Famous />
             <div class="adlinks">
-                <img src="@/assets/jpg/gg.jpg">
+                <img src="@/assets/img/adlinks.jpg">
             </div>
             <Culture />
             <Gongyi />

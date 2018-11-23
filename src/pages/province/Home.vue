@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="adlinks">
-                <img src="@/assets/jpg/adlinkb.png" alt="">
+                <img src="./img/adlinkb.png" alt="">
             </div>
             <div class="inner">
                 <Row :gutter="32" class="sic">

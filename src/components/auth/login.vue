@@ -67,7 +67,7 @@ export default {
 @import "@/assets/css/var.scss";
 .g-auth {
   .ivu-modal-content {
-    background: #fff url(../../assets/img/bg-auth.png) no-repeat top center /
+    background: #fff url(../../assets/img/authgrid.png) no-repeat top center /
       100% auto;
   }
 

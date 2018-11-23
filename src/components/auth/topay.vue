@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="@/assets/jpg/banner-pay.png" style="margin-bottom:16px;width:100%;">
+        <img src="@/assets/img/paygrid.png" style="margin-bottom:16px;width:100%;">
         <Form ref="form" :model="form" :label-width="80">
             <FormItem label="选择金额">
                 <RadioGroup v-model="form.num" type="button">
@@ -83,7 +83,7 @@ export default {
 @import "@/assets/css/var.scss";
 .g-pay {
   .ivu-modal-content {
-    background: #fff url(../../assets/img/bg-pay.png) no-repeat top center /
+    background: #fff url(../../assets/img/paytop.png) no-repeat top center /
       100% auto;
   }
 
