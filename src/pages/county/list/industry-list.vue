@@ -20,7 +20,7 @@
                     </div>
                     <div class="site fl">
                         <iconfont name="locationfill" />
-                        <span>湖北省武汉市</span>
+                        <span>{{v.industryLocation}}</span>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import axios from 'axios';
 const api = {
     pageSize: 20,
     imghost: 'http://47.105.177.1:6090/', //图片资源地址
+    imghost: 'http://192.168.2.132:8090/', 
     urls: {
         base: 'http://192.168.2.179:8090/', //后台接口地址
     },
@@ -23,6 +24,7 @@ const api = {
         reg: 'genogram/userLogin/signIn', //注册
         reset: 'genogram/userLogin/updatePassword', //修改密码
         info: 'genogram/userLogin/getUserLogin', //用户信息
+        update: 'genogram/userLogin/updatePerson', //修改用户资料
         pay: {
             ali: 'genogram/pay/aLiPay', //支付宝支付
             wx: 'genogram/pay/weChatPay', //微信支付
@@ -32,6 +34,7 @@ const api = {
         index: 'home',
         base: 'http://192.168.2.179:8050/', //后台接口地址
         upload_img: 'fan/uploadFastdfs', //图片上传
+        user_list: 'genogram/admin/person/getUserLoginList', //用户列表
         admin_site_info: 'genogram/admin/fanIndex/getFanIndexInfo', //网站信息--后台
         admin_site_edit: 'genogram/admin/fanIndex/insertOrUpdateFanIndexInfo', //网站信息--修改
         admin_site_withdraw: 'genogram/admin/fanNewsCharity/insertFanIndexFundDrowing', //线上提现
@@ -87,7 +90,7 @@ const api = {
         media_del: 'genogram/admin/fanNewsFamilyRecord/deleteRecordVedioById', //删除
     },
     post: function (url, data) {
-        if (!data.pageNow) {
+        if (!data.pageNo) {
             data.pageNo = 1
         }
         if (!data.pageSize) {

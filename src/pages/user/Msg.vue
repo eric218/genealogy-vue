@@ -42,6 +42,8 @@ export default {
 .suc {
   .grid {
     background: transparent;
+    display: block;
+    overflow: hidden;
     .h {
       background: #fff;
     }
@@ -51,6 +53,7 @@ export default {
   background: whitesmoke;
   .item {
     display: block;
+    overflow: hidden;
     background: #fff;
     box-shadow: 0 1px 4px rgba(#000, 0.1);
     border-radius: 8px;

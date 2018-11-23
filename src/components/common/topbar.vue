@@ -3,7 +3,7 @@
         <div class="inner">
             <div class="user" v-if="user.token">
                 <div class="img">
-                    <Avatar :src="user.picSrc" size="small" :title="user.nickName"/>
+                    <Avatar :src="api.imgurl(user.picSrc)" size="small" :title="user.nickName" />
                 </div>
                 <div class="obj">
                     <Dropdown trigger="click" @on-click="onDrop">

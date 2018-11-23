@@ -43,29 +43,29 @@
                     </div>
                 </div>
             </div>
-            <div class="f" v-if="1==2">
-                <div class="hd">
-                    <div class="link" @click="handleTopay = true"></div>
-                    <span>公益基金总金额：</span>
-                    <span class="num">{{index_fund_2 ? index_fund_2.remain : 0}}</span>
-                    <span>元</span>
-                </div>
-                <div class="bd" v-if="index_architecture_pay_in_person_2">
-                    <div class="item" v-for="v in index_architecture_pay_in_person_2" :key="v.id">
-                        <div class="img"></div>
-                        <div class="name">{{v.allUserLogin ? v.allUserLogin.userName:''}}</div>
-                        <div class="txt">
-                            <small>捐款</small>
-                            <span>{{v.fanNewsCharityPayIn?v.fanNewsCharityPayIn.payAmount:0}}元</span>
+        </div>
+        <div class="f" v-if="1==2">
+            <div class="hd">
+                <div class="link" @click="handleTopay = true"></div>
+                <span>公益基金总金额：</span>
+                <span class="num">{{index_fund_2 ? index_fund_2.remain : 0}}</span>
+                <span>元</span>
+            </div>
+            <div class="bd" v-if="index_architecture_pay_in_person_2">
+                <div class="item" v-for="v in index_architecture_pay_in_person_2" :key="v.id">
+                    <div class="img"></div>
+                    <div class="name">{{v.allUserLogin ? v.allUserLogin.userName:''}}</div>
+                    <div class="txt">
+                        <small>捐款</small>
+                        <span>{{v.fanNewsCharityPayIn?v.fanNewsCharityPayIn.payAmount:0}}元</span>
+                    </div>
+                    <div class="link" v-if="1==2">
+                        <div class="flow">
+                            <span>关注</span>
                         </div>
-                        <div class="link" v-if="1==2">
-                            <div class="flow">
-                                <span>关注</span>
-                            </div>
-                            <div class="zan">
-                                <Icon type="ios-thumbs-up" color="darkred"/>
-                                <span>150</span>
-                            </div>
+                        <div class="zan">
+                            <Icon type="ios-thumbs-up" color="darkred" />
+                            <span>150</span>
                         </div>
                     </div>
                 </div>
@@ -147,6 +147,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .gongyi {
+  background: url(../img/gongyibg.png) no-repeat top right;
   .h {
     text-align: center;
     padding: 32px 0;

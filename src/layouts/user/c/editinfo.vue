@@ -2,27 +2,21 @@
     <div>
         <Form :label-width="80">
             <FormItem label="头像">
-                <Upload class="avatar-uploader" action="//jsonplaceholder.typicode.com/posts/" :format="['jpg','jpeg','png']">
-                    <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                    <iconfont v-else name="add" />
-                </Upload>
-            </FormItem>
-        </Form>
-        <Form :label-width="80">
-            <FormItem label="头像">
                 <Upload class="upload" :action="api.admin.base + api.admin.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
                     <Button type="dashed">
-                        <div class="img" :style="api.imgBG(filePath)" v-if="filePath" />
-                        <div class="img" :style="formData.fanNewsUploadFileList.length ? api.imgBG(formData.fanNewsUploadFileList[0].filePath) :''" v-else-if="formData.fanNewsUploadFileList"></div>
+                        <div class="img" :style="api.imgBG(user.picSrc)" v-if="user.picSrc"></div>
                         <Icon type="ios-camera" size="40" color="#ccc" v-else></Icon>
                     </Button>
                 </Upload>
             </FormItem>
             <FormItem label="昵称">
-                <Input placeholder="昵称" />
+                <Input placeholder="昵称" v-model="user.nickName" />
             </FormItem>
-            <FormItem label="简介">
-                <Input type="textarea" />
+            <FormItem label="真实姓名">
+                <Input placeholder="真实姓名" v-model="user.realName" />
+            </FormItem>
+            <FormItem label="手机号">
+                <Input placeholder="手机号" v-model="user.mobilePhone" disabled />
             </FormItem>
             <FormItem>
                 <Button type="primary" @click="toSubmit">保存</Button>
@@ -38,22 +32,44 @@ export default {
         };
     },
     mounted: function () {
+        this.user = []
         this.user = this.$store.state.user
     },
     methods: {
-        toSubmit() { },
+        handleSuccess(res, file) {
+            if (res.code == 200) {
+                this.user.picSrc = res.data.file_path
+            }
+        },
+        toSubmit() {
+            this.api.post(this.api.user.base + this.api.user.update, {
+                nickName: this.user.nickName,
+                realName: this.user.realName,
+                picSrc: this.user.picSrc
+            }).then(res => {
+                if (res.code == 200) {
+                    this.$Message.success('修改成功')
+                    this.$store.commit('updateUser', res.data);
+                } else {
+                    this.$Message.error(res.msg)
+                }
+            })
+        },
     }
 };
 </script>
 <style lang="scss" scoped>
-.avatar-uploader {
-  height: 40px;
-  width: 40px;
-  cursor: pointer;
-  font-size: 24px;
-  line-height: 40px;
-  text-align: center;
-  border: 1px dashed #ccc;
-  color: #ccc;
+.upload {
+  button {
+    width: 122px;
+    height: 122px;
+    padding: 0;
+    .img {
+      width: 120px;
+      height: 120px;
+      padding: 0;
+      background: no-repeat center / cover;
+    }
+  }
 }
 </style>

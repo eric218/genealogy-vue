@@ -2,19 +2,19 @@
     <div class="usergrid">
         <div class="bg"></div>
         <div class="card">
-            <div class="img" :style="api.imgBG(user.picSrc)"></div>
+            <div class="img" :style="api.imgBG(user.picSrc)" @click="isedit = true"></div>
             <div class="obj">
                 <div class="name" @click="isedit = true">
                     <span>{{user.nickName}}</span>
                     <iconfont name="writefill" />
                 </div>
-                <div class="info">
-                    <div class="item">英文名：hhehe</div>
-                    <div class="item">国籍：中国</div>
-                    <div class="item">出生地：武汉</div>
-                    <div class="item">职业：教师</div>
+                <div class="info" v-if="false">
+                    <div class="item">英文名：</div>
+                    <div class="item">国籍：</div>
+                    <div class="item">出生地：</div>
+                    <div class="item">职业：</div>
                 </div>
-                <div class="tag">
+                <div class="tag" v-if="false">
                     <div class="item">
                         <iconfont name="medalfill" />
                         <span>诚信值：100</span>
@@ -28,12 +28,12 @@
                         <span>粉丝：0</span>
                     </div>
                 </div>
-                <div class="flag" v-if="1">
+                <div class="flag" v-if="false">
                     <div class="item">现居：</div>
                     <div class="item">故居：</div>
                     <div class="item">现居古城：</div>
                 </div>
-                <div class="flag">
+                <div class="flag" v-if="false">
                     <div class="item">历代：</div>
                     <div class="item">近世：</div>
                     <div class="item">老派：</div>
@@ -44,22 +44,22 @@
                     <router-link to="note" class="item">
                         <iconfont name="formfill" />
                         <span>日志</span>
-                        <span>150</span>
+                        <span>0</span>
                     </router-link>
                     <router-link to="image" class="item">
                         <iconfont name="picfill" />
                         <span>照片</span>
-                        <span>150</span>
+                        <span>0</span>
                     </router-link>
                     <router-link to="video" class="item">
                         <iconfont name="video_fill_light" />
                         <span>视频</span>
-                        <span>150</span>
+                        <span>0</span>
                     </router-link>
                     <router-link to="msg" class="item">
                         <iconfont name="communityfill" />
                         <span>说说</span>
-                        <span>150</span>
+                        <span>0</span>
                     </router-link>
                 </div>
             </div>
