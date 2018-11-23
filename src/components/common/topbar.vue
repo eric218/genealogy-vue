@@ -3,7 +3,7 @@
         <div class="inner">
             <div class="user" v-if="user.token">
                 <div class="img">
-                    <Avatar :src="user.picSrc" size="small" />
+                    <Avatar :src="user.picSrc" size="small" :title="user.nickName"/>
                 </div>
                 <div class="obj">
                     <Dropdown trigger="click" @on-click="onDrop">
@@ -11,6 +11,7 @@
                         <Icon type="ios-arrow-down"></Icon>
                         <DropdownMenu slot="list">
                             <DropdownItem name="/u">个人中心</DropdownItem>
+                            <DropdownItem name="resetPsw">修改密码</DropdownItem>
                             <DropdownItem name="isMsgBox" divided>我的消息</DropdownItem>
                             <DropdownItem name="/a">联谊会后台管理</DropdownItem>
                             <DropdownItem name="/c" divided>返回首页</DropdownItem>
@@ -35,6 +36,9 @@
         <Modal v-model="isreg" width="480px" class="g-auth" :footer-hide='true'>
             <regform @urlToLogin="urlToLogin" @closedialog="closedialog" />
         </Modal>
+        <Modal v-model="isreset" width="480px" class="g-auth" :footer-hide='true'>
+            <resetform @closedialog="closedialog" />
+        </Modal>
         <Modal title="消息列表" v-model="isMsgBox" width="640px" :footer-hide="true">
             <msgBox />
         </Modal>
@@ -43,18 +47,21 @@
 <script>
 import loginform from './login'
 import regform from './reg'
+import resetform from './reset'
 import msgBox from './msgBox'
 export default {
     name: "Topbar",
     components: {
         loginform,
         regform,
+        resetform,
         msgBox
     },
     data() {
         return {
             isreg: false,
             islogin: false,
+            isreset: false,
             isMsgBox: false,
         };
     },
@@ -87,6 +94,9 @@ export default {
                         },
                     });
                     break;
+                case 'resetPsw':
+                    this.isreset = true;
+                    break;
                 default:
                     this.$router.push(e)
                     break;
@@ -105,8 +115,10 @@ export default {
             }, 300);
         },
         closedialog() {
-            this.islogin = false;
-            this.isreg = false;
+            this.islogin = false
+            this.isreg = false
+            this.isreset = false
+            this.isMsgBox = false
         }
     }
 };

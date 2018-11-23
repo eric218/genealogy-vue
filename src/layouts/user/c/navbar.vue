@@ -1,12 +1,13 @@
 <template>
     <div class="navbar" style="margin-top:32px;">
-        <router-link :to="v.url" class="item" v-for="(v,i) in menus" :key="i" :class="name == i ? 'curr':''"><span>{{v.name}}</span></router-link>
+        <router-link :to="v.url" class="item" v-for="(v,i) in menus" :key="i" :class="navcurr == i ? 'curr':''"><span>{{v.name}}</span></router-link>
     </div>
 </template>
 <script>
 export default {
     data() {
         return {
+            navcurr: '',
             menus: [{
                 url: 'user',
                 name: '个人主页',
@@ -19,14 +20,21 @@ export default {
             }],
         };
     },
-    props: ['name']
+    mounted: function () {
+        this.navcurr = this.$route.name
+    },
+    methods: {
+        jumpurl(e) {
+            this.navcurr = e
+            this.$router.push(e)
+        }
+    },
 };
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .navbar {
   text-align: center;
-
   .item {
     display: inline-block;
     width: 120px;

@@ -1,5 +1,5 @@
 <template>
-    <div class="msglist">
+    <div class="msglist" style="min-height:450px;">
         <Table></Table>
     </div>
 </template>
