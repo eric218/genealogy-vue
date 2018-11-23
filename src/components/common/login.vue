@@ -3,10 +3,10 @@
         <div class="h">使用手机号登录</div>
         <Form :model="form" class="b">
             <FormItem>
-                <Input v-model="form.mobile" placeholder="输入手机号" clearable />
+                <Input v-model="form.mobile" placeholder="输入手机号" clearable :maxlength="11"/>
             </FormItem>
             <FormItem>
-                <Input v-model="form.password" type="password" placeholder="输入密码" clearable />
+                <Input v-model="form.password" type="password" placeholder="输入密码" clearable :maxlength="20"/>
             </FormItem>
             <FormItem>
                 <Button type="primary" @click="toSubmit" style="width:100%;">登录</Button>
@@ -39,8 +39,8 @@ export default {
     },
     methods: {
         toSubmit() {
-            if (!this.form.mobile) {
-                this.$Message.error('请输入用户名');
+            if (!this.api.isMobile(this.form.mobile)) {
+                this.$Message.error('请输入正确的手机号');
                 return;
             }
             if (!this.form.password) {

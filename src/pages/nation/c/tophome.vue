@@ -17,8 +17,8 @@
     </div>
 </template>
 <script>
-import loginform from '@/components/auth/login.vue'
-import regform from '@/components/auth/reg.vue'
+import loginform from '_c/common/login.vue'
+import regform from '_c/common/reg.vue'
 export default {
     name: "Topbar",
     components: {

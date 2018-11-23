@@ -22,7 +22,7 @@
 </template>
 <script>
 import CharityList from './list/charity-list';
-import topay from '_c/auth/topay.vue'
+import topay from '_c/common/topay.vue'
 export default {
     name: "Charity",
     components: {

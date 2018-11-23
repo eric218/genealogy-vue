@@ -4,12 +4,12 @@
 
         <Form :model="form" :label-width="80" class="b">
             <FormItem label="手机号">
-                <Input v-model="form.mobile" placeholder="输入手机号" clearable />
+                <Input v-model="form.mobile" placeholder="输入手机号" clearable :maxlength="11"/>
             </FormItem>
             <FormItem label="验证码">
                 <Row>
                     <i-col span="11">
-                        <Input v-model="form.sms" placeholder="输入验证码" clearable />
+                        <Input v-model="form.sms" placeholder="输入验证码" clearable :maxlength="6"/>
                     </i-col>
                     <i-col span="2">&nbsp;</i-col>
                     <i-col span="11">
@@ -18,10 +18,10 @@
                 </Row>
             </FormItem>
             <FormItem label="密码">
-                <Input v-model="form.password" type="password" placeholder="输入密码" clearable />
+                <Input v-model="form.password" type="password" placeholder="输入密码" clearable :maxlength="20"/>
             </FormItem>
             <FormItem label="确认密码">
-                <Input v-model="form.repassword" type="password" placeholder="再次输入密码" clearable />
+                <Input v-model="form.repassword" type="password" placeholder="再次输入密码" clearable :maxlength="20"/>
             </FormItem>
             <FormItem label="姓氏">
                 <Select v-model="form.truename" style="width:200px">
@@ -89,8 +89,8 @@ export default {
             }
         },
         toSubmit() {
-            if (!this.form.mobile) {
-                this.$Message.error('请输入手机号');
+            if (!this.api.isMobile(this.form.mobile)) {
+                this.$Message.error('请输入正确的手机号');
                 return;
             }
             if (!this.form.password) {
@@ -114,7 +114,8 @@ export default {
             }).then(res => {
                 if (res.code == 200) {
                     this.$Message.success('注册成功')
-                    this.$emit('closedialog',true);
+                    this.$store.commit('updateUser', res.data);
+                    this.$emit('closedialog', true);
                 } else {
                     this.$Message.error(res.msg)
                 }

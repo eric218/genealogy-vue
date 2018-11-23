@@ -21,6 +21,7 @@ const api = {
         base: 'http://192.168.2.179:8090/', //用户中心接口地址
         login: 'genogram/userLogin/login', //登录
         reg: 'genogram/userLogin/signIn', //注册
+        info: 'genogram/userLogin/getUserLogin', //用户信息
         pay: {
             ali: 'genogram/pay/aLiPay', //支付宝支付
             wx: 'genogram/pay/weChatPay', //微信支付
