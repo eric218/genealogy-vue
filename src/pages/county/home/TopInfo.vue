@@ -62,7 +62,7 @@
                         <span>元</span>
                     </div>
                     <div class="f">
-                        <div class="item" v-for="v in index_architecture_pay_in_person_1" :key="v.id"></div>
+                        <div class="item" v-for="v in index_architecture_pay_in_person_1.records" :key="v.allUserLogin.id" :style="api.imgBG(v.allUserLogin.picSrc)"></div>
                         <router-link class="item more" to="/c/charity_home">···</router-link>
                     </div>
                 </div>

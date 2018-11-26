@@ -28,6 +28,12 @@
                     </Radio>
                 </RadioGroup>
             </FormItem>
+            <FormItem label="是否匿名">
+                <i-switch v-model="form.anonymous">
+                    <span slot="open">是</span>
+                    <span slot="close">否</span>
+                </i-switch>
+            </FormItem>
             <FormItem>
                 <Button type="primary" @click="toSubmit">支付</Button>
             </FormItem>
@@ -40,6 +46,7 @@ export default {
         return {
             form: {
                 num: '',
+                anonymous: false,
                 paytype: 0
             },
         };
@@ -62,7 +69,7 @@ export default {
                 this.api.post(this.api.user.base + this.api.user.pay.ali, {
                     siteId: this.$store.state.siteId,
                     payAmount: this.form.num,
-                    anonymous: 1,
+                    anonymous: this.form.anonymous ? 1 : 0,
                     url: location.origin + '/#/c/home?back=pay&'
                 }).then(res => {
                     if (res.code == 200) {
