@@ -1,13 +1,14 @@
 import axios from 'axios';
 const api = {
     pageSize: 20,
-    imghost: 'http://47.105.177.1:6090/', //图片资源地址
-    imghost: 'http://192.168.2.132:8090/', 
+    // imghost: 'http://47.105.177.1:6090/', //图片资源地址
+    imghost: 'http://192.168.2.132:8090/',
     urls: {
         base: 'http://192.168.2.179:8090/', //后台接口地址
     },
     county: {
         base: 'http://192.168.2.179:8090/', //联谊会前台接口地址
+        feeds: 'genogram/allMessageBoard/addMessage', //留言板
         common_home_all: 'genogram/fanMenu/getIndexMenuBySiteId', //首页api
         common_site_menu: 'genogram/fanMenu/getTitlesByMenuId', //导航栏
         detail: {
@@ -17,6 +18,8 @@ const api = {
             famous: 'genogram/fanNewsFamous/getFamilyFamilyDetail', //家族名人
             family_record: 'genogram/fanNewsFamilyRecord/getFamilyRecordDetail', //家族动态
         },
+        ancestor_list: '/genogram/proNewsAncestor/getFamousAncestorPage', //祖先名人列表
+        ancestor_info: '/genogram/proNewsAncestor/getFamousAncestorDetails', //祖先名人详情
     },
     user: {
         base: 'http://192.168.2.179:8090/', //用户中心接口地址

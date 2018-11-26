@@ -106,7 +106,7 @@ export default {
         },
         handleCloseTag(res, type, route) {
             if (type === 'all') {
-                this.turnToPage(this.$config.homeName)
+                this.turnToPage(this.api.admin.index)
             } else if (routeEqual(this.$route, route)) {
                 if (type !== 'others') {
                     const nextRoute = getNextRoute(this.tagNavList, route)
@@ -140,10 +140,9 @@ export default {
             route: this.$store.state.admin.homeRoute
         })
         this.setBreadCrumb(this.$route)
-        // 如果当前打开页面不在标签栏中，跳到homeName页
         if (!this.tagNavList.find(item => item.name === this.$route.name)) {
             this.$router.push({
-                name: this.$config.homeName
+                name: this.api.admin.index
             })
         }
     }

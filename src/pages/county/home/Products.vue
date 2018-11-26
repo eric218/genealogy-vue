@@ -18,9 +18,6 @@
                             </div>
                             <div class="intro">{{v.newsText}}</div>
                             <div class="flag">
-                                <div class="level">
-                                    <span>诚信值{{v.visitNum}}</span>
-                                </div>
                                 <div class="head"></div>
                                 <div class="name">张三</div>
                                 <div class="tag" v-if="v.status">[诚信业主]</div>
@@ -40,9 +37,6 @@
                             </div>
                             <div class="intro">{{v.newsText}}</div>
                             <div class="flag">
-                                <div class="level">
-                                    <span>诚信值{{v.visitNum}}</span>
-                                </div>
                                 <div class="head"></div>
                                 <div class="name">张三</div>
                                 <div class="tag" v-if="v.status">[诚信业主]</div>
@@ -200,17 +194,6 @@ export default {
           img {
             width: 20px;
             margin-right: 8px;
-          }
-        }
-
-        .level {
-          float: right;
-          span {
-            color: $color;
-            border: 1px solid;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-size: 12px;
           }
         }
       }

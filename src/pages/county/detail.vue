@@ -197,6 +197,10 @@ export default {
       p {
         margin-bottom: 1em;
       }
+      iframe{
+          width: 100%;
+          height: auto;
+      }
     }
   }
 

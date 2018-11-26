@@ -1,28 +1,26 @@
 <template>
     <div class="humanlist">
-        <Card class="item" v-for="(v,i) in list" :key="i">
-            <router-link :to="'/c/Detail?type=famous&id='+v.id">
-                <div class="img" :style="v.picFileSrc? api.imgBG(v.picFileSrc):''" />
-                <div class="obj">
-                    <div class="tit" v-html="v.personName"></div>
-                    <div class="intro" v-html="v.personSummary"></div>
-                    <div class="tag">
-                        <div class="attention fr">
-                            <iconfont name="attention" />
-                            <span v-html="v.like"></span>
-                        </div>
-                        <div class="favor fr">
-                            <iconfont name="favorfill" />
-                            <span v-html="v.focus"></span>
-                        </div>
-                        <div class="appreciate fr">
-                            <iconfont name="appreciate" />
-                            <span v-html="v.visitNum"></span>
-                        </div>
+        <router-link class="item" v-for="(v,i) in list" :key="i" :to="'/c/Detail?type=famous&id='+v.id">
+            <div class="img" :style="v.picFileSrc? api.imgBG(v.picFileSrc):''" />
+            <div class="obj">
+                <div class="tit" v-html="v.personName"></div>
+                <div class="intro" v-html="v.personSummary"></div>
+                <div class="tag">
+                    <div class="attention fr">
+                        <iconfont name="attention" />
+                        <span v-html="v.like"></span>
+                    </div>
+                    <div class="favor fr">
+                        <iconfont name="favorfill" />
+                        <span v-html="v.focus"></span>
+                    </div>
+                    <div class="appreciate fr">
+                        <iconfont name="appreciate" />
+                        <span v-html="v.visitNum"></span>
                     </div>
                 </div>
-            </router-link>
-        </Card>
+            </div>
+        </router-link>
         <Page :total="total" @on-change="chgPage" :page-size="8" />
     </div>
 </template>
@@ -68,8 +66,9 @@ export default {
   padding: 16px 0;
   .item {
     white-space: nowrap;
-    margin: 16px 0;
-    background: #ece9e9;
+    display: block;
+    border-bottom: 1px solid #eee;
+    padding: 16px 0;
     .img {
       height: 150px;
       width: 200px;

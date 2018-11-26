@@ -2,9 +2,7 @@
     <div class="topbar">
         <div class="inner">
             <div class="user" v-if="user.token">
-                <div class="img">
-                    <Avatar :src="api.imgurl(user.picSrc)" size="small" :title="user.nickName" />
-                </div>
+                <div class="img" :style="api.imgBG(user.picSrc)" :title="user.nickName"></div>
                 <div class="obj">
                     <Dropdown trigger="click" @on-click="onDrop">
                         {{user.nickName}}
@@ -13,7 +11,10 @@
                             <DropdownItem name="/u">个人中心</DropdownItem>
                             <DropdownItem name="resetPsw">修改密码</DropdownItem>
                             <DropdownItem name="isMsgBox" divided>我的消息</DropdownItem>
-                            <DropdownItem name="/a">联谊会后台管理</DropdownItem>
+                            <DropdownItem name="/a" v-if="user.role == 1 && user.siteId">联谊会后台管理</DropdownItem>
+                            <DropdownItem name="/a" v-if="user.role == 2 && user.siteId">省级后台管理</DropdownItem>
+                            <DropdownItem name="/a" v-if="user.role == 3 && user.siteId">全国后台管理</DropdownItem>
+                            <DropdownItem name="/a" v-if="user.role == 9">总后台管理</DropdownItem>
                             <DropdownItem name="/c" divided>返回首页</DropdownItem>
                             <DropdownItem name="logout" divided>退出登录</DropdownItem>
                         </DropdownMenu>
@@ -154,7 +155,12 @@ export default {
     }
     .img {
       float: left;
-      margin-right: 16px;
+      margin-right: 8px;
+      height: 24px;
+      width: 24px;
+      background: no-repeat center / cover;
+      margin-top: 4px;
+      border-radius: 100%;
     }
     .obj {
       overflow: hidden;

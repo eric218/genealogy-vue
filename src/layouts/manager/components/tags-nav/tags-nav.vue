@@ -97,11 +97,11 @@ export default {
         handleTagsOption(type) {
             if (type.includes('all')) {
                 // 关闭所有，除了home
-                let res = this.list.filter(item => item.name == this.$config.homeName)
+                let res = this.list.filter(item => item.name == this.api.admin.index)
                 this.$emit('on-close', res, 'all')
             } else if (type.includes('others')) {
                 // 关闭除当前页和home页的其他页
-                let res = this.list.filter(item => routeEqual(this.currentRouteObj, item) || item.name === this.$config.homeName)
+                let res = this.list.filter(item => routeEqual(this.currentRouteObj, item) || item.name === this.api.admin.index)
                 this.$emit('on-close', res, 'others', this.currentRouteObj)
                 setTimeout(() => {
                     this.getTagElementByName(this.currentRouteObj.name)
@@ -120,7 +120,7 @@ export default {
             }
         },
         close(route) {
-            if (route.name == this.$config.homeName) {
+            if (route.name == this.api.admin.index) {
                 return;
             }
             let res = this.list.filter(item => !routeEqual(route, item))
@@ -163,7 +163,7 @@ export default {
             })
         },
         contextMenu(item, e) {
-            if (item.name === this.$config.homeName) {
+            if (item.name === this.api.admin.index) {
                 return
             }
             this.visible = true

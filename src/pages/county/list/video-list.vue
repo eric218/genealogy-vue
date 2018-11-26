@@ -1,7 +1,7 @@
 <template>
     <div>
         <Row :gutter="32" class="videolist">
-            <i-col :span="6" v-for="v in data.records" :key="v.id">
+            <i-col :span="6" v-for="v in list" :key="v.id">
                 <div class="item">
                     <div class="img" :style="v.fanNewsUploadFile.length ? api.imgBG(v.fanNewsUploadFile[0].filePath) : ''">
                         <img src="http://iph.href.lu/80x45" />
@@ -16,7 +16,7 @@
                             <div class="name">{{v.auth}}</div>
                         </div>
                         <div class="tag">
-                            <div class="date">2018-10-10</div>
+                            <div class="date"></div>
                             <div class="total">
                                 <iconfont name="recordfill" />
                                 <span>0</span>
@@ -26,7 +26,7 @@
                 </div>
             </i-col>
         </Row>
-        <Page :total="data.total" />
+        <Page :total="total" @on-change="chgPage" :page-size="8" v-if="total" />
         <div class="modal" v-if="visible">
             <div class="bg" @click="visible = false">
                 <div class="close">
@@ -43,16 +43,41 @@
 </template>
 <script>
 export default {
-    props: ['data'],
+    name: 'VideoList',
+    props: ['url'],
     data() {
         return {
+            list: [],
+            page: 1,
+            total: 0,
             curr: '',
             visible: false,
         }
     },
+    watch: {
+        url: function (curVal, oldVal) {
+            if (curVal != oldVal) {
+                this.getList();
+            }
+        },
+    },
+    mounted: function () {
+        this.getList()
+    },
     methods: {
+        getList() {
+            this.api.get(this.url, {
+                pageNo: this.page
+            }).then(res => {
+                this.list = res.data.records
+                this.total = res.data.total
+            })
+        },
+        chgPage(e) {
+            this.page = e;
+            this.getList();
+        },
         toShow(e) {
-            console.log(e)
             this.curr = e;
             this.visible = true
         }

@@ -3,23 +3,8 @@
         <div class="adlinks">
             <img src="./img/detail.jpg" />
         </div>
-        <div class="sia">
-            <div class="inner">
-                <div class="h">
-                    <div class="tabs kt">
-                        <span class="tit">祖先分支</span>
-                    </div>
-                </div>
-                <div class="b">
-                    <div class="item" v-for="v in 10" :key="v">
-                        <div class="img"></div>
-                        <div class="obj">张三</div>
-                    </div>
-                </div>
-                <div class="f">
-                    <Page :total="50" />
-                </div>
-            </div>
+        <div class="inner">
+            <Ancestors @chgCurr="chgCurr" :url="url" />
         </div>
         <div class="sib">
             <div class="inner">
@@ -60,42 +45,30 @@
     </div>
 </template>
 <script>
+import Ancestors from './list/ancestors-list'
 export default {
+    components: {
+        Ancestors
+    },
     data() {
         return {
+            curr: {},
+            url: ''
         };
     },
     computed: {
     },
     mounted: function () {
+        this.url = this.api.county.base + this.api.county.ancestor_list
     },
     methods: {
+        chgCurr(e) {
+
+        }
     }
 };
 </script>
 <style lang="scss" scoped>
-.sia {
-  .b {
-    overflow: hidden;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    text-align: center;
-    .item {
-      margin-bottom: 32px;
-      width: 216px;
-      background: #fff;
-      padding: 16px;
-      border-radius: 4px;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-      .img {
-        width: 184px;
-        height: 184px;
-        background: rgba(#09c, 0.1) no-repeat center;
-      }
-    }
-  }
-}
 .sib {
   background: url(./img/bg-ancestors.png) no-repeat center / 100% auto;
   color: #fff;
