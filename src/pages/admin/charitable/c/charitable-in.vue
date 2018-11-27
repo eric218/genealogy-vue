@@ -24,7 +24,7 @@
                     <Input v-model="formData.visitNum" placeholder="浏览数" />
                 </FormItem>
                 <FormItem label="">
-                    <Button type="primary" @click="toSubmit" style="margin-right:16px;">修改</Button>
+                    <Button type="primary" @click="toSubmit" style="margin-right:16px;">提交</Button>
                     <Button @click="toDrft" v-if="formData.status != 1" style="margin-right:16px;">存为草稿</Button>
                     <Button @click="isedit = false">关闭</Button>
                 </FormItem>
@@ -179,7 +179,7 @@ export default {
                 title: '提示',
                 content: '确定删除这个文章？',
                 onOk: () => {
-                    this.api.get(this.api.admin.base + this.api.admin.charity_list_del, {
+                    this.api.post(this.api.admin.base + this.api.admin.charity_list_del, {
                         id: this.list[index].id
                     }).then(res => {
                         this.list.splice(index, 1);

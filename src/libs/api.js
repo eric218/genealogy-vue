@@ -41,7 +41,12 @@ const api = {
         users_info: 'genogram/admin/person/getUserLogin', //用户信息
         users_edit: 'genogram/admin/person/updatePerson', //用户修改
         users_sys_site: 'genogram/admin/person/getSysSite', //网站信息
-        admin_sys_menu: 'genogram/admin/fanMenu/getTitlesByMenuId', //网站导航
+        admin_sys_menu: 'genogram/admin/fanMenu/getTitlesByMenuId', //
+        admin_sys_menu_add: 'genogram/admin/fanMenu/addTitles', //类别添加
+        admin_sys_menu_edit: 'genogram/admin/fanMenu/updateTitlesById', //类别修改
+        admin_sys_menu_del: 'genogram/admin/fanMenu/delTitlesById', //类别删除
+
+        admin_sys_feeds: 'genogram/admin/allMessageBoard/selectMessage', //留言板
 
         admin_site_info: 'genogram/admin/fanIndex/getFanIndexInfo', //网站信息--后台
         admin_site_edit: 'genogram/admin/fanIndex/insertOrUpdateFanIndexInfo', //网站信息--修改

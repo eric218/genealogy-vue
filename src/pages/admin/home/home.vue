@@ -28,19 +28,15 @@
                         </Row>
                     </div>
                 </Card>
-                <Card class="feeds" style="margin:16px 0;">
-                    <p slot="title">寻根留言<span>0</span>条</p>
-                    <a href="#" slot="extra">全部</a>
+                <Card class="feeds" style="margin:16px 0;" v-if="message.total">
+                    <p slot="title">寻根留言<span>{{message.total}}</span>条</p>
+                    <router-link to="/a/setting/feeds" slot="extra">全部</router-link>
                     <div class="b">
-                        <div class="item" v-for="v in 1" :key="v">
-                            <div class="img">
-                                <Avatar icon="ios-person" size="large" />
-                                <div class="name">用户名</div>
-                            </div>
-                            <div class="flag" v-if="v==2">已回复</div>
+                        <div class="item" v-for="v in message.records" :key="v.id">
                             <div class="obj">
-                                <div class="txt">问题</div>
-                                <div class="date">2018-10-10 15:00</div>
+                                <div class="name">{{v.name}}</div>
+                                <div class="txt">{{v.content}}</div>
+                                <div class="date">{{dayjs(v.createTime).format('YYYY-MM-DD HH:mm:ss')}}</div>
                             </div>
                         </div>
                     </div>
@@ -60,7 +56,7 @@
                 </Card>
             </i-col>
             <i-col :sm="24" :md="12" :lg="8">
-                <Card class="list palist">
+                <Card class="list palist" v-if="palist.total">
                     <p slot="title">捐款人次<span>0</span>人</p>
                     <Row class="b">
                         <i-col :span="4" v-for="v in 17" :key="v" class="item">
@@ -73,14 +69,14 @@
                         </i-col>
                     </Row>
                 </Card>
-                <Card class="list newslist" style="margin:16px 0;">
+                <Card class="list newslist" style="margin:16px 0;" v-if="newslist.total">
                     <p slot="title">文章总数<span>0</span>篇</p>
                     <Tag color="warning" slot="extra" size="small">更多</Tag>
                     <div v-for="v in 6" :key="v" class="item">
                         <p>文章标题</p>
                     </div>
                 </Card>
-                <Card class="list videolist" style="margin:16px 0;">
+                <Card class="list videolist" style="margin:16px 0;" v-if="videolist.total">
                     <p slot="title">视频总数<span>151</span>篇</p>
                     <Tag color="warning" slot="extra" size="small">更多</Tag>
                     <Row :gutter="16">
@@ -125,7 +121,11 @@ export default {
             puTotal: [
                 { value: 4321, name: '男' },
                 { value: 4219, name: '女' },
-            ]
+            ],
+            message: {},
+            newslist: {},
+            palist: {},
+            videolist: {},
         }
     },
     computed: {
@@ -133,8 +133,21 @@ export default {
             return this.$store.state.user
         },
     },
-    mounted() {
-    }
+    mounted: function () {
+        this.getMessage()
+    },
+    methods: {
+        getMessage() {
+            this.api.get(this.api.admin.base + this.api.admin.admin_sys_feeds, {
+                site_id: this.$store.state.siteId,
+                source_type: 1,
+            }).then(res => {
+                if (res.code == 200) {
+                    this.message = res.data
+                }
+            })
+        },
+    },
 }
 </script>
 <style lang="less" scoped>

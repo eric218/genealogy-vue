@@ -3,7 +3,7 @@
         <Button type="primary" @click="toEdit(0)">添加</Button>
         <Table border :columns="columns" :data="list" style="margin:16px 0;"></Table>
         <Page :total="total" @on-change="chgPage" :page-size="8" />
-        <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%" v-model="isedit">
+        <Drawer :mask-closable="false" :title="formData.id ? '提交':'添加'" width="50%" v-model="isedit">
             <Form :model="formData" :label-width="80">
                 <FormItem label="人物">
                     <Input v-model="formData.personName" placeholder="姓名" />
@@ -23,7 +23,7 @@
                     <Input v-model="formData.visitNum" placeholder="浏览数" />
                 </FormItem>
                 <FormItem label="">
-                    <Button type="primary" @click="toSubmit" style="margin-right:16px;">修改</Button>
+                    <Button type="primary" @click="toSubmit" style="margin-right:16px;">提交</Button>
                     <Button @click="toDrft" v-if="formData.status != 1" style="margin-right:16px;">存为草稿</Button>
                     <Button @click="isedit = false">关闭</Button>
                 </FormItem>

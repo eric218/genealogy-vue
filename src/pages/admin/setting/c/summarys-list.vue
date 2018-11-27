@@ -24,7 +24,7 @@
                     <Input v-model="formData.praiseNum" placeholder="点赞" />
                 </FormItem>
                 <FormItem label="">
-                    <Button type="primary" @click="toSubmit" style="margin-right:16px;">修改</Button>
+                    <Button type="primary" @click="toSubmit" style="margin-right:16px;">提交</Button>
                     <Button @click="toDrft" v-if="formData.status != 1" style="margin-right:16px;">存为草稿</Button>
                     <Button @click="isedit = false">关闭</Button>
                 </FormItem>

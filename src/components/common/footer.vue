@@ -178,7 +178,7 @@ export default {
             let url = [
                 this.api.county.base + this.api.county.feeds
             ]
-            this.api.get(url[this.curr], {
+            this.api.post(url[this.curr], {
                 siteId: this.$store.state.siteId,
                 name: this.form.name,
                 phone: this.form.phone,
