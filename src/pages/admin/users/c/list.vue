@@ -31,7 +31,8 @@
                     </Select>
                 </FormItem>
                 <FormItem label="">
-                    <Button type="primary" @click="toSubmit">修改</Button>
+                    <Button type="primary" @click="toSubmit" style="margin-right:16px;">修改</Button>
+                    <Button @click="isedit = false">关闭</Button>
                 </FormItem>
             </Form>
         </Drawer>
@@ -161,16 +162,10 @@ export default {
             }
         },
         toSubmit() {
-            if (!this.formData.personName) {
-                this.$Message.error('请填写人物姓名');
-                return;
-            }
-            if (!this.formData.personSummary) {
-                this.$Message.error('请填写人物简介');
-                return;
-            }
             let data = {
                 id: this.formData.id,
+                realName: this.formData.realName,
+                nickName: this.formData.nickName,
             }
             this.api.post(this.api.admin.base + this.api.admin.users_edit, data).then(res => {
                 if (res.code === 200) {

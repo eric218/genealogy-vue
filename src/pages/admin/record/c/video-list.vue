@@ -48,7 +48,8 @@
                     <Input v-model="formData.visitNum" placeholder="浏览数" />
                 </FormItem>
                 <FormItem label="">
-                    <Button type="primary" @click="toSubmit">提交</Button>
+                    <Button type="primary" @click="toSubmit" style="margin-right:16px;">修改</Button>
+                    <Button @click="isedit = false">关闭</Button>
                 </FormItem>
             </Form>
         </Drawer>
