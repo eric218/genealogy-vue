@@ -41,6 +41,7 @@ const api = {
         users_info: 'genogram/admin/person/getUserLogin', //用户信息
         users_edit: 'genogram/admin/person/updatePerson', //用户修改
         users_sys_site: 'genogram/admin/person/getSysSite', //网站信息
+        admin_sys_menu: 'genogram/admin/fanMenu/getTitlesByMenuId', //网站导航
 
         admin_site_info: 'genogram/admin/fanIndex/getFanIndexInfo', //网站信息--后台
         admin_site_edit: 'genogram/admin/fanIndex/insertOrUpdateFanIndexInfo', //网站信息--修改
@@ -59,7 +60,6 @@ const api = {
         admin_summarys_drft: 'genogram/admin/fanIndex/insertOrUpdateFanIndexFamilySummarysDrft', //联谊会草稿
         admin_summarys_del: 'genogram/admin/fanIndex/deleteFanIndexFamilySummarys', //联谊会删除
 
-        culture_list: 'genogram/admin/fanMenu/getTitlesByMenuId', //家族文化导航
         culture_zipai_info: 'genogram/admin/fanNewsCulture/getZiPaiDetail', //字派详情
         culture_zipai_edit: 'genogram/admin/fanNewsCulture/addOrUpdateZiPai', //字派添加
         culture_zipai_del: 'genogram/admin/fanNewsCulture/deleteZipaiById', //字派删除

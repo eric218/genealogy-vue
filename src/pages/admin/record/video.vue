@@ -22,7 +22,7 @@ export default {
     },
     methods: {
         getMenu() {
-            this.api.get(this.api.admin.base + this.api.admin.culture_list, {
+            this.api.get(this.api.admin.base + this.api.admin.admin_sys_menu, {
                 siteId: this.$store.state.siteId,
                 menuId: 6
             }).then(res => {
