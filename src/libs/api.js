@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios from 'axios'
+import router from '../router/';
 const api = {
     pageSize: 20,
     // imghost: 'http://47.105.177.1:6090/', //图片资源地址
@@ -28,6 +29,7 @@ const api = {
         reset: 'genogram/userLogin/updatePassword', //修改密码
         info: 'genogram/userLogin/getUserLogin', //用户信息
         update: 'genogram/userLogin/updatePerson', //修改用户资料
+        firstname:'genogram/userLogin/getAllFamily',//姓氏列表
         pay: {
             ali: 'genogram/pay/aLiPay', //支付宝支付
             wx: 'genogram/pay/weChatPay', //微信支付
@@ -118,8 +120,8 @@ const api = {
         return new Promise((resolve, reject) => {
             axios.post(url, params).then(res => {
                 console.log(res.data)
-                if (res.code == 401) {
-                    alert(res.msg);
+                if (res.data.code == 401) {
+                    router.push('/')
                     return;
                 } else {
                     resolve(res.data);
@@ -142,7 +144,12 @@ const api = {
                 params: data
             }).then(res => {
                 console.log(res.data)
-                resolve(res.data);
+                if (res.data.code == 401) {
+                    router.push('/')
+                    return;
+                } else {
+                    resolve(res.data);
+                }
             }).catch(err => {
                 reject(err)
             })

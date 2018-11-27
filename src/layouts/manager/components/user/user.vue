@@ -45,7 +45,7 @@ export default {
                         content: '确定退出账号？',
                         onOk: () => {
                             this.$store.commit('updateUser', [])
-                            this.$router.push('/')
+                            this.$router.replace('/')
                         },
                     });
                     break;
