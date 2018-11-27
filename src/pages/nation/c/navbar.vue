@@ -29,14 +29,14 @@ export default {
                 name: '记录家族',
                 url: '/p/Record',
             }],
-        };
+        }
     },
     props: {
         'navcurr': {
             default: 1
         }
     }
-};
+}
 </script>
 
 <style lang="scss" scoped>

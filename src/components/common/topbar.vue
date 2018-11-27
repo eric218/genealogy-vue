@@ -64,7 +64,7 @@ export default {
             islogin: false,
             isreset: false,
             isMsgBox: false,
-        };
+        }
     },
     computed: {
         user() {
@@ -122,7 +122,7 @@ export default {
             this.isMsgBox = false
         }
     }
-};
+}
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";

@@ -18,7 +18,7 @@ export default {
                 url: 'donate',
                 name: '捐款记录',
             }],
-        };
+        }
     },
     mounted: function () {
         this.navcurr = this.$route.name
@@ -29,7 +29,7 @@ export default {
             this.$router.push(e)
         }
     },
-};
+}
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";

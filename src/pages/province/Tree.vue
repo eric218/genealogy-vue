@@ -30,7 +30,7 @@ export default {
     },
     data() {
         return {
-        };
+        }
     },
     computed: {
     },
@@ -38,7 +38,7 @@ export default {
     },
     methods: {
     }
-};
+}
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
@@ -51,8 +51,8 @@ export default {
     background: url("./img/title-dot.png") no-repeat left center;
     font-size: 20px;
   }
-  .b{
-      height: 450px;
+  .b {
+    height: 450px;
   }
 }
 </style>

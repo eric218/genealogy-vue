@@ -66,7 +66,7 @@ export default {
         },
     },
     props: ['url']
-};
+}
 </script>
 
 

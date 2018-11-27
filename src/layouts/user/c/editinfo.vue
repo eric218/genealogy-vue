@@ -29,7 +29,7 @@ export default {
     data() {
         return {
             user: []
-        };
+        
     },
     mounted: function () {
         this.user = []
@@ -56,7 +56,7 @@ export default {
             })
         },
     }
-};
+}
 </script>
 <style lang="scss" scoped>
 .upload {

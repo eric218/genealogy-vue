@@ -326,5 +326,5 @@ const api = {
             document.getElementsByClassName('page')[0].scrollTop = document.getElementsByClassName('page')[0].scrollHeight
         }, 500);
     },
-};
+}
 export default api;

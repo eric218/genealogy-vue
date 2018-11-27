@@ -73,7 +73,7 @@ export default {
             return obj;
         }
     },
-};
+}
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";

@@ -49,7 +49,7 @@ export default {
                 anonymous: false,
                 paytype: 0
             },
-        };
+        }
     },
     mounted: function () {
     },
@@ -83,7 +83,7 @@ export default {
             }
         },
     }
-};
+}
 </script>
 
 <style lang="scss" >

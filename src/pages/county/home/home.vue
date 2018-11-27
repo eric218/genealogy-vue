@@ -17,7 +17,7 @@
     </div>
 </template>
 <script>
-import { Banner, TopInfo, About, Dynamic, Record, TheNew, Famous, Culture, Gongyi, Products, Friends } from '/';
+import { Banner, TopInfo, About, Dynamic, Record, TheNew, Famous, Culture, Gongyi, Products, Friends } from '/'
 export default {
     name: "Home",
     components: {
@@ -46,5 +46,5 @@ export default {
     },
     methods: {
     }
-};
+}
 </script>

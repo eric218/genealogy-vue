@@ -70,14 +70,14 @@ export default {
                 en: 'User',
                 url: '/p/Record',
             }],
-        };
+        }
     },
     props: {
         'navcurr': {
             default: 0
         }
     }
-};
+}
 </script>
 
 <style lang="scss" scoped>

@@ -102,7 +102,7 @@ export default {
 
             },
             isload: false,
-        };
+        }
     },
     computed: {
         apiList() {
@@ -150,7 +150,7 @@ export default {
             })
         }
     }
-};
+}
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";

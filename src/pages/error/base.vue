@@ -33,7 +33,7 @@ export default {
                 url: '',
                 value: '',
             }
-        };
+        }
     },
     computed: {
     },
@@ -55,5 +55,5 @@ export default {
             this.$router.push('/c');
         },
     }
-};
+}
 </script>

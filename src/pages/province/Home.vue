@@ -193,7 +193,7 @@ export default {
     },
     data() {
         return {
-        };
+        }
     },
     computed: {
     },
@@ -201,7 +201,7 @@ export default {
     },
     methods: {
     }
-};
+}
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";

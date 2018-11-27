@@ -62,7 +62,7 @@ export default {
         },
     },
     props: ['url']
-};
+}
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";

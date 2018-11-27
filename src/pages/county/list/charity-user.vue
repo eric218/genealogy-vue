@@ -56,7 +56,7 @@ export default {
         },
     },
     props: ['url']
-};
+}
 </script>
 
 <style lang="scss" scoped>

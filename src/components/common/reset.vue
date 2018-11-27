@@ -27,7 +27,7 @@ export default {
                 newpassword: '',
                 repassword: '',
             },
-        };
+        }
     },
     mounted: function () {
 
@@ -64,5 +64,5 @@ export default {
             })
         },
     }
-};
+}
 </script>

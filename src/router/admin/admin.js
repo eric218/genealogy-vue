@@ -292,13 +292,13 @@ export default [{
         },
 
         children: [{
-            path: 'list',
+            path: 'alluser',
             name: 'users-list',
             meta: {
                 icon: 'ios-people-outline',
                 title: '全部用户',
             },
-            component: () => import('@/pages/admin/users/list')
+            component: () => import('@/pages/admin/users/alluser')
         }, {
             path: 'manager',
             name: 'users-manager',

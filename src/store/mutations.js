@@ -1,6 +1,6 @@
 const mutations = {
     updateSiteid(state, obj) {
-        state.siteId = obj;
+        state.siteId = obj
     },
     updateUser(state, obj) {
         localStorage.user = JSON.stringify(obj)

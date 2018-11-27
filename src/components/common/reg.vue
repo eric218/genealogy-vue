@@ -58,7 +58,7 @@ export default {
             looptext: "获取验证码",
             loop: null,
             selected: [],
-        };
+        }
     },
     mounted: function () {
 
@@ -122,5 +122,5 @@ export default {
             })
         },
     }
-};
+}
 </script>

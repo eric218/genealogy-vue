@@ -153,7 +153,7 @@ export default {
                 content: '',
             },
             curr: 0,
-        };
+        }
     },
     mounted: function () {
     },
@@ -198,7 +198,7 @@ export default {
             })
         }
     },
-};
+}
 </script>
 <style lang="scss" scoped>
 footer {

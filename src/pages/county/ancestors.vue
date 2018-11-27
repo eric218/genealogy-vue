@@ -54,7 +54,7 @@ export default {
         return {
             curr: {},
             url: ''
-        };
+        }
     },
     computed: {
     },
@@ -66,7 +66,7 @@ export default {
 
         }
     }
-};
+}
 </script>
 <style lang="scss" scoped>
 .sib {

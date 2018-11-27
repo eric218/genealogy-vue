@@ -19,7 +19,7 @@
 <script>
 export default {
     name: "FootBar",
-};
+}
 </script>
 <style lang="scss" scoped>
 footer {

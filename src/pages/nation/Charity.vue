@@ -40,7 +40,7 @@ export default {
         return {
             menu: [],
             menucurr: {},
-        };
+        }
     },
     computed: {
     },
@@ -69,7 +69,7 @@ export default {
             this.getList();
         },
     }
-};
+}
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";

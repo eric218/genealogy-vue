@@ -7,6 +7,6 @@ export default new Router({
     routes,
     // mode: 'history',
     scrollBehavior(to, from, savedPosition) {
-        document.title = to.meta.title;
+        document.title = to.meta.title
     }
 })

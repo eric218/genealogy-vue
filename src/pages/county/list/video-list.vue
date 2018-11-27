@@ -82,7 +82,7 @@ export default {
             this.visible = true
         }
     }
-};
+}
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";

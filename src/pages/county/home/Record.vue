@@ -116,7 +116,7 @@ export default {
             this.get_index_family_record2();
         },
     },
-};
+}
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";

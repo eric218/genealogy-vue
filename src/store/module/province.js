@@ -1,5 +1,5 @@
 import api from '@/libs/api.js'
-import base_store from '@/store/';
+import base_store from '@/store/'
 
 function provinceHomeApi(store, obj) {
     api.get(api.county.base + api.county.common_home_all, {

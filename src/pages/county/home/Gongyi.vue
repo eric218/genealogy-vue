@@ -142,7 +142,7 @@ export default {
             this.menucurr = this.menu[0]
         },
     },
-};
+}
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";

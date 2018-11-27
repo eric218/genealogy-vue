@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Table border :columns="columns" :data="list" style="margin:16px 0;"></Table>
+        <Table border :columns="columns" :data="list" style="margin:16px 0"></Table>
         <Page :total="total" @on-change="chgPage" :page-size="8" />
     </div>
 </template>
@@ -29,20 +29,20 @@ export default {
                 pageNo: this.page
             }).then(res => {
                 if (res.code == 200) {
-                    let list = res.data.records;
+                    let list = res.data.records
                     list.forEach(v => {
                         v.datetime = this.dayjs(v.creatTime).format('YYYY-MM-DD HH:mm:ss')
                     })
-                    this.list = list;
+                    this.list = list
                     this.total = res.data.total
                 } else {
-                    this.list = [];
+                    this.list = []
                 }
             })
         },
         chgPage(e) {
-            this.page = e;
-            this.getList();
+            this.page = e
+            this.getList()
         },
     }
 }

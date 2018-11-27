@@ -32,7 +32,7 @@ export default {
     data() {
         return {
             isedit: false,
-        };
+        }
     },
     computed: {
     },
@@ -40,5 +40,5 @@ export default {
     },
     methods: {
     }
-};
+}
 </script>

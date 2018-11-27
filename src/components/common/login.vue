@@ -32,7 +32,7 @@ export default {
                 mobile: '',
                 password: '',
             },
-        };
+        }
     },
     mounted: function () {
 
@@ -60,7 +60,7 @@ export default {
             })
         },
     }
-};
+}
 </script>
 
 <style lang="scss">

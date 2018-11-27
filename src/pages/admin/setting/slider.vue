@@ -54,7 +54,7 @@ export default {
             })
         },
         handleAdd(e) {
-            this.curr = {};
+            this.curr = {}
             document.getElementById('slider_upload').click();
         },
         handleEdit(e) {

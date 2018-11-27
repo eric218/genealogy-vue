@@ -25,7 +25,7 @@ export default {
         return {
             isreg: false,
             islogin: false,
-        };
+        }
     },
     mounted: function () {
 
@@ -44,7 +44,7 @@ export default {
             }, 300);
         },
     }
-};
+}
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";

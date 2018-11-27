@@ -78,7 +78,7 @@ export default {
     data() {
         return {
             isedit: false,
-        };
+        }
     },
     computed: {
         user() {
@@ -89,7 +89,7 @@ export default {
     },
     methods: {
     }
-};
+}
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
