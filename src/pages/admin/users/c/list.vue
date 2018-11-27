@@ -1,7 +1,38 @@
 <template>
     <div>
-        <Table border :columns="columns" :data="list" style="margin:16px 0"></Table>
+        <Table border :columns="columns" :data="list" style="margin:16px 0;"></Table>
         <Page :total="total" @on-change="chgPage" :page-size="8" />
+        <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%" v-model="isedit">
+            <Form :model="formData" :label-width="80">
+                <FormItem label="ID">{{formData.id}}</FormItem>
+                <FormItem label="userId">{{formData.userId}}</FormItem>
+                <FormItem label="注册时间">{{this.dayjs(formData.creatTime).format('YYYY-MM-DD HH:mm:ss')}}</FormItem>
+                <FormItem label="手机号">{{formData.mobilePhone}}</FormItem>
+                <FormItem label="真实姓名">
+                    <Input v-model="formData.realName" placeholder="真实姓名" />
+                </FormItem>
+                <FormItem label="昵称">
+                    <Input v-model="formData.nickName" placeholder="昵称" />
+                </FormItem>
+                <FormItem label="头像">
+                    <Upload class="upload" :action="api.admin.base + api.admin.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
+                        <Button type="dashed">
+                            <div class="img" :style="api.imgBG(formData.picSrc)" v-if="formData.picSrc" />
+                            <Icon type="ios-camera" size="40" color="#ccc" v-else></Icon>
+                        </Button>
+                    </Upload>
+                </FormItem>
+                <FormItem label="设为管理员" v-if="user.role == 9">
+                    <Select v-model="formData.role" style="width:200px">
+                        <Option v-for="v in roleList" :value="v.value" :key="v.value" :disabled="v.disabled">{{ v.label }}</Option>
+                    </Select>
+                    {{roleSite.siteName}}
+                </FormItem>
+                <FormItem label="">
+                    <Button type="primary" @click="toSubmit">修改</Button>
+                </FormItem>
+            </Form>
+        </Drawer>
     </div>
 </template>
 
@@ -9,23 +40,70 @@
 export default {
     data() {
         return {
+            isedit: false,
+            list: [],
+            total: 0,
+            page: 1,
+            formData: {
+            },
+            roleList: [
+                { label: '--', value: 0, disabled: false },
+                { label: '县级平台', value: 1, disabled: false },
+                { label: '省级平台', value: 2, disabled: true },
+                { label: '国级平台', value: 3, disabled: true },
+                { label: '总平台', value: 9, disabled: false },
+            ],
+            roleSite: {},
             columns: [
                 { title: 'ID', width: 80, key: 'id' },
                 { title: '手机号', key: 'mobilePhone' },
                 { title: '昵称', key: 'nickName' },
                 { title: '注册时间', key: 'datetime' },
+                {
+                    title: '操作',
+                    key: 'action',
+                    width: 150,
+                    align: 'center',
+                    render: (h, params) => {
+                        return h('Button', {
+                            props: {
+                                type: 'primary',
+                                size: 'small',
+                                icon: 'ios-create',
+                            },
+                            style: {
+                                marginRight: '5px'
+                            },
+                            on: {
+                                click: () => {
+                                    this.toEdit(this.list[params.index].id)
+                                }
+                            }
+                        })
+                    }
+                }
             ],
-            list: [],
-            total: 0,
-            page: 1,
         }
+    },
+    props: ['url'],
+    watch: {
+        url: function (curVal, oldVal) {
+            if (curVal != oldVal) {
+                this.getList();
+            }
+        },
+    },
+    computed: {
+        user() {
+            return this.$store.state.user
+        },
     },
     mounted() {
         this.getList()
     },
     methods: {
         getList() {
-            this.api.post(this.api.admin.base + this.api.admin.user_list, {
+            this.api.post(this.url, {
                 pageNo: this.page
             }).then(res => {
                 if (res.code == 200) {
@@ -44,6 +122,88 @@ export default {
             this.page = e
             this.getList()
         },
+        toEdit(e) {
+            this.api.post(this.api.admin.base + this.api.admin.users_info, {
+                id: e
+            }).then(res => {
+                if (res.code == 200) {
+                    this.formData = res.data;
+                    if (res.data.role && res.data.siteId) {
+                        switch (res.data.role) {
+                            case 1:
+                                this.getSiteInfo(res.data.siteId)
+                                break;
+                        }
+                    } else {
+                        this.roleSite = {}
+                    }
+                    this.isedit = true;
+                } else {
+                    this.$Message.error('发生错误')
+                }
+            })
+        },
+        getSiteInfo(e) {
+            this.api.get(this.api.admin.base + this.api.admin.users_site_province, {
+                siteId: e,
+            }).then(res => {
+                if (res.code == 200) {
+                    this.roleSite = res.data
+                }
+            })
+        },
+        handleSuccess(res, file) {
+            if (res.code == 200) {
+                this.formData.picSrc = res.data.file_path
+            }
+        },
+        toSubmit() {
+            if (!this.formData.personName) {
+                this.$Message.error('请填写人物姓名');
+                return;
+            }
+            if (!this.formData.personSummary) {
+                this.$Message.error('请填写人物简介');
+                return;
+            }
+            let data = {
+                showId: this.type,
+                personName: this.formData.personName,
+                personSummary: this.formData.personSummary,
+                picFileName: this.formData.picFileName,
+                picFileSrc: this.formData.picFileSrc,
+                visitNum: this.formData.visitNum ? this.formData.visitNum : 0,
+            }
+            if (this.formData.id) {
+                data.id = this.formData.id
+            }
+            this.api.post(this.api.admin.base + this.api.admin.admin_famous_edit, data).then(res => {
+                if (res.code === 200) {
+                    if (data.id) {
+                        this.$Message.success('修改成功');
+                    } else {
+                        this.$Message.success('添加成功');
+                    }
+                    this.getList();
+                    this.isedit = false;
+                }
+            })
+        },
     }
 }
 </script>
+<style lang="scss" scoped>
+.upload {
+  button {
+    width: 162px;
+    height: 162px;
+    padding: 0;
+    .img {
+      width: 160px;
+      height: 160px;
+      padding: 0;
+      background: no-repeat center / cover;
+    }
+  }
+}
+</style>

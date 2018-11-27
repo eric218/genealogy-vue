@@ -37,7 +37,11 @@ const api = {
         index: 'home',
         base: 'http://192.168.2.179:8050/', //后台接口地址
         upload_img: 'fan/uploadFastdfs', //图片上传
-        user_list: 'genogram/admin/person/getUserLoginList', //用户列表
+        users_list: 'genogram/admin/person/getUserLoginList', //用户列表
+        users_info: 'genogram/admin/person/getUserLogin', //用户信息
+        users_site_county: 'genogram/admin/person/getFanSysSite', //县级网站
+        users_site_province: 'genogram/admin/person/getProSysSite', //省级网站
+
         admin_site_info: 'genogram/admin/fanIndex/getFanIndexInfo', //网站信息--后台
         admin_site_edit: 'genogram/admin/fanIndex/insertOrUpdateFanIndexInfo', //网站信息--修改
         admin_site_withdraw: 'genogram/admin/fanNewsCharity/insertFanIndexFundDrowing', //线上提现

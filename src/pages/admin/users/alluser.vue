@@ -18,7 +18,7 @@ export default {
         }
     },
     mounted() {
-        this.url = this.api.admin.base + this.api.admin.culture_list
+        this.url = this.api.admin.base + this.api.admin.users_list
     },
     methods: {
     }

@@ -3,7 +3,7 @@
         <Button type="primary" @click="toEdit(0)">添加</Button>
         <Table border :columns="columns" :data="list" style="margin:16px 0;"></Table>
         <Page :total="total" @on-change="chgPage" :page-size="8" />
-        <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%"  v-model="isedit">
+        <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%" v-model="isedit">
             <Form :model="formData" :label-width="80">
                 <FormItem label="人物">
                     <Input v-model="formData.personName" placeholder="姓名" />
@@ -50,11 +50,8 @@ export default {
                 picFileSrc: '',
             },
             columns: [
+                { title: 'ID', width: 80, key: 'id' },
                 {
-                    title: 'ID',
-                    width: 80,
-                    key: 'id'
-                }, {
                     title: ' ',
                     width: 64,
                     align: 'center',
@@ -70,16 +67,11 @@ export default {
                             }
                         })
                     }
-                }, {
-                    title: '人物',
-                    key: 'personName'
-                }, {
-                    title: '浏览数',
-                    key: 'visitNum'
-                }, {
-                    title: '日期',
-                    key: 'datetime',
-                }, {
+                },
+                { title: '人物', key: 'personName' },
+                { title: '浏览数', key: 'visitNum' },
+                { title: '日期', key: 'datetime' },
+                {
                     title: '操作',
                     key: 'action',
                     width: 150,
