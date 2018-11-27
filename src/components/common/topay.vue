@@ -12,7 +12,7 @@
                 </RadioGroup>
             </FormItem>
             <FormItem label="捐赠金额">
-                <i-input placeholder="填入其它金额" v-model="form.num" :maxlength="5" :number="true">
+                <i-input placeholder="填入其它金额" v-model="form.num" :maxlength="5" :number="true" @keyup.enter.native="toSubmit">
                     <div slot="suffix" style="line-height:32px;">元</div>
                 </i-input>
             </FormItem>

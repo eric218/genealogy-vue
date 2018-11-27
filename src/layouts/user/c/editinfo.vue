@@ -10,13 +10,13 @@
                 </Upload>
             </FormItem>
             <FormItem label="昵称">
-                <Input placeholder="昵称" v-model="user.nickName" />
+                <Input placeholder="昵称" v-model="user.nickName" @keyup.enter.native="toSubmit" />
             </FormItem>
             <FormItem label="真实姓名">
-                <Input placeholder="真实姓名" v-model="user.realName" />
+                <Input placeholder="真实姓名" v-model="user.realName" @keyup.enter.native="toSubmit" />
             </FormItem>
             <FormItem label="手机号">
-                <Input placeholder="手机号" v-model="user.mobilePhone" disabled />
+                <Input placeholder="手机号" v-model="user.mobilePhone" @keyup.enter.native="toSubmit" disabled />
             </FormItem>
             <FormItem>
                 <Button type="primary" @click="toSubmit">保存</Button>

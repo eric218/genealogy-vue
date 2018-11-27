@@ -4,7 +4,7 @@
             <FormItem label="网站名">
                 <Row :gutter="16">
                     <i-col :span="12">
-                        <Input v-model="formData.siteName" placeholder="标题" :maxlength="6" />
+                        <Input v-model="formData.siteName" placeholder="标题" :maxlength="6" @keyup.enter.native="toSubmit" />
                     </i-col>
                     <i-col :span="6">
                         {{formData.siteName.length}} / 6
@@ -20,10 +20,10 @@
                 </Upload>
             </FormItem>
             <FormItem label="宣言">
-                <Input v-model="formData.title" placeholder="宣言" />
+                <Input v-model="formData.title" placeholder="宣言" @keyup.enter.native="toSubmit" />
             </FormItem>
             <FormItem label="祖先描述">
-                <Input type="textarea" :rows="6" v-model="formData.description" placeholder="祖先描述" style="font-size:12px;" :maxlength="300" />
+                <Input type="textarea" :rows="6" v-model="formData.description" placeholder="祖先描述" style="font-size:12px;" :maxlength="300" @keyup.enter.native="toSubmit" />
                 {{formData.description.length}} / 300
             </FormItem>
             <FormItem label="">

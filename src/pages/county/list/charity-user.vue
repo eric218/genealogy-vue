@@ -3,7 +3,7 @@
         <div class="sort">
             <div class="searchbar">
                 <div class="link">搜索</div>
-                <input type="text" placeholder="输入搜索关键词">
+                <input type="text" placeholder="输入搜索关键词" @keyup.enter="toSubmit">
             </div>
             <div class="item label">排序</div>
             <div class="item curr"><span>按时间</span></div>

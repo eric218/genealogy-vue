@@ -9,10 +9,10 @@
                 <FormItem label="注册时间">{{this.dayjs(formData.creatTime).format('YYYY-MM-DD HH:mm:ss')}}</FormItem>
                 <FormItem label="手机号">{{formData.mobilePhone}}</FormItem>
                 <FormItem label="真实姓名">
-                    <Input v-model="formData.realName" placeholder="真实姓名" />
+                    <Input v-model="formData.realName" placeholder="真实姓名" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="昵称">
-                    <Input v-model="formData.nickName" placeholder="昵称" />
+                    <Input v-model="formData.nickName" placeholder="昵称" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="头像">
                     <Upload class="upload" :action="api.admin.base + api.admin.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">

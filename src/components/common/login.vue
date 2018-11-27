@@ -3,10 +3,10 @@
         <div class="h">使用手机号登录</div>
         <Form :model="form" class="b">
             <FormItem>
-                <Input v-model="form.mobile" placeholder="输入手机号" clearable :maxlength="11"/>
+                <Input v-model="form.mobile" placeholder="输入手机号" clearable :maxlength="11" @keyup.enter.native="toSubmit"/>
             </FormItem>
             <FormItem>
-                <Input v-model="form.password" type="password" placeholder="输入密码" clearable :maxlength="20"/>
+                <Input v-model="form.password" type="password" placeholder="输入密码" clearable :maxlength="20" @keyup.enter.native="toSubmit"/>
             </FormItem>
             <FormItem>
                 <Button type="primary" @click="toSubmit" style="width:100%;">登录</Button>

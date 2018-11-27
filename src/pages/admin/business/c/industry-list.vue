@@ -18,13 +18,13 @@
                     </Upload>
                 </FormItem>
                 <FormItem label="位于">
-                    <Input v-model="formData.industryLocation" placeholder="位于" />
+                    <Input v-model="formData.industryLocation" placeholder="位于" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="正文">
                     <editor ref="editor" @on-change="handleChange" />
                 </FormItem>
                 <FormItem label="浏览数" v-if="formData.id">
-                    <Input v-model="formData.visitNum" placeholder="浏览数" />
+                    <Input v-model="formData.visitNum" placeholder="浏览数" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="">
                     <Button type="primary" @click="toSubmit">提交</Button>

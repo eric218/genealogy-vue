@@ -5,7 +5,7 @@
         <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%" v-model="isedit">
             <Form :model="formData" :label-width="80">
                 <FormItem label="名称">
-                    <Input v-model="formData.menuName" placeholder="名称" />
+                    <Input v-model="formData.menuName" placeholder="名称" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="">
                     <Button type="primary" @click="toSubmit" style="margin-right:16px;">提交</Button>

@@ -6,7 +6,7 @@
         <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%" v-model="isedit">
             <Form :model="formData" :label-width="80">
                 <FormItem label="标题">
-                    <Input v-model="formData.newsTitle" placeholder="标题" />
+                    <Input v-model="formData.newsTitle" placeholder="标题" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="预览图">
                     <Upload class="upload" :action="api.admin.base + api.admin.upload_img" name="file" :show-upload-list="false" :on-success="handleSuccess" :format="['jpg','jpeg','png']">
@@ -21,7 +21,7 @@
                     <editor ref="editor" @on-change="handleChange" />
                 </FormItem>
                 <FormItem label="浏览数" v-if="formData.id">
-                    <Input v-model="formData.visitNum" placeholder="浏览数" />
+                    <Input v-model="formData.visitNum" placeholder="浏览数" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="">
                     <Button type="primary" @click="toSubmit" style="margin-right:16px;">提交</Button>

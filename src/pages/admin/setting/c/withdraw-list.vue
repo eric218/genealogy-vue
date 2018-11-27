@@ -8,24 +8,24 @@
                 <FormItem label="资金概况">¥ {{finance.remain}}</FormItem>
                 <FormItem label="提现金额">
                     <Poptip trigger="focus" placement="right">
-                        <Input v-model="formData.drowAmount" prefix="logo-yen" placeholder="提现金额" />
+                        <Input v-model="formData.drowAmount" prefix="logo-yen" placeholder="提现金额" @keyup.enter.native="toSubmit" />
                         <div slot="content">{{ formatNumber }}</div>
                     </Poptip>
                 </FormItem>
                 <FormItem label="提现银行">
-                    <Input v-model="formData.drowBank" placeholder="提现银行" />
+                    <Input v-model="formData.drowBank" placeholder="提现银行" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="支行">
-                    <Input v-model="formData.drowBankSub" placeholder="支行" />
+                    <Input v-model="formData.drowBankSub" placeholder="支行" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="银行卡号">
-                    <Input v-model="formData.drowInAccountCard" placeholder="银行卡号" />
+                    <Input v-model="formData.drowInAccountCard" placeholder="银行卡号" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="确认卡号">
-                    <Input v-model="formData.drowInAccountCardRe" placeholder="再次输入银行卡号" />
+                    <Input v-model="formData.drowInAccountCardRe" placeholder="再次输入银行卡号" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="开户名">
-                    <Input v-model="formData.drowInAccountName" placeholder="开户名" />
+                    <Input v-model="formData.drowInAccountName" placeholder="开户名" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="">
                     <Button type="primary" @click="toSubmit" style="margin-right:16px;">修改</Button>

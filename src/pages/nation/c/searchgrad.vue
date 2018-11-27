@@ -13,7 +13,7 @@
             <div class="b">
                 <div class="link">搜索</div>
                 <div class="obj">
-                    <input type="text" />
+                    <input type="text" @keyup.enter="toSubmit" />
                 </div>
             </div>
         </div>

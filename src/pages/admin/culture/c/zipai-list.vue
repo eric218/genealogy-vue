@@ -6,16 +6,16 @@
         <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%" v-model="isedit">
             <Form :model="formData" :label-width="80">
                 <FormItem label="字派所在地">
-                    <Input v-model="formData.ziapiLocation" placeholder="输入字派所在地" />
+                    <Input v-model="formData.ziapiLocation" placeholder="输入字派所在地" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="祖先名">
-                    <Input v-model="formData.ancestorsName" placeholder="输入祖先名" />
+                    <Input v-model="formData.ancestorsName" placeholder="输入祖先名" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="祖先历代">
-                    <Input v-model="formData.lidai" placeholder="输入祖先历代" />
+                    <Input v-model="formData.lidai" placeholder="输入祖先历代" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="祖先近世">
-                    <Input v-model="formData.jinshi" placeholder="输入祖先近世" />
+                    <Input v-model="formData.jinshi" placeholder="输入祖先近世" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="字派列表">
                     <Tag checkable type="dot" v-for="(v,i) in formData.list" :key="i" :name="i" closable @on-close="handleClose">{{v}}</Tag>
@@ -24,7 +24,7 @@
                         <div class="api" slot="content">
                             <Row>
                                 <i-col :span="24">
-                                    <i-input placeholder="添加字派名" v-model="zipai_txt"></i-input>
+                                    <i-input placeholder="添加字派名" v-model="zipai_txt" @keyup.enter.native="toSubmit"></i-input>
                                 </i-col>
                                 <i-col :span="24">
                                     <i-button type="primary" style="width:100%;margin-top:16px;" @click="toAddZipai">确定</i-button>
@@ -34,7 +34,7 @@
                     </Poptip>
                 </FormItem>
                 <FormItem label="浏览数" v-if="formData.id">
-                    <Input v-model="formData.visitNum" placeholder="浏览数" />
+                    <Input v-model="formData.visitNum" placeholder="浏览数" @keyup.enter.native="toSubmit" />
                 </FormItem>
                 <FormItem label="">
                     <Button type="primary" @click="toSubmit" style="margin-right:16px;">提交</Button>

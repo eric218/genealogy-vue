@@ -108,10 +108,10 @@
                 </div>
                 <div class="post">
                     <div class="item">
-                        <input type="text" placeholder="输入您的姓名" v-model="form.name" />
+                        <input type="text" placeholder="输入您的姓名" v-model="form.name"  @keyup.enter="toSubmit"/>
                     </div>
                     <div class="item">
-                        <input type="text" placeholder="输入联系电话" v-model="form.phone" maxlength="11" />
+                        <input type="text" placeholder="输入联系电话" v-model="form.phone" maxlength="11" @keyup.enter="toSubmit"/>
                     </div>
                     <div class="item">
                         <textarea name="" id="" rows="5" placeholder="简要描述您的需求" v-model="form.content"></textarea>
@@ -152,7 +152,6 @@ export default {
                 phone: '',
                 content: '',
             },
-            curr: 0,
         }
     },
     mounted: function () {
@@ -178,12 +177,11 @@ export default {
             let url = [
                 this.api.county.base + this.api.county.feeds
             ]
-            this.api.post(url[this.curr], {
+            this.api.post(url[0], {
                 siteId: this.$store.state.siteId,
                 name: this.form.name,
                 phone: this.form.phone,
                 content: this.form.content,
-                sourceType: this.curr
             }).then(res => {
                 if (res.code == 200) {
                     this.$Message.success('提交成功')

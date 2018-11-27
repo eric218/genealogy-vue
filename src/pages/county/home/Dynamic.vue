@@ -24,7 +24,7 @@
                 <div class="form">
                     <div class="link" @click="$Message.warning('功能暂未开放')">发送</div>
                     <div class="ipt">
-                        <Input type="text" placeholder="请输入内容" />
+                        <Input type="text" placeholder="请输入内容" @keyup.enter.native="toSubmit" />
                     </div>
                 </div>
             </div>

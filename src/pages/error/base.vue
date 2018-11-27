@@ -6,7 +6,7 @@
                     <div style="padding:64px 0;">
                         <Form :model="form" :label-width="80" @submit.native.prevent="toHome">
                             <FormItem label="网站id">
-                                <Input type="text" v-model.number="form.siteid" placeholder="网站id" :maxlength="5" />
+                                <Input type="text" v-model.number="form.siteid" placeholder="网站id" :maxlength="5" @keyup.enter.native="toSubmit" />
                             </FormItem>
                             <FormItem>
                                 <Button type="primary" @click="toHome('form')">进入</Button>

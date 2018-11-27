@@ -3,13 +3,13 @@
         <div class="h">修改密码</div>
         <Form :model="form" :label-width="80" class="b">
             <FormItem label="原密码">
-                <Input v-model="form.oldpassword" type="password" placeholder="输入密码" clearable :maxlength="20" />
+                <Input v-model="form.oldpassword" type="password" placeholder="输入密码" clearable :maxlength="20" @keyup.enter.native="toSubmit" />
             </FormItem>
             <FormItem label="新密码">
-                <Input v-model="form.newpassword" type="password" placeholder="输入新密码" clearable :maxlength="20" />
+                <Input v-model="form.newpassword" type="password" placeholder="输入新密码" clearable :maxlength="20" @keyup.enter.native="toSubmit" />
             </FormItem>
             <FormItem label="确认新密码">
-                <Input v-model="form.repassword" type="password" placeholder="再次输入新密码" clearable :maxlength="20" />
+                <Input v-model="form.repassword" type="password" placeholder="再次输入新密码" clearable :maxlength="20" @keyup.enter.native="toSubmit" />
             </FormItem>
             <FormItem>
                 <Button type="primary" @click="toSubmit">提交</Button>
