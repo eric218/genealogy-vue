@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Charitable from './c/charitable-list'
+import Charitable from './c/charitable-out'
 export default { 
     components: {
         Charitable,

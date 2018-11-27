@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="form">
-                    <div class="link">发送</div>
+                    <div class="link" @click="$Message.warning('功能暂未开放')">发送</div>
                     <div class="ipt">
                         <Input type="text" placeholder="请输入内容" />
                     </div>

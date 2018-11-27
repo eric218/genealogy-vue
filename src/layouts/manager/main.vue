@@ -13,7 +13,6 @@
                 <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
                     <user :user-avator="userAvator" />
                     <fullscreen v-model="isFullscreen" style="margin-right: 10px;" />
-                    <a href="/#/c" style="margin-right:10px;" target="_blank">联谊会首页</a>
                 </header-bar>
             </Header>
             <Content class="main-content-con">
@@ -39,7 +38,7 @@ import User from './components/user'
 import Fullscreen from './components/fullscreen'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 import { getNewTagList, getNextRoute, routeEqual } from '@/libs/util'
-import Logo from '@/assets/images/logo.png'
+import Logo from './img/logo.png'
 import './main.less'
 export default {
     name: 'Main',

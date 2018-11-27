@@ -167,6 +167,10 @@ export default {
                 this.$Message.warning('请输入您的联系电话')
                 return
             }
+            if (!this.api.isMobile(this.form.phone)) {
+                this.$Message.error('请输入正确的手机号');
+                return;
+            }
             if (!this.form.content) {
                 this.$Message.warning('请简要描述您的需求')
                 return

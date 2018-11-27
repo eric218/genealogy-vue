@@ -70,7 +70,7 @@ export default {
                     siteId: this.$store.state.siteId,
                     payAmount: this.form.num,
                     anonymous: this.form.anonymous ? 1 : 0,
-                    url: location.origin + '/#/c/home?back=pay&'
+                    url: location.href + '?back=pay&'
                 }).then(res => {
                     if (res.code == 200) {
                         sessionStorage.callback = 1

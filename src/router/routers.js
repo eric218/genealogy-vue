@@ -1,5 +1,6 @@
 import LayoutBase from '@/layouts/base'
 import LayoutCounty from '@/layouts/county'
+import LayoutProvince from '@/layouts/province'
 import LayoutUser from '@/layouts/user'
 
 import admin from './admin/admin'
@@ -38,7 +39,7 @@ export default [{
     {
         path: "/p",
         redirect: "/p/Home",
-        component: LayoutBase,
+        component: LayoutProvince,
         children: province
     },
     {

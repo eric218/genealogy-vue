@@ -12,9 +12,7 @@
                 </div>
             </div>
             <div class="c">
-                <div class="img">
-                    <img :src="api.imgurl(index_summary.totemPicSrc)" />
-                </div>
+                <div class="img" :style="api.imgBG(index_summary.totemPicSrc)" />
                 <div class="txt kt">{{index_summary.siteName}}</div>
                 <div class="site">{{regionCode}}</div>
             </div>
@@ -104,8 +102,11 @@ export default {
     background: url(../img/logobg.jpg) no-repeat center / cover;
     text-align: center;
     padding: 16px 0;
-    img {
+    .img {
+      height: 80px;
       width: 80px;
+      background: no-repeat center / cover;
+      margin:0 auto;
     }
     .txt {
       font-size: 24px;

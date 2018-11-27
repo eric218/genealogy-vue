@@ -1,12 +1,8 @@
 <template>
-    <div class="topbar">
+    <div class="tophome">
         <div class="brand">
             <div class="img"></div>
             <div class="obj kt">湖北张氏</div>
-        </div>
-        <div class="authform">
-            <div class="btn login" @click="islogin = true">登录</div>
-            <div class="btn reg" @click="isreg = true">注册</div>
         </div>
         <Modal v-model="islogin" width="480px" class="g-auth" :footer-hide='true'>
             <loginform @urlToReg="urlToReg" />
@@ -20,7 +16,7 @@
 import loginform from '_c/common/login.vue'
 import regform from '_c/common/reg.vue'
 export default {
-    name: "Topbar",
+    name: "TopHome",
     components: {
         loginform,
         regform,
@@ -52,7 +48,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
-.topbar {
+.tophome {
   position: absolute;
   z-index: 9;
   top: 0;

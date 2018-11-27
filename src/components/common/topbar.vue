@@ -4,7 +4,7 @@
             <div class="user" v-if="user.token">
                 <div class="img" :style="api.imgBG(user.picSrc)" :title="user.nickName"></div>
                 <div class="obj">
-                    <Dropdown trigger="click" @on-click="onDrop">
+                    <Dropdown trigger="click" @on-click="handleClick">
                         {{user.nickName}}
                         <Icon type="ios-arrow-down"></Icon>
                         <DropdownMenu slot="list">
@@ -81,7 +81,7 @@ export default {
         }
     },
     methods: {
-        onDrop(e) {
+        handleClick(e) {
             switch (e) {
                 case 'isMsgBox':
                     this.isMsgBox = true;

@@ -8,27 +8,54 @@
             <div class="item label">排序</div>
             <div class="item curr"><span>按时间</span></div>
             <div class="item"><span>按金额</span></div>
-            <div class="item"><span>按地区</span></div>
         </div>
         <Row :gutter="16" class="items">
-            <i-col :span="4" v-for="v in 12" :key="v">
+            <i-col :span="4" v-for="v in list" :key="v.allUserLogin.id">
                 <Card class="item">
-                    <div class="img"></div>
-                    <div class="name">张三</div>
-                    <div class="count">捐款<span>1.00</span>元</div>
-                    <div class="link">
-                        <span>关注</span>
-                        <span>点赞</span>
-                    </div>
+                    <div class="img" :style="api.imgBG(v.allUserLogin.picSrc)"></div>
+                    <div class="name">{{v.allUserLogin.nickName}}</div>
+                    <div class="count">捐款<span>{{v.fanNewsCharityPayIn.payAmount}}</span>元</div>
                 </Card>
             </i-col>
         </Row>
-        <Page :total="50" />
+        <Page :total="total" @on-change="chgPage" :page-size="12" />
     </div>
 </template>
 <script>
 export default {
-    props: ['list']
+    data() {
+        return {
+            list: [],
+            page: 1,
+            total: 0,
+        }
+    },
+    watch: {
+        url: function (curVal, oldVal) {
+            if (curVal != oldVal) {
+                this.getList();
+            }
+        },
+    },
+    mounted: function () {
+        this.getList()
+    },
+    methods: {
+        getList() {
+            this.api.get(this.url, {
+                pageNo: this.page,
+                pageSize: 12
+            }).then(res => {
+                this.list = res.data.records
+                this.total = res.data.total
+            })
+        },
+        chgPage(e) {
+            this.page = e;
+            this.getList();
+        },
+    },
+    props: ['url']
 };
 </script>
 
@@ -48,7 +75,7 @@ export default {
       border-radius: 4px;
       border: 0;
     }
-    .link{
+    .link {
       float: right;
       padding: 0 8px;
       background: $color;
@@ -95,17 +122,6 @@ export default {
     .count {
       span {
         color: $color;
-      }
-    }
-    .link {
-      display: flex;
-      font-size: 12px;
-      justify-content: space-between;
-      span {
-        padding: 0 8px;
-        background: $color;
-        color: #fff;
-        border-radius: 4px;
       }
     }
   }

@@ -56,7 +56,7 @@ export default {
                             'S40NjQsMy42ODUsMy42ODUsMCwwLDAsLjY2Ny0zLjE4OVptMCwwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIC0xMjIuMjY5KSIvPg' +
                             'ogIDwvZz4KPC9zdmc+Cg==',
                         symbolSize: [30, 40],
-                        symbolOffset: [30, 0],
+                        symbolOffset: [15, 0],
                         label: { position: 'bottom', padding: [10, 0, 0, 0], fontSize: 14, color: '#333333', formatter: '女' },
                         data: [{ type: 'max' }],
                         silent: true
@@ -76,7 +76,7 @@ export default {
                                 'FtZT0i6Lev5b6EIDIzNiIgY2xhc3M9ImNscy0xIiBkPSJNNzMuOCwxMC43QTEwLjc1LDEwLjc1LDAsMSwwLDYzLjA1OCwyMS40LDE' +
                                 'wLjc0NCwxMC43NDQsMCwwLDAsNzMuOCwxMC43Wm0wLDAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00NC41NSkiLz4KPC9zdmc+Cg==',
                             symbolSize: [30, 40],
-                            symbolOffset: [-30, 0],
+                            symbolOffset: [-15, 0],
                             label: { position: 'bottom', padding: [10, 0, 0, 0], fontSize: 14, color: '#333333', formatter: '男' },
                             data: [{ type: 'max' }],
                             silent: true
@@ -96,7 +96,7 @@ export default {
                 },
                 grid: {
                     left: 30,
-                    right: 60
+                    right: 30
                 },
                 xAxis: {
                     type: 'value',

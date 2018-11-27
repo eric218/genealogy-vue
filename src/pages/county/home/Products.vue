@@ -16,12 +16,8 @@
                             <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''">
                                 <div class="tit">{{v.newsTitle}}</div>
                             </div>
+                            <div class="site">位于：{{v.industryLocation}}</div>
                             <div class="intro">{{v.newsText}}</div>
-                            <div class="flag">
-                                <div class="head"></div>
-                                <div class="name">张三</div>
-                                <div class="tag" v-if="v.status">[诚信业主]</div>
-                            </div>
                         </router-link>
                     </div>
                 </div>
@@ -35,12 +31,8 @@
                             <div class="img" :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''">
                                 <div class="tit">{{v.newsTitle}}</div>
                             </div>
+                            <div class="site">位于：{{v.industryLocation}}</div>
                             <div class="intro">{{v.newsText}}</div>
-                            <div class="flag">
-                                <div class="head"></div>
-                                <div class="name">张三</div>
-                                <div class="tag" v-if="v.status">[诚信业主]</div>
-                            </div>
                         </router-link>
                     </div>
                 </div>
@@ -160,42 +152,18 @@ export default {
           background: rgba(0, 0, 0, 0.5);
         }
       }
+      .site {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 32px;
+        color:#333;
+      }
       .intro {
         height: 48px;
         line-height: 24px;
         overflow: hidden;
         color: #999;
-      }
-      .flag {
-        white-space: nowrap;
-        overflow: hidden;
-        padding: 8px 0;
-        line-height: 48px;
-
-        .head {
-          height: 48px;
-          width: 48px;
-          float: left;
-          background: whitesmoke no-repeat center / cover;
-          border-radius: 50%;
-        }
-
-        .name {
-          float: left;
-          margin: 0 16px;
-        }
-
-        .tag {
-          color: $color;
-          font-size: 12px;
-          float: left;
-          font-weight: 700;
-
-          img {
-            width: 20px;
-            margin-right: 8px;
-          }
-        }
       }
     }
   }

@@ -24,23 +24,23 @@
                             <div class="total">
                                 <div class="item">
                                     <div class="label">总谱人数：</div>
-                                    <div class="value">1</div>
+                                    <div class="value">-</div>
                                 </div>
                                 <div class="item">
                                     <div class="label">本族男丁：</div>
-                                    <div class="value">1</div>
+                                    <div class="value">-</div>
                                 </div>
                                 <div class="item">
                                     <div class="label">本族女丁：</div>
-                                    <div class="value">0</div>
+                                    <div class="value">-</div>
                                 </div>
                                 <div class="item">
                                     <div class="label">最大年龄：</div>
-                                    <div class="value">30</div>
+                                    <div class="value">-</div>
                                 </div>
                                 <div class="item">
                                     <div class="label">最小年龄：</div>
-                                    <div class="value">30</div>
+                                    <div class="value">-</div>
                                 </div>
                             </div>
                         </CarouselItem>

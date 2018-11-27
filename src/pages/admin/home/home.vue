@@ -5,7 +5,7 @@
                 <Card class="userinfo">
                     <div class="h">
                         <Avatar icon="ios-person" size="large" />
-                        <div class="name">李四</div>
+                        <div class="name">{{user.nickName}}</div>
                         <div class="welcome">欢迎登录炎黄统谱网管理后台!</div>
                         <div class="intro">
                             炎黄统谱网修家谱具有亲缘一目了然、世系查阅快捷、增修纠错方便、添加照片、丰富人生、完善自传、资料永久保存、世代传承、亲情交流边界、智慧相传、子孙世袭等诸多优点。
@@ -14,38 +14,33 @@
                     <div class="b">
                         <Row>
                             <i-col :span="8">
-                                <div class="num">56</div>
+                                <div class="num">0</div>
                                 <div class="label">家谱</div>
                             </i-col>
                             <i-col :span="8">
-                                <div class="num">7312</div>
+                                <div class="num">0</div>
                                 <div class="label">注册宗亲</div>
                             </i-col>
                             <i-col :span="8">
-                                <div class="num">512<small>万</small></div>
+                                <div class="num">0</div>
                                 <div class="label">宗亲访问</div>
                             </i-col>
                         </Row>
                     </div>
                 </Card>
                 <Card class="feeds" style="margin:16px 0;">
-                    <p slot="title">留言板<span>155</span>条</p>
+                    <p slot="title">寻根留言<span>0</span>条</p>
                     <a href="#" slot="extra">全部</a>
                     <div class="b">
-                        <div class="item" v-for="v in 5" :key="v">
+                        <div class="item" v-for="v in 1" :key="v">
                             <div class="img">
                                 <Avatar icon="ios-person" size="large" />
                                 <div class="name">用户名</div>
                             </div>
                             <div class="flag" v-if="v==2">已回复</div>
-                            <div class="flag" v-else>
-                                <Button type="warning" size="small" ghost>回复</Button>
-                            </div>
                             <div class="obj">
                                 <div class="txt">问题</div>
                                 <div class="date">2018-10-10 15:00</div>
-                                <div class="reply" title="回复时间：2018-10-10 15:00" v-if="v==2">张三：回复内容</div>
-                                <div class="reply" title="回复时间：2018-10-10 15:00" v-if="v==2">张三：回复内容</div>
                             </div>
                         </div>
                     </div>
@@ -53,8 +48,8 @@
             </i-col>
             <i-col :sm="24" :md="12" :lg="8">
                 <Card>
-                    <p slot="title">家族基金余额<span>88000.00</span>元</p>
-                    <Button type="warning" slot="extra" size="small" @click="model_deposit = true">提现</Button>
+                    <p slot="title">家族基金余额<span>0</span>元</p>
+                    <Button type="warning" slot="extra" size="small" @click="$router.push('/a/setting/withdraw')">提现</Button>
                     <chart-pie style="height: 320px;" :value="pieData" text="基金统计"></chart-pie>
                 </Card>
                 <Card style="margin:16px 0;">
@@ -66,7 +61,7 @@
             </i-col>
             <i-col :sm="24" :md="12" :lg="8">
                 <Card class="list palist">
-                    <p slot="title">捐款人次<span>151</span>人</p>
+                    <p slot="title">捐款人次<span>0</span>人</p>
                     <Row class="b">
                         <i-col :span="4" v-for="v in 17" :key="v" class="item">
                             <Avatar icon="ios-person" size="large" />
@@ -79,7 +74,7 @@
                     </Row>
                 </Card>
                 <Card class="list newslist" style="margin:16px 0;">
-                    <p slot="title">文章总数<span>151</span>篇</p>
+                    <p slot="title">文章总数<span>0</span>篇</p>
                     <Tag color="warning" slot="extra" size="small">更多</Tag>
                     <div v-for="v in 6" :key="v" class="item">
                         <p>文章标题</p>
@@ -101,43 +96,42 @@
                 </Card>
             </i-col>
         </Row>
-        <Modal title="申请提现" v-model="model_deposit" width="640px" :footer-hide="true">
-            <ModelDeposit />
-        </Modal>
     </div>
 </template>
 <script>
 import { ChartPie, ChartBar, ChartTotal } from '_c/charts'
-import ModelDeposit from './c/deposit'
 export default {
     components: {
         ChartPie,
         ChartBar,
         ChartTotal,
-        ModelDeposit,
     },
     data() {
         return {
-            model_deposit: false,
             pieData: [
-                { value: 335, name: '个人捐款' },
-                { value: 310, name: '企业捐款' },
-                { value: 234, name: '产业产出' },
-                { value: 335, name: '平台盈利' },
-                { value: 150, name: '其它' }
+                { value: 0, name: '个人捐款' },
+                { value: 0, name: '企业捐款' },
+                { value: 0, name: '产业产出' },
+                { value: 0, name: '平台盈利' },
+                { value: 0, name: '其它' }
             ],
             imTotal: {
-                "0-8": 3253,
-                "8-12": 4235,
-                "12-18": 6321,
-                "18-20": 2340,
-                "20-24": 4643
+                "0-8": 0,
+                "8-12": 0,
+                "12-18": 0,
+                "18-20": 0,
+                "20-24": 0
             },
             puTotal: [
-                { value: 6353, name: '男' },
-                { value: 5461, name: '女' },
+                { value: 4321, name: '男' },
+                { value: 4219, name: '女' },
             ]
         }
+    },
+    computed: {
+        user() {
+            return this.$store.state.user
+        },
     },
     mounted() {
     }

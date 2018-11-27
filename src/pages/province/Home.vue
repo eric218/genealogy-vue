@@ -183,14 +183,13 @@
     </div>
 </template>
 <script>
-import { TopHome, NavHome, Banner, FootBar } from './c'
+import { TopHome, NavHome, Banner } from './c'
 export default {
     name: "Home",
     components: {
         TopHome,
         NavHome,
         Banner,
-        FootBar,
     },
     data() {
         return {
@@ -265,8 +264,7 @@ export default {
       text-align: center;
       font-size: 16px;
       padding-right: 64px;
-      background: url(./img/icon-help.png) no-repeat 90% center / auto
-        48px;
+      background: url(./img/icon-help.png) no-repeat 90% center / auto 48px;
       span {
         color: $color;
         font-size: 32px;

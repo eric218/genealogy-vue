@@ -20,8 +20,8 @@
                 <FormItem label="正文">
                     <editor ref="editor" @on-change="handleChange" />
                 </FormItem>
-                <FormItem label="金额">
-                    <Input v-model="formData.visitNum"  placeholder="金额" />
+                <FormItem label="浏览数" v-if="formData.id">
+                    <Input v-model="formData.visitNum" placeholder="浏览数" />
                 </FormItem>
                 <FormItem label="">
                     <Button type="primary" @click="toSubmit">提交</Button>
@@ -74,7 +74,7 @@ export default {
                     title: '标题',
                     key: 'newsTitle'
                 }, {
-                    title: '金额',
+                    title: '浏览数',
                     key: 'visitNum'
                 }, {
                     title: '日期',

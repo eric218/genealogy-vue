@@ -12,7 +12,10 @@
                 <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
             </div>
             <div class="grid" style="minHeight:450px;">
-                <CharityList :url="url" v-if="menucurr && url.length" />
+                <div v-if="menucurr && url">
+                    <CharityList :url="url" v-if="menucurr.menuType == 'charity_news'" />
+                    <CharityUser :url="url" v-else-if="menucurr.menuType == 'charity_person'" />
+                </div>
             </div>
         </div>
         <Modal v-model="handleTopay" width="480px" :footer-hide="true" class="g-pay">
@@ -22,11 +25,13 @@
 </template>
 <script>
 import CharityList from './list/charity-list';
+import CharityUser from './list/charity-user';
 import topay from '_c/common/topay.vue'
 export default {
     name: "Charity",
     components: {
         CharityList,
+        CharityUser,
         topay,
     },
     computed: {

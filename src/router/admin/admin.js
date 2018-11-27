@@ -139,7 +139,7 @@ export default [{
     {
         path: 'charitable',
         name: '_charitable',
-        redirect: '/charitable/list',
+        redirect: '/charitable/in',
         component: Manager,
         meta: {
             icon: 'ios-heart',
@@ -149,7 +149,7 @@ export default [{
 
         children: [{
             path: 'in',
-            name: 'charitable-list',
+            name: 'charitable-in',
             meta: {
                 icon: 'md-albums',
                 title: '财务收益',
@@ -163,14 +163,6 @@ export default [{
                 title: '财务支出',
             },
             component: () => import('@/pages/admin/charitable/out')
-        }, {
-            path: 'list',
-            name: 'charitable-in',
-            meta: {
-                icon: 'md-heart',
-                title: '捐款名录',
-            },
-            component: () => import('@/pages/admin/charitable/list')
         }, {
             path: 'detail',
             name: 'charitable-detail',
