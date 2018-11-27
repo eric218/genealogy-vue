@@ -51,7 +51,7 @@ export default {
             roleList: [
                 { label: '--', value: 0, disabled: false },
                 { label: '县级平台', value: 1, disabled: false },
-                { label: '省级平台', value: 2, disabled: true },
+                { label: '省级平台', value: 2, disabled: false },
                 { label: '国级平台', value: 3, disabled: true },
                 { label: '总平台', value: 9, disabled: false },
             ],
@@ -126,6 +126,7 @@ export default {
             this.getList()
         },
         toEdit(e) {
+            this.roleSite = []
             this.api.post(this.api.admin.base + this.api.admin.users_info, {
                 id: e
             }).then(res => {
@@ -133,8 +134,6 @@ export default {
                     this.formData = res.data;
                     if (res.data.role && res.data.siteId) {
                         this.getSiteInfo(res.data.role)
-                    } else {
-                        this.roleSite = []
                     }
                     this.isedit = true;
                 } else {
@@ -143,8 +142,9 @@ export default {
             })
         },
         getSiteInfo(e) {
-            if (e > 2) {
-                this.roleSite = []
+            this.roleSite = []
+            if (e > 3 && !e) {
+                return
             }
             this.api.post(this.api.admin.base + this.api.admin.users_sys_site, {
                 id: this.formData.id,
