@@ -23,10 +23,12 @@
                     </Upload>
                 </FormItem>
                 <FormItem label="设为管理员" v-if="user.role == 9">
-                    <Select v-model="formData.role" style="width:200px">
+                    <Select v-model="formData.role" style="width:200px;margin-right:16px;" @on-change="getSiteInfo">
                         <Option v-for="v in roleList" :value="v.value" :key="v.value" :disabled="v.disabled">{{ v.label }}</Option>
                     </Select>
-                    {{roleSite.siteName}}
+                    <Select v-model="formData.siteId" style="width:200px;" v-if="roleSite.length">
+                        <Option v-for="v in roleSite" :value="v.id" :key="v.id" :disabled="false">{{ v.name }}</Option>
+                    </Select>
                 </FormItem>
                 <FormItem label="">
                     <Button type="primary" @click="toSubmit">修改</Button>
@@ -53,7 +55,8 @@ export default {
                 { label: '国级平台', value: 3, disabled: true },
                 { label: '总平台', value: 9, disabled: false },
             ],
-            roleSite: {},
+            roleType: ['', 'fan', 'pro'],
+            roleSite: [],
             columns: [
                 { title: 'ID', width: 80, key: 'id' },
                 { title: '手机号', key: 'mobilePhone' },
@@ -129,13 +132,9 @@ export default {
                 if (res.code == 200) {
                     this.formData = res.data;
                     if (res.data.role && res.data.siteId) {
-                        switch (res.data.role) {
-                            case 1:
-                                this.getSiteInfo(res.data.siteId)
-                                break;
-                        }
+                        this.getSiteInfo(res.data.role)
                     } else {
-                        this.roleSite = {}
+                        this.roleSite = []
                     }
                     this.isedit = true;
                 } else {
@@ -144,8 +143,12 @@ export default {
             })
         },
         getSiteInfo(e) {
-            this.api.get(this.api.admin.base + this.api.admin.users_site_province, {
-                siteId: e,
+            if (e > 2) {
+                this.roleSite = []
+            }
+            this.api.post(this.api.admin.base + this.api.admin.users_sys_site, {
+                id: this.formData.id,
+                type: this.roleType[e]
             }).then(res => {
                 if (res.code == 200) {
                     this.roleSite = res.data
@@ -167,17 +170,9 @@ export default {
                 return;
             }
             let data = {
-                showId: this.type,
-                personName: this.formData.personName,
-                personSummary: this.formData.personSummary,
-                picFileName: this.formData.picFileName,
-                picFileSrc: this.formData.picFileSrc,
-                visitNum: this.formData.visitNum ? this.formData.visitNum : 0,
+                id: this.formData.id,
             }
-            if (this.formData.id) {
-                data.id = this.formData.id
-            }
-            this.api.post(this.api.admin.base + this.api.admin.admin_famous_edit, data).then(res => {
+            this.api.post(this.api.admin.base + this.api.admin.users_edit, data).then(res => {
                 if (res.code === 200) {
                     if (data.id) {
                         this.$Message.success('修改成功');

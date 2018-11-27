@@ -39,8 +39,8 @@ const api = {
         upload_img: 'fan/uploadFastdfs', //图片上传
         users_list: 'genogram/admin/person/getUserLoginList', //用户列表
         users_info: 'genogram/admin/person/getUserLogin', //用户信息
-        users_site_county: 'genogram/admin/person/getFanSysSite', //县级网站
-        users_site_province: 'genogram/admin/person/getProSysSite', //省级网站
+        users_edit: 'genogram/admin/person/updatePerson', //用户修改
+        users_sys_site: 'genogram/admin/person/getSysSite', //网站信息
 
         admin_site_info: 'genogram/admin/fanIndex/getFanIndexInfo', //网站信息--后台
         admin_site_edit: 'genogram/admin/fanIndex/insertOrUpdateFanIndexInfo', //网站信息--修改
