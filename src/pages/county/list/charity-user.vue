@@ -1,61 +1,81 @@
 <template>
-    <div class="charity">
-        <div class="sort">
-            <div class="searchbar">
-                <div class="link">搜索</div>
-                <input type="text" placeholder="输入搜索关键词" @keyup.enter="toSubmit">
-            </div>
-            <div class="item label">排序</div>
-            <div class="item curr"><span>按时间</span></div>
-            <div class="item"><span>按金额</span></div>
-        </div>
-        <Row :gutter="16" class="items">
-            <i-col :span="4" v-for="(v,i) in list" :key="i">
-                <Card class="item">
-                    <div class="img" :style="api.imgBG(v.allUserLogin.picSrc)"></div>
-                    <div class="name">{{v.allUserLogin.nickName}}</div>
-                    <div class="count">捐款<span>{{v.fanNewsCharityPayIn.payAmount}}</span>元</div>
-                </Card>
-            </i-col>
-        </Row>
-        <Page :total="total" @on-change="chgPage" :page-size="12" />
+  <div class="charity">
+    <div class="sort">
+      <div class="searchbar">
+        <div class="link">搜索</div>
+        <input
+          type="text"
+          placeholder="输入搜索关键词"
+          @keyup.enter="toSubmit"
+        >
+      </div>
+      <div class="item label">排序</div>
+      <div class="item curr"><span>按时间</span></div>
+      <div class="item"><span>按金额</span></div>
     </div>
+    <Row
+      :gutter="16"
+      class="items"
+    >
+      <i-col
+        :span="4"
+        v-for="(v,i) in list"
+        :key="i"
+      >
+        <Card class="item">
+          <div
+            class="img"
+            :style="api.imgBG(v.allUserLogin.picSrc)"
+          ></div>
+          <div class="name">{{v.allUserLogin.nickName}}</div>
+          <div class="count">捐款<span>{{v.fanNewsCharityPayIn.payAmount}}</span>元</div>
+        </Card>
+      </i-col>
+    </Row>
+    <Page
+      :total="total"
+      @on-change="chgPage"
+      :page-size="12"
+    />
+  </div>
 </template>
 <script>
 export default {
-    data() {
-        return {
-            list: [],
-            page: 1,
-            total: 0,
+  data() {
+    return {
+      list: [],
+      page: 1,
+      total: 0,
+    }
+  },
+  watch: {
+    url: function (curVal, oldVal) {
+      if (curVal != oldVal) {
+        this.getList();
+      }
+    },
+  },
+  mounted: function () {
+    this.getList()
+  },
+  methods: {
+    getList() {
+      this.api.get(this.url, {
+        pageNo: this.page,
+        pageSize: 12
+      }).then(res => {
+        if (res.code == 200) {
+          this.list = res.data.records
+          this.total = res.data.total
         }
+      })
     },
-    watch: {
-        url: function (curVal, oldVal) {
-            if (curVal != oldVal) {
-                this.getList();
-            }
-        },
+    chgPage(e) {
+      this.page = e;
+      this.getList();
     },
-    mounted: function () {
-        this.getList()
-    },
-    methods: {
-        getList() {
-            this.api.get(this.url, {
-                pageNo: this.page,
-                pageSize: 12
-            }).then(res => {
-                this.list = res.data.records
-                this.total = res.data.total
-            })
-        },
-        chgPage(e) {
-            this.page = e;
-            this.getList();
-        },
-    },
-    props: ['url']
+  },
+  props: ['url']
 }
 </script>
 

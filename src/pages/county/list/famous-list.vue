@@ -75,8 +75,10 @@ export default {
       this.api.get(this.url, {
         pageNo: this.page
       }).then(res => {
-        this.list = res.data.records
-        this.total = res.data.total
+        if (res.code == 200) {
+          this.list = res.data.records
+          this.total = res.data.total
+        }
       })
     },
     chgPage(e) {

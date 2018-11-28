@@ -1,71 +1,86 @@
 <template>
-    <div class="zipai">
-        <div class="item" v-for="v in list" :key="v.id">
-            <div class="tit">
-                <span v-if="v.ziapiLocation">地域：{{v.ziapiLocation}}</span>
-                <span v-if="v.ancestorsName">祖先：{{v.ancestorsName}}</span>
-            </div>
-            <div class="intro">
-                <div class="itm" v-for="(itm,idx) in formatZipai(v.zipaiTxt)" :key="idx">
-                    <div class="red tag">{{itm[0]}}</div>
-                    <div class="blue tag">{{itm[1]}}</div>
-                    <span>{{itm[2]}}</span>
-                </div>
-            </div>
-            <div class="tag">
-                <div class="fl">
-                    <iconfont name="formfill" />
-                    <span>{{v.visitNum}}</span>
-                </div>
-            </div>
+  <div class="zipai">
+    <div
+      class="item"
+      v-for="v in list"
+      :key="v.id"
+    >
+      <div class="tit">
+        <span v-if="v.ziapiLocation">地域：{{v.ziapiLocation}}</span>
+        <span v-if="v.ancestorsName">祖先：{{v.ancestorsName}}</span>
+      </div>
+      <div class="intro">
+        <div
+          class="itm"
+          v-for="(itm,idx) in formatZipai(v.zipaiTxt)"
+          :key="idx"
+        >
+          <div class="red tag">{{itm[0]}}</div>
+          <div class="blue tag">{{itm[1]}}</div>
+          <span>{{itm[2]}}</span>
         </div>
-        <Page :total="total" @on-change="chgPage" :page-size="8" v-if="total" />
+      </div>
+      <div class="tag">
+        <div class="fl">
+          <iconfont name="formfill" />
+          <span>{{v.visitNum}}</span>
+        </div>
+      </div>
     </div>
+    <Page
+      :total="total"
+      @on-change="chgPage"
+      :page-size="8"
+      v-if="total"
+    />
+  </div>
 </template>
 <script>
 export default {
-    data() {
-        return {
-            list: [],
-            page: 1,
-            total: 0,
+  data() {
+    return {
+      list: [],
+      page: 1,
+      total: 0,
+    }
+  },
+  watch: {
+    url: function (curVal, oldVal) {
+      if (curVal != oldVal) {
+        this.getList();
+      }
+    },
+  },
+  mounted: function () {
+    this.getList()
+  },
+  methods: {
+    getList() {
+      this.api.get(this.url, {
+        pageNo: this.page
+      }).then(res => {
+        if (res.code == 200) {
+          this.list = res.data.records
+          this.total = res.data.total
         }
+      })
     },
-    watch: {
-        url: function (curVal, oldVal) {
-            if (curVal != oldVal) {
-                this.getList();
-            }
-        },
+    chgPage(e) {
+      this.page = e;
+      this.getList();
     },
-    mounted: function () {
-        this.getList()
+    formatZipai(e) {
+      let list = e ? e.split(';') : [];
+      let obj = [];
+      if (list.length) {
+        obj = list.map(v => {
+          return v.split('|')
+        })
+      }
+      return obj;
     },
-    methods: {
-        getList() {
-            this.api.get(this.url, {
-                pageNo: this.page
-            }).then(res => {
-                this.list = res.data.records
-                this.total = res.data.total
-            })
-        },
-        chgPage(e) {
-            this.page = e;
-            this.getList();
-        },
-        formatZipai(e) {
-            let list = e ? e.split(';') : [];
-            let obj = [];
-            if (list.length) {
-                obj = list.map(v => {
-                    return v.split('|')
-                })
-            }
-            return obj;
-        },
-    },
-    props: ['url']
+  },
+  props: ['url']
 }
 </script>
 
@@ -100,8 +115,7 @@ export default {
         font-size: 16px;
         line-height: 48px;
         font-weight: 700;
-        background: url(../img/icon-fontbg.png) no-repeat center /
-          100% 100%;
+        background: url(../img/icon-fontbg.png) no-repeat center / 100% 100%;
 
         .tag {
           font-size: 10px;
