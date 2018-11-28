@@ -2,13 +2,14 @@ import axios from 'axios'
 import router from '../router/';
 const api = {
     pageSize: 20,
-    // imghost: 'http://47.105.177.1:6090/', //图片资源地址
-    imghost: 'http://192.168.2.132:8090/',
+    // server:'http://47.105.177.1',
+    imghost: 'http://47.105.177.1:6090/', //图片资源地址
+    imghost: this.server + ':8090/',
     urls: {
-        base: 'http://192.168.2.179:8090/', //后台接口地址
+        base: 'http://47.105.177.1:8090/', //后台接口地址
     },
     county: {
-        base: 'http://192.168.2.179:8090/', //联谊会前台接口地址
+        base: 'http://47.105.177.1:8090/', //联谊会前台接口地址
         feeds: 'genogram/allMessageBoard/addMessage', //留言板
         common_home_all: 'genogram/fanMenu/getIndexMenuBySiteId', //首页api
         common_site_menu: 'genogram/fanMenu/getTitlesByMenuId', //导航栏
@@ -23,13 +24,13 @@ const api = {
         ancestor_info: '/genogram/proNewsAncestor/getFamousAncestorDetails', //祖先名人详情
     },
     user: {
-        base: 'http://192.168.2.179:8090/', //用户中心接口地址
+        base: 'http://47.105.177.1:8090/', //用户中心接口地址
         login: 'genogram/userLogin/login', //登录
         reg: 'genogram/userLogin/signIn', //注册
         reset: 'genogram/userLogin/updatePassword', //修改密码
         info: 'genogram/userLogin/getUserLogin', //用户信息
         update: 'genogram/userLogin/updatePerson', //修改用户资料
-        firstname:'genogram/userLogin/getAllFamily',//姓氏列表
+        firstname: 'genogram/userLogin/getAllFamily', //姓氏列表
         pay: {
             ali: 'genogram/pay/aLiPay', //支付宝支付
             wx: 'genogram/pay/weChatPay', //微信支付
@@ -37,7 +38,7 @@ const api = {
     },
     admin: {
         index: 'home',
-        base: 'http://192.168.2.179:8050/', //后台接口地址
+        base: 'http://47.105.177.1:8050/', //后台接口地址
         upload_img: 'fan/uploadFastdfs', //图片上传
         users_list: 'genogram/admin/person/getUserLoginList', //用户列表
         users_info: 'genogram/admin/person/getUserLogin', //用户信息
