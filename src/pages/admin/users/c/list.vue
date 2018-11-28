@@ -217,7 +217,6 @@ export default {
         return
       }
       this.api.post(this.api.admin.base + this.api.admin.users_sys_site, {
-        id: this.formData.id,
         siteType: this.roleType[e]
       }).then(res => {
         if (res.code == 200) {

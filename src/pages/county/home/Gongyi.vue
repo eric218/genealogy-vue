@@ -114,7 +114,7 @@ export default {
             })
         },
         get_index_architecture_pay_in_person_2() {
-            this.api.get(this.api.county.base + this.apiList.index_architecture_pay_in_person_2.apiUrl, {}).then(res => {
+            this.api.get(this.api.county.base + this.apiList.index_architecture_pay_in_person_2_2.apiUrl, {}).then(res => {
                 if (res.code == 200) {
                     this.index_architecture_pay_in_person_2 = res.data
                 }

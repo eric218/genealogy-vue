@@ -14,7 +14,7 @@ export default {
     },
     mutations: {
         setApiList(state, obj) {
-            state.apiList = obj
+            state.apiLis = obj
         },
     },
     actions: {

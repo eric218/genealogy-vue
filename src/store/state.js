@@ -1,5 +1,5 @@
 const state = {
-    siteId: 1, //网站id
+    siteId: localStorage.siteId || 1,
     user: {}
 }
 export default state

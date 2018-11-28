@@ -1,63 +1,90 @@
 <template>
-    <div class="humanlist">
-        <router-link class="item" v-for="(v,i) in list" :key="i" :to="'/c/Detail?type=famous&id='+v.id">
-            <div class="img" :style="v.picFileSrc? api.imgBG(v.picFileSrc):''" />
-            <div class="obj">
-                <div class="tit" v-html="v.personName"></div>
-                <div class="intro" v-html="v.personSummary"></div>
-                <div class="tag">
-                    <div class="attention fr">
-                        <iconfont name="attention" />
-                        <span v-html="v.like"></span>
-                    </div>
-                    <div class="favor fr">
-                        <iconfont name="favorfill" />
-                        <span v-html="v.focus"></span>
-                    </div>
-                    <div class="appreciate fr">
-                        <iconfont name="appreciate" />
-                        <span v-html="v.visitNum"></span>
-                    </div>
-                </div>
-            </div>
-        </router-link>
-        <Page :total="total" @on-change="chgPage" :page-size="8" />
-    </div>
+  <div class="humanlist">
+    <router-link
+      class="item"
+      v-for="(v,i) in list"
+      :key="i"
+      :to="'/c/Detail?type=famous&id='+v.id"
+    >
+      <div
+        class="img"
+        :style="v.picFileSrc ? api.imgBG(v.picFileSrc):''"
+      />
+      <div class="obj">
+        <div
+          class="tit"
+          v-html="v.personName"
+        ></div>
+        <div
+          class="intro"
+          v-html="v.personSummary"
+        ></div>
+        <div class="tag">
+          <div
+            class="attention fr"
+            v-if="v.visitNum"
+          >
+            <iconfont name="attention" />
+            <span v-html="v.visitNum"></span>
+          </div>
+          <div
+            class="favor fr"
+            v-if="v.focus"
+          >
+            <iconfont name="favorfill" />
+            <span v-html="v.focus"></span>
+          </div>
+          <div
+            class="appreciate fr"
+            v-if="v.like"
+          >
+            <iconfont name="appreciate" />
+            <span v-html="v.like"></span>
+          </div>
+        </div>
+      </div>
+    </router-link>
+    <Page
+      :total="total"
+      @on-change="chgPage"
+      :page-size="8"
+    />
+  </div>
 </template>
 <script>
 export default {
-    data() {
-        return {
-            list: [],
-            page: 1,
-            total: 0,
-        }
+  data() {
+    return {
+      list: [],
+      page: 1,
+      total: 0,
+    }
+  },
+  watch: {
+    url: function (curVal, oldVal) {
+      if (curVal != oldVal) {
+        this.getList();
+      }
     },
-    watch: {
-        url: function (curVal, oldVal) {
-            if (curVal != oldVal) {
-                this.getList();
-            }
-        },
+  },
+  mounted: function () {
+    this.getList()
+  },
+  methods: {
+    getList() {
+      this.api.get(this.url, {
+        pageNo: this.page
+      }).then(res => {
+        this.list = res.data.records
+        this.total = res.data.total
+      })
     },
-    mounted: function () {
-        this.getList()
+    chgPage(e) {
+      this.page = e;
+      this.getList();
     },
-    methods: {
-        getList() {
-            this.api.get(this.url, {
-                pageNo: this.page
-            }).then(res => {
-                this.list = res.data.records
-                this.total = res.data.total
-            })
-        },
-        chgPage(e) {
-            this.page = e;
-            this.getList();
-        },
-    },
-    props: ['url']
+  },
+  props: ['url']
 }
 </script>
 <style lang="scss" scoped>

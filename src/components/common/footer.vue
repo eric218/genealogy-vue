@@ -130,7 +130,7 @@
                         <Icon type="md-add" />
                         <span>关注我们</span>
                         <div slot="content">
-                            <img src="http://iph.href.lu/160x160" />
+                            <img src="../../assets/img/qrcode.png" />
                             <div>微信扫一扫 关注我们</div>
                         </div>
                     </Poptip>
