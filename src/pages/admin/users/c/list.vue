@@ -138,6 +138,9 @@ export default {
           width: 150,
           align: 'center',
           render: (h, params) => {
+            if (this.user.role < 9) {
+              return null
+            }
             return h('Button', {
               props: {
                 type: 'primary',

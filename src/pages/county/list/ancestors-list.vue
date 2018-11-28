@@ -98,7 +98,7 @@ export default {
       .img {
         width: 184px;
         height: 184px;
-        background: rgba(#09c, 0.1) no-repeat center;
+        background: no-repeat center / cover;
       }
     }
   }

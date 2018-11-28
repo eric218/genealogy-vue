@@ -137,7 +137,7 @@ export default {
                 this.$Message.error('请输入提现金额');
                 return;
             }
-            if(!this.api.isNumber(this.formData.drowAmount)){
+            if(!this.api.isNumber(this.formData.drowAmount * 100)){
                 this.$Message.error('请输入正确的金额');
                 return;
             }
@@ -162,7 +162,7 @@ export default {
                 this.$Message.error('请输入提现金额');
                 return;
             }
-            if (!this.formData.drowInAccountCardRe != this.formData.drowInAccountCard) {
+            if (this.formData.drowInAccountCardRe != this.formData.drowInAccountCard) {
                 this.$Message.error('两次输入的银行卡号不一致');
                 return;
             }

@@ -23,6 +23,15 @@ export default [{
             title: '运营',
         },
         children: [{
+            path: 'addsite',
+            name: 'addsite',
+            meta: {
+                icon: 'md-add-circle',
+                role: 9,
+                title: '开通网站'
+            },
+            component: () => import('@/pages/admin/setting/addsite')
+        }, {
             path: 'setting',
             name: 'setting',
             meta: {

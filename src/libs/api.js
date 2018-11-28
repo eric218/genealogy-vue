@@ -120,7 +120,8 @@ const api = {
             axios.post(url, params).then(res => {
                 console.log(res.data)
                 if (res.data.code == 401) {
-                    router.push('/')
+                    alert(res.data.msg)
+                    history.go(-1)
                     return;
                 } else {
                     resolve(res.data);
@@ -144,7 +145,8 @@ const api = {
             }).then(res => {
                 console.log(res.data)
                 if (res.data.code == 401) {
-                    router.push('/')
+                    alert(res.data.msg)
+                    history.go(-1)
                     return;
                 } else {
                     resolve(res.data);
