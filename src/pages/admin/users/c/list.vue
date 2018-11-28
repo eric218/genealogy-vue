@@ -234,6 +234,9 @@ export default {
         id: this.formData.id,
         realName: this.formData.realName || '',
         nickName: this.formData.nickName,
+        picSrc: this.formData.picSrc,
+        role: 0,
+        siteId: 0,
       }
       if (this.formData.role) {
         if (this.formData.role < 9 && !this.formData.siteId) {

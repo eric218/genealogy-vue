@@ -12,8 +12,8 @@
             v-model="summary"
           >
             <CarouselItem
-              v-for="v in index_fan_summary"
-              :key="v.id"
+              v-for="(v,i) in index_fan_summary"
+              :key="i"
               class="obj"
             >
               <div class="intro">
@@ -80,8 +80,8 @@
           >
             <div
               class="item"
-              v-for="v in index_architecture_pay_in_person_1.records"
-              :key="v.allUserLogin.id"
+              v-for="(v,i) in index_architecture_pay_in_person_1.records"
+              :key="i"
               :style="api.imgBG(v.allUserLogin.picSrc)"
             ></div>
             <router-link
