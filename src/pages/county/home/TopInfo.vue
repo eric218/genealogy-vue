@@ -1,127 +1,156 @@
 <template>
-    <div class="topinfo">
-        <div class="inner">
-            <div class="card left-card">
-                <div class="h">
-                    <span class="cn">联谊会概况</span>
-                    <span class="en">survey of sorority</span>
-                </div>
-                <div class="b">
-                    <Carousel loop v-model="summary">
-                        <CarouselItem v-for="v in index_fan_summary" :key="v.id" class="obj">
-                            <div class="intro">
-                                <div>堂：{{v.rootGroup}}</div>
-                                <div>始迁祖：{{v.rootPerson}}</div>
-                                <div>负责人：{{v.leader}}：{{v.leaderPhone}}</div>
-                                <div class="mobai">
-                                    <span>膜拜：</span><span class="num">+{{v.worshipNum}}</span>
-                                </div>
-                                <div class="zan">
-                                    <iconfont name="appreciatefill" />
-                                    <span>+{{v.praiseNum}}</span>
-                                </div>
-                            </div>
-                            <div class="total">
-                                <div class="item">
-                                    <div class="label">总谱人数：</div>
-                                    <div class="value">-</div>
-                                </div>
-                                <div class="item">
-                                    <div class="label">本族男丁：</div>
-                                    <div class="value">-</div>
-                                </div>
-                                <div class="item">
-                                    <div class="label">本族女丁：</div>
-                                    <div class="value">-</div>
-                                </div>
-                                <div class="item">
-                                    <div class="label">最大年龄：</div>
-                                    <div class="value">-</div>
-                                </div>
-                                <div class="item">
-                                    <div class="label">最小年龄：</div>
-                                    <div class="value">-</div>
-                                </div>
-                            </div>
-                        </CarouselItem>
-                    </Carousel>
-                </div>
-            </div>
-            <div class="right-card card">
-                <div class="info">
-                    <div class="h">
-                        <div class="tit">
-                            <img src="@/assets/img/gongdejuankuan.png">
-                        </div>
-                        <div class="link" @click="handleTopay = true">
-                            <img src="../img/topay.png" /></div>
-                    </div>
-                    <div class="b">
-                        <span>公益基金：</span>
-                        <span class="num" v-text="index_fund_1.remain"></span>
-                        <span>元</span>
-                    </div>
-                    <div class="f">
-                        <div class="item" v-for="v in index_architecture_pay_in_person_1.records" :key="v.allUserLogin.id" :style="api.imgBG(v.allUserLogin.picSrc)"></div>
-                        <router-link class="item more" to="/c/charity_home">···</router-link>
-                    </div>
-                </div>
-            </div>
+  <div class="topinfo">
+    <div class="inner">
+      <div class="card left-card">
+        <div class="h">
+          <span class="cn">联谊会概况</span>
+          <span class="en">survey of sorority</span>
         </div>
-        <Modal v-model="handleTopay" width="480px" :footer-hide="true" class="g-pay">
-            <topay />
-        </Modal>
+        <div class="b">
+          <Carousel
+            loop
+            v-model="summary"
+          >
+            <CarouselItem
+              v-for="v in index_fan_summary"
+              :key="v.id"
+              class="obj"
+            >
+              <div class="intro">
+                <div>堂：{{v.rootGroup}}</div>
+                <div>始迁祖：{{v.rootPerson}}</div>
+                <div>负责人：{{v.leader}}：{{v.leaderPhone}}</div>
+                <div class="mobai">
+                  <span>膜拜：</span><span class="num">+{{v.worshipNum}}</span>
+                </div>
+                <div class="zan">
+                  <iconfont name="appreciatefill" />
+                  <span>+{{v.praiseNum}}</span>
+                </div>
+              </div>
+              <div class="total">
+                <div class="item">
+                  <div class="label">总谱人数：</div>
+                  <div class="value">-</div>
+                </div>
+                <div class="item">
+                  <div class="label">本族男丁：</div>
+                  <div class="value">-</div>
+                </div>
+                <div class="item">
+                  <div class="label">本族女丁：</div>
+                  <div class="value">-</div>
+                </div>
+                <div class="item">
+                  <div class="label">最大年龄：</div>
+                  <div class="value">-</div>
+                </div>
+                <div class="item">
+                  <div class="label">最小年龄：</div>
+                  <div class="value">-</div>
+                </div>
+              </div>
+            </CarouselItem>
+          </Carousel>
+        </div>
+      </div>
+      <div class="right-card card">
+        <div class="info">
+          <div class="h">
+            <div class="tit">
+              <img src="@/assets/img/gongdejuankuan.png">
+            </div>
+            <div
+              class="link"
+              @click="handleTopay = true"
+            >
+              <img src="../img/topay.png" /></div>
+          </div>
+          <div class="b">
+            <span>公益基金：</span>
+            <span
+              class="num"
+              v-text="index_fund_1.remain"
+            ></span>
+            <span>元</span>
+          </div>
+          <div
+            class="f"
+            v-if="index_architecture_pay_in_person_1"
+          >
+            <div
+              class="item"
+              v-for="v in index_architecture_pay_in_person_1.records"
+              :key="v.allUserLogin.id"
+              :style="api.imgBG(v.allUserLogin.picSrc)"
+            ></div>
+            <router-link
+              class="item more"
+              to="/c/charity_home"
+            >···</router-link>
+          </div>
+        </div>
+      </div>
     </div>
+    <Modal
+      v-model="handleTopay"
+      width="480px"
+      :footer-hide="true"
+      class="g-pay"
+    >
+      <topay />
+    </Modal>
+  </div>
 </template>
 <script>
 import topay from '_c/common/topay.vue'
 export default {
-    name: "TopInfo",
-    components: {
-        topay,
+  name: "TopInfo",
+  components: {
+    topay,
+  },
+  computed: {
+    apiList() {
+      return this.$store.state.county.apiList
     },
-    computed: {
-        apiList() {
-            return this.$store.state.county.apiList
-        },
-    },
-    data() {
-        return {
-            summary: 0,
-            index_fan_summary: [],
-            index_fund_1: {},
-            index_architecture_pay_in_person_1: {},
-            handleTopay: false,
+  },
+  data() {
+    return {
+      summary: 0,
+      index_fan_summary: [],
+      index_fund_1: {},
+      index_architecture_pay_in_person_1: {},
+      handleTopay: false,
+    }
+  },
+  mounted: function () {
+    this.get_index_fan_summary()
+    this.get_index_fund()
+    this.get_index_architecture_pay_in_person_1()
+  },
+  methods: {
+    get_index_fan_summary() {
+      this.api.get(this.api.county.base + this.apiList.index_fan_summary.apiUrl, {}).then(res => {
+        if (res.code == 200) {
+          this.index_fan_summary = res.data.records
         }
+      })
     },
-    mounted: function () {
-        this.get_index_fan_summary()
-        this.get_index_fund()
-        this.get_index_architecture_pay_in_person_1()
+    get_index_fund() {
+      this.api.get(this.api.county.base + this.apiList.index_fund_1.apiUrl, {}).then(res => {
+        if (res.code == 200) {
+          this.index_fund_1 = res.data
+        }
+      })
     },
-    methods: {
-        get_index_fan_summary() {
-            this.api.get(this.api.county.base + this.apiList.index_fan_summary.apiUrl, {}).then(res => {
-                if (res.code == 200) {
-                    this.index_fan_summary = res.data.records
-                }
-            })
-        },
-        get_index_fund() {
-            this.api.get(this.api.county.base + this.apiList.index_fund_1.apiUrl, {}).then(res => {
-                if (res.code == 200) {
-                    this.index_fund_1 = res.data
-                }
-            })
-        },
-        get_index_architecture_pay_in_person_1() {
-            this.api.get(this.api.county.base + this.apiList.index_architecture_pay_in_person_1.apiUrl, {}).then(res => {
-                if (res.code == 200) {
-                    this.index_architecture_pay_in_person_1 = res.data
-                }
-            })
-        },
+    get_index_architecture_pay_in_person_1() {
+      this.api.get(this.api.county.base + this.apiList.index_architecture_pay_in_person_1.apiUrl, {}).then(res => {
+        if (res.code == 200) {
+          this.index_architecture_pay_in_person_1 = res.data
+        }
+      })
     },
+  },
 }
 </script>
 <style lang="scss" scoped>

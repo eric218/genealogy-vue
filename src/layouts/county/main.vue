@@ -26,6 +26,7 @@ export default {
   mounted: function () {
     this.$store.dispatch('countyHomeApi')
   },
+  
   methods: {
   },
 }

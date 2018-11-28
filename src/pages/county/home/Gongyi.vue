@@ -11,7 +11,7 @@
                         <span class="more">More</span>
                         <span class="tit kt">支出公开栏</span>
                     </router-link>
-                    <div class="bd">
+                    <div class="bd" v-if="index_charity_pay_out">
                         <router-link :to="'/c/detail?type=charity&id='+v.id" class="item" v-for="v in index_charity_pay_out.records" :key="v.id">
                             <div class="date">
                                 <div class="day">{{dayjs(v.createTime).format('DD')}}</div>
@@ -29,7 +29,7 @@
                         <span class="more">More</span>
                         <span class="tit kt">收益公开栏</span>
                     </router-link>
-                    <div class="bd">
+                    <div class="bd" v-if="index_architecture_pay_in">
                         <router-link :to="'/c/detail?type=charity?id='+v.id" class="item" v-for="v in index_architecture_pay_in.records" :key="v.id">
                             <div class="date">
                                 <div class="day">{{dayjs(v.createTime).format('DD')}}</div>
@@ -170,6 +170,7 @@ export default {
     flex: 2;
     .grid {
       width: 48%;
+      min-height: 320px;
       .hd {
         display: block;
         padding: 8px 0;

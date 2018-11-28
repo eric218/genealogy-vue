@@ -2,49 +2,46 @@
   <div class="content">
     <div>
       <div class="h">县级联谊会</div>
-      <Row
-        :gutter="64"
-        class="b"
-      >
-        <i-col
-          :span="8"
+      <div class="b">
+        <div
+          class="item"
+          @click="link(v,1)"
           v-for="(v,i) in list.county"
           :key="i"
         >
-          <div
-            class="item"
-            @click="link(v,1)"
-          >
-            <div class="img"></div>
-            <div class="name">{{v.name}}</div>
+          <div class="img">
+            <div
+              class="image"
+              :style="api.imgBG(v.url)"
+            ></div>
           </div>
-        </i-col>
-      </Row>
+          <div class="name">{{v.name}}</div>
+          <div class="area">{{formatArea(v.regionCode)}} · {{v.familyCode}}</div>
+        </div>
+      </div>
       <div class="h">省级联谊会</div>
-      <Row
-        :gutter="32"
-        class="b"
-      >
-        <i-col
-          :span="6"
+      <div class="b">
+        <div
+          class="item"
+          @click="link(v,2)"
           v-for="(v,i) in list.province"
           :key="i"
         >
-          <div
-            class="item"
-            @click="link(v,1)"
-          >
-            <div class="img"></div>
-            <div class="name">{{v.name}}</div>
+          <div class="img">
+            <div
+              class="image"
+              :style="api.imgBG(v.url)"
+            ></div>
           </div>
-        </i-col>
-      </Row>
+          <div class="name">{{v.name}}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-
 <script>
+import { pca, pcaa } from 'area-data';
 export default {
   data() {
     return {
@@ -76,18 +73,23 @@ export default {
         }
       })
     },
+    formatArea(e) {
+      let a = parseInt(Number(e) * 0.0001) * 10000
+      let b = parseInt(Number(e) * 0.01) * 100
+      let c = Number(e)
+      return pca[86][a] + ' · ' + pcaa[b][c]
+    },
     link(e, t) {
       this.$store.commit('updateSiteid', e.id);
-      setTimeout(() => {
-        switch (t) {
-          case 1:
-            this.$router.push('/c')
-            break;
-          case 2:
-            this.$router.push('/p')
-            break;
-        }
-      }, 3000);
+      switch (t) {
+        case 1:
+          this.$router.push('/c')
+          break;
+        case 2:
+          this.$Message.warning('即将开放')
+          //   this.$router.push('/p')
+          break;
+      }
     },
     toHome() {
       if (!this.form.siteid) {
@@ -105,6 +107,8 @@ export default {
 <style lang="scss" scoped>
 .content {
   position: fixed;
+  background: url("../../assets/img/base.jpg") whitesmoke no-repeat center /
+    cover;
   top: 0;
   right: 0;
   width: 100%;
@@ -120,25 +124,54 @@ export default {
     border-left: 3px solid #ddd;
   }
   .b {
-    width: 640px;
+    width: 960px;
     max-width: 90%;
     margin-bottom: 64px;
+    display: flex;
+    flex-wrap: wrap;
     .item {
+      width: 192px;
+      padding: 32px 0;
       text-align: center;
       margin-bottom: 16px;
       cursor: pointer;
     }
     .img {
+      position: relative;
       height: 80px;
       width: 80px;
-      background: whitesmoke no-repeat center / cover;
       border-radius: 100%;
+      overflow: hidden;
       margin: 0 auto;
+      .image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 80px;
+        width: 80px;
+        margin-left: -40px;
+        margin-top: -40px;
+        transform: scale(1);
+        background: #fff no-repeat center / cover;
+        transition: all 0.3s;
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
     }
     .name {
       height: 32px;
       width: 100%;
+      font-size: 14px;
       line-height: 32px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .area {
+      height: 20px;
+      width: 100%;
+      line-height: 20px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
