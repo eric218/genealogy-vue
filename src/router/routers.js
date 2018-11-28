@@ -55,24 +55,6 @@ export default [{
         children: user
     },
     {
-        path: '/Admin/401',
-        name: 'error_401',
-        meta: {
-            title: '401错误',
-            hideInMenu: true
-        },
-        component: () => import('@/pages/error/401.vue')
-    },
-    {
-        path: '/Admin/500',
-        name: 'error_500',
-        meta: {
-            title: '500错误',
-            hideInMenu: true
-        },
-        component: () => import('@/pages/error/500.vue')
-    },
-    {
         path: '*',
         name: 'error_404',
         meta: {
