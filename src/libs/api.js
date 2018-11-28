@@ -4,7 +4,6 @@ const api = {
     pageSize: 20,
     // server:'http://47.105.177.1',
     imghost: 'http://47.105.177.1:6090/', //图片资源地址
-    imghost: this.server + ':8090/',
     urls: {
         base: 'http://47.105.177.1:8090/', //后台接口地址
     },
