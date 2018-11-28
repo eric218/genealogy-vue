@@ -10,7 +10,7 @@
             <div class="item"><span>按金额</span></div>
         </div>
         <Row :gutter="16" class="items">
-            <i-col :span="4" v-for="v in list" :key="v.allUserLogin.id">
+            <i-col :span="4" v-for="(v,i) in list" :key="i">
                 <Card class="item">
                     <div class="img" :style="api.imgBG(v.allUserLogin.picSrc)"></div>
                     <div class="name">{{v.allUserLogin.nickName}}</div>

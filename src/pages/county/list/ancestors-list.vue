@@ -1,59 +1,72 @@
 <template>
-    <div class="list">
-        <div class="h">
-            <div class="cn">祖先名人</div>
-            <Divider class="en">Ancestors</Divider>
-        </div>
-        <div class="b">
-            <div class="item" v-for="v in 10" :key="v" @click="chgCurr(v)">
-                <div class="img"></div>
-                <div class="obj">张三</div>
-            </div>
-        </div>
-        <Page :total="total" @on-change="chgPage" :page-size="8" />
+  <div class="list">
+    <div class="h">
+      <div class="cn">祖先名人</div>
+      <Divider class="en">Ancestors</Divider>
     </div>
+    <div class="b">
+      <div
+        class="item"
+        v-for="v in list"
+        :key="v.id"
+        @click="chgCurr(v)"
+      >
+        <div
+          class="img"
+          :style="api.imgBG(v.picFileSrc)"
+        ></div>
+        <div class="obj">{{v.ancestorName}}</div>
+      </div>
+    </div>
+    <Page
+      :total="total"
+      @on-change="chgPage"
+      :page-size="8"
+      v-if="total"
+    />
+  </div>
 </template>
 <script>
 export default {
-    name: "ancestoreslist",
-    data() {
-        return {
-            list: [],
-            page: 1,
-            total: 0,
+  name: "ancestoreslist",
+  data() {
+    return {
+      list: [],
+      page: 1,
+      total: 0,
+    }
+  },
+  watch: {
+    url: function (curVal, oldVal) {
+      if (curVal != oldVal) {
+        this.getList();
+      }
+    },
+  },
+  mounted: function () {
+    this.getList()
+  },
+  methods: {
+    getList() {
+      this.api.get(this.url, {
+        siteId: this.$store.state.siteId,
+        pageNo: this.page
+      }).then(res => {
+        if (res.code == 200) {
+          this.list = res.data.records
+          this.total = res.data.total
         }
+      })
     },
-    watch: {
-        url: function (curVal, oldVal) {
-            if (curVal != oldVal) {
-                this.getList();
-            }
-        },
+    chgPage(e) {
+      this.page = e;
+      this.getList();
     },
-    mounted: function () {
-        this.getList()
+    chgCurr(e) {
+      this.$emit('chgCurr', e);
     },
-    methods: {
-        getList() {
-            this.api.get(this.url, {
-                siteId: this.$store.state.siteId,
-                pageNo: this.page
-            }).then(res => {
-                if (res.code == 200) {
-                    this.list = res.data.records
-                    this.total = res.data.total
-                }
-            })
-        },
-        chgPage(e) {
-            this.page = e;
-            this.getList();
-        },
-        chgCurr(e) {
-            this.$emit('chgCurr', e);
-        },
-    },
-    props: ['url']
+  },
+  props: ['url']
 }
 </script>
 <style lang="scss" scoped>
@@ -72,7 +85,7 @@ export default {
   .b {
     overflow: hidden;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     text-align: center;
     .item {

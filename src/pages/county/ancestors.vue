@@ -1,71 +1,88 @@
 <template>
-    <div class="main">
-        <div class="adlinks">
-            <img src="./img/detail.jpg" />
-        </div>
-        <div class="inner">
-            <Ancestors @chgCurr="chgCurr" :url="url" />
-        </div>
-        <div class="sib">
-            <div class="inner">
-                <div class="h">
-                    <div class="img"></div>
-                    <div class="obj">
-                        <div class="flag"><span>千支同源</span></div>
-                        <div class="name">姓名</div>
-                        <div class="tag">名头</div>
-                    </div>
-                    <div class="txt">介绍</div>
-                </div>
-                <div class="f">
-                    <div class="item">字派：</div>
-                    <div class="item">郡望：</div>
-                    <div class="item">堂号：</div>
-                </div>
-            </div>
-        </div>
-        <div class="sic">
-            <div class="inner">
-                <div class="grid">
-                    <div class="item" v-for="v in 4" :key="v">
-                        <div class="img"></div>
-                        <div class="obj">
-                            <div class="tit">宗谱</div>
-                            <div class="txt">
-                                <div>联系人：李四</div>
-                                <div>地区：咸宁</div>
-                                <div>入谱人数：50</div>
-                                <div>始修于2018-10-10</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="main">
+    <div class="adlinks">
+      <img src="./img/detail.jpg" />
     </div>
+    <div
+      class="inner"
+      style="min-height:450px"
+    >
+      <Ancestors
+        @chgCurr="chgCurr"
+        :url="url"
+        v-if="url"
+      />
+    </div>
+    <div
+      class="sib"
+      v-if="false"
+    >
+      <div class="inner">
+        <div class="h">
+          <div class="img"></div>
+          <div class="obj">
+            <div class="flag"><span>千支同源</span></div>
+            <div class="name">姓名</div>
+            <div class="tag">名头</div>
+          </div>
+          <div class="txt">介绍</div>
+        </div>
+        <div class="f">
+          <div class="item">字派：</div>
+          <div class="item">郡望：</div>
+          <div class="item">堂号：</div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="sic"
+      v-if="false"
+    >
+      <div class="inner">
+        <div class="grid">
+          <div
+            class="item"
+            v-for="v in 4"
+            :key="v"
+          >
+            <div class="img"></div>
+            <div class="obj">
+              <div class="tit">宗谱</div>
+              <div class="txt">
+                <div>联系人：李四</div>
+                <div>地区：咸宁</div>
+                <div>入谱人数：50</div>
+                <div>始修于2018-10-10</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import Ancestors from './list/ancestors-list'
 export default {
-    components: {
-        Ancestors
-    },
-    data() {
-        return {
-            curr: {},
-            url: ''
-        }
-    },
-    computed: {
-    },
-    mounted: function () {
-        this.url = this.api.county.base + this.api.county.ancestor_list
-    },
-    methods: {
-        chgCurr(e) {
-
-        }
+  components: {
+    Ancestors
+  },
+  data() {
+    return {
+      curr: {},
+      url: null
     }
+  },
+  computed: {
+  },
+  mounted: function () {
+    this.url = this.api.county.base + this.api.county.ancestor_list
+  },
+  methods: {
+    chgCurr(e) {
+
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

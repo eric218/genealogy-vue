@@ -1,7 +1,7 @@
 <template>
     <div class="famous">
-        <div class="inner" v-if="list.length">
-            <Anchor :affix="false" show-ink container="#card">
+        <div class="inner">
+            <Anchor :affix="false" container="#card">
                 <AnchorLink :href="'#aaa_'+i" :title="v" v-for="(v,i) in keys" :key="i" />
             </Anchor>
             <div class="card" id="card">

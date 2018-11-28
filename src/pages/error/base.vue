@@ -108,14 +108,15 @@ export default {
 .content {
   position: fixed;
   background: url("../../assets/img/base.jpg") whitesmoke no-repeat center /
-    cover;
+    auto 100%;
   top: 0;
   right: 0;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding-top: 160px;
+  overflow-y: auto;
   .h {
     font-size: 16px;
     line-height: 1;
