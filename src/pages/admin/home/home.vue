@@ -13,7 +13,7 @@
               size="large"
             />
             <div class="name">{{user.nickName}}</div>
-            <div class="welcome">欢迎登录炎黄统谱网管理后台!</div>
+            <div class="welcome">欢迎登录「{{siteinfo.siteName}}」管理后台!</div>
             <div class="intro">
               炎黄统谱网修家谱具有亲缘一目了然、世系查阅快捷、增修纠错方便、添加照片、丰富人生、完善自传、资料永久保存、世代传承、亲情交流边界、智慧相传、子孙世袭等诸多优点。
             </div>
@@ -210,6 +210,7 @@ export default {
         { value: 4321, name: '男' },
         { value: 4219, name: '女' },
       ],
+      siteinfo: {},
       message: {},
       newslist: {},
       palist: {},
@@ -222,9 +223,19 @@ export default {
     },
   },
   mounted: function () {
+    this.getSiteinfo()
     this.getMessage()
   },
   methods: {
+    getSiteinfo() {
+      this.api.get(this.api.admin.base + this.api.admin.admin_site_info, {
+        siteId: this.$store.state.siteId,
+      }).then(res => {
+        if (res.code == 200) {
+          this.siteinfo = res.data
+        }
+      })
+    },
     getMessage() {
       this.api.get(this.api.admin.base + this.api.admin.admin_sys_feeds, {
         site_id: this.$store.state.siteId,

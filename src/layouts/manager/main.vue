@@ -25,7 +25,7 @@
             :src="Logo"
             key="Logo"
           />
-          <div v-if="!collapsed">炎黄统谱网</div>
+          <div v-if="!collapsed">{{siteinfo.siteName}}</div>
         </div>
       </side-menu>
     </Sider>
@@ -85,7 +85,8 @@ export default {
     return {
       collapsed: false,
       Logo,
-      isFullscreen: false
+      isFullscreen: false,
+      siteinfo: {},
     }
   },
   computed: {
@@ -108,6 +109,22 @@ export default {
       return this.$store.state.user
     },
   },
+  mounted() {
+    /**
+     * @description 初始化设置面包屑导航和标签导航
+     */
+    this.setTagNavList()
+    this.addTag({
+      route: this.$store.state.admin.homeRoute
+    })
+    this.setBreadCrumb(this.$route)
+    if (!this.tagNavList.find(item => item.name === this.$route.name)) {
+      this.$router.push({
+        name: this.api.admin.index
+      })
+    }
+    this.getSiteinfo()
+  },
   methods: {
     ...mapMutations([
       'setBreadCrumb',
@@ -117,6 +134,15 @@ export default {
     ...mapActions([
       'handleLogin'
     ]),
+    getSiteinfo() {
+      this.api.get(this.api.admin.base + this.api.admin.admin_site_info, {
+        siteId: this.$store.state.siteId,
+      }).then(res => {
+        if (res.code == 200) {
+          this.siteinfo = res.data
+        }
+      })
+    },
     turnToPage(route) {
       let { name, params, query } = {}
       if (typeof route === 'string') name = route
@@ -165,20 +191,5 @@ export default {
       this.$refs.sideMenu.updateOpenName(newRoute.name)
     }
   },
-  mounted() {
-    /**
-     * @description 初始化设置面包屑导航和标签导航
-     */
-    this.setTagNavList()
-    this.addTag({
-      route: this.$store.state.admin.homeRoute
-    })
-    this.setBreadCrumb(this.$route)
-    if (!this.tagNavList.find(item => item.name === this.$route.name)) {
-      this.$router.push({
-        name: this.api.admin.index
-      })
-    }
-  }
 }
 </script>

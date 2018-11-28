@@ -25,15 +25,15 @@
                 divided
               >我的消息</DropdownItem>
               <DropdownItem
-                name="/a"
+                name="admin"
                 v-if="user.role == 1 && user.siteId"
               >联谊会后台管理</DropdownItem>
               <DropdownItem
-                name="/a"
+                name="admin"
                 v-if="user.role == 2 && user.siteId"
               >省级后台管理</DropdownItem>
               <DropdownItem
-                name="/a"
+                name="admin"
                 v-if="user.role == 3 && user.siteId"
               >全国后台管理</DropdownItem>
               <DropdownItem
@@ -156,6 +156,10 @@ export default {
               this.$store.commit('updateUser', [])
             },
           });
+          break;
+        case 'admin':
+          this.$store.commit('updateSiteid', this.user.siteId);
+          this.$router.push('/a')
           break;
         case 'resetPsw':
           this.isreset = true;
