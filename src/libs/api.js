@@ -1,7 +1,6 @@
 import axios from 'axios'
 import router from '../router/';
 const api = {
-    pageSize: 20,
     imghost: 'http://192.168.2.132:8090/',
     urls: {
         base: 'http://192.168.2.179:8090/', //后台接口地址
@@ -11,6 +10,7 @@ const api = {
         feeds: 'genogram/allMessageBoard/addMessage', //留言板
         common_home_all: 'genogram/fanMenu/getIndexMenuBySiteId', //首页api
         common_site_menu: 'genogram/fanMenu/getTitlesByMenuId', //导航栏
+        site_list: 'genogram/sysSite/person/getSysSite', //网站列表
         detail: {
             culture: 'genogram/fanNewsCulture/getFamilyCultureDetail', //家族文化
             charity: 'genogram/fanNewsCharity/getFanNewsCharityDetail', //慈善公益详情
@@ -41,12 +41,13 @@ const api = {
         users_list: 'genogram/admin/person/getUserLoginList', //用户列表
         users_info: 'genogram/admin/person/getUserLogin', //用户信息
         users_edit: 'genogram/admin/person/updatePerson', //用户修改
-        users_sys_site: 'genogram/admin/person/getSysSite', //网站信息
+        site_list: 'genogram/admin/person/getSysSite', //网站列表
+        site_creat: 'genogram/admin/sysSite/insertSysSite', //开通网站
+        firstname: 'genogram/admin/sysSite/getAllFamily', //姓氏列表
         admin_sys_menu: 'genogram/admin/fanMenu/getTitlesByMenuId', //
         admin_sys_menu_add: 'genogram/admin/fanMenu/addTitles', //类别添加
         admin_sys_menu_edit: 'genogram/admin/fanMenu/updateTitlesById', //类别修改
         admin_sys_menu_del: 'genogram/admin/fanMenu/delTitlesById', //类别删除
-
         admin_sys_feeds: 'genogram/admin/allMessageBoard/selectMessage', //留言板
 
         admin_site_info: 'genogram/admin/fanIndex/getFanIndexInfo', //网站信息--后台

@@ -16,7 +16,7 @@
             ></div>
           </div>
           <div class="name">{{v.name}}</div>
-          <div class="area">{{formatArea(v.regionCode)}} · {{v.familyCode}}</div>
+          <div class="area">{{formatArea(v.regionCode)}} · {{v.familyName}}</div>
         </div>
       </div>
       <div class="h">省级联谊会</div>
@@ -58,14 +58,14 @@ export default {
   },
   methods: {
     getList() {
-      this.api.post(this.api.admin.base + this.api.admin.users_sys_site, {
+      this.api.post(this.api.county.base + this.api.county.site_list, {
         siteType: 'fan'
       }).then(res => {
         if (res.code == 200) {
           this.list.county = res.data
         }
       })
-      this.api.post(this.api.admin.base + this.api.admin.users_sys_site, {
+      this.api.post(this.api.county.base + this.api.county.site_list, {
         siteType: 'pro'
       }).then(res => {
         if (res.code == 200) {

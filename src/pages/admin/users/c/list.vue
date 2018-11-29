@@ -219,7 +219,7 @@ export default {
       if (e > 3 && !e) {
         return
       }
-      this.api.post(this.api.admin.base + this.api.admin.users_sys_site, {
+      this.api.post(this.api.admin.base + this.api.admin.site_list, {
         siteType: this.roleType[e]
       }).then(res => {
         if (res.code == 200) {

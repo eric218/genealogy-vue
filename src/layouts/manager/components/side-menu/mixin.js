@@ -1,3 +1,6 @@
+import {
+    oneOf
+} from '@/libs/tools'
 import CommonIcon from '_c/common-icon'
 export default {
     components: {
@@ -5,7 +8,7 @@ export default {
     },
     computed: {
         user() {
-            return
+            return this.$store.state.user
         },
     },
     methods: {
@@ -19,10 +22,13 @@ export default {
             return item.href ? `isTurnByHref_${item.href}` : (children0 ? item.children[0].name : item.name)
         },
         showRoleMax(item) {
-            if (this.user && this.user.role == 9) {
-                return true
+            if (item.meta.role && this.user.role) {
+                // return !oneOf(this.user.role, item.meta.role)
+                if (this.user.role != item.meta.role) {
+                    return false
+                }
             }
-            return false
+            return true
         },
     }
 }

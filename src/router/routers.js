@@ -17,7 +17,7 @@ export default [{
         path: "/base",
         name: 'base',
         meta: {
-            title: '配置',
+            title: '炎黄统谱网',
         },
         component: () => import('@/pages/error/base.vue')
     },

@@ -313,6 +313,7 @@ export default [{
             name: 'users-manager',
             meta: {
                 icon: 'md-paw',
+                role: 9,
                 title: '管理员',
             },
             component: () => import('@/pages/admin/users/manager')
@@ -321,7 +322,8 @@ export default [{
             name: 'log',
             meta: {
                 icon: 'md-code',
-                title: '管理员日志'
+                role: 9,
+                title: '管理员日志',
             },
             component: () => import('@/pages/admin/users/log')
         }]
@@ -333,7 +335,7 @@ export default [{
         component: Manager,
         meta: {
             icon: 'logo-buffer',
-            title: '用户管理',
+            title: '帮助',
             hide: false
         },
 

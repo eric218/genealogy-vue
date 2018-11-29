@@ -13,6 +13,19 @@ Vue.use(iviewArea);
 
 Vue.prototype.api = Api
 Vue.prototype.dayjs = dayjs
+
+router.beforeEach((to, from, next) => {
+    let role = localStorage.user ? JSON.parse(localStorage.user).role : null
+    if (role) {
+        if (to.meta.role && to.meta.role != role) {
+            router.back(-1)
+        } else {
+            next()
+        }
+    } else {
+        next()
+    }
+})
 new Vue({
     router,
     store,
