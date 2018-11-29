@@ -220,10 +220,11 @@ export default {
         return
       }
       this.api.post(this.api.admin.base + this.api.admin.site_list, {
+        pageSize: 9999,
         siteType: this.roleType[e]
       }).then(res => {
         if (res.code == 200) {
-          this.roleSite = res.data
+          this.roleSite = res.data.records
         }
       })
     },
