@@ -1,36 +1,12 @@
 <template>
   <div>
-    <Button
-      type="primary"
-      @click="toEdit(0)"
-    >添加</Button>
-    <Table
-      border
-      :columns="columns"
-      :data="list"
-      style="margin:16px 0;"
-    ></Table>
-    <Page
-      :total="total"
-      @on-change="chgPage"
-      :page-size="8"
-    />
-    <Drawer
-      :mask-closable="false"
-      :title="formData.id ? '修改':'添加'"
-      width="50%"
-      v-model="isedit"
-    >
-      <Form
-        :model="formData"
-        :label-width="80"
-      >
+    <Button type="primary" @click="toEdit(0)">添加</Button>
+    <Table border :columns="columns" :data="list" style="margin:16px 0;"></Table>
+    <Page :total="total" @on-change="chgPage" :page-size="8"/>
+    <Drawer :mask-closable="false" :title="formData.id ? '修改':'添加'" width="50%" v-model="isedit">
+      <Form :model="formData" :label-width="80">
         <FormItem label="标题">
-          <Input
-            v-model="formData.newsTitle"
-            placeholder="标题"
-            @keyup.enter.native="toSubmit"
-          />
+          <Input v-model="formData.newsTitle" placeholder="标题" @keyup.enter.native="toSubmit"/>
         </FormItem>
         <FormItem label="预览图">
           <Upload
@@ -42,37 +18,21 @@
             :format="['jpg','jpeg','png']"
           >
             <Button type="dashed">
-              <div
-                class="img"
-                :style="api.imgBG(filePath)"
-                v-if="filePath"
-              />
+              <div class="img" :style="api.imgBG(filePath)" v-if="filePath"/>
               <div
                 class="img"
                 :style="api.imgBG(formData.fanNewsUploadFileList[0].filePath)"
                 v-else-if="formData.fanNewsUploadFileList.length"
               ></div>
-              <Icon
-                type="ios-camera"
-                size="40"
-                color="#ccc"
-                v-else
-              ></Icon>
+              <Icon type="ios-camera" size="40" color="#ccc" v-else></Icon>
             </Button>
           </Upload>
         </FormItem>
         <FormItem label="正文">
-          <editor
-            ref="editor"
-            @on-change="handleChange"
-          />
+          <editor ref="editor" @on-change="handleChange"/>
         </FormItem>
         <FormItem label="支出用途">
-          <Input
-            v-model="formData.useFor"
-            placeholder="支出用途"
-            @keyup.enter.native="toSubmit"
-          />
+          <Input v-model="formData.useFor" placeholder="支出用途" @keyup.enter.native="toSubmit"/>
         </FormItem>
         <FormItem label="支出金额">
           <Input
@@ -82,27 +42,12 @@
             @keyup.enter.native="toSubmit"
           />
         </FormItem>
-        <FormItem
-          label="浏览数"
-          v-if="formData.id"
-        >
-          <Input
-            v-model="formData.visitNum"
-            placeholder="浏览数"
-            @keyup.enter.native="toSubmit"
-          />
+        <FormItem label="浏览数" v-if="formData.id">
+          <Input v-model="formData.visitNum" placeholder="浏览数" @keyup.enter.native="toSubmit"/>
         </FormItem>
-        <FormItem label="">
-          <Button
-            type="primary"
-            @click="toSubmit"
-            style="margin-right:16px;"
-          >提交</Button>
-          <Button
-            @click="toDrft"
-            v-if="formData.status != 1"
-            style="margin-right:16px;"
-          >存为草稿</Button>
+        <FormItem label>
+          <Button type="primary" @click="toSubmit" style="margin-right:16px;">提交</Button>
+          <Button @click="toDrft" v-if="formData.status != 1" style="margin-right:16px;">存为草稿</Button>
           <Button @click="isedit = false">关闭</Button>
         </FormItem>
       </Form>
@@ -110,7 +55,7 @@
   </div>
 </template>
 <script>
-import Editor from '_c/editor'
+import Editor from "_c/editor";
 export default {
   components: {
     Editor
@@ -122,182 +67,197 @@ export default {
       total: 0,
       page: 1,
       formData: {
-        id: '',
-        fanNewsUploadFileList: [],
+        id: "",
+        fanNewsUploadFileList: []
       },
-      fileName: '',
-      filePath: '',
+      fileName: "",
+      filePath: "",
       columns: [
         {
-          title: 'ID',
+          title: "ID",
           width: 80,
-          key: 'id'
-        }, {
-          title: ' ',
+          key: "id"
+        },
+        {
+          title: " ",
           width: 64,
-          align: 'center',
-          key: 'status',
+          align: "center",
+          key: "status",
           render: (h, e) => {
             if (e.row.status != 2) {
-              return null
+              return null;
             }
-            return h('Icon', {
+            return h("Icon", {
               props: {
-                type: 'ios-lock',
-                size: '20'
+                type: "ios-lock",
+                size: "20"
               }
-            })
+            });
           }
-        }, {
-          title: '标题',
-          key: 'newsTitle'
-        }, {
-          title: '浏览数',
-          key: 'visitNum'
-        }, {
-          title: '支出用途',
-          key: 'useFor'
-        }, {
-          title: '支出金额',
-          key: 'amount'
-        }, {
-          title: '日期',
-          key: 'datetime',
-        }, {
-          title: '操作',
-          key: 'action',
+        },
+        {
+          title: "标题",
+          key: "newsTitle"
+        },
+        {
+          title: "浏览数",
+          key: "visitNum"
+        },
+        {
+          title: "支出用途",
+          key: "useFor"
+        },
+        {
+          title: "支出金额",
+          key: "amount"
+        },
+        {
+          title: "日期",
+          key: "datetime"
+        },
+        {
+          title: "操作",
+          key: "action",
           width: 150,
-          align: 'center',
+          align: "center",
           render: (h, params) => {
-            return h('div', [
-              h('Button', {
+            return h("div", [
+              h("Button", {
                 props: {
-                  type: 'primary',
-                  size: 'small',
-                  icon: 'ios-create',
+                  type: "primary",
+                  size: "small",
+                  icon: "ios-create"
                 },
                 style: {
-                  marginRight: '5px'
+                  marginRight: "5px"
                 },
                 on: {
                   click: () => {
-                    this.toEdit(this.list[params.index].id)
+                    this.toEdit(this.list[params.index].id);
                   }
                 }
               }),
-              h('Button', {
+              h("Button", {
                 props: {
-                  type: 'error',
-                  size: 'small',
-                  icon: 'md-trash',
+                  type: "error",
+                  size: "small",
+                  icon: "md-trash"
                 },
                 on: {
                   click: () => {
-                    this.remove(params.index)
+                    this.remove(params.index);
                   }
                 }
               })
             ]);
           }
         }
-      ],
-    }
+      ]
+    };
   },
   watch: {
-    url: function (curVal, oldVal) {
+    url: function(curVal, oldVal) {
       if (curVal != oldVal) {
         this.getList();
       }
-    },
+    }
   },
-  mounted: function () {
-    this.getList()
+  mounted: function() {
+    this.getList();
   },
   methods: {
     getList(e) {
-      this.api.get(this.api.admin.base + this.url, {
-        pageNo: this.page
-      }).then(res => {
-        if (res.code == 200) {
-          let list = res.data.records;
-          list.forEach(v => {
-            v.datetime = this.dayjs(v.updateTime).format('YYYY-MM-DD HH:mm:ss')
-          })
-          this.list = list;
-          this.total = res.data.total
-        }
-      })
+      this.api
+        .get(this.api.admin.base + this.url, {
+          pageNo: this.page
+        })
+        .then(res => {
+          if (res.code == 200) {
+            let list = res.data.records;
+            list.forEach(v => {
+              v.datetime = this.dayjs(v.updateTime).format(
+                "YYYY-MM-DD HH:mm:ss"
+              );
+            });
+            this.list = list;
+            this.total = res.data.total;
+          }
+        });
     },
     chgPage(e) {
       this.page = e;
       this.getList();
     },
     handleChange(html, text) {
-      this.formData.newsText = html
+      this.formData.newsText = html;
     },
     toEdit(e) {
-      this.fileName = '';
-      this.filePath = '';
-      this.$refs.editor.setHtml('')
+      this.fileName = "";
+      this.filePath = "";
+      this.$refs.editor.setHtml("");
       if (!e) {
         this.formData = {
-          id: '',
-          fanNewsUploadFileList: [],
-        }
+          id: "",
+          fanNewsUploadFileList: []
+        };
         this.isedit = true;
       } else {
-        this.api.get(this.api.admin.base + this.api.admin.charity_list_info, {
-          id: e
-        }).then(res => {
-          if (res.code == 200) {
-            this.formData = res.data;
-            this.$refs.editor.setHtml(this.formData.newsText)
-            this.isedit = true;
-          } else {
-            this.$Message.error('发生错误')
-          }
-        })
+        this.api
+          .get(this.api.admin.base + this.api.admin.charity_list_info, {
+            id: e
+          })
+          .then(res => {
+            if (res.code == 200) {
+              this.formData = res.data;
+              this.$refs.editor.setHtml(this.formData.newsText);
+              this.isedit = true;
+            } else {
+              this.$Message.error("发生错误");
+            }
+          });
       }
     },
     remove(index) {
       this.$Modal.confirm({
-        title: '提示',
-        content: '确定删除这个文章？',
+        title: "提示",
+        content: "确定删除这个文章？",
         onOk: () => {
-          this.api.post(this.api.admin.base + this.api.admin.charity_list_del, {
-            id: this.list[index].id
-          }).then(res => {
-            this.list.splice(index, 1);
-            this.getList();
-          })
-        },
+          this.api
+            .post(this.api.admin.base + this.api.admin.charity_list_del, {
+              id: this.list[index].id
+            })
+            .then(res => {
+              this.list.splice(index, 1);
+              this.getList();
+            });
+        }
       });
     },
     handleSuccess(res, file) {
       if (res.code == 200) {
-        this.fileName = res.data.file_name
-        this.filePath = res.data.file_path
+        this.fileName = res.data.file_name;
+        this.filePath = res.data.file_path;
       }
     },
     toSubmit() {
       if (!this.formData.newsTitle) {
-        this.$Message.error('未输入标题');
+        this.$Message.error("未输入标题");
         return;
       }
       if (!this.formData.newsText) {
-        this.$Message.error('未输入正文');
+        this.$Message.error("未输入正文");
         return;
       }
       if (!this.formData.useFor) {
-        this.$Message.error('未输入支出用途');
+        this.$Message.error("未输入支出用途");
         return;
       }
       if (!this.formData.amount) {
-        this.$Message.error('未输入支出金额');
+        this.$Message.error("未输入支出金额");
         return;
       }
       if (!this.api.isNumber(this.formData.amount * 100)) {
-        this.$Message.error('请输入正确的金额');
+        this.$Message.error("请输入正确的金额");
         return;
       }
       let data = {
@@ -309,42 +269,44 @@ export default {
         amount: this.formData.amount,
         useFor: this.formData.useFor,
         fileName: this.fileName,
-        filePath: this.filePath,
-      }
+        filePath: this.filePath
+      };
       if (this.formData.id) {
-        data.id = this.formData.id
+        data.id = this.formData.id;
       }
-      this.api.post(this.api.admin.base + this.api.admin.charity_list_edit, data).then(res => {
-        if (res.code === 200) {
-          if (data.id) {
-            this.$Message.success('修改成功');
-          } else {
-            this.$Message.success('添加成功');
+      this.api
+        .post(this.api.admin.base + this.api.admin.charity_list_edit, data)
+        .then(res => {
+          if (res.code === 200) {
+            if (data.id) {
+              this.$Message.success("修改成功");
+            } else {
+              this.$Message.success("添加成功");
+            }
+            this.getList();
+            this.isedit = false;
           }
-          this.getList();
-          this.isedit = false;
-        }
-      })
+        });
     },
     toDrft() {
       if (!this.formData.newsTitle) {
-        this.$Message.error('未输入标题');
+        this.$Message.error("未输入标题");
         return;
       }
       if (!this.formData.newsText) {
-        this.$Message.error('未输入正文');
+        this.$Message.error("未输入正文");
         return;
       }
       if (!this.formData.useFor) {
-        this.$Message.error('未输入支出用途');
+        this.$Message.error("未输入支出用途");
         return;
       }
       if (!this.formData.amount) {
-        this.$Message.error('未输入支出金额');
+        this.$Message.error("未输入支出金额");
         return;
       }
       if (!this.api.isNumber(this.formData.amount * 100)) {
-        this.$Message.error('请输入正确的金额');
+        this.$Message.error("请输入正确的金额");
         return;
       }
       let data = {
@@ -356,26 +318,28 @@ export default {
         amount: this.formData.amount,
         useFor: this.formData.useFor,
         fileName: this.fileName,
-        filePath: this.filePath,
-      }
+        filePath: this.filePath
+      };
       if (this.formData.id) {
-        data.id = this.formData.id
+        data.id = this.formData.id;
       }
-      this.api.post(this.api.admin.base + this.api.admin.charity_list_drft, data).then(res => {
-        if (res.code === 200) {
-          if (data.id) {
-            this.$Message.success('修改成功');
-          } else {
-            this.$Message.success('添加成功');
+      this.api
+        .post(this.api.admin.base + this.api.admin.charity_list_drft, data)
+        .then(res => {
+          if (res.code === 200) {
+            if (data.id) {
+              this.$Message.success("修改成功");
+            } else {
+              this.$Message.success("添加成功");
+            }
+            this.getList();
+            this.isedit = false;
           }
-          this.getList();
-          this.isedit = false;
-        }
-      })
+        });
     }
   },
-  props: ['url', 'menu', 'type']
-}
+  props: ["url", "menu", "type"]
+};
 </script>
 <style lang="scss" scoped>
 .upload {

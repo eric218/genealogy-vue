@@ -1,64 +1,75 @@
 <template>
-    <div class="main">
-        <div class="adlinks">
-            <img src="./img/culture.jpg" />
-        </div>
-        <div class="inner">
-            <div class="h">
-                <div class="cn">家族文化</div>
-                <Divider class="en">Information</Divider>
-            </div>
-            <div class="menus">
-                <span class="menu" v-for="(v,i) in menu" :key="i" :class="v.orderIndex == menucurr.orderIndex ? 'curr':''" v-html="v.menuName" @click="chgMenu(i)"></span>
-            </div>
-            <div class="grid" style="minHeight:450px;">
-                <div v-if="menucurr && url">
-                    <ZipaiList :url="url" v-if="menucurr.menuType == 'culture_zipai'" />
-                    <Culture :url="url" v-else-if="menucurr.menuType == 'culture_news'" />
-                </div>
-            </div>
-        </div>
+  <div class="main">
+    <div class="adlinks">
+      <img src="./img/culture.jpg">
     </div>
+    <div class="inner">
+      <div class="h">
+        <div class="cn">家族文化</div>
+        <Divider class="en">Information</Divider>
+      </div>
+      <div class="menus">
+        <span
+          class="menu"
+          v-for="(v,i) in menu"
+          :key="i"
+          :class="v.orderIndex == menucurr.orderIndex ? 'curr':''"
+          v-html="v.menuName"
+          @click="chgMenu(i)"
+        ></span>
+      </div>
+      <div class="grid" style="minHeight:450px;">
+        <div v-if="menucurr && url">
+          <ZipaiList :url="url" v-if="menucurr.menuType == 'culture_zipai'"/>
+          <Culture :url="url" v-else-if="menucurr.menuType == 'culture_news'"/>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
-import Culture from './list/culture-list.vue';
-import ZipaiList from './list/zipai.vue';
+import Culture from "./list/culture-list.vue";
+import ZipaiList from "./list/zipai.vue";
 export default {
-    components: {
-        Culture,
-        ZipaiList
+  components: {
+    Culture,
+    ZipaiList
+  },
+  data() {
+    return {
+      menu: [],
+      menucurr: {},
+      url: ""
+    };
+  },
+  mounted: function() {
+    this.getNav();
+  },
+  methods: {
+    getNav() {
+      this.api
+        .get(this.api.county.base + this.api.county.common_site_menu, {
+          siteId: this.$store.state.siteId,
+          menuId: 2
+        })
+        .then(res => {
+          if (res.code == 200) {
+            this.menu = res.data;
+            this.chgMenu(0);
+          }
+        });
     },
-    data() {
-        return {
-            menu: [],
-            menucurr: {},
-            url: '',
-        }
-    },
-    mounted: function () {
-        this.getNav()
-    },
-    methods: {
-        getNav() {
-            this.api.get(this.api.county.base + this.api.county.common_site_menu, {
-                siteId: this.$store.state.siteId,
-                menuId: 2,
-            }).then(res => {
-                if (res.code == 200) {
-                    this.menu = res.data
-                    this.chgMenu(0)
-                }
-            })
-        },
-        chgMenu(e) {
-            this.url = ''
-            this.menucurr = this.menu[e];
-            setTimeout(() => {
-                this.url = this.menucurr ? this.api.county.base + this.menucurr.apiUrl : '';
-            }, 300);
-        },
-    },
-}
+    chgMenu(e) {
+      this.url = "";
+      this.menucurr = this.menu[e];
+      setTimeout(() => {
+        this.url = this.menucurr
+          ? this.api.county.base + this.menucurr.apiUrl
+          : "";
+      }, 300);
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
