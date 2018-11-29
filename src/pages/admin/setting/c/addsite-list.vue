@@ -253,7 +253,7 @@ export default {
     getList(e) {
       this.api.post(this.api.admin.base + this.api.admin.site_list, {
         siteType: this.data.type,
-        pageNo: this.page
+        pageNo: this.page,
       }).then(res => {
         if (res.code == 200) {
           this.list = res.data.records
