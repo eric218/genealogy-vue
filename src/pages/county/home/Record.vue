@@ -11,10 +11,7 @@
             <div class="menu">县级公告</div>
           </div>
           <div class="card">
-            <div
-              class="items"
-              v-if="index_family_record2"
-            >
+            <div class="items" v-if="index_family_record2">
               <router-link
                 :to="'/c/detail?type=family_record&id='+v.id"
                 class="item"
@@ -22,14 +19,8 @@
                 :key="v.id"
               >
                 <div class="obj">
-                  <div
-                    class="tit"
-                    v-html="v.newsTitle"
-                  ></div>
-                  <div
-                    class="intro"
-                    v-html="v.newsText"
-                  ></div>
+                  <div class="tit" v-html="v.newsTitle"></div>
+                  <div class="intro" v-html="v.newsText"></div>
                 </div>
               </router-link>
             </div>
@@ -46,25 +37,20 @@
             <div class="menu">家族动态</div>
           </div>
           <div class="card">
-            <div
-              class="items"
-              v-if="index_family_record1"
-            >
+            <div class="items" v-if="index_family_record1">
               <router-link
                 :to="'/c/detail?type=family_record&id='+v.id"
                 class="item"
                 v-for="v in index_family_record1.records"
                 :key="v.id"
               >
+                <div
+                  class="img"
+                  :style="v.fanNewsUploadFileList.length? api.imgBG(v.fanNewsUploadFileList[0].filePath):''"
+                />
                 <div class="obj">
-                  <div
-                    class="tit"
-                    v-html="v.newsTitle"
-                  ></div>
-                  <div
-                    class="intro"
-                    v-html="v.newsText"
-                  ></div>
+                  <div class="tit" v-html="v.newsTitle"></div>
+                  <div class="intro" v-html="v.newsText"></div>
                 </div>
               </router-link>
             </div>
@@ -81,7 +67,7 @@
   </div>
 </template>
 <script>
-import imgbg from '../img/newsex.png';
+import imgbg from "../img/newsex.png";
 export default {
   data() {
     return {
@@ -93,49 +79,53 @@ export default {
       },
       index_family_record1: {
         total: 0,
-        records: [],
+        records: []
       },
       index_family_record2: {
         total: 0,
-        records: [],
+        records: []
       },
       page: {
         a: 1,
-        b: 1,
+        b: 1
       }
-    }
+    };
   },
   computed: {
     apiList() {
-      return this.$store.state.county.apiList
-    },
+      return this.$store.state.county.apiList;
+    }
   },
-  mounted: function () {
-    this.get_index_family_record1()
-    this.get_index_family_record2()
+  mounted: function() {
+    this.get_index_family_record1();
+    this.get_index_family_record2();
   },
   methods: {
     get_index_family_record1() {
-      this.api.get(this.api.county.base + this.apiList.index_family_record1.apiUrl, {
-        pageNo: this.page.a,
-        pageSize: 3
-      }).then(res => {
-        if (res.code == 200) {
-          this.index_family_record1 = res.data
-          this.curr = this.index_family_record1.records[0]
-          console.log(this.curr);
-        }
-      })
+      this.api
+        .get(this.api.county.base + this.apiList.index_family_record1.apiUrl, {
+          pageNo: this.page.a,
+          pageSize: 3
+        })
+        .then(res => {
+          if (res.code == 200) {
+            this.index_family_record1 = res.data;
+            this.curr = this.index_family_record1.records[0];
+            console.log(this.curr);
+          }
+        });
     },
     get_index_family_record2() {
-      this.api.get(this.api.county.base + this.apiList.index_family_record2.apiUrl, {
-        pageNo: this.page.b,
-        pageSize: 3
-      }).then(res => {
-        if (res.code == 200) {
-          this.index_family_record2 = res.data
-        }
-      })
+      this.api
+        .get(this.api.county.base + this.apiList.index_family_record2.apiUrl, {
+          pageNo: this.page.b,
+          pageSize: 3
+        })
+        .then(res => {
+          if (res.code == 200) {
+            this.index_family_record2 = res.data;
+          }
+        });
     },
     chgPage1(e) {
       this.page.a = e;
@@ -144,9 +134,9 @@ export default {
     chgPage2(e) {
       this.page.b = e;
       this.get_index_family_record2();
-    },
-  },
-}
+    }
+  }
+};
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
