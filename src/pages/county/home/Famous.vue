@@ -1,60 +1,68 @@
 <template>
-    <div class="famous">
-        <div class="inner">
-            <Anchor :affix="false" container="#card">
-                <AnchorLink :href="'#aaa_'+i" :title="v" v-for="(v,i) in keys" :key="i" />
-            </Anchor>
-            <div class="card" id="card">
-                <div class="row" :id="'aaa_'+i" v-for="(v,i) in list" :key="i">
-                    <div class="h kt"><span>{{keys[i]}}</span></div>
-                    <div class="b">
-                        <div class="item" v-for="itm in index_architecture[keys[i]]" :key="itm.id">
-                            <div class="img" :style="itm.picFileSrc? api.imgBG(itm.picFileSrc):''" :alt="itm.personName" />
-                            <div class="obj">
-                                <div class="tit">{{itm.personName}}</div>
-                                <div class="intro">{{itm.personSummary}}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div class="famous">
+    <div class="inner">
+      <Anchor :affix="false" container="#card">
+        <AnchorLink :href="'#aaa_'+i" :title="v" v-for="(v,i) in keys" :key="i"/>
+      </Anchor>
+      <div class="card" id="card">
+        <div class="row" :id="'aaa_'+i" v-for="(v,i) in list" :key="i">
+          <div class="h kt">
+            <span>{{keys[i]}}</span>
+          </div>
+          <div class="b">
+            <div class="item" v-for="itm in index_architecture[keys[i]]" :key="itm.id">
+              <div
+                class="img"
+                :style="itm.picFileSrc? api.imgBG(itm.picFileSrc):''"
+                :alt="itm.personName"
+              />
+              <div class="obj">
+                <div class="tit">{{itm.personName}}</div>
+                <div class="intro">{{itm.personSummary}}</div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </template>
 <script>
 export default {
-    data() {
-        return {
-            index_architecture: {},
-            keys: [],
-            list: [],
-        }
-    },
-    computed: {
-        apiList() {
-            return this.$store.state.county.apiList
-        },
-    },
-    mounted: function () {
-        this.get_index_architecture()
-    },
-    methods: {
-        get_index_architecture() {
-            this.api.get(this.api.county.base + this.apiList.index_architecture.apiUrl, {}).then(res => {
-                if (res.code == 200) {
-                    let list = res.data
-                    this.index_architecture = list
-                    this.keys = Object.keys(list)
-                    this.list = Object.values(list)
-                    console.log(this.list);
-                }
-            })
-        },
-        formatname(e) {
-            return JSON.parse(e)
-        }
+  data() {
+    return {
+      index_architecture: {},
+      keys: [],
+      list: []
+    };
+  },
+  computed: {
+    apiList() {
+      return this.$store.state.county.apiList;
     }
-}
+  },
+  mounted: function() {
+    this.get_index_architecture();
+  },
+  methods: {
+    get_index_architecture() {
+      this.api
+        .get(this.api.county.base + this.apiList.index_architecture.apiUrl, {})
+        .then(res => {
+          if (res.code == 200) {
+            let list = res.data;
+            this.index_architecture = list;
+            this.keys = Object.keys(list);
+            this.list = Object.values(list);
+            console.log(this.list);
+          }
+        });
+    },
+    formatname(e) {
+      return JSON.parse(e);
+    }
+  }
+};
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
