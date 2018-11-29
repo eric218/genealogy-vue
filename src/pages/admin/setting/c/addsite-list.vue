@@ -185,8 +185,6 @@ export default {
       options: [],
       columns: [
         { title: 'ID', key: 'id', width: 80 },
-        { title: '网站名称', key: 'name' },
-        { title: '姓氏', key: 'familyName', width: 80 },
         {
           title: '徽标',
           key: 'url',
@@ -202,7 +200,10 @@ export default {
               }
             })
           }
-        }, {
+        },
+        { title: '网站名称', key: 'name' },
+        { title: '姓氏', key: 'familyName', width: 80 },
+        {
           title: '地区',
           key: 'regionCode',
           render: (h, e) => {
@@ -211,7 +212,7 @@ export default {
             let c = Number(e.row.regionCode)
             return h('div', pca[86][a] + ' · ' + pcaa[b][c])
           },
-        }, { title: '状态', key: 'status', width: 60 },
+        }, { title: '状态', key: 'status', width: 72 },
         {
           title: '操作',
           key: 'action',
@@ -349,6 +350,8 @@ export default {
           this.$Message.success('网站开通成功');
           this.getList();
           this.isadd = false;
+        } else {
+          this.$Message.error(res.msg);
         }
       })
     },
