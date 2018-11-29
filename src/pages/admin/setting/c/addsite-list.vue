@@ -36,7 +36,7 @@
               />
             </i-col>
             <i-col :span="6">
-              {{formData.siteName.length}} / 6
+              {{formData.siteName ? formData.siteName.length : 0}} / 6
             </i-col>
           </Row>
         </FormItem>
@@ -81,7 +81,7 @@
             :maxlength="300"
             @keyup.enter.native="toSubmit"
           />
-          {{formData.description.length}} / 300
+          {{formData.description ? formData.description.length :0}} / 300
         </FormItem>
         <FormItem label="">
           <Button
@@ -321,9 +321,11 @@ export default {
         description: this.formData.description
       }).then(res => {
         if (res.code === 200) {
-          this.$Message.success('修改成功');
-          this.getList();
-          this.isedit = false;
+          this.$Message.success('修改成功')
+          this.getList()
+          this.isedit = false
+        } else {
+          this.$Message.error(res.msg)
         }
       })
     },
@@ -347,11 +349,11 @@ export default {
         siteType: this.data.type,
       }).then(res => {
         if (res.code === 200) {
-          this.$Message.success('网站开通成功');
-          this.getList();
-          this.isadd = false;
+          this.$Message.success('网站开通成功')
+          this.getList()
+          this.isadd = false
         } else {
-          this.$Message.error(res.msg);
+          this.$Message.error(res.msg)
         }
       })
     },
