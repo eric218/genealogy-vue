@@ -19,11 +19,11 @@
             <FormItem label="支付平台">
                 <RadioGroup v-model="form.paytype" type="button">
                     <Radio :label="0">
-                        <iconfont name="alipay" />
+                        <iconfont name="alipay"/>
                         <span>支付宝</span>
                     </Radio>
                     <Radio :label="1">
-                        <iconfont name="weixinzhifu" />
+                        <iconfont name="weixinzhifu"/>
                         <span>微信支付</span>
                     </Radio>
                 </RadioGroup>
@@ -45,57 +45,58 @@ export default {
     data() {
         return {
             form: {
-                num: '',
+                num: "",
                 anonymous: false,
                 paytype: 0
-            },
-        }
+            }
+        };
     },
-    mounted: function () {
-    },
+    mounted: function() {},
     methods: {
         toSubmit() {
             if (!this.form.num) {
-                this.$Message.error('请选择支付金额');
+                this.$Message.error("请选择支付金额");
                 return;
             }
             if (!this.api.isNumber(this.form.num * 100)) {
-                this.$Message.error('请输入正确的金额');
+                this.$Message.error("请输入正确的金额");
                 return;
             }
             if (this.form.paytype) {
-                this.$Message.warning('暂未开放');
+                this.$Message.warning("暂未开放");
             } else {
-                this.api.post(this.api.user.base + this.api.user.pay.ali, {
-                    siteId: this.$store.state.siteId,
-                    payAmount: this.form.num,
-                    anonymous: this.form.anonymous ? 1 : 0,
-                    url: location.href + '?back=pay&'
-                }).then(res => {
-                    if (res.code == 200) {
-                        sessionStorage.callback = 1
-                        const div = document.createElement('div');
-                        div.innerHTML = res.data;
-                        document.body.appendChild(div);
-                        document.forms.punchout_form.submit();
-                    }
-                })
+                this.api
+                    .post(this.api.user.base + this.api.user.pay.ali, {
+                        siteId: this.$store.state.siteId,
+                        payAmount: this.form.num,
+                        anonymous: this.form.anonymous ? 1 : 0,
+                        url: location.href + "?back=pay&"
+                    })
+                    .then(res => {
+                        if (res.code == 200) {
+                            sessionStorage.callback = 1;
+                            const div = document.createElement("div");
+                            div.innerHTML = res.data;
+                            document.body.appendChild(div);
+                            document.forms.punchout_form.submit();
+                        }
+                    });
             }
-        },
+        }
     }
-}
+};
 </script>
 
 <style lang="scss" >
 @import "@/assets/css/var.scss";
 .g-pay {
-  .ivu-modal-content {
-    background: #fff url(../../assets/img/paytop.png) no-repeat top center /
-      100% auto;
-  }
+    .ivu-modal-content {
+        background: #fff url(../../assets/img/paytop.png) no-repeat top center /
+            100% auto;
+    }
 
-  .ivu-modal-body {
-    padding-top: 108px;
-  }
+    .ivu-modal-body {
+        padding-top: 108px;
+    }
 }
 </style>

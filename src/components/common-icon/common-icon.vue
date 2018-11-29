@@ -1,10 +1,10 @@
 <template>
-    <component :is="iconType" :type="iconName" :color="iconColor" :size="iconSize" />
+    <component :is="iconType" :type="iconName" :color="iconColor" :size="iconSize"/>
 </template>
 
 <script>
 export default {
-    name: 'CommonIcon',
+    name: "CommonIcon",
     props: {
         type: {
             type: String,
@@ -15,17 +15,17 @@ export default {
     },
     computed: {
         iconType() {
-            return 'Icon'
+            return "Icon";
         },
         iconName() {
-            return this.type
+            return this.type;
         },
         iconSize() {
-            return this.size || undefined
+            return this.size || undefined;
         },
         iconColor() {
-            return this.color || ''
+            return this.color || "";
         }
-    },
-}
+    }
+};
 </script>

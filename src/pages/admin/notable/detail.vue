@@ -1,17 +1,13 @@
 <template>
-    <div>
-    </div>
+    <div></div>
 </template>
 
 <script>
 export default {
-    components: {
-    },
+    components: {},
     data() {
-        return {
-        }
+        return {};
     },
-    mounted() {
-    }
-}
+    mounted() {}
+};
 </script>

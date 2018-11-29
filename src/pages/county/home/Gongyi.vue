@@ -64,7 +64,7 @@
                             <span>关注</span>
                         </div>
                         <div class="zan">
-                            <Icon type="ios-thumbs-up" color="darkred" />
+                            <Icon type="ios-thumbs-up" color="darkred"/>
                             <span>150</span>
                         </div>
                     </div>
@@ -72,20 +72,20 @@
             </div>
         </div>
         <Modal v-model="handleTopay" width="480px" :footer-hide="true" class="g-pay">
-            <topay />
+            <topay/>
         </Modal>
     </div>
 </template>
 <script>
-import topay from '_c/common/topay.vue'
+import topay from "_c/common/topay.vue";
 export default {
     components: {
-        topay,
+        topay
     },
     computed: {
         apiList() {
-            return this.$store.state.county.apiList
-        },
+            return this.$store.state.county.apiList;
+        }
     },
     data() {
         return {
@@ -95,232 +95,258 @@ export default {
             index_architecture_pay_in: {},
             index_charity_pay_out: {},
             menu: [],
-            menucurr: {},
-        }
+            menucurr: {}
+        };
     },
-    mounted: function () {
-        this.getMenu()
-        this.get_index_fund_2()
-        this.get_index_architecture_pay_in_person_2()
-        this.get_index_architecture_pay_in()
-        this.get_index_charity_pay_out()
+    mounted: function() {
+        this.getMenu();
+        this.get_index_fund_2();
+        this.get_index_architecture_pay_in_person_2();
+        this.get_index_architecture_pay_in();
+        this.get_index_charity_pay_out();
     },
     methods: {
         get_index_fund_2() {
-            this.api.get(this.api.county.base + this.apiList.index_fund_2.apiUrl, {}).then(res => {
-                if (res.code == 200) {
-                    this.index_fund_2 = res.data
-                }
-            })
+            this.api
+                .get(
+                    this.api.county.base + this.apiList.index_fund_2.apiUrl,
+                    {}
+                )
+                .then(res => {
+                    if (res.code == 200) {
+                        this.index_fund_2 = res.data;
+                    }
+                });
         },
         get_index_architecture_pay_in_person_2() {
-            this.api.get(this.api.county.base + this.apiList.index_architecture_pay_in_person_2_2.apiUrl, {}).then(res => {
-                if (res.code == 200) {
-                    this.index_architecture_pay_in_person_2 = res.data
-                }
-            })
+            this.api
+                .get(
+                    this.api.county.base +
+                        this.apiList.index_architecture_pay_in_person_2_2
+                            .apiUrl,
+                    {}
+                )
+                .then(res => {
+                    if (res.code == 200) {
+                        this.index_architecture_pay_in_person_2 = res.data;
+                    }
+                });
         },
         get_index_architecture_pay_in() {
-            this.api.get(this.api.county.base + this.apiList.index_architecture_pay_in.apiUrl, {}).then(res => {
-                if (res.code == 200) {
-                    this.index_architecture_pay_in = res.data
-                }
-            })
+            this.api
+                .get(
+                    this.api.county.base +
+                        this.apiList.index_architecture_pay_in.apiUrl,
+                    {}
+                )
+                .then(res => {
+                    if (res.code == 200) {
+                        this.index_architecture_pay_in = res.data;
+                    }
+                });
         },
         get_index_charity_pay_out() {
-            this.api.get(this.api.county.base + this.apiList.index_charity_pay_out.apiUrl, {}).then(res => {
-                if (res.code == 200) {
-                    this.index_charity_pay_out = res.data
-                }
-            })
+            this.api
+                .get(
+                    this.api.county.base +
+                        this.apiList.index_charity_pay_out.apiUrl,
+                    {}
+                )
+                .then(res => {
+                    if (res.code == 200) {
+                        this.index_charity_pay_out = res.data;
+                    }
+                });
         },
         getMenu() {
-            this.menu = [{
-                id: 1,
-                name: '慈善公益',
-            }]
-            this.menucurr = this.menu[0]
-        },
-    },
-}
+            this.menu = [
+                {
+                    id: 1,
+                    name: "慈善公益"
+                }
+            ];
+            this.menucurr = this.menu[0];
+        }
+    }
+};
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .gongyi {
-  background: url(../img/gongyibg.png) no-repeat top right;
-  .h {
-    text-align: center;
-    padding: 32px 0;
-    .cn {
-      font-size: 24px;
-    }
-    .en {
-      font-weight: 300;
-    }
-  }
-  .cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .b {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    flex: 2;
-    .grid {
-      width: 48%;
-      min-height: 320px;
-      .hd {
-        display: block;
-        padding: 8px 0;
-        display: block;
-        padding-left: 24px;
-        line-height: 32px;
-        .tit {
-          display: inline-block;
-          padding: 0 32px;
-          background: $color;
-          color: #fff;
-          border-radius: 16px;
-        }
-        .more {
-          float: right;
-          font-size: 12px;
-          color: #999;
-        }
-      }
-
-      .bd {
-        overflow: hidden;
-        .item {
-          padding: 8px;
-          display: block;
-          overflow: hidden;
-          font-size: 14px;
-          white-space: nowrap;
-          line-height: 32px;
-          .date {
-            float: left;
-            color: #999;
-            width: 96px;
-            text-align: center;
-            margin-right: 16px;
-            border-right: 1px solid #ddd;
-            .day {
-              font-size: 20px;
-              line-height: 32px;
-            }
-            .year {
-              line-height: 16px;
-              font-size: 12px;
-              color: #999;
-            }
-          }
-          .info {
-            overflow: hidden;
-            .tit {
-              overflow: hidden;
-              color: #666;
-            }
-            .intro {
-              color: #999;
-              font-size: 12px;
-              line-height: 24px;
-              height: 24px;
-              width: 100%;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .right {
-    width: 48%;
-    background: #ece9e9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    padding: 16px;
-    height: 450px;
-    .hd {
-      line-height: 64px;
-
-      span {
-        font-size: 16px;
-
-        &.num {
-          font-size: 32px;
-          color: $color;
-          font-weight: 700;
-          margin-right: 8px;
-        }
-      }
-
-      .link {
-        float: right;
-        background: url(../img/icon-help.png) no-repeat center / cover;
-        height: 48px;
-        width: 48px;
-      }
-    }
-
-    .bd {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-
-      .item {
-        width: 30%;
-        background: #fff;
-        margin-bottom: 16px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        padding: 8px;
-        border-radius: 8px;
+    background: url(../img/gongyibg.png) no-repeat top right;
+    .h {
         text-align: center;
-
-        .img {
-          width: 64px;
-          height: 64px;
-          background: whitesmoke no-repeat center / cover;
-          border-radius: 100%;
-          clear: both;
-          margin: 0 auto;
+        padding: 32px 0;
+        .cn {
+            font-size: 24px;
         }
-
-        .name {
-          font-size: 16px;
+        .en {
+            font-weight: 300;
         }
-
-        .link {
-          overflow: hidden;
-          font-size: 12px;
-
-          .zan {
-            float: right;
-            width: 50%;
-
-            img {
-              height: 16px;
-              width: 16px;
-              margin-right: 4px;
+    }
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .b {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        flex: 2;
+        .grid {
+            width: 48%;
+            min-height: 320px;
+            .hd {
+                display: block;
+                padding: 8px 0;
+                display: block;
+                padding-left: 24px;
+                line-height: 32px;
+                .tit {
+                    display: inline-block;
+                    padding: 0 32px;
+                    background: $color;
+                    color: #fff;
+                    border-radius: 16px;
+                }
+                .more {
+                    float: right;
+                    font-size: 12px;
+                    color: #999;
+                }
             }
-          }
 
-          .flow {
-            float: left;
-            width: 50%;
+            .bd {
+                overflow: hidden;
+                .item {
+                    padding: 8px;
+                    display: block;
+                    overflow: hidden;
+                    font-size: 14px;
+                    white-space: nowrap;
+                    line-height: 32px;
+                    .date {
+                        float: left;
+                        color: #999;
+                        width: 96px;
+                        text-align: center;
+                        margin-right: 16px;
+                        border-right: 1px solid #ddd;
+                        .day {
+                            font-size: 20px;
+                            line-height: 32px;
+                        }
+                        .year {
+                            line-height: 16px;
+                            font-size: 12px;
+                            color: #999;
+                        }
+                    }
+                    .info {
+                        overflow: hidden;
+                        .tit {
+                            overflow: hidden;
+                            color: #666;
+                        }
+                        .intro {
+                            color: #999;
+                            font-size: 12px;
+                            line-height: 24px;
+                            height: 24px;
+                            width: 100%;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .right {
+        width: 48%;
+        background: #ece9e9;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        padding: 16px;
+        height: 450px;
+        .hd {
+            line-height: 64px;
 
             span {
-              padding: 4px 8px;
-              background: $color;
-              color: #fff;
+                font-size: 16px;
+
+                &.num {
+                    font-size: 32px;
+                    color: $color;
+                    font-weight: 700;
+                    margin-right: 8px;
+                }
             }
-          }
+
+            .link {
+                float: right;
+                background: url(../img/icon-help.png) no-repeat center / cover;
+                height: 48px;
+                width: 48px;
+            }
         }
-      }
+
+        .bd {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            .item {
+                width: 30%;
+                background: #fff;
+                margin-bottom: 16px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                padding: 8px;
+                border-radius: 8px;
+                text-align: center;
+
+                .img {
+                    width: 64px;
+                    height: 64px;
+                    background: whitesmoke no-repeat center / cover;
+                    border-radius: 100%;
+                    clear: both;
+                    margin: 0 auto;
+                }
+
+                .name {
+                    font-size: 16px;
+                }
+
+                .link {
+                    overflow: hidden;
+                    font-size: 12px;
+
+                    .zan {
+                        float: right;
+                        width: 50%;
+
+                        img {
+                            height: 16px;
+                            width: 16px;
+                            margin-right: 4px;
+                        }
+                    }
+
+                    .flow {
+                        float: left;
+                        width: 50%;
+
+                        span {
+                            padding: 4px 8px;
+                            background: $color;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
     }
-  }
 }
 </style>

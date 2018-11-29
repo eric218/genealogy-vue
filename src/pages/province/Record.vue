@@ -1,7 +1,7 @@
 <template>
     <div class="page">
-        <Topbar />
-        <NavBar :navcurr="5" />
+        <Topbar/>
+        <NavBar :navcurr="5"/>
         <div class="main">
             <div class="inner">
                 <div class="sia">
@@ -32,106 +32,101 @@
                         <div class="item curr">最新图片</div>
                         <div class="item">最新视频</div>
                     </div>
-                    <div class="b">
-                    </div>
+                    <div class="b"></div>
                 </div>
             </div>
         </div>
-        <FootBar />
+        <FootBar/>
     </div>
 </template>
 <script>
-import { Topbar, NavBar, Banner, FootBar } from './c'
+import { Topbar, NavBar, Banner, FootBar } from "./c";
 export default {
     name: "Home",
     components: {
         Topbar,
         NavBar,
         Banner,
-        FootBar,
+        FootBar
     },
     data() {
-        return {
-        }
+        return {};
     },
-    computed: {
-    },
-    mounted: function () {
-    },
-    methods: {
-    }
-}
+    computed: {},
+    mounted: function() {},
+    methods: {}
+};
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .sia {
-  padding: 16px 0;
-  .h {
-    height: 48px;
-    line-height: 48px;
-    padding-left: 32px;
-    background: url("./img/title-dot.png") no-repeat left center;
-    font-size: 20px;
-  }
-  .b {
-    overflow: hidden;
-    border-bottom: 1px solid #ddd;
-    .item {
-      float: left;
-      width: 120px;
-      line-height: 32px;
-      text-align: center;
-      cursor: pointer;
-      &.curr,
-      &:hover {
-        background: $colorp;
-        color: #fff;
-      }
+    padding: 16px 0;
+    .h {
+        height: 48px;
+        line-height: 48px;
+        padding-left: 32px;
+        background: url("./img/title-dot.png") no-repeat left center;
+        font-size: 20px;
     }
-  }
-  .f {
-    .item {
-      overflow: hidden;
-      padding: 8px 0;
-      white-space: nowrap;
-      .img {
-        width: 120px;
-        height: 90px;
-        float: left;
-        margin-right: 16px;
-        background: whitesmoke no-repeat center / cover;
-      }
-      .obj {
+    .b {
         overflow: hidden;
-        height: 90px;
-        .tit {
-          font-size: 16px;
+        border-bottom: 1px solid #ddd;
+        .item {
+            float: left;
+            width: 120px;
+            line-height: 32px;
+            text-align: center;
+            cursor: pointer;
+            &.curr,
+            &:hover {
+                background: $colorp;
+                color: #fff;
+            }
         }
-        .intro {
-          white-space: normal;
-          color: #999;
-        }
-      }
     }
-  }
+    .f {
+        .item {
+            overflow: hidden;
+            padding: 8px 0;
+            white-space: nowrap;
+            .img {
+                width: 120px;
+                height: 90px;
+                float: left;
+                margin-right: 16px;
+                background: whitesmoke no-repeat center / cover;
+            }
+            .obj {
+                overflow: hidden;
+                height: 90px;
+                .tit {
+                    font-size: 16px;
+                }
+                .intro {
+                    white-space: normal;
+                    color: #999;
+                }
+            }
+        }
+    }
 }
 .sib {
-  padding: 32px 0;
-  .h {
-    overflow: hidden;
-    border-bottom: 1px solid #ddd;
-    .item {
-      float: left;
-      width: 120px;
-      line-height: 32px;
-      text-align: center;
-      cursor: pointer;
-      &.curr,
-      &:hover {
-        background: $colorp;
-        color: #fff;
-      }
+    padding: 32px 0;
+    .h {
+        overflow: hidden;
+        border-bottom: 1px solid #ddd;
+        .item {
+            float: left;
+            width: 120px;
+            line-height: 32px;
+            text-align: center;
+            cursor: pointer;
+            &.curr,
+            &:hover {
+                background: $colorp;
+                color: #fff;
+            }
+        }
     }
-  }
 }
 </style>

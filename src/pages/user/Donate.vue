@@ -12,20 +12,16 @@
 </template>
 <script>
 export default {
-    components: {
-    },
+    components: {},
     data() {
         return {
             isedit: false,
             data: [],
             columns: []
-        }
+        };
     },
-    computed: {
-    },
-    mounted: function () {
-    },
-    methods: {
-    }
-}
+    computed: {},
+    mounted: function() {},
+    methods: {}
+};
 </script>

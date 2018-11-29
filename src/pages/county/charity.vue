@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <div class="adlinks">
-            <img src="./img/culture.jpg" />
+            <img src="./img/culture.jpg">
         </div>
         <div class="inner">
             <div class="h">
@@ -13,111 +13,126 @@
             </div>
             <div class="grid" style="minHeight:450px;">
                 <div v-if="menucurr && url">
-                    <CharityList :url="url" v-if="menucurr.menuType == 'charity_news'" />
-                    <CharityUser :url="url" v-else-if="menucurr.menuType == 'charity_person'" />
+                    <CharityList :url="url" v-if="menucurr.menuType == 'charity_news'"/>
+                    <CharityUser :url="url" v-else-if="menucurr.menuType == 'charity_person'"/>
                 </div>
             </div>
         </div>
         <Modal v-model="handleTopay" width="480px" :footer-hide="true" class="g-pay">
-            <topay />
+            <topay/>
         </Modal>
     </div>
 </template>
 <script>
-import CharityList from './list/charity-list';
-import CharityUser from './list/charity-user';
-import topay from '_c/common/topay.vue'
+import CharityList from "./list/charity-list";
+import CharityUser from "./list/charity-user";
+import topay from "_c/common/topay.vue";
 export default {
     name: "Charity",
     components: {
         CharityList,
         CharityUser,
-        topay,
+        topay
     },
     computed: {
         apiList() {
-            return this.$store.state.county.apiList
-        },
+            return this.$store.state.county.apiList;
+        }
     },
     data() {
         return {
             menu: [],
             menucurr: {},
-            url: '',
+            url: "",
             handleTopay: false,
             index_architecture_pay_in_person_3: {},
-            index_fund_3: {},
-        }
+            index_fund_3: {}
+        };
     },
-    mounted: function () {
-        this.getNav()
-        this.get_index_architecture_pay_in_person_3()
-        this.get_index_fund_3()
+    mounted: function() {
+        this.getNav();
+        this.get_index_architecture_pay_in_person_3();
+        this.get_index_fund_3();
     },
     methods: {
         get_index_architecture_pay_in_person_3() {
-            this.api.get(this.api.county.base + this.apiList.index_architecture_pay_in_person_3.apiUrl, {}).then(res => {
-                if (res.code == 200) {
-                    this.index_architecture_pay_in_person_3 = res.data
-                }
-            })
+            this.api
+                .get(
+                    this.api.county.base +
+                        this.apiList.index_architecture_pay_in_person_3.apiUrl,
+                    {}
+                )
+                .then(res => {
+                    if (res.code == 200) {
+                        this.index_architecture_pay_in_person_3 = res.data;
+                    }
+                });
         },
         get_index_fund_3() {
-            this.api.get(this.api.county.base + this.apiList.index_fund_3.apiUrl, {}).then(res => {
-                if (res.code == 200) {
-                    this.index_fund_3 = res.data
-                }
-            })
+            this.api
+                .get(
+                    this.api.county.base + this.apiList.index_fund_3.apiUrl,
+                    {}
+                )
+                .then(res => {
+                    if (res.code == 200) {
+                        this.index_fund_3 = res.data;
+                    }
+                });
         },
         getNav() {
-            this.api.get(this.api.county.base + this.api.county.common_site_menu, {
-                siteId: this.$store.state.siteId,
-                menuId: 3,
-            }).then(res => {
-                if (res.code == 200) {
-                    this.menu = res.data
-                    this.chgMenu(0)
-                }
-            })
+            this.api
+                .get(this.api.county.base + this.api.county.common_site_menu, {
+                    siteId: this.$store.state.siteId,
+                    menuId: 3
+                })
+                .then(res => {
+                    if (res.code == 200) {
+                        this.menu = res.data;
+                        this.chgMenu(0);
+                    }
+                });
         },
         chgMenu(e) {
-            this.url = ''
+            this.url = "";
             this.menucurr = this.menu[e];
             setTimeout(() => {
-                this.url = this.menucurr ? this.api.county.base + this.menucurr.apiUrl : '';
+                this.url = this.menucurr
+                    ? this.api.county.base + this.menucurr.apiUrl
+                    : "";
             }, 300);
-        },
-    },
-}
+        }
+    }
+};
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .h {
-  text-align: center;
-  padding: 32px 0;
-  .cn {
-    font-size: 24px;
-  }
-  .en {
-    font-weight: 300;
-  }
+    text-align: center;
+    padding: 32px 0;
+    .cn {
+        font-size: 24px;
+    }
+    .en {
+        font-weight: 300;
+    }
 }
 .menus {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 0 16px;
-  .menu {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     padding: 0 16px;
-    margin: 0 4px;
-    cursor: pointer;
-    line-height: 32px;
-    &.curr,
-    &:hover {
-      background: $color;
-      color: #fff;
-      border-radius: 16px;
+    .menu {
+        padding: 0 16px;
+        margin: 0 4px;
+        cursor: pointer;
+        line-height: 32px;
+        &.curr,
+        &:hover {
+            background: $color;
+            color: #fff;
+            border-radius: 16px;
+        }
     }
-  }
 }
 </style>

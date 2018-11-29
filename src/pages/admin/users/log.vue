@@ -1,17 +1,13 @@
 <template>
-    <div>
-        暂未开放
-    </div>
+    <div>暂未开放</div>
 </template>
 
 <script>
 export default {
-    components: {
-    },
+    components: {},
     data() {
-        return {}
+        return {};
     },
-    mounted() {
-    }
-}
+    mounted() {}
+};
 </script>

@@ -45,127 +45,139 @@ export default {
     data() {
         return {
             index_industry_person: {},
-            index_industry_public: {},
-        }
+            index_industry_public: {}
+        };
     },
     computed: {
         apiList() {
-            return this.$store.state.county.apiList
-        },
+            return this.$store.state.county.apiList;
+        }
     },
-    mounted: function () {
-        this.get_index_industry_public()
-        this.get_index_industry_person()
+    mounted: function() {
+        this.get_index_industry_public();
+        this.get_index_industry_person();
     },
     methods: {
         get_index_industry_public() {
-            this.api.get(this.api.county.base + this.apiList.index_industry_public.apiUrl, {
-                pageSize: 2,
-            }).then(res => {
-                if (res.code == 200) {
-                    this.index_industry_public = res.data
-                }
-            })
+            this.api
+                .get(
+                    this.api.county.base +
+                        this.apiList.index_industry_public.apiUrl,
+                    {
+                        pageSize: 2
+                    }
+                )
+                .then(res => {
+                    if (res.code == 200) {
+                        this.index_industry_public = res.data;
+                    }
+                });
         },
         get_index_industry_person() {
-            this.api.get(this.api.county.base + this.apiList.index_industry_person.apiUrl, {
-                pageSize: 2,
-            }).then(res => {
-                if (res.code == 200) {
-                    this.index_industry_person = res.data
-                }
-            })
-        },
-    },
-}
+            this.api
+                .get(
+                    this.api.county.base +
+                        this.apiList.index_industry_person.apiUrl,
+                    {
+                        pageSize: 2
+                    }
+                )
+                .then(res => {
+                    if (res.code == 200) {
+                        this.index_industry_person = res.data;
+                    }
+                });
+        }
+    }
+};
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .products {
-  overflow: hidden;
-  padding: 32px 0;
-  .h {
-    text-align: center;
+    overflow: hidden;
     padding: 32px 0;
-    .cn {
-      font-size: 24px;
-    }
-    .en {
-      font-weight: 300;
-    }
-  }
-
-  .b {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .grid {
-    width: 48%;
-  }
-
-  .hd {
-    font-size: 16px;
-    padding: 8px 0;
-    display: block;
-    line-height: 32px;
-    .tit {
-      display: inline-block;
-      padding: 0 32px;
-      background: $color;
-      color: #fff;
-      border-radius: 16px;
-    }
-    .more {
-      float: right;
-      font-weight: 300;
-      transition: all 0.3s;
-      &:hover {
-        transform: translate(-16px);
-      }
-    }
-  }
-
-  .bd {
-    .item {
-      display: block;
-      padding: 8px;
-
-      .img {
-        height: 240px;
-        position: relative;
-        background: whitesmoke no-repeat center / cover;
-
-        .tit {
-          position: absolute;
-          bottom: 0;
-          right: 0;
-          width: 100%;
-          padding: 0 16px;
-          font-size: 16px;
-          color: #fff;
-          line-height: 40px;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          background: rgba(0, 0, 0, 0.5);
+    .h {
+        text-align: center;
+        padding: 32px 0;
+        .cn {
+            font-size: 24px;
         }
-      }
-      .site {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        line-height: 32px;
-        color:#333;
-      }
-      .intro {
-        height: 48px;
-        line-height: 24px;
-        overflow: hidden;
-        color: #999;
-      }
+        .en {
+            font-weight: 300;
+        }
     }
-  }
+
+    .b {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .grid {
+        width: 48%;
+    }
+
+    .hd {
+        font-size: 16px;
+        padding: 8px 0;
+        display: block;
+        line-height: 32px;
+        .tit {
+            display: inline-block;
+            padding: 0 32px;
+            background: $color;
+            color: #fff;
+            border-radius: 16px;
+        }
+        .more {
+            float: right;
+            font-weight: 300;
+            transition: all 0.3s;
+            &:hover {
+                transform: translate(-16px);
+            }
+        }
+    }
+
+    .bd {
+        .item {
+            display: block;
+            padding: 8px;
+
+            .img {
+                height: 240px;
+                position: relative;
+                background: whitesmoke no-repeat center / cover;
+
+                .tit {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    width: 100%;
+                    padding: 0 16px;
+                    font-size: 16px;
+                    color: #fff;
+                    line-height: 40px;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    background: rgba(0, 0, 0, 0.5);
+                }
+            }
+            .site {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                line-height: 32px;
+                color: #333;
+            }
+            .intro {
+                height: 48px;
+                line-height: 24px;
+                overflow: hidden;
+                color: #999;
+            }
+        }
+    }
 }
 </style>

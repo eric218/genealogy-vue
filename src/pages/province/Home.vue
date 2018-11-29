@@ -1,8 +1,8 @@
 <template>
     <div class="page">
-        <TopHome />
-        <NavHome :navcurr="0" />
-        <Banner />
+        <TopHome/>
+        <NavHome :navcurr="0"/>
+        <Banner/>
         <div class="main">
             <div class="inner">
                 <div class="sia">
@@ -31,8 +31,8 @@
                             <span class="tit">捐款名人</span>
                         </div>
                         <div class="total">
-                            <div class="txt">
-                                公益基金总金额：<span>789012.00</span>元
+                            <div class="txt">公益基金总金额：
+                                <span>789012.00</span>元
                             </div>
                         </div>
                         <Row class="b" :gutter="16">
@@ -40,7 +40,9 @@
                                 <Card class="item">
                                     <div class="img"></div>
                                     <div class="name">张三</div>
-                                    <div class="count">捐款<span>1.00</span>元</div>
+                                    <div class="count">捐款
+                                        <span>1.00</span>元
+                                    </div>
                                     <div class="link">
                                         <span>关注</span>
                                         <span>点赞</span>
@@ -75,22 +77,20 @@
                                     <span>标题</span>
                                 </div>
                                 <div class="tag">
-                                    <iconfont name="newshot" />
+                                    <iconfont name="newshot"/>
                                     <span>2018-10-10</span>
-                                    <iconfont name="attention" />
+                                    <iconfont name="attention"/>
                                     <span>150</span>
                                 </div>
                                 <div class="txt">描述描述</div>
                             </Card>
-                            <Card class="item" v-for="v in 3" :key="v">
-                                省级公告标题
-                            </Card>
+                            <Card class="item" v-for="v in 3" :key="v">省级公告标题</Card>
                         </Card>
                     </div>
                 </div>
             </div>
             <div class="adlinks">
-                <img src="./img/adlinkb.png" alt="">
+                <img src="./img/adlinkb.png" alt>
             </div>
             <div class="inner">
                 <Row :gutter="32" class="sic">
@@ -179,321 +179,318 @@
                 </div>
             </div>
         </div>
-        <FootBar />
+        <FootBar/>
     </div>
 </template>
 <script>
-import { TopHome, NavHome, Banner } from './c'
+import { TopHome, NavHome, Banner } from "./c";
 export default {
     name: "Home",
     components: {
         TopHome,
         NavHome,
-        Banner,
+        Banner
     },
     data() {
-        return {
-        }
+        return {};
     },
-    computed: {
-    },
-    mounted: function () {
-    },
-    methods: {
-    }
-}
+    computed: {},
+    mounted: function() {},
+    methods: {}
+};
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .sia {
-  display: flex;
-  justify-content: space-between;
-  padding: 32px 0;
-  .r {
-    width: 48%;
-  }
-  .l {
-    width: 48%;
-    .item {
-      margin: 16px 0;
-      border-radius: 4px;
-      white-space: nowrap;
-      overflow: hidden;
-      .img {
-        height: 64px;
-        width: 64px;
-        background: whitesmoke;
-        float: left;
-        margin-right: 16px;
-      }
-      .date {
-        float: right;
-        background-color: $colorp;
-        color: #fff;
-        text-align: center;
-        height: 48px;
-        width: 48px;
-        margin: 8px 0 8px 16px;
-        padding: 8px 0;
-        line-height: 16px;
-        .year {
-          font-size: 16px;
-        }
-      }
-      .obj {
-        overflow: hidden;
-        .tit {
-          height: 24px;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          line-height: 24px;
-        }
-        .txt {
-          white-space: normal;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          line-height: 20px;
-          height: 40px;
-          color: #999;
-        }
-      }
+    display: flex;
+    justify-content: space-between;
+    padding: 32px 0;
+    .r {
+        width: 48%;
     }
-  }
-  .r {
-    .total {
-      text-align: center;
-      font-size: 16px;
-      padding-right: 64px;
-      background: url(./img/icon-help.png) no-repeat 90% center / auto 48px;
-      span {
-        color: $color;
-        font-size: 32px;
-        font-weight: 700;
-        margin-right: 8px;
-      }
-    }
-    .b {
-      .item {
-        text-align: center;
-        margin: 8px 0;
-        border-radius: 4px;
-        .img {
-          margin-left: auto;
-          margin-right: auto;
-          height: 64px;
-          width: 64px;
-          clear: both;
-          background: whitesmoke no-repeat center / cover;
-          border-radius: 50%;
-        }
-        .count {
-          span {
-            color: $color;
-          }
-        }
-        .link {
-          font-size: 12px;
-          display: flex;
-          justify-content: space-between;
-          span {
-            padding: 0 8px;
-            background: $color;
-            color: #fff;
+    .l {
+        width: 48%;
+        .item {
+            margin: 16px 0;
             border-radius: 4px;
-          }
+            white-space: nowrap;
+            overflow: hidden;
+            .img {
+                height: 64px;
+                width: 64px;
+                background: whitesmoke;
+                float: left;
+                margin-right: 16px;
+            }
+            .date {
+                float: right;
+                background-color: $colorp;
+                color: #fff;
+                text-align: center;
+                height: 48px;
+                width: 48px;
+                margin: 8px 0 8px 16px;
+                padding: 8px 0;
+                line-height: 16px;
+                .year {
+                    font-size: 16px;
+                }
+            }
+            .obj {
+                overflow: hidden;
+                .tit {
+                    height: 24px;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    line-height: 24px;
+                }
+                .txt {
+                    white-space: normal;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    line-height: 20px;
+                    height: 40px;
+                    color: #999;
+                }
+            }
         }
-      }
     }
-  }
-  .h {
-    height: 48px;
-    line-height: 48px;
-    padding-left: 32px;
-    background: url("./img/title-dot.png") no-repeat left center;
-    font-size: 20px;
-    .more {
-      float: right;
-      font-size: 12px;
+    .r {
+        .total {
+            text-align: center;
+            font-size: 16px;
+            padding-right: 64px;
+            background: url(./img/icon-help.png) no-repeat 90% center / auto
+                48px;
+            span {
+                color: $color;
+                font-size: 32px;
+                font-weight: 700;
+                margin-right: 8px;
+            }
+        }
+        .b {
+            .item {
+                text-align: center;
+                margin: 8px 0;
+                border-radius: 4px;
+                .img {
+                    margin-left: auto;
+                    margin-right: auto;
+                    height: 64px;
+                    width: 64px;
+                    clear: both;
+                    background: whitesmoke no-repeat center / cover;
+                    border-radius: 50%;
+                }
+                .count {
+                    span {
+                        color: $color;
+                    }
+                }
+                .link {
+                    font-size: 12px;
+                    display: flex;
+                    justify-content: space-between;
+                    span {
+                        padding: 0 8px;
+                        background: $color;
+                        color: #fff;
+                        border-radius: 4px;
+                    }
+                }
+            }
+        }
     }
-  }
+    .h {
+        height: 48px;
+        line-height: 48px;
+        padding-left: 32px;
+        background: url("./img/title-dot.png") no-repeat left center;
+        font-size: 20px;
+        .more {
+            float: right;
+            font-size: 12px;
+        }
+    }
 }
 
 .sib {
-  display: flex;
-  justify-content: space-between;
-  padding: 32px 0;
-  .l {
-    width: 570px;
+    display: flex;
+    justify-content: space-between;
+    padding: 32px 0;
+    .l {
+        width: 570px;
+        .b {
+            .img {
+                width: 540px;
+                height: 360px;
+                position: relative;
+                background: #fff no-repeat center;
+            }
+            .tit {
+                position: absolute;
+                z-index: 1;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                line-height: 40px;
+                height: 40px;
+                background: rgba(0, 0, 0, 0.6);
+                color: #fff;
+                padding: 0 16px;
+            }
+        }
+    }
+    .r {
+        width: 48%;
+        .headline {
+            .tit {
+                line-height: 40px;
+                font-size: 16px;
+                .flag {
+                    color: $colorp;
+                    font-size: 20px;
+                }
+            }
+            .tag {
+                font-size: 12px;
+                color: #999;
+                span {
+                    margin-right: 16px;
+                }
+            }
+            .txt {
+                height: 50px;
+                line-height: 25px;
+                overflow: hidden;
+                white-space: normal;
+                color: #999;
+                display: block;
+            }
+        }
+        .item {
+            margin-top: 8px;
+        }
+    }
+    .h {
+        height: 48px;
+        line-height: 48px;
+        padding-left: 32px;
+        background: url("./img/title-dot.png") no-repeat left center;
+        font-size: 20px;
+        .more {
+            float: right;
+            font-size: 14px;
+        }
+    }
     .b {
-      .img {
-        width: 540px;
-        height: 360px;
-        position: relative;
-        background: #fff no-repeat center;
-      }
-      .tit {
-        position: absolute;
-        z-index: 1;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        line-height: 40px;
-        height: 40px;
-        background: rgba(0, 0, 0, 0.6);
-        color: #fff;
-        padding: 0 16px;
-      }
+        background-color: whitesmoke;
     }
-  }
-  .r {
-    width: 48%;
-    .headline {
-      .tit {
-        line-height: 40px;
-        font-size: 16px;
-        .flag {
-          color: $colorp;
-          font-size: 20px;
-        }
-      }
-      .tag {
-        font-size: 12px;
-        color: #999;
-        span {
-          margin-right: 16px;
-        }
-      }
-      .txt {
-        height: 50px;
-        line-height: 25px;
-        overflow: hidden;
-        white-space: normal;
-        color: #999;
-        display: block;
-      }
-    }
-    .item {
-      margin-top: 8px;
-    }
-  }
-  .h {
-    height: 48px;
-    line-height: 48px;
-    padding-left: 32px;
-    background: url("./img/title-dot.png") no-repeat left center;
-    font-size: 20px;
-    .more {
-      float: right;
-      font-size: 14px;
-    }
-  }
-  .b {
-    background-color: whitesmoke;
-  }
 }
 
 .sic {
-  padding: 16px 0;
-  .h {
-    height: 48px;
-    line-height: 48px;
-    padding-left: 32px;
-    background: url("./img/title-dot.png") no-repeat left center;
-    font-size: 20px;
-    .more {
-      float: right;
-      font-size: 14px;
+    padding: 16px 0;
+    .h {
+        height: 48px;
+        line-height: 48px;
+        padding-left: 32px;
+        background: url("./img/title-dot.png") no-repeat left center;
+        font-size: 20px;
+        .more {
+            float: right;
+            font-size: 14px;
+        }
     }
-  }
-  .b {
-    overflow: hidden;
-    border-bottom: 1px solid #ddd;
-    .item {
-      float: left;
-      width: 120px;
-      line-height: 32px;
-      text-align: center;
-      cursor: pointer;
-      &.curr,
-      &:hover {
-        background: $colorp;
-        color: #fff;
-      }
-    }
-  }
-  .f {
-    .item {
-      padding: 8px 0;
-      white-space: nowrap;
-      overflow: hidden;
-      .img {
-        width: 90px;
-        height: 90px;
-        float: left;
-        margin-right: 16px;
-        background: whitesmoke no-repeat center / cover;
-      }
-      .obj {
+    .b {
         overflow: hidden;
-        height: 90px;
-        .tit {
-          line-height: 32px;
-          font-size: 16px;
-          color: $colorp;
+        border-bottom: 1px solid #ddd;
+        .item {
+            float: left;
+            width: 120px;
+            line-height: 32px;
+            text-align: center;
+            cursor: pointer;
+            &.curr,
+            &:hover {
+                background: $colorp;
+                color: #fff;
+            }
         }
-        .txt {
-          margin-top: 10px;
-          line-height: 16px;
-          color: #999;
-          white-space: normal;
-          height: 80px;
-          overflow: hidden;
-        }
-      }
     }
-  }
-  .ivu-col:nth-child(2) .f .img {
-    width: 120px;
-  }
+    .f {
+        .item {
+            padding: 8px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            .img {
+                width: 90px;
+                height: 90px;
+                float: left;
+                margin-right: 16px;
+                background: whitesmoke no-repeat center / cover;
+            }
+            .obj {
+                overflow: hidden;
+                height: 90px;
+                .tit {
+                    line-height: 32px;
+                    font-size: 16px;
+                    color: $colorp;
+                }
+                .txt {
+                    margin-top: 10px;
+                    line-height: 16px;
+                    color: #999;
+                    white-space: normal;
+                    height: 80px;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+    .ivu-col:nth-child(2) .f .img {
+        width: 120px;
+    }
 }
 .sid {
-  background: url(./img/mapbg.jpg) no-repeat center;
-  height: 480px;
-  .inner {
-    overflow: hidden;
-  }
+    background: url(./img/mapbg.jpg) no-repeat center;
+    height: 480px;
+    .inner {
+        overflow: hidden;
+    }
 }
 .sie {
-  background: whitesmoke url("./img/linkbot.png") no-repeat center 90% / auto
-    40px;
-  padding: 32px 0;
-  padding-bottom: 48px;
-  .h {
-    height: 48px;
-    line-height: 48px;
-    padding-left: 32px;
-    background: url("./img/title-dot.png") no-repeat left center;
-    font-size: 20px;
-    .more {
-      float: right;
-      font-size: 14px;
+    background: whitesmoke url("./img/linkbot.png") no-repeat center 90% / auto
+        40px;
+    padding: 32px 0;
+    padding-bottom: 48px;
+    .h {
+        height: 48px;
+        line-height: 48px;
+        padding-left: 32px;
+        background: url("./img/title-dot.png") no-repeat left center;
+        font-size: 20px;
+        .more {
+            float: right;
+            font-size: 14px;
+        }
     }
-  }
-  .b {
-    display: flex;
-    flex-wrap: wrap;
-    .item {
-      background: url("./img/linkbg.png") no-repeat center / contain;
-      height: 60px;
-      line-height: 60px;
-      color: #fff;
-      width: 100px;
-      margin: 0 0 16px 16px;
-      text-align: center;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+    .b {
+        display: flex;
+        flex-wrap: wrap;
+        .item {
+            background: url("./img/linkbg.png") no-repeat center / contain;
+            height: 60px;
+            line-height: 60px;
+            color: #fff;
+            width: 100px;
+            margin: 0 0 16px 16px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     }
-  }
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
     <div>
-        <UserList :url="url" v-if="url.length" />
+        <UserList :url="url" v-if="url.length"/>
     </div>
 </template>
 
 <script>
-import UserList from './c/list'
+import UserList from "./c/list";
 export default {
     components: {
         UserList
@@ -14,13 +14,12 @@ export default {
         return {
             menu: [],
             menucurr: {},
-            url: '',
-        }
+            url: ""
+        };
     },
     mounted() {
-        this.url = this.api.admin.base + this.api.admin.users_list
+        this.url = this.api.admin.base + this.api.admin.users_list;
     },
-    methods: {
-    }
-}
+    methods: {}
+};
 </script>

@@ -11,32 +11,30 @@
             <div class="btn login" @click="islogin = true">登录</div>
             <div class="btn reg" @click="isreg = true">注册</div>
         </div>
-        <Modal v-model="islogin" width="480px" class="g-auth" :footer-hide='true'>
-            <loginform @urlToReg="urlToReg" />
+        <Modal v-model="islogin" width="480px" class="g-auth" :footer-hide="true">
+            <loginform @urlToReg="urlToReg"/>
         </Modal>
-        <Modal v-model="isreg" width="480px" class="g-auth" :footer-hide='true'>
-            <regform @urlToLogin="urlToLogin" />
+        <Modal v-model="isreg" width="480px" class="g-auth" :footer-hide="true">
+            <regform @urlToLogin="urlToLogin"/>
         </Modal>
     </div>
 </template>
 <script>
-import loginform from '_c/common/login.vue'
-import regform from '_c/common/reg.vue'
+import loginform from "_c/common/login.vue";
+import regform from "_c/common/reg.vue";
 export default {
     name: "Topbar",
     components: {
         loginform,
-        regform,
+        regform
     },
     data() {
         return {
             isreg: false,
-            islogin: false,
-        }
+            islogin: false
+        };
     },
-    mounted: function () {
-        
-    },
+    mounted: function() {},
     methods: {
         urlToReg() {
             this.islogin = false;
@@ -49,12 +47,12 @@ export default {
             setTimeout(() => {
                 this.islogin = true;
             }, 300);
-        },
+        }
     }
-}
+};
 </script>
 <style lang="scss" scoped>
-@import '@/assets/css/var.scss';
+@import "@/assets/css/var.scss";
 .topbar {
     background: #fafafa;
     height: 120px;
@@ -166,6 +164,5 @@ export default {
             }
         }
     }
-
 }
 </style>

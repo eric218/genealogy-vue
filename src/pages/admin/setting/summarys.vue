@@ -1,22 +1,22 @@
 <template>
     <div>
-        <Summarys :url="url" v-if="url.length" />
+        <Summarys :url="url" v-if="url.length"/>
     </div>
 </template>
 
 <script>
-import Summarys from './c/summarys-list'
+import Summarys from "./c/summarys-list";
 export default {
     components: {
-        Summarys,
+        Summarys
     },
     data() {
         return {
-            url: ''
-        }
+            url: ""
+        };
     },
     mounted() {
-        this.url = this.api.admin.admin_summarys_list
-    },
-}
+        this.url = this.api.admin.admin_summarys_list;
+    }
+};
 </script>

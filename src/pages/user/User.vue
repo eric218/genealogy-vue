@@ -22,11 +22,11 @@
                                 <div class="intro">描述</div>
                                 <div class="tag">
                                     <div class="mark">
-                                        <iconfont name="markfill" />
+                                        <iconfont name="markfill"/>
                                         <span>15</span>
                                     </div>
                                     <div class="appreciate">
-                                        <iconfont name="appreciatefill" />
+                                        <iconfont name="appreciatefill"/>
                                         <span>15</span>
                                     </div>
                                     <div class="date">2018-10-10 16:12</div>
@@ -48,7 +48,7 @@
                         <div class="img"></div>
                         <div class="obj">
                             <div class="total">
-                                <iconfont name="recordfill" />
+                                <iconfont name="recordfill"/>
                                 <span>150</span>
                             </div>
                             <div class="tit">张氏祖堂</div>
@@ -77,17 +77,12 @@
 </template>
 <script>
 export default {
-    components: {
-    },
+    components: {},
     data() {
-        return {
-        }
+        return {};
     },
-    computed: {
-    },
-    mounted: function () {
-    },
-    methods: {
-    }
-}
+    computed: {},
+    mounted: function() {},
+    methods: {}
+};
 </script>

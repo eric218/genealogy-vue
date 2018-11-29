@@ -13,49 +13,48 @@
     </div>
 </template>
 <script>
-export default {
-}
+export default {};
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .friends {
-  padding: 32px 0;
-  .inner {
-    overflow: hidden;
-  }
-
-  .h {
-    text-align: center;
     padding: 32px 0;
-    .cn {
-      font-size: 24px;
+    .inner {
+        overflow: hidden;
     }
-    .en {
-      font-weight: 300;
-    }
-  }
 
-  .b {
-    padding: 32px 0;
-    overflow: hidden;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 -16px;
-    .item {
-      line-height: 32px;
-      font-size: 12px;
-      padding: 0 16px;
-      border-radius: 4px;
-      text-align: center;
-      background: #333;
-      color: #fff;
-      margin: 8px 16px;
-
-      &:hover {
-        background: $color;
-        color: #fff;
-      }
+    .h {
+        text-align: center;
+        padding: 32px 0;
+        .cn {
+            font-size: 24px;
+        }
+        .en {
+            font-weight: 300;
+        }
     }
-  }
+
+    .b {
+        padding: 32px 0;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -16px;
+        .item {
+            line-height: 32px;
+            font-size: 12px;
+            padding: 0 16px;
+            border-radius: 4px;
+            text-align: center;
+            background: #333;
+            color: #fff;
+            margin: 8px 16px;
+
+            &:hover {
+                background: $color;
+                color: #fff;
+            }
+        }
+    }
 }
 </style>

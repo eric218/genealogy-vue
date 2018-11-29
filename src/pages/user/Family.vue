@@ -1,21 +1,16 @@
 <template>
-    <div class="main">
-    </div>
+    <div class="main"></div>
 </template>
 <script>
 export default {
-    components: {
-    },
+    components: {},
     data() {
         return {
-            isedit: false,
-        }
+            isedit: false
+        };
     },
-    computed: {
-    },
-    mounted: function () {
-    },
-    methods: {
-    }
-}
+    computed: {},
+    mounted: function() {},
+    methods: {}
+};
 </script>

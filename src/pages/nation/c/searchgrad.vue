@@ -13,7 +13,7 @@
             <div class="b">
                 <div class="link">搜索</div>
                 <div class="obj">
-                    <input type="text" @keyup.enter="toSubmit" />
+                    <input type="text" @keyup.enter="toSubmit">
                 </div>
             </div>
         </div>
@@ -22,62 +22,62 @@
 <script>
 export default {
     props: {
-        'navcurr': {
+        navcurr: {
             default: 1
         }
     }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 
 .search {
-  background: #72130b;
-  .grid {
-    height: 160px;
-    padding: 32px 0;
-    width: 720px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .h {
-    overflow: hidden;
-    .item {
-      color: #fff;
-      float: left;
-      cursor: pointer;
-      padding: 4px 8px;
-      margin-right: 8px;
-      border-radius: 4px;
-      &.curr,
-      &:hover {
-        background: $color;
-      }
+    background: #72130b;
+    .grid {
+        height: 160px;
+        padding: 32px 0;
+        width: 720px;
+        margin-left: auto;
+        margin-right: auto;
     }
-  }
-  .b {
-    margin-top: 16px;
-    white-space: nowrap;
-    .link {
-      float: right;
-      height: 40px;
-      line-height: 40px;
-      width: 120px;
-      text-align: center;
-      background: #000;
-      color: #fff;
+    .h {
+        overflow: hidden;
+        .item {
+            color: #fff;
+            float: left;
+            cursor: pointer;
+            padding: 4px 8px;
+            margin-right: 8px;
+            border-radius: 4px;
+            &.curr,
+            &:hover {
+                background: $color;
+            }
+        }
     }
-    .obj {
-      overflow: hidden;
-      input {
-        height: 40px;
-        line-height: 40px;
-        border: none;
-        border-radius: 16px 0 0 16px;
-        width: 100%;
-      }
+    .b {
+        margin-top: 16px;
+        white-space: nowrap;
+        .link {
+            float: right;
+            height: 40px;
+            line-height: 40px;
+            width: 120px;
+            text-align: center;
+            background: #000;
+            color: #fff;
+        }
+        .obj {
+            overflow: hidden;
+            input {
+                height: 40px;
+                line-height: 40px;
+                border: none;
+                border-radius: 16px 0 0 16px;
+                width: 100%;
+            }
+        }
     }
-  }
 }
 </style>

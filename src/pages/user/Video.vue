@@ -4,7 +4,7 @@
             <div class="inner grid">
                 <div class="h">
                     <div class="more link">
-                        <iconfont name="upload" />
+                        <iconfont name="upload"/>
                         <span>上传</span>
                     </div>
                     <div class="tit">视频</div>
@@ -14,7 +14,7 @@
                         <div class="img"></div>
                         <div class="obj">
                             <div class="total">
-                                <iconfont name="recordfill" />
+                                <iconfont name="recordfill"/>
                                 <span>150</span>
                             </div>
                             <div class="tit">张氏祖堂</div>
@@ -27,18 +27,14 @@
 </template>
 <script>
 export default {
-    components: {
-    },
+    components: {},
     data() {
         return {
-            isedit: false,
-        }
+            isedit: false
+        };
     },
-    computed: {
-    },
-    mounted: function () {
-    },
-    methods: {
-    }
-}
+    computed: {},
+    mounted: function() {},
+    methods: {}
+};
 </script>

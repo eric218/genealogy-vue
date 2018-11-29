@@ -29,70 +29,70 @@ export default {
     data() {
         return {
             form: {
-                mobile: '',
-                password: '',
-            },
-        }
+                mobile: "",
+                password: ""
+            }
+        };
     },
-    mounted: function () {
-
-    },
+    mounted: function() {},
     methods: {
         toSubmit() {
             if (!this.api.isMobile(this.form.mobile)) {
-                this.$Message.error('请输入正确的手机号');
+                this.$Message.error("请输入正确的手机号");
                 return;
             }
             if (!this.form.password) {
-                this.$Message.error('请输入密码');
+                this.$Message.error("请输入密码");
                 return;
             }
-            this.api.post(this.api.user.base + this.api.user.login, {
-                userName: this.form.mobile,
-                password: this.form.password,
-            }).then(res => {
-                if (res.code === 200) {
-                    this.$store.commit('updateUser', res.data);
-                    this.$emit('closedialog',true);
-                } else {
-                    this.$Message.error(res.msg);
-                }
-            })
-        },
+            this.api
+                .post(this.api.user.base + this.api.user.login, {
+                    userName: this.form.mobile,
+                    password: this.form.password
+                })
+                .then(res => {
+                    if (res.code === 200) {
+                        this.$store.commit("updateUser", res.data);
+                        this.$emit("closedialog", true);
+                    } else {
+                        this.$Message.error(res.msg);
+                    }
+                });
+        }
     }
-}
+};
 </script>
 
 <style lang="scss">
 @import "@/assets/css/var.scss";
 .g-auth {
-  .ivu-modal-content {
-    background: #fff url(../../assets/img/authgrid.png) no-repeat top center /
-      100% auto;
-  }
-
-  .ivu-modal-body {
-    padding-top: 128px;
-  }
-
-  .h {
-    font-size: 12px;
-    line-height: 32px;
-    text-align: center;
-    margin-bottom: 32px;
-  }
-
-  .f {
-    overflow: hidden;
-    font-size: 12px;
-
-    .r {
-      float: right;
+    .ivu-modal-content {
+        background: #fff url(../../assets/img/authgrid.png) no-repeat top center /
+            100% auto;
     }
 
-    a {
-      color: $color;
+    .ivu-modal-body {
+        padding-top: 128px;
     }
-  }
+
+    .h {
+        font-size: 12px;
+        line-height: 32px;
+        text-align: center;
+        margin-bottom: 32px;
+    }
+
+    .f {
+        overflow: hidden;
+        font-size: 12px;
+
+        .r {
+            float: right;
+        }
+
+        a {
+            color: $color;
+        }
+    }
 }
 </style>

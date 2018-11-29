@@ -21,69 +21,69 @@
 
 <script>
 export default {
-    name: 'User',
+    name: "User",
     props: {
         userAvator: {
             type: String,
-            default: ''
+            default: ""
         }
     },
     computed: {
         user() {
-            return this.$store.state.user
-        },
+            return this.$store.state.user;
+        }
     },
     methods: {
         handleClick(e) {
             switch (e) {
-                case 'isMsgBox':
+                case "isMsgBox":
                     this.isMsgBox = true;
                     break;
-                case 'logout':
+                case "logout":
                     this.$Modal.confirm({
-                        title: '提示',
-                        content: '确定退出账号？',
+                        title: "提示",
+                        content: "确定退出账号？",
                         onOk: () => {
-                            this.$store.commit('updateUser', [])
-                            this.$router.replace('/')
-                        },
+                            this.$store.commit("updateUser", []);
+                            this.$router.replace("/");
+                        }
                     });
                     break;
-                case 'resetPsw':
+                case "resetPsw":
                     this.isreset = true;
                     break;
                 default:
-                    this.$router.push(e)
+                    this.$router.push(e);
                     break;
             }
-        },
+        }
     }
-}
+};
 </script>
 <style lang="scss" scoped>
 .user {
-  cursor: pointer;
-  white-space: nowrap;
-  float: right;
-  span {
-    display: inline-block;
-    padding: 0 4px;
-    color: #ccc;
-    &.btn {
-      color: #333;
+    cursor: pointer;
+    white-space: nowrap;
+    float: right;
+    span {
+        display: inline-block;
+        padding: 0 4px;
+        color: #ccc;
+        &.btn {
+            color: #333;
+        }
     }
-  }
-  .img {
-    float: left;
-    margin-right: 8px;
-    height:24px;
-    width: 24px;
-    background: no-repeat center / cover;
-    margin-top: 20px;
-    border-radius: 100%;
-  }
-  .obj {
-    overflow: hidden;
-  }
+    .img {
+        float: left;
+        margin-right: 8px;
+        height: 24px;
+        width: 24px;
+        background: no-repeat center / cover;
+        margin-top: 20px;
+        border-radius: 100%;
+    }
+    .obj {
+        overflow: hidden;
+    }
 }
 </style>

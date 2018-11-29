@@ -5,11 +5,9 @@
 <script>
 export default {
     data() {
-        return {}
+        return {};
     },
-    mounted() {
-    },
-    methods: {
-    }
-}
+    mounted() {},
+    methods: {}
+};
 </script>

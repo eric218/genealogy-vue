@@ -1,7 +1,7 @@
 <template>
     <div class="page">
-        <Topbar />
-        <NavBar :navcurr="4" />
+        <Topbar/>
+        <NavBar :navcurr="4"/>
         <div class="main">
             <div class="adlinks">
                 <img src="./img/culturebg.png">
@@ -15,44 +15,40 @@
                 </div>
             </div>
         </div>
-        <FootBar />
+        <FootBar/>
     </div>
 </template>
 <script>
-import { Topbar, NavBar, Banner, FootBar } from './c'
+import { Topbar, NavBar, Banner, FootBar } from "./c";
 export default {
     name: "Home",
     components: {
         Topbar,
         NavBar,
         Banner,
-        FootBar,
+        FootBar
     },
     data() {
-        return {
-        }
+        return {};
     },
-    computed: {
-    },
-    mounted: function () {
-    },
-    methods: {
-    }
-}
+    computed: {},
+    mounted: function() {},
+    methods: {}
+};
 </script>
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .sia {
-  padding: 16px 0;
-  .h {
-    height: 48px;
-    line-height: 48px;
-    padding-left: 32px;
-    background: url("./img/title-dot.png") no-repeat left center;
-    font-size: 20px;
-  }
-  .b {
-    height: 450px;
-  }
+    padding: 16px 0;
+    .h {
+        height: 48px;
+        line-height: 48px;
+        padding-left: 32px;
+        background: url("./img/title-dot.png") no-repeat left center;
+        font-size: 20px;
+    }
+    .b {
+        height: 450px;
+    }
 }
 </style>

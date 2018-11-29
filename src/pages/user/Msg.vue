@@ -4,7 +4,7 @@
             <div class="inner grid">
                 <div class="h">
                     <div class="more link">
-                        <iconfont name="edit" />
+                        <iconfont name="edit"/>
                         <span>发布</span>
                     </div>
                     <div class="tit">说说</div>
@@ -24,56 +24,51 @@
 </template>
 <script>
 export default {
-    components: {
-    },
+    components: {},
     data() {
-        return {
-        }
+        return {};
     },
-    computed: {
-    },
-    mounted: function () {
-    },
-    methods: {
-    }
-}
+    computed: {},
+    mounted: function() {},
+    methods: {}
+};
 </script>
 <style lang="scss" scoped>
 .suc {
-  .grid {
-    background: transparent;
-    display: block;
-    overflow: hidden;
-    .h {
-      background: #fff;
+    .grid {
+        background: transparent;
+        display: block;
+        overflow: hidden;
+        .h {
+            background: #fff;
+        }
     }
-  }
 }
 .bd {
-  background: whitesmoke;
-  .item {
-    display: block;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: 0 1px 4px rgba(#000, 0.1);
-    border-radius: 8px;
-    margin: 16px 0;
-    padding: 16px;
-    white-space: nowrap;
-    .img {
-      height: 64px;
-      width: 64px;
-      float: left;
-      margin-right: 16px;
-      background: whitesmoke no-repeat center;
-      border-radius: 50%;
+    background: whitesmoke;
+    .item {
+        display: block;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 1px 4px rgba(#000, 0.1);
+        border-radius: 8px;
+        margin: 16px 0;
+        padding: 16px;
+        white-space: nowrap;
+        .img {
+            height: 64px;
+            width: 64px;
+            float: left;
+            margin-right: 16px;
+            background: whitesmoke no-repeat center;
+            border-radius: 50%;
+        }
+        .obj {
+            overflow: hidden;
+            .date {
+                color: #999;
+            }
+        }
     }
-    .obj {
-      overflow: hidden;
-      .date {
-        color: #999;
-      }
-    }
-  }
 }
 </style>
