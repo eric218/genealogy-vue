@@ -7,7 +7,7 @@
                         <Input v-model="formData.siteName" placeholder="标题" :maxlength="6" @keyup.enter.native="toSubmit" />
                     </i-col>
                     <i-col :span="6">
-                        {{formData.siteName.length}} / 6
+                        {{formData.siteName ? formData.siteName.length : 0}} / 6
                     </i-col>
                 </Row>
             </FormItem>
@@ -24,7 +24,7 @@
             </FormItem>
             <FormItem label="祖先描述">
                 <Input type="textarea" :rows="6" v-model="formData.description" placeholder="祖先描述" style="font-size:12px;" :maxlength="300" @keyup.enter.native="toSubmit" />
-                {{formData.description.length}} / 300
+                {{formData.description?formData.description.length:0}} / 300
             </FormItem>
             <FormItem label="">
                 <Button type="primary" @click="toSubmit" style="margin-right:16px;">提交</Button>
@@ -66,7 +66,7 @@ export default {
             }
         },
         toSubmit() {
-            if (!this.formData.id) {
+            if (!this.formData.siteId) {
                 return;
             }
             this.api.post(this.api.admin.base + this.api.admin.admin_site_edit, {

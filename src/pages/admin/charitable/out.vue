@@ -27,7 +27,7 @@ export default {
                 menuId: 3
             }).then(res => {
                 this.menu = res.data
-                this.chgMenu(1)
+                this.chgMenu(0)
             })
         },
         chgMenu(e) {

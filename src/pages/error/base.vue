@@ -74,6 +74,9 @@ export default {
       })
     },
     formatArea(e) {
+      if (!e) {
+        return
+      }
       let a = parseInt(Number(e) * 0.0001) * 10000
       let b = parseInt(Number(e) * 0.01) * 100
       let c = Number(e)

@@ -27,7 +27,7 @@
                 </div>
             </i-col>
         </Row>
-        <Modal title="查看图片" v-model="visible">
+        <Modal title="查看图片" v-model="visible" :footer-hide="true">
             <img :src="api.imgurl(curr.picUrl)" v-if="visible" style="width: 100%">
         </Modal>
     </div>

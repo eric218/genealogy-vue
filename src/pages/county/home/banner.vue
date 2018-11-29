@@ -1,11 +1,6 @@
 <template>
     <div class="slider">
         <Carousel loop autoplay>
-            <CarouselItem>
-                <div class="img" :style="'background-image:url('+defaultimg+')'">
-                    <div class="tips">{{index_summary.title}}</div>
-                </div>
-            </CarouselItem>
             <CarouselItem v-for="v in fan_index_slide_pic" :key="v.id">
                 <div class="img" :style="api.imgBG(v.picUrl)"></div>
             </CarouselItem>
@@ -13,12 +8,10 @@
     </div>
 </template>
 <script>
-import defaultimg from '../img/banner.jpg'
 export default {
     name: "slider",
     data() {
         return {
-            defaultimg: defaultimg,
             fan_index_slide_pic: [],
             index_summary: {},
             slider: {},

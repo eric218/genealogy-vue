@@ -207,6 +207,9 @@ export default {
           title: '地区',
           key: 'regionCode',
           render: (h, e) => {
+            if (!e.row.regionCode) {
+              return null
+            }
             let a = parseInt(Number(e.row.regionCode) * 0.0001) * 10000
             let b = parseInt(Number(e.row.regionCode) * 0.01) * 100
             let c = Number(e.row.regionCode)

@@ -296,7 +296,7 @@ export default {
         this.$Message.error('未输入支出金额');
         return;
       }
-      if (!this.api.isNumber(this.form.amount * 100)) {
+      if (!this.api.isNumber(this.formData.amount * 100)) {
         this.$Message.error('请输入正确的金额');
         return;
       }
@@ -343,7 +343,7 @@ export default {
         this.$Message.error('未输入支出金额');
         return;
       }
-      if (!this.api.isNumber(this.form.amount * 100)) {
+      if (!this.api.isNumber(this.formData.amount * 100)) {
         this.$Message.error('请输入正确的金额');
         return;
       }
