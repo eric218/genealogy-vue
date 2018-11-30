@@ -285,6 +285,7 @@ export default [{
         component: Manager,
         meta: {
             icon: 'md-people',
+            role: 9,
             title: '用户管理',
             hide: false
         },
@@ -294,6 +295,7 @@ export default [{
             name: 'users-list',
             meta: {
                 icon: 'ios-people-outline',
+                role: 9,
                 title: '全部用户',
             },
             component: () => import('@/pages/admin/users/alluser')
