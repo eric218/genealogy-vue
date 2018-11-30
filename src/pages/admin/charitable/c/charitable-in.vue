@@ -214,7 +214,6 @@ export default {
                 showId: this.type,
                 newsTitle: this.formData.newsTitle,
                 newsText: this.formData.newsText,
-                charity_listLocation: this.formData.charity_listLocation,
                 visitNum: this.formData.visitNum ? this.formData.visitNum : 0,
                 fileName: this.fileName,
                 filePath: this.filePath
@@ -252,7 +251,6 @@ export default {
                 showId: this.type,
                 newsTitle: this.formData.newsTitle,
                 newsText: this.formData.newsText,
-                charity_listLocation: this.formData.charity_listLocation,
                 visitNum: this.formData.visitNum ? this.formData.visitNum : 0,
                 fileName: this.fileName,
                 filePath: this.filePath

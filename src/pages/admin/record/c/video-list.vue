@@ -40,7 +40,7 @@
                     </Upload>
                 </FormItem>
                 <FormItem label="视频文件">
-                    <Upload :action="api.admin.base + api.admin.upload_img" name="file" :show-upload-list="false" :on-success="uploadVideo">
+                    <Upload :action="api.admin.base + api.admin.upload_img" name="file" :show-upload-list="true" :on-success="uploadVideo" :default-file-list="defaultList">
                         <Button type="dashed">{{formData.fanUploadVedioList.length || vedioPath ? '替换':'上传'}}</Button>
                     </Upload>
                 </FormItem>
@@ -73,6 +73,7 @@ export default {
             picPath: "",
             vedioFileName: "",
             vedioPath: "",
+            defaultList: [],
             visible: false
         };
     },
@@ -114,6 +115,7 @@ export default {
                 };
                 this.isedit = true;
             } else {
+                this.defaultList = [];
                 this.api
                     .get(this.api.admin.base + this.api.admin.media_info, {
                         id: e
@@ -121,6 +123,13 @@ export default {
                     .then(res => {
                         this.formData = res.data;
                         this.isedit = true;
+                        let def = res.data.fanUploadVedioList.map(v => {
+                            return {
+                                name: v.fileName,
+                                url: v.filePath
+                            };
+                        });
+                        this.defaultList = def;
                     });
             }
         },
@@ -273,11 +282,11 @@ export default {
 .upload {
     button {
         width: 162px;
-        height: 122px;
+        height: 92px;
         padding: 0;
         .img {
             width: 160px;
-            height: 120px;
+            height: 90px;
             padding: 0;
             background: no-repeat center / cover;
         }
