@@ -59,7 +59,7 @@
                                 <img src="http://iph.href.lu/100x100">
                             </div>
                             <div class="obj">
-                                <div class="name">{{v.allUserLogin ? v.allUserLogin.userName:''}}</div>
+                                <div class="name">{{v.allUserLogin ? v.allUserLogin.nickName:''}}</div>
                                 <div class="txt">
                                     <small>捐款</small>
                                     <span>{{v.fanNewsCharityPayIn?v.fanNewsCharityPayIn.payAmount:0}}元</span>
