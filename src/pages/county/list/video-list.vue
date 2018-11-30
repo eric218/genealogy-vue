@@ -11,16 +11,9 @@
                     </div>
                     <div class="obj">
                         <div class="tit">{{v.title}}</div>
-                        <div class="user">
-                            <div class="head"></div>
-                            <div class="name">{{v.auth}}</div>
-                        </div>
                         <div class="tag">
-                            <div class="date"></div>
-                            <div class="total">
-                                <iconfont name="recordfill"/>
-                                <span>0</span>
-                            </div>
+                            <span class="date">{{dayjs(v.updateTime).format("YYYY-MM-DD")}}</span>
+                            <span>0 次播放</span>
                         </div>
                     </div>
                 </div>
@@ -131,30 +124,18 @@ export default {
 
         .obj {
             .tit {
-                font-size: 16px;
-                height: 40px;
-                line-height: 40px;
-            }
-
-            .user {
-                overflow: hidden;
-                white-space: nowrap;
-                line-height: 32px;
+                font-size: 14px;
                 height: 32px;
-                .head {
-                    height: 32px;
-                    width: 32px;
-                    float: left;
-                    margin-right: 8px;
-                    background: whitesmoke;
-                    border-radius: 50%;
-                }
+                line-height: 32px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             .tag {
                 white-space: nowrap;
+                font-size: 12px;
                 color: #999;
-
                 .date {
                     float: right;
                 }

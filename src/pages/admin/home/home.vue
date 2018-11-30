@@ -26,24 +26,8 @@
                         </Row>
                     </div>
                 </Card>
-                <Card class="feeds" style="margin:16px 0;" v-if="message.total">
-                    <p slot="title">
-                        寻根留言
-                        <span>{{message.total}}</span>条
-                    </p>
-                    <router-link to="/a/setting/feeds" slot="extra">全部</router-link>
-                    <div class="b">
-                        <div class="item" v-for="v in message.records" :key="v.id">
-                            <div class="obj">
-                                <div class="name">
-                                    {{v.name}}
-                                    <small>{{v.phone}}</small>
-                                </div>
-                                <div class="txt">{{v.content}}</div>
-                                <div class="date">{{dayjs(v.createTime).format('YYYY-MM-DD HH:mm:ss')}}</div>
-                            </div>
-                        </div>
-                    </div>
+                <Card style="margin:16px 0;">
+                    <chart-total style="height:208px;" :value="puTotal" text="上谱统计"></chart-total>
                 </Card>
             </i-col>
             <i-col :sm="24" :md="12" :lg="8">
@@ -56,14 +40,30 @@
                     <chart-pie style="height: 320px;" :value="pieData" text="基金统计"></chart-pie>
                 </Card>
                 <Card style="margin:16px 0;">
-                    <chart-total style="height:208px;" :value="puTotal" text="上谱统计"></chart-total>
-                </Card>
-                <Card style="margin:16px 0;">
                     <chart-bar style="height: 300px;" :value="imTotal" text="实时聊天数"></chart-bar>
                 </Card>
             </i-col>
             <i-col :sm="24" :md="12" :lg="8">
-                <Card class="list palist" v-if="palist.total">
+                <Card class="feeds" v-if="message.total">
+                    <p slot="title">
+                        寻根留言
+                        <span>{{message.total}}</span>条
+                    </p>
+                    <router-link to="/a/setting/feeds" slot="extra">全部</router-link>
+                    <div class="b">
+                        <div class="item" v-for="v in message.records" :key="v.id">
+                            <div class="obj">
+                                <div class="name">
+                                    <span class="phone">{{v.phone}}</span>
+                                    {{v.name}}
+                                </div>
+                                <div class="txt">{{v.content}}</div>
+                                <div class="date">{{dayjs(v.createTime).format('YYYY-MM-DD HH:mm:ss')}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </Card>
+                <Card class="list palist" style="margin:16px 0;" v-if="palist.total">
                     <p slot="title">
                         捐款人次
                         <span>0</span>人
@@ -248,19 +248,6 @@ export default {
         position: relative;
         overflow: hidden;
         white-space: nowrap;
-        .img {
-            float: left;
-            margin-right: 16px;
-            text-align: center;
-            font-size: 12px;
-            .name {
-                height: 32px;
-                line-height: 32px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                color: #999;
-            }
-        }
         .flag {
             position: absolute;
             right: 16px;
@@ -270,6 +257,16 @@ export default {
         .obj {
             overflow: hidden;
             font-size: 12px;
+            .name {
+                height: 32px;
+                line-height: 32px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                color: #999;
+                .phone {
+                    float: right;
+                }
+            }
             .txt {
                 white-space: normal;
                 padding: 8px 0;
