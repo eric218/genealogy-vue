@@ -28,7 +28,7 @@
                     <Input v-model="formData.drowInAccountName" placeholder="开户名" @keyup.enter.native="toSubmit"/>
                 </FormItem>
                 <FormItem label>
-                    <Button type="primary" @click="toSubmit" style="margin-right:16px;">修改</Button>
+                    <Button type="primary" @click="toSubmit" style="margin-right:16px;">提交</Button>
                     <Button @click="isedit = false">关闭</Button>
                 </FormItem>
             </Form>
