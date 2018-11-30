@@ -223,12 +223,21 @@ export default [{
             },
             component: () => import('@/pages/admin/notable/list')
         }, {
-            path: 'type',
-            name: 'notable-type',
+            path: 'net',
+            name: 'notable-net',
             meta: {
                 icon: 'md-git-network',
                 title: '组织架构',
                 hide: true,
+            },
+            component: () => import('@/pages/admin/notable/net')
+        }, {
+            path: 'type',
+            name: 'notable-type',
+            meta: {
+                icon: 'ios-git-network',
+                title: '组织架构',
+                hideInMenu:true,
             },
             component: () => import('@/pages/admin/notable/type')
         }]

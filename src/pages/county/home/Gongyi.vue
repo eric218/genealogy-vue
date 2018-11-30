@@ -31,7 +31,7 @@
                             <span class="tit kt">收益公开栏</span>
                         </router-link>
                         <div class="bd" v-if="index_architecture_pay_in">
-                            <router-link :to="'/c/detail?type=charity?id='+v.id" class="item" v-for="v in index_architecture_pay_in.records" :key="v.id">
+                            <router-link :to="'/c/detail?type=charity&id='+v.id" class="item" v-for="v in index_architecture_pay_in.records" :key="v.id">
                                 <div class="date">
                                     <div class="day">{{dayjs(v.createTime).format('DD')}}</div>
                                     <div class="year">{{dayjs(v.createTime).format('YYYY-MM')}}</div>
@@ -276,7 +276,7 @@ export default {
             .item {
                 overflow: hidden;
                 background: #fff;
-                box-shadow: 0 1px 3px rgba(#000,.1);
+                box-shadow: 0 1px 3px rgba(#000, 0.1);
                 .img {
                     background: no-repeat center / cover;
                     border-bottom: 1px solid #eee;

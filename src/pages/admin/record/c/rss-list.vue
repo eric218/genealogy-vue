@@ -52,11 +52,7 @@ export default {
             fileName: "",
             filePath: "",
             columns: [
-                {
-                    title: "ID",
-                    width: 80,
-                    key: "id"
-                },
+                { title: "ID", width: 80, key: "id" },
                 {
                     title: " ",
                     width: 64,
@@ -74,18 +70,9 @@ export default {
                         });
                     }
                 },
-                {
-                    title: "标题",
-                    key: "title"
-                },
-                {
-                    title: "浏览数",
-                    key: "visitNum"
-                },
-                {
-                    title: "日期",
-                    key: "datetime"
-                },
+                { title: "标题", key: "newsTitle" },
+                { title: "浏览数", key: "visitNum" },
+                { title: "日期", key: "datetime" },
                 {
                     title: "操作",
                     key: "action",
@@ -146,10 +133,6 @@ export default {
                     if (res.code == 200) {
                         let list = res.data.records;
                         list.forEach(v => {
-                            v.title =
-                                v.status == 2
-                                    ? v.newsTitle + "[草稿]"
-                                    : v.newsTitle;
                             v.datetime = this.dayjs(v.updateTime).format(
                                 "YYYY-MM-DD HH:mm:ss"
                             );

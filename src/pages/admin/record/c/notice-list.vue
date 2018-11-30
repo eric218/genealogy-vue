@@ -41,11 +41,7 @@ export default {
                 fanNewsUploadFileList: []
             },
             columns: [
-                {
-                    title: "ID",
-                    width: 80,
-                    key: "id"
-                },
+                { title: "ID", width: 80, key: "id" },
                 {
                     title: " ",
                     width: 64,
@@ -63,18 +59,9 @@ export default {
                         });
                     }
                 },
-                {
-                    title: "标题",
-                    key: "title"
-                },
-                {
-                    title: "浏览数",
-                    key: "visitNum"
-                },
-                {
-                    title: "日期",
-                    key: "datetime"
-                },
+                { title: "标题", key: "newsTitle" },
+                { title: "浏览数", key: "visitNum" },
+                { title: "日期", key: "datetime" },
                 {
                     title: "操作",
                     key: "action",
