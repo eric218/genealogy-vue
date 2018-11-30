@@ -172,16 +172,6 @@ export default [{
                 title: '财务支出',
             },
             component: () => import('@/pages/admin/charitable/out')
-        }, {
-            path: 'detail',
-            name: 'charitable-detail',
-            meta: {
-                icon: 'md-settings',
-                title: '详细',
-                hide: true,
-                hideInMenu: true,
-            },
-            component: () => import('@/pages/admin/charitable/detail')
         }]
     },
     {
@@ -241,16 +231,6 @@ export default [{
                 hide: true,
             },
             component: () => import('@/pages/admin/notable/type')
-        }, {
-            path: 'detail',
-            name: 'notable-detail',
-            meta: {
-                icon: 'md-settings',
-                title: '详细',
-                hide: true,
-                hideInMenu: true,
-            },
-            component: () => import('@/pages/admin/notable/detail')
         }]
     },
     {

@@ -13,7 +13,7 @@
                 <Input placeholder="昵称" v-model="user.nickName" @keyup.enter.native="toSubmit"/>
             </FormItem>
             <FormItem label="真实姓名">
-                <Input placeholder="真实姓名" v-model="user.realName" @keyup.enter.native="toSubmit"/>
+                <Input placeholder="行不更名 坐不改姓" v-model="user.realName" @keyup.enter.native="toSubmit"/>
             </FormItem>
             <FormItem label="手机号">
                 <Input placeholder="手机号" v-model="user.mobilePhone" @keyup.enter.native="toSubmit" disabled/>
@@ -52,6 +52,7 @@ export default {
                     if (res.code == 200) {
                         this.$Message.success("修改成功");
                         this.$store.commit("updateUser", res.data);
+                        this.$emit("closedialog", true);
                     } else {
                         this.$Message.error(res.msg);
                     }

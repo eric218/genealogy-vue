@@ -65,7 +65,7 @@
             </div>
         </div>
         <Modal title="修改资料" v-model="isedit" width="640px" :footer-hide="true">
-            <editinfo/>
+            <editinfo @closedialog="closedialog"/>
         </Modal>
     </div>
 </template>
@@ -86,7 +86,11 @@ export default {
         }
     },
     mounted: function() {},
-    methods: {}
+    methods: {
+        closedialog() {
+            this.isedit = false;
+        }
+    }
 };
 </script>
 <style lang="scss" scoped>

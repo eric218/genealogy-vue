@@ -24,7 +24,7 @@
                         <div class="api" slot="content">
                             <Row>
                                 <i-col :span="24">
-                                    <i-input placeholder="添加字派名" v-model="zipai_txt" @keyup.enter.native="toSubmit"></i-input>
+                                    <i-input placeholder="添加字派名" v-model="zipai_txt" @keyup.enter.native="toSubmit" :maxlength="2"></i-input>
                                 </i-col>
                                 <i-col :span="24">
                                     <i-button type="primary" style="width:100%;margin-top:16px;" @click="toAddZipai">确定</i-button>
@@ -142,14 +142,16 @@ export default {
                     pageNo: this.page
                 })
                 .then(res => {
-                    let list = res.data.records;
-                    list.forEach(v => {
-                        v.datetime = this.dayjs(v.updateTime).format(
-                            "YYYY-MM-DD HH:mm:ss"
-                        );
-                    });
-                    this.list = list;
-                    this.total = res.data.total;
+                    if (res.code == 200) {
+                        let list = res.data.records;
+                        list.forEach(v => {
+                            v.datetime = this.dayjs(v.updateTime).format(
+                                "YYYY-MM-DD HH:mm:ss"
+                            );
+                        });
+                        this.list = list;
+                        this.total = res.data.total;
+                    }
                 });
         },
         chgPage(e) {

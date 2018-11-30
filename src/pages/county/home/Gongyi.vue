@@ -1,74 +1,82 @@
 <template>
     <div class="gongyi">
-        <div class="inner">
-            <div class="h">
-                <div class="cn">慈善公益 奉献助人</div>
-                <Divider class="en">Charitable Publicity</Divider>
-            </div>
-            <div class="b">
-                <div class="grid">
-                    <router-link class="hd" to="/c/charity_home">
-                        <span class="more">More</span>
-                        <span class="tit kt">支出公开栏</span>
-                    </router-link>
-                    <div class="bd" v-if="index_charity_pay_out">
-                        <router-link :to="'/c/detail?type=charity&id='+v.id" class="item" v-for="v in index_charity_pay_out.records" :key="v.id">
-                            <div class="date">
-                                <div class="day">{{dayjs(v.createTime).format('DD')}}</div>
-                                <div class="year">{{dayjs(v.createTime).format('YYYY-MM')}}</div>
-                            </div>
-                            <div class="info">
-                                <div class="tit">{{v.newsTitle}}</div>
-                                <div class="intro">{{v.newsText}}</div>
-                            </div>
-                        </router-link>
-                    </div>
+        <div class="list">
+            <div class="inner">
+                <div class="h">
+                    <div class="cn">慈善公益 奉献助人</div>
+                    <Divider class="en">Charitable Publicity</Divider>
                 </div>
-                <div class="grid">
-                    <router-link class="hd" to="/c/charity_home">
-                        <span class="more">More</span>
-                        <span class="tit kt">收益公开栏</span>
-                    </router-link>
-                    <div class="bd" v-if="index_architecture_pay_in">
-                        <router-link :to="'/c/detail?type=charity?id='+v.id" class="item" v-for="v in index_architecture_pay_in.records" :key="v.id">
-                            <div class="date">
-                                <div class="day">{{dayjs(v.createTime).format('DD')}}</div>
-                                <div class="year">{{dayjs(v.createTime).format('YYYY-MM')}}</div>
-                            </div>
-                            <div class="info">
-                                <div class="tit">{{v.newsTitle}}</div>
-                                <div class="intro">{{v.newsText}}</div>
-                            </div>
+                <div class="b">
+                    <div class="grid">
+                        <router-link class="hd" to="/c/charity_home">
+                            <span class="more">More</span>
+                            <span class="tit kt">支出公开栏</span>
                         </router-link>
+                        <div class="bd" v-if="index_charity_pay_out">
+                            <router-link :to="'/c/detail?type=charity&id='+v.id" class="item" v-for="v in index_charity_pay_out.records" :key="v.id">
+                                <div class="date">
+                                    <div class="day">{{dayjs(v.createTime).format('DD')}}</div>
+                                    <div class="year">{{dayjs(v.createTime).format('YYYY-MM')}}</div>
+                                </div>
+                                <div class="info">
+                                    <div class="tit">{{v.newsTitle}}</div>
+                                    <div class="intro">{{v.newsText}}</div>
+                                </div>
+                            </router-link>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <router-link class="hd" to="/c/charity_home">
+                            <span class="more">More</span>
+                            <span class="tit kt">收益公开栏</span>
+                        </router-link>
+                        <div class="bd" v-if="index_architecture_pay_in">
+                            <router-link :to="'/c/detail?type=charity?id='+v.id" class="item" v-for="v in index_architecture_pay_in.records" :key="v.id">
+                                <div class="date">
+                                    <div class="day">{{dayjs(v.createTime).format('DD')}}</div>
+                                    <div class="year">{{dayjs(v.createTime).format('YYYY-MM')}}</div>
+                                </div>
+                                <div class="info">
+                                    <div class="tit">{{v.newsTitle}}</div>
+                                    <div class="intro">{{v.newsText}}</div>
+                                </div>
+                            </router-link>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="f" v-if="1==2">
-            <div class="hd">
-                <div class="link" @click="handleTopay = true"></div>
-                <span>公益基金总金额：</span>
-                <span class="num">{{index_fund_2 ? index_fund_2.remain : 0}}</span>
-                <span>元</span>
-            </div>
-            <div class="bd" v-if="index_architecture_pay_in_person_2">
-                <div class="item" v-for="v in index_architecture_pay_in_person_2" :key="v.id">
-                    <div class="img"></div>
-                    <div class="name">{{v.allUserLogin ? v.allUserLogin.userName:''}}</div>
-                    <div class="txt">
-                        <small>捐款</small>
-                        <span>{{v.fanNewsCharityPayIn?v.fanNewsCharityPayIn.payAmount:0}}元</span>
-                    </div>
-                    <div class="link" v-if="1==2">
-                        <div class="flow">
-                            <span>关注</span>
-                        </div>
-                        <div class="zan">
-                            <Icon type="ios-thumbs-up" color="darkred"/>
-                            <span>150</span>
-                        </div>
-                    </div>
+        <div class="persons">
+            <div class="inner">
+                <div class="h">
+                    <div class="cn">捐款名人</div>
+                    <Divider class="en">公益基金总金额：{{index_fund_2 ? index_fund_2.remain : 0}}元</Divider>
                 </div>
+                <Row class="b" v-if="index_architecture_pay_in_person_2" :gutter="32">
+                    <i-col :span="4" v-for="v in index_architecture_pay_in_person_2.records" :key="v.id">
+                        <div class="item">
+                            <div class="img" :style="api.imgBG(v.allUserLogin.picSrc)">
+                                <img src="http://iph.href.lu/100x100">
+                            </div>
+                            <div class="obj">
+                                <div class="name">{{v.allUserLogin ? v.allUserLogin.userName:''}}</div>
+                                <div class="txt">
+                                    <small>捐款</small>
+                                    <span>{{v.fanNewsCharityPayIn?v.fanNewsCharityPayIn.payAmount:0}}元</span>
+                                </div>
+                                <div class="link" v-if="1==2">
+                                    <div class="flow">
+                                        <span>关注</span>
+                                    </div>
+                                    <div class="zan">
+                                        <Icon type="ios-thumbs-up" color="darkred"/>
+                                        <span>150</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </i-col>
+                </Row>
             </div>
         </div>
         <Modal v-model="handleTopay" width="480px" :footer-hide="true" class="g-pay">
@@ -184,19 +192,16 @@ export default {
             font-weight: 300;
         }
     }
-    .cards {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    .b {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        flex: 2;
-        .grid {
-            width: 48%;
-            min-height: 320px;
+    .list {
+        .b {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            flex: 2;
+            .grid {
+                width: 48%;
+                min-height: 320px;
+            }
             .hd {
                 display: block;
                 padding: 8px 0;
@@ -219,104 +224,74 @@ export default {
 
             .bd {
                 overflow: hidden;
-                .item {
-                    padding: 8px;
-                    display: block;
-                    overflow: hidden;
-                    font-size: 14px;
-                    white-space: nowrap;
-                    line-height: 32px;
-                    .date {
-                        float: left;
-                        color: #999;
-                        width: 96px;
-                        text-align: center;
-                        margin-right: 16px;
-                        border-right: 1px solid #ddd;
-                        .day {
-                            font-size: 20px;
-                            line-height: 32px;
-                        }
-                        .year {
-                            line-height: 16px;
-                            font-size: 12px;
-                            color: #999;
-                        }
+                height: 300px;
+            }
+            .item {
+                padding: 8px;
+                display: block;
+                overflow: hidden;
+                font-size: 14px;
+                white-space: nowrap;
+                line-height: 32px;
+                .date {
+                    float: left;
+                    color: #999;
+                    width: 96px;
+                    text-align: center;
+                    margin-right: 16px;
+                    border-right: 1px solid #ddd;
+                    .day {
+                        font-size: 20px;
+                        line-height: 32px;
                     }
-                    .info {
+                    .year {
+                        line-height: 16px;
+                        font-size: 12px;
+                        color: #999;
+                    }
+                }
+                .info {
+                    overflow: hidden;
+                    .tit {
                         overflow: hidden;
-                        .tit {
-                            overflow: hidden;
-                            color: #666;
-                        }
-                        .intro {
-                            color: #999;
-                            font-size: 12px;
-                            line-height: 24px;
-                            height: 24px;
-                            width: 100%;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                        }
+                        color: #666;
+                    }
+                    .intro {
+                        color: #999;
+                        font-size: 12px;
+                        line-height: 24px;
+                        height: 24px;
+                        width: 100%;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
                 }
             }
         }
     }
-
-    .right {
-        width: 48%;
-        background: #ece9e9;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        padding: 16px;
-        height: 450px;
-        .hd {
-            line-height: 64px;
-
-            span {
-                font-size: 16px;
-
-                &.num {
-                    font-size: 32px;
-                    color: $color;
-                    font-weight: 700;
-                    margin-right: 8px;
-                }
-            }
-
-            .link {
-                float: right;
-                background: url(../img/icon-help.png) no-repeat center / cover;
-                height: 48px;
-                width: 48px;
-            }
-        }
-
-        .bd {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-
+    .persons {
+        height: 480px;
+        background: #f1f2f3;
+        .b {
             .item {
-                width: 30%;
+                overflow: hidden;
                 background: #fff;
-                margin-bottom: 16px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-                padding: 8px;
-                border-radius: 8px;
-                text-align: center;
-
+                box-shadow: 0 1px 3px rgba(#000,.1);
                 .img {
-                    width: 64px;
-                    height: 64px;
-                    background: whitesmoke no-repeat center / cover;
-                    border-radius: 100%;
-                    clear: both;
-                    margin: 0 auto;
+                    background: no-repeat center / cover;
+                    border-bottom: 1px solid #eee;
+                    img {
+                        width: 100%;
+                        display: block;
+                        visibility: hidden;
+                    }
                 }
-
+                .obj {
+                    text-align: left;
+                    padding: 8px 16px;
+                }
                 .name {
-                    font-size: 16px;
+                    font-size: 14px;
                 }
 
                 .link {
