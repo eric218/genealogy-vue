@@ -4,6 +4,9 @@
         <TopInfo/>
         <About/>
         <Dynamic/>
+        <div class="adlinks">
+            <img src="@/assets/img/adpu.jpg">
+        </div>
         <Record/>
         <TheNew/>
         <Famous/>

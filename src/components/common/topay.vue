@@ -91,7 +91,7 @@ export default {
 @import "@/assets/css/var.scss";
 .g-pay {
     .ivu-modal-content {
-        background: #fff url(../../assets/img/paytop.png) no-repeat top center /
+        background: #fff url(../../assets/img/paytop.jpg) no-repeat top center /
             100% auto;
     }
 

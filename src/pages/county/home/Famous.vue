@@ -1,25 +1,24 @@
 <template>
     <div class="famous">
         <div class="inner">
-            <Anchor :affix="false" container="#card">
-                <AnchorLink :href="'#aaa_'+i" :title="v" v-for="(v,i) in keys" :key="i"/>
-            </Anchor>
-            <div class="card" id="card">
-                <div class="row" :id="'aaa_'+i" v-for="(v,i) in list" :key="i">
-                    <div class="h kt">
-                        <span>{{keys[i]}}</span>
-                    </div>
-                    <div class="b">
-                        <div class="item" v-for="itm in index_architecture[keys[i]]" :key="itm.id">
+            <div class="h">
+                <div class="cn">组织架构</div>
+                <Divider class="en">Famous</Divider>
+            </div>
+            <Tabs class="b" value="name_0" :animated="false">
+                <TabPane :label="v" :name="'name_'+i" v-for="(v,i) in keys" :key="i">
+                    <div class="card">
+                        <div class="item" v-for="itm in index_architecture[v]" :key="itm.id">
                             <div class="img" :style="itm.picFileSrc? api.imgBG(itm.picFileSrc):''" :alt="itm.personName"/>
                             <div class="obj">
                                 <div class="tit">{{itm.personName}}</div>
+                                <div class="tag">{{itm.personTag || '-'}}</div>
                                 <div class="intro">{{itm.personSummary}}</div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </TabPane>
+            </Tabs>
         </div>
     </div>
 </template>
@@ -64,84 +63,93 @@ export default {
     }
 };
 </script>
+<style lang="scss">
+.famous {
+    .nav-text {
+        text-align: center;
+        float: none;
+    }
+    .ivu-tabs-ink-bar {
+        display: none;
+    }
+}
+</style>
+
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
 .famous {
     background: #f1f2f3;
-    .inner {
-        padding: 64px 0;
+    padding: 32px 0;
+    .h {
+        text-align: center;
+        padding: 32px 0;
+        .cn {
+            font-size: 24px;
+        }
+        .en {
+            font-weight: 300;
+        }
+    }
+    .card {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-
-        .menus {
-            width: 120px;
-            overflow: hidden;
-            background: #fff;
+        flex: 2;
+        padding-top: 64px;
+    }
+    .item {
+        width: 320px;
+        padding: 16px;
+        white-space: nowrap;
+        position: relative;
+        .img {
+            position: absolute;
+            border-radius: 100%;
+            height: 128px;
+            width: 128px;
+            top: 0;
+            left: 50%;
+            margin-left: -70px;
+            border: 6px solid #fff;
+            background: whitesmoke no-repeat center / cover;
         }
 
-        .card {
-            width: 960px;
-            float: right;
-            height: 480px;
-            overflow-y: auto;
-            padding: 0 16px;
-            background: #fff;
-            .row {
-                padding: 16px 0;
+        .obj {
+            overflow: hidden;
+            color: #fff;
+            padding: 80px 16px 32px;
+            background: #000 url(../img/bg-famous.png) no-repeat center / cover;
+            box-shadow: 0 2px 5px rgba(#000, 0.5);
+            border-radius: 32px 1px 32px 1px;
+            .tit {
+                text-align: center;
+                font-size: 16px;
+                overflow: hidden;
+                height: 32px;
+                text-overflow: ellipsis;
             }
-            .h {
-                padding: 16px 0;
-                span {
-                    display: inline-block;
-                    background: $color;
-                    color: #fff;
-                    line-height: 32px;
-                    font-size: 16px;
-                    border-radius: 8px;
-                    padding: 0 32px;
+            .tag {
+                text-align: center;
+                font-size: 14px;
+                overflow: hidden;
+                height: 24px;
+                text-overflow: ellipsis;
+                position: relative;
+                &:after {
+                    content: "";
+                    position: absolute;
+                    left: 45%;
+                    right: 45%;
+                    bottom: 0;
+                    height: 2px;
                 }
             }
-            .b {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                flex: 2;
-                .item {
-                    width: 48%;
-                    margin: 4px 0;
-                    white-space: nowrap;
-                    .img {
-                        border-radius: 8px;
-                        height: 120px;
-                        width: 90px;
-                        float: left;
-                        margin-right: 16px;
-                        background: whitesmoke no-repeat center / cover;
-                    }
-
-                    .obj {
-                        overflow: hidden;
-                        height: 120px;
-
-                        .tit {
-                            font-size: 14px;
-                            color: $color;
-                            overflow: hidden;
-                            height: 32px;
-                            text-overflow: ellipsis;
-                        }
-
-                        .intro {
-                            white-space: normal;
-                            color: #999;
-                            height: 72px;
-                            font-size: 12px;
-                            line-height: 24px;
-                            overflow: hidden;
-                        }
-                    }
-                }
+            .intro {
+                white-space: normal;
+                height: 96px;
+                font-size: 12px;
+                line-height: 24px;
+                overflow: hidden;
             }
         }
     }
