@@ -26,6 +26,7 @@ export default [{
         redirect: '/a/home',
         component: LayoutBase,
         meta: {
+            title: '炎黄统谱网',
             hideInMenu: true,
         },
         children: admin
@@ -34,24 +35,36 @@ export default [{
         path: "/n",
         redirect: "/n/home",
         component: LayoutBase,
+        meta: {
+            title: '炎黄统谱网',
+        },
         children: nation
     },
     {
         path: "/p",
         redirect: "/p/Home",
         component: LayoutProvince,
+        meta: {
+            title: '炎黄统谱网',
+        },
         children: province
     },
     {
         path: "/c",
         redirect: "/c/home",
         component: LayoutCounty,
+        meta: {
+            title: '炎黄统谱网',
+        },
         children: county
     },
     {
         path: "/u",
         redirect: "/u/user",
         component: LayoutUser,
+        meta: {
+            title: '炎黄统谱网',
+        },
         children: user
     },
     {
